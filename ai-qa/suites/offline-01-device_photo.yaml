@@ -1,0 +1,16 @@
+name: offline-01-device_photo
+description: Offline Suite for Sheet [01_online_to_offline] > Module [device_photo]
+  (12 cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00214.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00215.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00216.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00217.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00218.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00219.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00220.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00221.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00222.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00223.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00224.yaml
+- testcases/offline_sync/01_online_to_offline/device_photo/SYNC-00225.yaml

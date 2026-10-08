@@ -1,0 +1,34 @@
+id: TC_HOME_048
+title: Incomplete job dialog Close
+feature: home
+priority: High
+description: The incomplete-job dialog closes with Close.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_048] active job dialog: Close when dialog
+  visible'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Chạm vào mục [Agenda]
+  action: tap_selector
+  text: Agenda
+  delay: 1.0
+- desc: Chạm vào mục [Close]
+  action: tap_selector
+  text: Close
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap a recurring job (on the calendar or in "Agenda") until
+  the incomplete-job dialog ("There is an incomplete job in the past:") opens. (3)
+  Tap "Close"; after that the dialog should be closed. At the end, the Home screen
+  with its top bar (id: home-bar) should be displayed. If the dialog does not open,
+  stop and report the test as skipped: no incomplete recurring job.'

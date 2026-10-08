@@ -1,0 +1,10 @@
+name: offline-04-mdu
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [mdu] (6
+  cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02623.yaml
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02624.yaml
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02625.yaml
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02626.yaml
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02627.yaml
+- testcases/offline_sync/04_server_to_local_offline/mdu/SYNC-02628.yaml

@@ -1,0 +1,45 @@
+id: EDGE-GAP-009
+title: 'Missing Local Media File Handling: File ảnh cục bộ bị OS Cleaner hoặc người
+  dùng xóa trước khi sync → Queue đẩy metadata lên server phá'
+sheet: 16_Production_Edge_Gaps
+module: Media / Sync Engine
+action: Missing Local Media File Handling
+priority: P1
+flow_phase: Storage & Low Disk Limit
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Sync Engine / Photo Upload
+preconditions: User chụp 1 ảnh gắn vào Job khi offline. File ảnh vật lý trong cache
+  bị xóa ngoài hệ thống trước khi có mạng.
+test_data: 'Photo metadata record in SQLite pointing to deleted file uri: ''file:///cache/photo_999.jpg''.'
+steps:
+- desc: Chụp ảnh Job khi offline (record tạo trong SQLite outbox).
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Dùng file manager hoặc command xóa file ảnh gốc tại đường dẫn lưu trữ.
+  action: tap_selector
+  text: Dùng file manager hoặc command
+  delay: 1.0
+- desc: Bật mạng Online để kích hoạt sync.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Giám sát phản ứng của uploader worker.
+  action: tap_selector
+  text: Giám sát phản ứng của uploader
+  delay: 1.0
+expected:
+- desc: Sync worker phát hiện file không tồn tại (FileNotFoundException / ENOENT).
+  assert_text: Media / Sync Engine
+- desc: Không throw unhandled promise rejection gây crash app.
+  assert_text: Media / Sync Engine
+- desc: Đánh dấu riêng item ảnh đó là 'File Missing / Upload Failed' kèm icon cảnh
+    báo trên Job.
+  assert_text: File Missing / Upload Failed
+- desc: Toàn bộ các thông tin văn bản khác của Job vẫn được sync lên bình thường,
+    hàng đợi tiếp tục hoạt động.
+  assert_text: Media / Sync Engine
+source_tickets: RN-5477 / File-System
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Sync Queue Deadlock
+notes: Rất nhiều app mobile bị kẹt hàng đợi vĩnh viễn ở item ảnh bị mất file.

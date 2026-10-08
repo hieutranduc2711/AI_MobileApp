@@ -1,0 +1,57 @@
+id: SYNC-01372
+title: 'Update Invoice visible note: Update Invoice visible note: Offline queue →
+  server đã process nhưng response mất'
+sheet: 02_Offline_to_Online
+module: Invoice
+action: Update Invoice visible note
+priority: P0
+flow_phase: F2O-07 Server processed / response lost
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Invoice > Visible Note
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Update Invoice visible note.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Cho server process business action nhưng drop response.
+  action: tap_selector
+  text: Cho server process business ac
+  delay: 1.0
+- desc: Để client retry cùng logical operation.
+  action: tap_selector
+  text: Để client retry cùng logical o
+  delay: 1.0
+- desc: Restore response.
+  action: tap_selector
+  text: Restore response.
+  delay: 1.0
+- desc: Kiểm tra count/effect server.
+  action: tap_selector
+  text: Kiểm tra count/effect server.
+  delay: 1.0
+- desc: Verify local.
+  action: tap_selector
+  text: Verify local.
+  delay: 1.0
+expected:
+- desc: Stable idempotency ngăn duplicate.
+  assert_text: Invoice
+- desc: Chỉ một logical business effect.
+  assert_text: Invoice
+- desc: Local cuối cùng map/reconcile với authoritative record.
+  assert_text: Invoice
+source_tickets: RN-5597, RN-5533, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5597
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Idempotency
+notes: ''

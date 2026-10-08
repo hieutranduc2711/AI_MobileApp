@@ -1,0 +1,26 @@
+id: FLEET-CHK-002
+title: Báo cáo sự cố xe (Report Vehicle Defect)
+feature: fleet_vehicle_inspection
+priority: Normal
+description: 'Kiểm thử tính năng quản lý và kiểm tra xe tải KTV #2'
+preconditions: KTV đã đăng nhập vào hệ thống
+steps:
+- desc: Mở Vehicle Inspection
+  action: tap_selector
+  text: Vehicle Inspection
+  delay: 0.8
+- desc: Bấm Report Defect
+  action: tap_selector
+  text: Report Defect
+  delay: 0.8
+- desc: Nhập mô tả 'Áp suất lốp trước thấp'
+  action: type_text
+  value: Low front tire pressure
+  delay: 0.5
+- desc: Gửi báo cáo sự cố
+  action: tap_selector
+  content_desc: Send Report
+  delay: 1.0
+expected:
+- assert_text: Defect Reported
+  desc: Thông báo bảo trì xe được gửi về Fleet Manager

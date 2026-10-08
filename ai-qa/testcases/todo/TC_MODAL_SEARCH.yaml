@@ -1,0 +1,36 @@
+id: TC_MODAL_SEARCH
+title: Tap template search in options
+feature: todo
+priority: High
+description: The todo options sheet shows a template search field.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_EDIT_LINE
+  edits the first todo; TC_TEMPLATE_APPLY applies the first template to the job; TC_TEMPLATE_RENAME
+  renames the first template.
+detox_reference: '[Todo][TC_MODAL_SEARCH][Menu] User taps template search field in
+  the todo options modal'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+expected:
+- assert_text: Search Template
+  desc: Hiển thị 'Search Template' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap the three-dots button on "Todo List" (id: options-button).
+  After step 2, the "Search Template" field should be displayed. (3) Tap it, then
+  close the sheet by tapping the handle at its top (id: indicator). If there is no
+  "Todo List" section, stop and report the test as skipped: todo hidden for this role.'

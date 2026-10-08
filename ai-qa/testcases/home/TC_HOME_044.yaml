@@ -1,0 +1,30 @@
+id: TC_HOME_044
+title: Date range New Job and back
+feature: home
+priority: High
+description: Tapping an empty calendar slot offers New Job; its screen opens and back
+  returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_044] SelectDateRangeModal: New Job when
+  modal open then back to Home'
+steps:
+- desc: Tap an empty time slot on the Day calendar (up to 6 times) until a date-range
+    sh
+  action: tap_selector
+  text: 'Tap an empty time slot on the '
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap an empty time
+  slot on the Day calendar (up to 6 times) until a date-range sheet opens. (2) Tap
+  "New Job", then return with the back arrow at the top-left (confirm leaving if asked).
+  At the end, the Home screen with its top bar (id: home-bar) should be displayed.
+  If no date-range sheet opens or it has no such option, stop and report the test
+  as skipped: date-range sheet not available.'

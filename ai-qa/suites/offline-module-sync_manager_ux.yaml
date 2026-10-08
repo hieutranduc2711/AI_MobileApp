@@ -1,0 +1,5 @@
+name: offline-module-sync_manager_ux
+description: Cross-sheet comprehensive offline suite for Module [sync_manager_ux]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/sync_manager_ux/EDGE-GAP-032.yaml

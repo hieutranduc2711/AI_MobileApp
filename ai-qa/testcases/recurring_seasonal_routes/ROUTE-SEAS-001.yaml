@@ -1,0 +1,22 @@
+id: ROUTE-SEAS-001
+title: Cấu hình lịch xịt côn trùng theo mùa (Mùa hè 2 tuần/lần, Mùa đông 1 tháng/lần)
+feature: recurring_seasonal_routes
+priority: Normal
+description: 'Kiểm thử lộ trình và tần suất dịch vụ mùa vụ #1'
+preconditions: Calendar Home
+steps:
+- desc: Mở hợp đồng định kỳ
+  action: tap_selector
+  text: Agreements
+  delay: 0.8
+- desc: Chọn Seasonal Frequency Rule
+  action: tap_selector
+  text: Seasonal
+  delay: 0.8
+- desc: Lưu quy tắc mùa
+  action: tap_selector
+  content_desc: Save Rule
+  delay: 1.0
+expected:
+- assert_text: Seasonal Schedule Set
+  desc: Lịch tự động điều chỉnh theo mùa

@@ -1,0 +1,109 @@
+{
+  "test_id": "CUST-VAL-001",
+  "title": "Negative Test - Block Save Customer When Service Address is Missing",
+  "feature": "customer",
+  "tier": 1,
+  "type": "NEGATIVE_VALIDATION",
+  "dynamic_nonce": null,
+  "priority": "High",
+  "description": "Kiểm tra hệ thống bắt buộc nhập Service Address, chặn lưu và giữ người dùng ở lại form New Customer khi cố tình bỏ trống Service Address.",
+  "preconditions": "",
+  "expected_criteria": [
+    {
+      "assert_text": "New Customer",
+      "desc": "Hệ thống phải chặn lưu và giữ nguyên người dùng ở form New Customer"
+    },
+    {
+      "assert_text": "Service Address",
+      "desc": "Trường Service Address vẫn hiện diện (được đánh dấu đỏ bắt buộc)"
+    }
+  ],
+  "execution_duration_sec": 17.0,
+  "video_recording": "D:\\artemis\\ai-qa\\runs\\videos\\CUST-VAL-001.mp4",
+  "video_keyframes": [
+    "D:\\artemis\\ai-qa\\runs\\keyframes\\CUST-VAL-001_keyframe_1.png",
+    "D:\\artemis\\ai-qa\\runs\\keyframes\\CUST-VAL-001_keyframe_2.png",
+    "D:\\artemis\\ai-qa\\runs\\keyframes\\CUST-VAL-001_keyframe_3.png"
+  ],
+  "steps_executed": [
+    {
+      "step": 1,
+      "desc": "Bấm nút Thêm mới (+) trên màn hình Customers",
+      "action": "tap_selector",
+      "duration_sec": 3.4,
+      "status": "OK"
+    },
+    {
+      "step": 2,
+      "desc": "Chạm vào ô First Name",
+      "action": "tap_selector",
+      "duration_sec": 3.51,
+      "status": "OK"
+    },
+    {
+      "step": 3,
+      "desc": "Nhập First Name",
+      "action": "type_text",
+      "duration_sec": 0.78,
+      "status": "OK"
+    },
+    {
+      "step": 4,
+      "desc": "Chạm vào ô Last Name",
+      "action": "tap_selector",
+      "duration_sec": 3.14,
+      "status": "OK"
+    },
+    {
+      "step": 5,
+      "desc": "Nhập Last Name",
+      "action": "type_text",
+      "duration_sec": 0.84,
+      "status": "OK"
+    },
+    {
+      "step": 6,
+      "desc": "Ẩn bàn phím ảo",
+      "action": "hide_keyboard",
+      "duration_sec": 0.57,
+      "status": "OK"
+    },
+    {
+      "step": 7,
+      "desc": "Cố tình bấm nút Save khi chưa chọn Service Address",
+      "action": "tap_selector",
+      "duration_sec": 4.75,
+      "status": "OK"
+    }
+  ],
+  "final_screen_state": {
+    "screenshot": "D:\\artemis\\ai-qa\\runs\\CUST-VAL-001_final.png",
+    "visible_texts_sample": [
+      "Your app version is not up to date.",
+      "Update",
+      "New Customer",
+      "Fast form",
+      "Save",
+      "Active Customer",
+      "NegativeQA",
+      "NoAddressTest",
+      "Title",
+      "Email",
+      "NegativeQA NoAddressTest",
+      "Phone",
+      "Mobile",
+      "Company",
+      "Address Name",
+      "Service Address",
+      "Billing Address, Same",
+      "Billing Address",
+      "Same",
+      "Billing Email",
+      "Work Order Email",
+      "Additional Contacts"
+    ],
+    "crash_detected": false,
+    "crash_log": []
+  },
+  "runner_heuristic_hint": "LIKELY_PASS"
+}

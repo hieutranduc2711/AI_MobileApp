@@ -1,0 +1,27 @@
+id: TC_HOME_030
+title: Holidays sheet from More
+feature: home
+priority: High
+description: The holiday More link opens the holidays sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_030] open Holidays modal from holiday
+  more anchor when available'
+steps:
+- desc: Chạm vào mục [More]
+  action: tap_selector
+  text: More
+  delay: 1.0
+- desc: Chạm vào mục [More]
+  action: tap_selector
+  text: More
+  delay: 1.0
+expected:
+- assert_text: the holidays sheet
+  desc: the holidays sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the first holiday
+  "More" link above the calendar. After step 1, the holidays sheet should be displayed.
+  (2) Close it by tapping the handle at its top (id: indicator). If there is no holiday
+  "More" link, stop and report the test as skipped: no holidays shown.'

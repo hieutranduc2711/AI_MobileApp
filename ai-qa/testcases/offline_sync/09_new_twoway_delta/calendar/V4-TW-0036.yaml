@@ -1,0 +1,52 @@
+id: V4-TW-0036
+title: 'Resize Recurring Job - Entire Series: Online → Offline Resize Recurring Job
+  - Entire Series → Online'
+sheet: 09_New_TwoWay_Delta
+module: Calendar
+action: Resize Recurring Job - Entire Series
+priority: P1
+flow_phase: Two-Way Delta Action
+direction: ROUND TRIP
+app_path: GD Mobile > Calendar
+preconditions: Prerequisite data available; app starts Online.
+test_data: ''
+steps:
+- desc: Load target entity Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Resize Recurring Job - Entire Series.
+  action: tap_selector
+  text: Resize Recurring Job - Entire Series
+  delay: 1.0
+- desc: Force close/reopen app khi vẫn Offline và verify local state.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ sync hoàn tất.
+  action: tap_selector
+  text: Chờ sync hoàn tất.
+  delay: 1.0
+- desc: Verify app + web final state.
+  action: tap_selector
+  text: Verify app + web final state.
+  delay: 1.0
+expected:
+- desc: Local mutation sống qua restart.
+  assert_text: Calendar
+- desc: Reconnect tự sync không cần user trigger.
+  assert_text: Calendar
+- desc: Final result đúng và chỉ áp dụng một lần.
+  assert_text: Calendar
+source_tickets: RN-5572
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5572
+risk: Delta Missing Action
+notes: ''

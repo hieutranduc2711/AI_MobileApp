@@ -1,0 +1,62 @@
+id: SYNC-02875
+title: 'Create Job Document: Create Job Document - File/image lớn'
+sheet: 05_Cross_Cutting
+module: Document
+action: Create Job Document
+priority: P1
+flow_phase: Large File
+direction: CROSS-CUTTING
+app_path: GD Mobile > Job > Documents > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Job Document;
+  prerequisite cho Document đã sync khi cần.
+test_data: Upload test data
+steps:
+- desc: Chuẩn bị large valid file.
+  action: tap_selector
+  text: Chuẩn bị large valid file.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Create Job Document.
+  action: tap_selector
+  text: Create Job Document
+  delay: 1.0
+- desc: Reconnect weak network.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe memory/UI/upload.
+  action: tap_selector
+  text: Observe memory/UI/upload.
+  delay: 1.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Create Job Document không làm app crash/mất dữ liệu.
+  assert_text: Document
+- desc: Local/UI của Document phản ánh đúng business result.
+  assert_text: Document
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Document
+- desc: Không duplicate logical operation.
+  assert_text: Document
+- desc: Không OOM/crash.
+  assert_text: Document
+- desc: Preview/ref tồn tại local.
+  assert_text: Document
+- desc: Upload/retry đúng.
+  assert_text: Document
+source_tickets: RN-5577, RN-5539, RN-5525, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5577
+
+  https://gorilladesk1.atlassian.net/browse/RN-5539
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Large upload
+notes: Carried from V2 OFFV2-01047

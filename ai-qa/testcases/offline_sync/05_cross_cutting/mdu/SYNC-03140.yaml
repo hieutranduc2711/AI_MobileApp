@@ -1,0 +1,68 @@
+id: SYNC-03140
+title: 'Create Unit Comment: Create Unit Comment khi parent chỉ có local ID'
+sheet: 05_Cross_Cutting
+module: MDU
+action: Create Unit Comment
+priority: P0
+flow_phase: Parent local:* Dependency
+direction: CROSS-CUTTING
+app_path: GD Mobile > MDU > Unit > Comments > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Unit
+  Comment; prerequisite cho Unit Comment đã sync khi cần.
+test_data: Parent created offline
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create parent để có local:* ID.
+  action: tap_selector
+  text: Create parent để có local:* ID
+  delay: 1.0
+- desc: Thực hiện child action Create Unit Comment.
+  action: tap_selector
+  text: Create Unit Comment
+  delay: 1.0
+- desc: Verify child links local parent.
+  action: tap_selector
+  text: Verify child links local paren
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe sync order.
+  action: tap_selector
+  text: Observe sync order.
+  delay: 1.0
+- desc: Verify real parent-child server relation.
+  action: tap_selector
+  text: Verify real parent-child serve
+  delay: 1.0
+expected:
+- desc: Create Unit Comment không làm app crash/mất dữ liệu.
+  assert_text: MDU
+- desc: Local/UI của Unit Comment phản ánh đúng business result.
+  assert_text: MDU
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: MDU
+- desc: Không duplicate logical operation.
+  assert_text: MDU
+- desc: Child không gửi unresolved parent.
+  assert_text: MDU
+- desc: Parent mapping đúng trước/khi child send.
+  assert_text: MDU
+- desc: No orphan/duplicate relation.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5590, RN-5533, RN-5608, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5590
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533
+
+  https://gorilladesk1.atlassian.net/browse/RN-5608
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Dependency/orphan
+notes: Carried from V2 OFFV2-02432

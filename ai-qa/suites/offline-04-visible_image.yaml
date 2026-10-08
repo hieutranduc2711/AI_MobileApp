@@ -1,0 +1,10 @@
+name: offline-04-visible_image
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [visible_image]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02665.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02666.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02667.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02668.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02669.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_image/SYNC-02670.yaml

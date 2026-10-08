@@ -1,0 +1,5 @@
+name: offline-16-job_conflict_resolution
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [job_conflict_resolution]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/job_conflict_resolution/EDGE-GAP-034.yaml

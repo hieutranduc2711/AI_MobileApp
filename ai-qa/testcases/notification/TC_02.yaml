@@ -1,0 +1,20 @@
+id: TC_02
+title: Unread tab selected by default
+feature: notification
+priority: High
+description: The notification screen opens on the Unread tab with the unread list.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_05 toggles every notification setting and then restores it; the settings list
+  is empty unless the account's editSetting flag is on.
+detox_reference: '[TC_02][DOC+][UnreadTab] User sees unread tab selected by default'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+expected:
+- assert_text: Unread
+  desc: Hiển thị 'Unread' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the bell icon in
+  the top bar. After step 1, the "Unread" tab and the unread notification list (may
+  be empty) should be displayed.

@@ -1,0 +1,18 @@
+id: PERM-ROLE-001
+title: Tài khoản Technician không được xem giá tiền và doanh thu
+feature: role_based_permissions
+priority: Normal
+description: 'Kiểm thử ma trận phân quyền KTV và Quản lý ca #1'
+preconditions: Đang đăng nhập
+steps:
+- desc: Đăng nhập tài khoản Technician
+  action: tap_selector
+  text: Technician Login
+  delay: 0.8
+- desc: Mở chi tiết Job
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+expected:
+- assert_text: Hidden by Admin
+  desc: Các trường giá tiền và invoice bị ẩn với thợ

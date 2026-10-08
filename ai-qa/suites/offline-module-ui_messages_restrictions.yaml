@@ -1,0 +1,8 @@
+name: offline-module-ui_messages_restrictions
+description: Cross-sheet comprehensive offline suite for Module [ui_messages_restrictions]
+  (4 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/ui_messages_restrictions/DEV-UI-164.yaml
+- testcases/offline_sync/10_dev_checklist_167/ui_messages_restrictions/DEV-UI-165.yaml
+- testcases/offline_sync/10_dev_checklist_167/ui_messages_restrictions/DEV-UI-166.yaml
+- testcases/offline_sync/10_dev_checklist_167/ui_messages_restrictions/DEV-UI-167.yaml

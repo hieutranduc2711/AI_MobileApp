@@ -1,0 +1,41 @@
+id: AUTH-E2E-020
+title: Login required-field validation
+feature: auth
+priority: High
+description: Login shows the required-fields error for empty, username-only and password-only
+  submits.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'login: required-field validation recovers (empty → username only
+  → password only)'
+steps:
+- desc: Chạm vào mục [Login]
+  action: tap_selector
+  text: Login
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'user@example.com' vào ô [input]
+  action: type_text
+  value: user@example.com
+  delay: 0.8
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'SomePassword1' vào ô [input]
+  action: type_text
+  value: SomePassword1
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account") and clear both fields. (1) Tap the "Login" button. (2)
+  Type "user@example.com" in "Email or Username" and tap "Login". (3) Clear "Email
+  or Username", type "SomePassword1" in "Password" and tap "Login". After each of
+  steps 1–3, the error "Please enter your username and password." should be displayed
+  (id: error-wrapper).'

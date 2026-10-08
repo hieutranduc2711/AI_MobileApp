@@ -1,0 +1,18 @@
+id: CHEM-EPA-010
+title: Xóa hóa chất đã gán nhầm khỏi Job
+feature: chemical_epa_tracking
+priority: Normal
+description: KTV có thể xóa hóa chất đã add nhầm mà không làm hỏng dữ liệu khác
+preconditions: Hóa chất đã thêm đang hiển thị trong danh sách
+steps:
+- desc: Bấm icon Remove/Delete bên cạnh hóa chất
+  action: tap_selector
+  content_desc: Delete Chemical
+  delay: 0.8
+- desc: Xác nhận xóa trong popup
+  action: tap_selector
+  text: Delete
+  delay: 1.0
+expected:
+- assert_text: No chemicals applied
+  desc: Danh sách hóa chất trống hoặc không còn hóa chất đó

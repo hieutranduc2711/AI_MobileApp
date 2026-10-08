@@ -1,0 +1,64 @@
+id: SYNC-03298
+title: 'Mixed Dependencies: Create Job + Invoice/Todo/Note/Material/Document before
+  reconnect'
+sheet: 05_Cross_Cutting
+module: Sync Queue
+action: Mixed Dependencies
+priority: P1
+flow_phase: Stress/Scale
+direction: CROSS-CUTTING
+app_path: GD Mobile multiple modules
+preconditions: Large prepared dataset/device storage sufficient.
+test_data: Create Job + Invoice/Todo/Note/Material/Document before reconnect
+steps:
+- desc: Prepare data.
+  action: tap_selector
+  text: Prepare data.
+  delay: 1.0
+- desc: Go offline if applicable.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Execute workload.
+  action: tap_selector
+  text: Execute workload.
+  delay: 1.0
+- desc: Measure responsiveness/pending count.
+  action: tap_selector
+  text: Measure responsiveness/pending
+  delay: 1.0
+- desc: Reconnect once.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Allow bg/fg.
+  action: tap_selector
+  text: Allow bg/fg.
+  delay: 1.0
+- desc: Wait stable.
+  action: tap_selector
+  text: Wait stable.
+  delay: 1.0
+- desc: Compare server counts/relations.
+  action: tap_selector
+  text: Compare server counts/relation
+  delay: 1.0
+expected:
+- desc: No crash/OOM.
+  assert_text: Sync Queue
+- desc: No silent data loss.
+  assert_text: Sync Queue
+- desc: All valid actions drain.
+  assert_text: Sync Queue
+- desc: Dependencies/order preserved.
+  assert_text: Sync Queue
+- desc: Counts/relations match.
+  assert_text: Sync Queue
+source_tickets: RN-5608, RN-5533, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5608
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Scale/performance
+notes: Carried from V2 OFFV2-03242

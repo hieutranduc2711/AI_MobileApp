@@ -1,0 +1,50 @@
+id: V4-TW-0056
+title: 'Move Sentricon to Another Location: Thực hiện Move Sentricon to Another Location
+  Offline rồi reconnect'
+sheet: 09_New_TwoWay_Delta
+module: Sentricon
+action: Move Sentricon to Another Location
+priority: P0
+flow_phase: Two-Way Delta Action
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Sentricon > Move
+preconditions: User có quyền Move Sentricon to Another Location; prerequisite local
+  đã cache; device Offline.
+test_data: ''
+steps:
+- desc: Thực hiện Move Sentricon to Another Location khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Xác nhận local result và pending state.
+  action: tap_selector
+  text: Xác nhận local result và pendi
+  delay: 1.0
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Không tạo thêm action cùng entity.
+  action: tap_selector
+  text: Không tạo thêm action cùng ent
+  delay: 1.0
+- desc: Chờ sync queue → backend processing → authoritative downlink.
+  action: back
+  delay: 1.0
+- desc: Reopen entity và đối chiếu web/thiết bị online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Mutation được gửi đúng account/branch và đúng business action.
+  assert_text: Sentricon
+- desc: Không mất/duplicate action.
+  assert_text: Sentricon
+- desc: Không snap-back trong lúc ACK đã có nhưng BE chưa complete.
+  assert_text: Sentricon
+- desc: Final local state = authoritative server state.
+  assert_text: Sentricon
+source_tickets: RN-5591
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5591
+risk: Delta Missing Action
+notes: ''

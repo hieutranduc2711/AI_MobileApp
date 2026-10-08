@@ -1,0 +1,29 @@
+id: JDELTA-026
+title: 'Document Sketch unavailable Offline: Document Sketch unavailable Offline'
+sheet: 13_Jira_Current_Delta
+module: Offline Restrictions
+action: Document Sketch unavailable Offline
+priority: P2
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Open document Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Attempt to open Sketch.
+  action: tap_selector
+  text: Attempt to open Sketch.
+  delay: 1.0
+expected:
+- desc: Sketch editor does not open Offline.
+  assert_text: Offline Restrictions
+- desc: Base document flow remains usable.
+  assert_text: Offline Restrictions
+source_tickets: RN-5614
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5614
+risk: Schema / Comment Regression
+notes: ''

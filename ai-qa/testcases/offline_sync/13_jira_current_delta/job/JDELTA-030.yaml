@@ -1,0 +1,38 @@
+id: JDELTA-030
+title: 'Repeated same-field edits Offline preserve final value: Repeated same-field
+  edits Offline preserve final value'
+sheet: 13_Jira_Current_Delta
+module: Job
+action: Repeated same-field edits Offline preserve final value
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Edit same Job field A→B→C several times, saving as allowed.
+  action: tap_selector
+  text: Edit same Job field A→B→C seve
+  delay: 1.0
+- desc: Reconnect only after final value.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Verify web/mobile.
+  action: tap_selector
+  text: Verify web/mobile.
+  delay: 1.0
+expected:
+- desc: Final intended value wins.
+  assert_text: Job
+- desc: Coalescing does not keep stale intermediate value.
+  assert_text: Job
+source_tickets: RN-5582
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5582
+risk: Schema / Comment Regression
+notes: ''

@@ -1,0 +1,26 @@
+id: TERM-WDO-001
+title: Lập biên bản khảo sát mối mọt WDO State Form
+feature: termite_wdo_inspection
+priority: Normal
+description: 'Kiểm thử quy trình khảo sát mối công trình ca #1'
+preconditions: Job đang mở
+steps:
+- desc: Mở Job kiểm tra mối
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+- desc: Chọn biểu mẫu WDO Inspection Report
+  action: tap_selector
+  text: WDO Report
+  delay: 1.0
+- desc: Tích chọn phát hiện mối Subterranean Termites
+  action: tap_selector
+  text: Subterranean Termites
+  delay: 0.5
+- desc: Lưu báo cáo WDO
+  action: tap_selector
+  content_desc: Save Report
+  delay: 1.2
+expected:
+- assert_text: WDO Report Saved
+  desc: Biên bản WDO lưu thành công

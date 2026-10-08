@@ -1,0 +1,25 @@
+id: CUST_E2E_002
+title: Customer list opens with controls
+feature: customer
+priority: High
+description: The Customers list opens from the side menu.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_002] customer list: core controls visible (search + add)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers".

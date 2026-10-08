@@ -1,0 +1,10 @@
+name: offline-04-opportunity
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [opportunity]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02641.yaml
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02642.yaml
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02643.yaml
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02644.yaml
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02645.yaml
+- testcases/offline_sync/04_server_to_local_offline/opportunity/SYNC-02646.yaml

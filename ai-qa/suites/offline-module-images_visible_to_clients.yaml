@@ -1,0 +1,10 @@
+name: offline-module-images_visible_to_clients
+description: Cross-sheet comprehensive offline suite for Module [images_visible_to_clients]
+  (6 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-141.yaml
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-142.yaml
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-143.yaml
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-144.yaml
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-145.yaml
+- testcases/offline_sync/10_dev_checklist_167/images_visible_to_clients/DEV-UI-146.yaml

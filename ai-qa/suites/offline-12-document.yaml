@@ -1,0 +1,18 @@
+name: offline-12-document
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [document] (14
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-188.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-189.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-190.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-191.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-192.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-193.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-194.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-195.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-196.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-197.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-198.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-199.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-200.yaml
+- testcases/offline_sync/12_perf_rerender_245/document/PERF-201.yaml

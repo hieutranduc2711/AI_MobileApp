@@ -1,0 +1,8 @@
+name: offline-module-job_execution
+description: Cross-sheet comprehensive offline suite for Module [job_execution] (4
+  cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/job_execution/DEV-UI-022.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_execution/DEV-UI-023.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_execution/DEV-UI-024.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_execution/DEV-UI-025.yaml

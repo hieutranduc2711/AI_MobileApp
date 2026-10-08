@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_103109",
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "pass_rate": "0.0%",
+  "results": [
+    {
+      "id": "KONG-AI-001",
+      "status": "BLOCKED",
+      "runner_hint": "HEURISTIC_WARNING: Missing expected text 'Kong'",
+      "judge_summary": "Lượt kiểm thử bị chặn vì chưa chứng minh được Runner đã vào giao diện GorillaDesk; ảnh cuối xác nhận thiết bị đang ở màn hình chính Android. Không đủ bằng chứng để kết luận chức năng mở Kong AI Assistant bị lỗi.",
+      "judge_reasoning": "Đã quan sát ảnh D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png: màn hình hiển thị các biểu tượng Opera, Outlook, Settings, Edge, Firefox và thanh tìm kiếm Google, không phải giao diện GorillaDesk; không thấy Drawer Menu hoặc Kong AI. Theo hồ sơ Runner, bước mở Drawer Menu trả về ELEMENT_NOT_FOUND sau 4.62s; bước chọn Kong AI tiếp tục trả về ELEMENT_NOT_FOUND sau 4.78s, nên cả hai thao tác đều chưa thực hiện thành công. Việc thiếu chữ 'Kong' xác nhận kết quả mong đợi chưa được ghi nhận, nhưng trên màn hình ngoài ứng dụng, đây không phải bằng chứng về lỗi chức năng Kong. Logcat được báo cáo không có crash/ANR cũng không chứng minh ứng dụng đã được mở hoặc chức năng hoạt động đúng. Điều kiện tiên quyết để kiểm thử chưa được xác minh; nguyên nhân thiết bị ở màn hình chính chưa xác định. Ngoài ra, tiêu chí nghiệm thu chỉ ghi 'Kong', thiếu mô tả trạng thái giao diện cần đạt. Cần xác nhận GorillaDesk được mở, phiên đăng nhập hợp lệ và màn hình có Drawer Menu trước khi chạy lại; đồng thời bổ sung tiêu chí xác nhận Kong AI Assistant đã mở thành công.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png",
+      "time_sec": 9.4
+    }
+  ]
+}

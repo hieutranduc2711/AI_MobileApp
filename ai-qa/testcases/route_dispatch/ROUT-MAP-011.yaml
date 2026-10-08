@@ -1,0 +1,19 @@
+id: ROUT-MAP-011
+title: 'Kiểm thử điều hướng và phân luồng di chuyển #11'
+feature: route_dispatch
+priority: Medium
+description: 'Định vị và tính toán thời gian di chuyển (ETA) giữa các công việc #11'
+preconditions: Có nhiều điểm hẹn trong ngày
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn Map
+  action: tap_selector
+  content_desc: Map
+  delay: 1.2
+expected:
+- assert_text: Map
+  desc: Bản đồ hiển thị các điểm dừng

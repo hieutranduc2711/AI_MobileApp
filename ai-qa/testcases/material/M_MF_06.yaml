@@ -1,0 +1,56 @@
+id: M_MF_06
+title: Material picker returns to form
+feature: material
+priority: High
+description: Opening and closing the material picker returns to the form with Save.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_MF_06][Material][MaterialForm] Select material from list and
+  verify form updates'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Add Material]
+  action: tap_selector
+  text: Add Material
+  delay: 1.0
+- desc: Tap the material field (first row).
+  action: tap_selector
+  text: 'Tap the material field (first '
+  delay: 0.8
+- desc: 'Close the sheet by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close the sheet by tapping the
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Add Material
+  desc: Hiển thị 'Add Material' trên màn hình
+- assert_text: a selection sheet
+  desc: a selection sheet
+- assert_text: the form
+  desc: the form
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Add Material". After step 4, the "Add Material" form should be displayed.
+  (5) Tap the material field (first row). After step 5, a selection sheet should be
+  displayed. (6) Close the sheet by tapping the handle at its top (id: indicator).
+  After step 6, the form should be displayed with a "Save" button at the top-right.
+  (7) Tap the back arrow at the top-left.'

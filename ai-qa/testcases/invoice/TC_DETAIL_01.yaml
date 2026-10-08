@@ -1,0 +1,29 @@
+id: TC_DETAIL_01
+title: Open invoice detail from customer
+feature: invoice
+priority: High
+description: Tapping the customer's first invoice opens the invoice detail screen.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; techs do not
+  get payment actions), app on the Home screen (online). The first customer in “Customers”
+  has at least one invoice under “Invoice”, and the first one is not paid (so “Send
+  Invoice by Email” and “Add Payment” are offered and the status can be changed).
+  TC_DETAIL_03 / TC_DETAIL_07 change that invoice's status to Sent / Void — use a
+  disposable invoice.
+detox_reference: '[TC_01][Invoice] User views invoice detail and sees all sections'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+expected:
+- assert_text: Invoice
+  desc: Hiển thị 'Invoice' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its first invoice. After step 2, the invoice detail screen (header "Invoice"
+  with the invoice number and status) should be displayed.

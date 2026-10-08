@@ -1,0 +1,33 @@
+name: offline-03-estimate
+description: Offline Suite for Sheet [03_round_trip] > Module [estimate] (30 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02230.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02231.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02232.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02233.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02234.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02235.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02236.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02237.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02238.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02239.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02240.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02241.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02242.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02243.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02244.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02245.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02246.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02247.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02248.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02249.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02250.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02251.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02252.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02253.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02254.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02255.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02256.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02257.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02258.yaml
+- testcases/offline_sync/03_round_trip/estimate/SYNC-02259.yaml

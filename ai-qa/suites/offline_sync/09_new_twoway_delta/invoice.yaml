@@ -1,0 +1,6 @@
+name: offline-09-invoice
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [invoice] (3 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/invoice/V4-TW-0046.yaml
+- testcases/offline_sync/09_new_twoway_delta/invoice/V4-TW-0047.yaml
+- testcases/offline_sync/09_new_twoway_delta/invoice/V4-TW-0048.yaml

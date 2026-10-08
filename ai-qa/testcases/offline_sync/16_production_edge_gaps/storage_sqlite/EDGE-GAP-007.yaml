@@ -1,0 +1,51 @@
+id: EDGE-GAP-007
+title: 'Low Disk Storage Exception Handling: Bộ nhớ máy dưới 50MB (Low Storage Alert)
+  → Lưu Job mới kèm chữ ký khi Offline → SQLite bắt SQLITE_FU'
+sheet: 16_Production_Edge_Gaps
+module: Storage / SQLite
+action: Low Disk Storage Exception Handling
+priority: P0
+flow_phase: Storage & Low Disk Limit
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job Form > Save
+preconditions: Thiết bị Android/iOS bị đầy bộ nhớ (dung lượng trống < 50MB); app đang
+  ở chế độ Offline.
+test_data: Simulate storage full (e.g. qua dd dummy file hoặc emulator quota); New
+  Job payload with signature base64.
+steps:
+- desc: Giả lập bộ nhớ thiết bị sắp hết.
+  action: tap_selector
+  text: Giả lập bộ nhớ thiết bị sắp hế
+  delay: 1.0
+- desc: Mở GD Mobile khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Điền thông tin Job mới, vẽ chữ ký hoàn tất Job.
+  action: tap_selector
+  text: Điền thông tin Job mới, vẽ chữ
+  delay: 1.0
+- desc: Bấm nút 'Save'.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Kiểm tra log SQLite và phản hồi giao diện người dùng.
+  action: tap_selector
+  text: Kiểm tra log SQLite và phản hồ
+  delay: 1.0
+expected:
+- desc: SQLite transaction bắt được exception SQLITE_FULL / ENOSPC.
+  assert_text: Storage / SQLite
+- desc: App không bị văng đột ngột (crash to home screen).
+  assert_text: Storage / SQLite
+- desc: 'Hiển thị Toast/Alert thân thiện: ''Bộ nhớ thiết bị của bạn đã đầy. Vui lòng
+    giải phóng dung lượng để lưu công việc này''.'
+  assert_text: Bộ nhớ thiết bị của bạn đã đầy. Vui lòng giải phóng dung lượng để lưu
+    công việc này
+- desc: Dữ liệu form của người dùng vẫn được giữ nguyên trên giao diện (không bị xóa
+    trắng để user có thể dọn máy rồi bấm Save lại).
+  assert_text: Storage / SQLite
+source_tickets: RN-5477 / OS-Constraints
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: App Crash / Data Loss
+notes: Cần đảm bảo database SQLite không rơi vào trạng thái corrupt sau lỗi disk full.

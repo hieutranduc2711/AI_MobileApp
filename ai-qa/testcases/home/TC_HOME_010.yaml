@@ -1,0 +1,28 @@
+id: TC_HOME_010
+title: 4-day mode and swipe
+feature: home
+priority: High
+description: Switching to 4-day mode shows the calendar, which can be swiped.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_010] switch to 4-day mode and swipe
+  left/right'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Chạm vào mục [4 Days Rolling]
+  action: tap_selector
+  text: 4 Days Rolling
+  delay: 1.0
+expected:
+- assert_text: the date bar and the calendar
+  desc: the date bar and the calendar
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and, in "Calendar View", tap "4 Days Rolling".
+  After step 1, the date bar and the calendar should be displayed. (2) Swipe the calendar
+  left, then right. If "4 Days Rolling" is not offered, stop and report the test as
+  skipped: mode not available.'

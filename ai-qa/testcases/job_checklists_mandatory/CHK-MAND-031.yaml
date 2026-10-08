@@ -1,0 +1,19 @@
+id: CHK-MAND-031
+title: 'Ràng buộc quy trình và danh mục kiểm tra bắt buộc #31'
+feature: job_checklists_mandatory
+priority: Normal
+description: 'Kiểm thử danh mục kiểm tra bắt buộc trước nghiệm thu #31'
+preconditions: Job Details
+steps:
+- desc: Mở checklist công việc
+  action: tap_selector
+  text: Checklist
+  delay: 0.8
+- desc: 'Kiểm tra mục checklist #31'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Checklist
+  desc: Danh mục kiểm tra bắt buộc hiển thị chuẩn

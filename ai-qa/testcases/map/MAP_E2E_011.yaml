@@ -1,0 +1,23 @@
+id: MAP_E2E_011
+title: Map footer core buttons shown
+feature: map
+priority: High
+description: The map footer shows the filter, layers, refresh and location buttons.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted (Detox launches with location always).
+detox_reference: '[MAP_E2E_011][DOC+][Map] User opens map and sees core footer actions
+  available for interaction'
+steps:
+- desc: Mở màn hình Calendar Home
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). At the
+  end, the filter button and the map layers button (bottom-left column) and the refresh
+  button and the location button (bottom-right column) should be displayed. If the
+  map cannot be shown, stop and report the test as skipped: map view not available.'

@@ -1,0 +1,37 @@
+id: TC_DETAIL_05
+title: Send invoice by email opens
+feature: invoice
+priority: High
+description: Choosing Send Invoice by Email leaves the invoice detail screen.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; techs do not
+  get payment actions), app on the Home screen (online). The first customer in “Customers”
+  has at least one invoice under “Invoice”, and the first one is not paid (so “Send
+  Invoice by Email” and “Add Payment” are offered and the status can be changed).
+  TC_DETAIL_03 / TC_DETAIL_07 change that invoice's status to Sent / Void — use a
+  disposable invoice.
+detox_reference: '[TC_05][Invoice] User sends invoice via email'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [Send Invoice by Email]
+  action: tap_selector
+  text: Send Invoice by Email
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: the invoice detail screen
+  desc: the invoice detail screen
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its first invoice. (3) Tap the three-dots icon at the top-right and choose
+  "Send Invoice by Email". After step 3, the invoice detail screen should no longer
+  be displayed. (4) Tap the back arrow at the top-left.

@@ -1,0 +1,38 @@
+id: TECH-02
+title: Technician scrolls Dashboard
+feature: dashboard
+priority: High
+description: A technician can scroll the Dashboard.
+preconditions: 'Cases 01, 02, 04–06: Logged in with the DEFAULT E2E account (non-technician
+  role with dashboard access, so all boards show), app on the Home screen (online).
+  Case 03 needs an account WITHOUT dashboard access (with the default account it reports
+  skipped). TECH-01/TECH-02: logged in with the TECH_PRIME (technician) account instead,
+  app on the Home screen.'
+detox_reference: 'TECH-02: GIVEN technical user WHEN scroll dashboard THEN does not
+  lose dashboard screen'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [Dashboard]
+  action: tap_selector
+  text: Dashboard
+  delay: 1.0
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll down about one screen. If "Dashboard"
+  is not in the menu, stop and report the test as skipped: dashboard not available
+  for this account.'

@@ -1,0 +1,25 @@
+id: JOB-201
+title: Open job from calendar event
+feature: job
+priority: High
+description: Tapping a calendar event opens the job detail.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-201] User taps event anchor on calendar, sees Active Job dialog,
+  opens job detail'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the first job event
+  on the calendar; if the incomplete-job dialog appears, tap "Open Incomplete Job".
+  If no event can be opened, switch to "Agenda" (calendar view button left of the
+  date bar) and tap the first job. At the end, "Job Details" should be displayed.

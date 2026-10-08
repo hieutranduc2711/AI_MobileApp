@@ -1,0 +1,16 @@
+id: ROUTE-OPTIMIZE-001
+title: Xem tuyến đường tối ưu của kỹ thuật viên trên bản đồ trong ngày
+feature: routing
+priority: High
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục Map / Routing
+  action: tap_selector
+  content_desc: Map
+  delay: 1.5
+expected:
+- assert_text: Map

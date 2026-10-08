@@ -1,0 +1,12 @@
+name: offline-10-job_todo_checklist
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [job_todo_checklist]
+  (8 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-074.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-075.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-076.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-077.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-078.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-079.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-080.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_todo_checklist/DEV-UI-081.yaml

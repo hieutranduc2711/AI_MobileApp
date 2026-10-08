@@ -1,0 +1,26 @@
+id: TC_HOME_062
+title: Messaging sheet closes via handle
+feature: home
+priority: High
+description: The Messaging sheet opens and closes via its handle.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_062] messaging button opens modal and
+  closes via indicator'
+steps:
+- desc: Tap the megaphone button in the calendar footer.
+  action: tap_selector
+  text: Tap the megaphone button in th
+  delay: 0.8
+- desc: Chạm vào mục [Messaging]
+  action: tap_selector
+  text: Messaging
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the megaphone
+  button in the calendar footer. (2) If the "Messaging" sheet opens, close it by tapping
+  the handle at its top (id: indicator); after that it should be closed. If there
+  is no megaphone button, stop and report the test as skipped: messaging not available.'

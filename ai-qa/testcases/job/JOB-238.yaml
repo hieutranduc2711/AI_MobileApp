@@ -1,0 +1,43 @@
+id: JOB-238
+title: Invoice section plus opens Line Item
+feature: job
+priority: High
+description: The Invoice section plus opens the Line Item screen.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-238] User views and interacts with Invoice section (create
+  new invoice)'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Invoice
+  desc: Hiển thị 'Invoice' trên màn hình
+- assert_text: Line Item
+  desc: Hiển thị 'Line Item' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll down
+  to the "Invoice" section. After step 2, the "Invoice" section should be displayed.
+  (3) Tap its plus icon. After step 3, the "Line Item" screen should be displayed.
+  (4) Tap the back arrow at the top-left. If there is no "Invoice" section or plus
+  icon, stop and report the test as skipped: invoice not permitted.'

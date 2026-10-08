@@ -1,0 +1,5 @@
+name: offline-module-auth_security
+description: Cross-sheet comprehensive offline suite for Module [auth_security] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_security/EDGE-GAP-004.yaml

@@ -1,0 +1,28 @@
+name: offline-01-document
+description: Offline Suite for Sheet [01_online_to_offline] > Module [document] (24
+  cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00226.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00227.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00228.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00229.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00230.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00231.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00232.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00233.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00234.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00235.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00236.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00237.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00238.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00239.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00240.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00241.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00242.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00243.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00244.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00245.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00246.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00247.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00248.yaml
+- testcases/offline_sync/01_online_to_offline/document/SYNC-00249.yaml

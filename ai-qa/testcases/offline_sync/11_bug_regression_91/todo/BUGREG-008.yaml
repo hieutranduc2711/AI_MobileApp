@@ -1,0 +1,35 @@
+id: BUGREG-008
+title: 'Show error "Failed to connect server" when open todo menu in Job detail/ All
+  Todo (Offline): Show error "Failed to connect server" when open todo menu in Job
+  detail/ All Todo (Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Show error "Failed to connect server" when open todo menu in Job detail/ All
+  Todo (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail / All Todo
+  action: tap_selector
+  text: Go to Job detail / All Todo
+  delay: 1.0
+- desc: Open todo list menu
+  action: tap_selector
+  text: Open todo list menu
+  delay: 1.0
+- desc: Show error alert
+  action: tap_selector
+  text: Show error alert
+  delay: 1.0
+expected:
+- desc: Should be don't show error alert
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

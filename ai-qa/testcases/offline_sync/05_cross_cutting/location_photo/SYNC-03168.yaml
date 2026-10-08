@@ -1,0 +1,67 @@
+id: SYNC-03168
+title: 'Delete Location Photo: Delete Location Photo pending ở Branch A rồi switch
+  B'
+sheet: 05_Cross_Cutting
+module: Location Photo
+action: Delete Location Photo
+priority: P0
+flow_phase: Pending Branch Switch
+direction: CROSS-CUTTING
+app_path: GD Mobile > Customer > Location > Photos > Delete
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Delete Location
+  Photo; prerequisite cho Location Photo đã sync khi cần.
+test_data: Valid representative data
+steps:
+- desc: Switch Branch A.
+  action: tap_selector
+  text: Switch Branch A.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Delete Location Photo.
+  action: tap_selector
+  text: Delete Location Photo
+  delay: 1.0
+- desc: Switch Branch B trước sync nếu UI cho phép.
+  action: tap_selector
+  text: Switch Branch B trước sync nếu
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect B.
+  action: tap_selector
+  text: Inspect B.
+  delay: 1.0
+- desc: Switch A.
+  action: tap_selector
+  text: Switch A.
+  delay: 1.0
+- desc: Verify.
+  action: tap_selector
+  text: Verify.
+  delay: 1.0
+expected:
+- desc: Delete Location Photo không làm app crash/mất dữ liệu.
+  assert_text: Location Photo
+- desc: Local/UI của Location Photo phản ánh đúng business result.
+  assert_text: Location Photo
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Location Photo
+- desc: Không duplicate logical operation.
+  assert_text: Location Photo
+- desc: A mutation không send với B context.
+  assert_text: Location Photo
+- desc: B không thấy A optimistic data.
+  assert_text: Location Photo
+- desc: Converge ở A only.
+  assert_text: Location Photo
+source_tickets: RN-5585, RN-5525
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525'
+risk: Cross-branch
+notes: Carried from V2 OFFV2-02569

@@ -1,0 +1,31 @@
+id: AUTH-E2E-021
+title: Wrong credentials error, inputs stay usable
+feature: auth
+priority: High
+description: A wrong username/password shows the login error and both fields still
+  accept new input.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'login: wrong credentials show auth error and inputs remain usable'
+steps:
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'user@example.com' vào ô [input]
+  action: type_text
+  value: user@example.com
+  delay: 0.8
+- desc: Chạm vào mục [Email or Username]
+  action: tap_selector
+  text: Email or Username
+  delay: 1.0
+expected:
+- assert_text: a login error message
+  desc: a login error message
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account") and clear both fields. (1) Type "user@example.com" in
+  "Email or Username" and "SomePassword1" in "Password", then tap "Login". After step
+  1, a login error message should be displayed (id: error-wrapper). (2) Replace "Email
+  or Username" with "valid.user@example.com" and "Password" with "ValidPass123".'

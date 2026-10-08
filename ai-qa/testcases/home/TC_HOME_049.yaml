@@ -1,0 +1,28 @@
+id: TC_HOME_049
+title: Add New Job and back
+feature: home
+priority: High
+description: Add then New Job opens the job form; back returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_049] Add (+) → New Job → back → Home
+  when option visible'
+steps:
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the plus button
+  in the calendar footer. (2) Tap "New Job", then return with the back arrow at the
+  top-left (confirm leaving if asked); if "New Job" is not offered, close it by tapping
+  the handle at its top (id: indicator). If there is no plus button, stop and report
+  the test as skipped: add not available.'

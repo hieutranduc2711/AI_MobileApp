@@ -1,0 +1,19 @@
+id: VAL-JOB-002
+title: Lên lịch Job có giờ kết thúc trước giờ bắt đầu
+feature: negative_validation
+priority: High
+description: Kiểm tra logic thời gian Start Time > End Time
+preconditions: Màn hình New Job Form
+steps:
+- desc: Chọn khách hàng
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.0
+- desc: Chạm chọn giờ kết thúc bất hợp lý
+  action: tap_selector
+  text: Schedule
+  delay: 1.0
+expected:
+- assert_text: Schedule
+  desc: Báo lỗi thời gian lịch hẹn không hợp lệ

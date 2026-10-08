@@ -1,0 +1,68 @@
+id: BUGREG-073
+title: 'Incorrect payload create task for job: Incorrect payload create task for job'
+sheet: 11_Bug_Regression_91
+module: Task
+action: Incorrect payload create task for job
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to a job detail
+  action: tap_selector
+  text: Go to a job detail
+  delay: 1.0
+- desc: Create new task for that job
+  action: tap_selector
+  text: Create new task for that job
+  delay: 1.0
+- desc: Edit time for task just create
+  action: tap_selector
+  text: Edit time for task just create
+  delay: 1.0
+- desc: Turn on wifi
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: 'Expect: create task with data updated.'
+  assert_text: Task
+- desc: 'Actual: Create fail because wrong payload'
+  assert_text: Task
+- desc: '{'
+  assert_text: Task
+- desc: '"assignee": "84361192",'
+  assert_text: assignee
+- desc: '"title": "Hello",'
+  assert_text: title
+- desc: '"date": "2026-09-19T11:49:00.000Z",'
+  assert_text: date
+- desc: '"type": 2,'
+  assert_text: type
+- desc: '"type_id": "50700",'
+  assert_text: type_id
+- desc: '"owner_id": "84361192",'
+  assert_text: owner_id
+- desc: '"record_created": 1789703539317,'
+  assert_text: record_created
+- desc: '"record_updated": 1789703539317,'
+  assert_text: record_updated
+- desc: '"deleted": 0,'
+  assert_text: deleted
+- desc: '"task_id": "local:11286754-29d4-4117-95a0-9c298990243c",'
+  assert_text: task_id
+- desc: '"id": "local:11286754-29d4-4117-95a0-9c298990243c"'
+  assert_text: id
+- desc: '}'
+  assert_text: Task
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

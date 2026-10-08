@@ -1,0 +1,60 @@
+id: SYNC-03155
+title: 'Add Location Photo: Double-tap Save khi Add Location Photo'
+sheet: 05_Cross_Cutting
+module: Location Photo
+action: Add Location Photo
+priority: P0
+flow_phase: Double Save
+direction: CROSS-CUTTING
+app_path: GD Mobile > Customer > Location > Photos > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Add Location
+  Photo; prerequisite cho Location Photo đã sync khi cần.
+test_data: Valid create payload
+steps:
+- desc: Go offline hoặc throttle.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Điền form Add Location Photo.
+  action: tap_selector
+  text: Điền form Add Location Photo.
+  delay: 1.0
+- desc: Tap Save/Confirm 2 lần nhanh.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Inspect local list/outbox.
+  action: tap_selector
+  text: Inspect local list/outbox.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Count server records.
+  action: tap_selector
+  text: Count server records.
+  delay: 1.0
+expected:
+- desc: Add Location Photo không làm app crash/mất dữ liệu.
+  assert_text: Location Photo
+- desc: Local/UI của Location Photo phản ánh đúng business result.
+  assert_text: Location Photo
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Location Photo
+- desc: Không duplicate logical operation.
+  assert_text: Location Photo
+- desc: Chỉ một logical record.
+  assert_text: Location Photo
+- desc: Không duplicate local/server.
+  assert_text: Location Photo
+source_tickets: RN-5585, RN-5525, RN-5637, RN-5533
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533'
+risk: Duplicate create
+notes: Carried from V2 OFFV2-02527

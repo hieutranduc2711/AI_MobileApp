@@ -1,0 +1,40 @@
+id: DOCUMENT-documentForm-06
+title: Edit a text field
+feature: document
+priority: High
+description: A single-line text field on the document form accepts text.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document; “Edit Document”
+  is offered for the first document (not e-signed) and its template contains the field
+  types used below (section, text, text area, radio, checkbox, list box, signature,
+  image). No case saves the document.
+detox_reference: User edits a text input field
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Chạm vào mục [Edit Document]
+  action: tap_selector
+  text: Edit Document
+  delay: 1.0
+- desc: Chạm vào mục [e2e-text]
+  action: tap_selector
+  text: e2e-text
+  delay: 1.0
+expected:
+- assert_text: e2e-text
+  desc: Hiển thị 'e2e-text' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section, then tap "Edit Document" in the menu.
+  (4) Scroll to the first single-line text field and replace its value with "e2e-text".
+  After step 4, the field should still be displayed and show "e2e-text". If the form
+  has no single-line text field, stop and report the test as skipped: no text field
+  in this template.'

@@ -1,0 +1,21 @@
+id: JOB-058
+title: Baseline opens job detail
+feature: job
+priority: High
+description: Opening a job from Home lands on the job detail screen.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar.
+detox_reference: '[JOB-058] Baseline recovery leaves app on job detail screen'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). After step 1,
+  "Job Details" should be displayed.

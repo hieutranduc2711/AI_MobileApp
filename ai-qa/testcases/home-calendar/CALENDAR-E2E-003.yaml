@@ -1,0 +1,23 @@
+id: CALENDAR-E2E-003
+title: Open first job and return
+feature: home-calendar
+priority: High
+description: Opening the first calendar job and going back keeps Home stable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job). CALENDAR-E2E-001 creates
+  a job on the first customer (first location, first service), terminates it and deletes
+  it; the first customer needs a service location and at least one service must exist.
+detox_reference: 'CALENDAR-E2E-003: tap terminate-like event keeps shell stable (best-effort)'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. The Home top bar (id:
+  home-bar) should be displayed. (1) Tap the first job on the calendar; if the job
+  detail opens, go back to Home; if a popup opens, close it.'

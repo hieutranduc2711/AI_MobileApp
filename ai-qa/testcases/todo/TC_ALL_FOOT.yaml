@@ -1,0 +1,34 @@
+id: TC_ALL_FOOT
+title: All Todo footer opens Add a Todo
+feature: todo
+priority: High
+description: Add Todo in the All Todo footer opens the Add a Todo screen.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_SAVE adds
+  a todo; TC_EMB_CHK toggles the first todo four times (ends unchanged).
+detox_reference: '[DOC+][TC_ALL_FOOT][AllTodo] User taps Add on the full All Todo
+  footer and sees the Add Todo screen'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Add a Todo
+  desc: Hiển thị 'Add a Todo' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap "Show All" under the section, then "Add Todo" at the bottom
+  (id: footer-button). After step 2, the "Add a Todo" screen with its text input should
+  be displayed. (3) Tap the back arrow twice. If there is no "Show All" under "Todo
+  List", stop and report the test as skipped: fewer than 5 todos.'

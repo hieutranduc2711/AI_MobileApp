@@ -1,0 +1,5 @@
+name: offline-module-job_conflict_resolution
+description: Cross-sheet comprehensive offline suite for Module [job_conflict_resolution]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/job_conflict_resolution/EDGE-GAP-034.yaml

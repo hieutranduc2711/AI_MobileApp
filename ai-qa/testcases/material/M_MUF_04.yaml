@@ -1,0 +1,61 @@
+id: M_MUF_04
+title: Save new catalog material
+feature: material
+priority: High
+description: Saving a named material returns to Manage Material List.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+  M_MUF_04 adds “E2E Material” to the company material list.
+detox_reference: '[M_MUF_04][Material][MaterialUsageForm] Save button creates material
+  usage'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Manage Material List]
+  action: tap_selector
+  text: Manage Material List
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'E2E Material' vào ô [input]
+  action: type_text
+  value: E2E Material
+  delay: 0.8
+expected:
+- assert_text: Manage Material List
+  desc: Hiển thị 'Manage Material List' trên màn hình
+- assert_text: Add Material
+  desc: Hiển thị 'Add Material' trên màn hình
+- assert_text: Name
+  desc: Hiển thị 'Name' trên màn hình
+- assert_text: Manage Material List
+  desc: Hiển thị 'Manage Material List' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Manage Material List". After step 4, the "Manage Material List" screen
+  with its list should be displayed. (5) Tap the plus icon at the top-right. After
+  step 5, the "Add Material" form with "Name" should be displayed. (6) Type "E2E Material"
+  in "Name" and "EPA-12345" in "Note", then tap "Save". After step 6, the "Manage
+  Material List" screen should be displayed.

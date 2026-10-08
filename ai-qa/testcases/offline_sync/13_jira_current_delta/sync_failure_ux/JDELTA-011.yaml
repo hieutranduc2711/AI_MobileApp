@@ -1,0 +1,46 @@
+id: JDELTA-011
+title: 'Transient photo upload failure shows retry alert: Transient photo upload failure
+  shows retry alert'
+sheet: 13_Jira_Current_Delta
+module: Sync Failure UX
+action: Transient photo upload failure shows retry alert
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Create photo pending Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect and force transient upload failure.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe alert/state.
+  action: tap_selector
+  text: Observe alert/state.
+  delay: 1.0
+- desc: Recover network and tap/trigger retry.
+  action: tap_selector
+  text: Recover network and tap/trigge
+  delay: 1.0
+- desc: Open photo on app/web.
+  action: tap_selector
+  text: Open photo on app/web.
+  delay: 1.0
+expected:
+- desc: Retry alert appears.
+  assert_text: Sync Failure UX
+- desc: Photo remains locally recoverable.
+  assert_text: Sync Failure UX
+- desc: Retry succeeds without duplicate.
+  assert_text: Sync Failure UX
+source_tickets: RN-5525,RN-5648
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5648'
+risk: Schema / Comment Regression
+notes: ''

@@ -1,0 +1,33 @@
+id: BUGREG-018
+title: 'Not show "Show All" after delete any task in task list of Job detail (Online/Offline):
+  Not show "Show All" after delete any task in task list of Job detail (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Tasks
+action: Not show "Show All" after delete any task in task list of Job detail (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail & press on All Tasks
+  action: tap_selector
+  text: Go to Job detail & press on Al
+  delay: 1.0
+- desc: Delete any task has exist on task list which show on job detail
+  action: tap_selector
+  text: Delete any task has exist on t
+  delay: 1.0
+- desc: Back to job detail. Button "Show All" not show inspite of tasks list has >
+    4 tasks
+  action: back
+  delay: 1.0
+expected:
+- desc: Should be show "Show All" button correct
+  assert_text: Show All
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

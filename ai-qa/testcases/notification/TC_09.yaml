@@ -1,0 +1,35 @@
+id: TC_09
+title: Tap checkbox of first read notification
+feature: notification
+priority: High
+description: The first read notification's checkbox can be tapped (skips when the
+  Read list is empty).
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_08 needs at least one unread notification (Detox fails otherwise); TC_09 reports
+  skipped when the Read list is empty.
+detox_reference: '[TC_09][DOC+][MarkUnread] User taps checkbox on read notification
+  and sees item removed from read list'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+- desc: Chạm vào mục [Read]
+  action: tap_selector
+  text: Read
+  delay: 1.0
+- desc: Tap the checkbox on the right of the first read notification. If the read
+    list h
+  action: tap_selector
+  text: 'Tap the checkbox on the right '
+  delay: 0.8
+expected:
+- assert_text: Notifications
+  desc: Hiển thị 'Notifications' trên màn hình
+- assert_text: the read list
+  desc: the read list
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the bell icon
+  in the top bar. After step 1, the "Notifications" screen should be displayed. (2)
+  Tap the "Read" tab. After step 2, the read list should be displayed. (3) Tap the
+  checkbox on the right of the first read notification. If the read list has no notifications,
+  stop and report the test as skipped: no read notifications available.'

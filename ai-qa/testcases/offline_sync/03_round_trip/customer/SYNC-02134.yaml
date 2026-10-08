@@ -1,0 +1,65 @@
+id: SYNC-02134
+title: 'Edit Customer: Online bắt đầu → Offline hoàn tất Edit Customer → Online sync'
+sheet: 03_Round_Trip
+module: Customer
+action: Edit Customer
+priority: P0
+flow_phase: RT-01 Continue work through outage
+direction: ROUND TRIP
+app_path: GD Mobile > Customer > Edit
+preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Edit Customer
+  accessible.
+test_data: Valid business data
+steps:
+- desc: Mở flow khi Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Bắt đầu nhập/chọn dữ liệu.
+  action: tap_selector
+  text: Bắt đầu nhập/chọn dữ liệu.
+  delay: 1.0
+- desc: Cắt network giữa workflow trước Save.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Tiếp tục thao tác khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Save/Confirm khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Navigate ra/vào để xác nhận local persistence.
+  action: tap_selector
+  text: Navigate ra/vào để xác nhận lo
+  delay: 1.0
+- desc: Khôi phục Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ queue/backend/downlink.
+  action: back
+  delay: 1.0
+- desc: Đối chiếu server và mobile.
+  action: tap_selector
+  text: Đối chiếu server và mobile.
+  delay: 1.0
+expected:
+- desc: Network transition không reset user work.
+  assert_text: Customer
+- desc: Offline save tạo durable pending mutation.
+  assert_text: Customer
+- desc: Reconnect push đúng business action.
+  assert_text: Customer
+- desc: Final authoritative result giữ toàn bộ thay đổi từ trước và sau lúc rớt mạng.
+  assert_text: Customer
+- desc: Không duplicate/missing fields.
+  assert_text: Customer
+source_tickets: RN-5598, RN-5594
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5598
+
+  https://gorilladesk1.atlassian.net/browse/RN-5594'
+risk: Real field workflow
+notes: ''

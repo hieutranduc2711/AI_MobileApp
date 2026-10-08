@@ -1,0 +1,33 @@
+id: BUGREG-002
+title: 'Delete todo list don''t update todo list (Online/Offline): Delete todo list
+  don''t update todo list (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Delete todo list don't update todo list (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Delete todo list
+  action: tap_selector
+  text: Delete todo list
+  delay: 1.0
+- desc: Todo list don't update
+  action: tap_selector
+  text: Todo list don't update
+  delay: 1.0
+expected:
+- desc: Todo list should be update after delete list
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,54 @@
+id: SYNC-01050
+title: 'Scan Barcode: Scan Barcode: Offline save → kill/reopen Offline → Online sync'
+sheet: 02_Offline_to_Online
+module: Device
+action: Scan Barcode
+priority: P1
+flow_phase: F2O-09 Restart offline then reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Devices > Scan
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Scan Barcode.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Force close app.
+  action: tap_selector
+  text: Force close app.
+  delay: 1.0
+- desc: Mở lại khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Xác nhận local result còn.
+  action: tap_selector
+  text: Xác nhận local result còn.
+  delay: 1.0
+- desc: Bật network.
+  action: tap_selector
+  text: Bật network.
+  delay: 1.0
+- desc: Chờ sync.
+  action: tap_selector
+  text: Chờ sync.
+  delay: 1.0
+- desc: Verify server/local.
+  action: tap_selector
+  text: Verify server/local.
+  delay: 1.0
+expected:
+- desc: Durable outbox sống qua restart.
+  assert_text: Device
+- desc: Reopen không tạo duplicate row.
+  assert_text: Device
+- desc: Reconnect tiếp tục sync bình thường.
+  assert_text: Device
+source_tickets: RN-5591, RN-5614
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
+
+  https://gorilladesk1.atlassian.net/browse/RN-5614'
+risk: Durability
+notes: ''

@@ -1,0 +1,26 @@
+name: offline-12-invoice
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [invoice] (22
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-150.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-151.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-152.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-153.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-154.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-155.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-156.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-157.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-158.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-159.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-160.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-161.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-162.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-163.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-164.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-165.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-166.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-167.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-168.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-169.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-170.yaml
+- testcases/offline_sync/12_perf_rerender_245/invoice/PERF-187.yaml

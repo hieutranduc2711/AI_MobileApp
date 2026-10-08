@@ -1,0 +1,16 @@
+name: offline-11-customer
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [customer] (12
+  cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-055.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-059.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-060.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-072.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-074.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-075.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-076.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-077.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-078.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-079.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-080.yaml
+- testcases/offline_sync/11_bug_regression_91/customer/BUGREG-081.yaml

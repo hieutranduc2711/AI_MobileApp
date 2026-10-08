@@ -1,0 +1,22 @@
+id: PEST-FIND-001
+title: 'Ghi nhận phát hiện côn trùng gây hại: Gián Đức (German Cockroach)'
+feature: pest_control_deep
+priority: High
+description: Đánh dấu phát hiện côn trùng tại khu vực nhà bếp (Kitchen Area)
+preconditions: Job Details -> Pest Findings
+steps:
+- desc: Mở mục Pest Findings
+  action: tap_selector
+  text: Pests
+  delay: 1.0
+- desc: 'Chọn loài côn trùng: Cockroaches'
+  action: tap_selector
+  text: Cockroaches
+  delay: 0.8
+- desc: Lưu ghi chú phát hiện
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Cockroaches
+  desc: Loài côn trùng được lưu trong Work Order

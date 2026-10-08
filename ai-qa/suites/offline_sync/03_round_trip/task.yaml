@@ -1,0 +1,15 @@
+name: offline-03-task
+description: Offline Suite for Sheet [03_round_trip] > Module [task] (12 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/task/SYNC-02476.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02477.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02478.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02479.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02480.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02481.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02482.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02483.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02484.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02485.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02486.yaml
+- testcases/offline_sync/03_round_trip/task/SYNC-02487.yaml

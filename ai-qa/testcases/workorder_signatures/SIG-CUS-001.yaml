@@ -1,0 +1,22 @@
+id: SIG-CUS-001
+title: Ký nhận nghiệm thu khách hàng (Customer Signature)
+feature: workorder_signatures
+priority: Critical
+description: Khách hàng ký trực tiếp trên màn hình cảm ứng để nghiệm thu công việc
+preconditions: Job Details -> Work Order
+steps:
+- desc: Mở Work Order trong Job
+  action: tap_selector
+  text: Work Order
+  delay: 1.2
+- desc: Chạm vào ô Customer Signature
+  action: tap_selector
+  text: Customer Signature
+  delay: 1.0
+- desc: Lưu chữ ký điện tử
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Signed
+  desc: Hồ sơ công việc đánh dấu đã có chữ ký khách hàng

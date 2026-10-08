@@ -1,0 +1,3 @@
+invariants:
+  - id: SMS-INV-001
+    description: 'Ensure data integrity for module sms'

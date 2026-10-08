@@ -1,0 +1,33 @@
+id: TC_SA
+title: Show All opens All Opportunities
+feature: opportunity
+priority: High
+description: Show All on the Opportunity section opens the full list.
+preconditions: Logged in with the DEFAULT E2E account on a Growth plan with the Opportunity
+  addon and customer-opportunity access plus add/edit opportunity permission, app
+  on the Home screen (online). The first customer in “Customers” has at least 6 opportunities
+  (so “Show All” appears) and at least one contact. No case saves data.
+detox_reference: '[DOC+][TC_SA][ShowAll] User taps Show All and sees the full All
+  Opportunities list screen'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Opportunity]
+  action: tap_selector
+  text: Opportunity
+  delay: 1.0
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+expected:
+- assert_text: All Opportunities
+  desc: Hiển thị 'All Opportunities' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Opportunity"
+  section. (3) Tap "Show All" under the section. After step 3, the "All Opportunities"
+  list should be displayed. If there is no "Opportunity" section or "Show All", stop
+  and report the test as skipped: no full opportunity list.'

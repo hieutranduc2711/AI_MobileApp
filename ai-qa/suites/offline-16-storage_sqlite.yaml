@@ -1,0 +1,7 @@
+name: offline-16-storage_sqlite
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [storage_sqlite]
+  (3 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/storage_sqlite/EDGE-GAP-007.yaml
+- testcases/offline_sync/16_production_edge_gaps/storage_sqlite/EDGE-GAP-016.yaml
+- testcases/offline_sync/16_production_edge_gaps/storage_sqlite/EDGE-GAP-017.yaml

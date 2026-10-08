@@ -1,0 +1,11 @@
+name: offline-module-images
+description: Cross-sheet comprehensive offline suite for Module [images] (8 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0061.yaml
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0062.yaml
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0063.yaml
+- testcases/offline_sync/12_perf_rerender_245/images/PERF-222.yaml
+- testcases/offline_sync/12_perf_rerender_245/images/PERF-223.yaml
+- testcases/offline_sync/12_perf_rerender_245/images/PERF-224.yaml
+- testcases/offline_sync/12_perf_rerender_245/images/PERF-225.yaml
+- testcases/offline_sync/12_perf_rerender_245/images/PERF-226.yaml

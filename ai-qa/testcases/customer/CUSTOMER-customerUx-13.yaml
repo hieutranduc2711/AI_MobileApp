@@ -1,0 +1,38 @@
+id: CUSTOMER-customerUx-13
+title: Customer chat button presence
+feature: customer
+priority: High
+description: Customer detail may show the floating chat button (SMS addon, online).
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: 'customer detail: chat button visible when SMS addon + online (addon/connection
+  gated)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Report whether the floating chat button is shown at the bottom-right; its
+    absenc
+  action: tap_selector
+  text: Report whether the floating ch
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Report whether the floating
+  chat button is shown at the bottom-right; its absence is not a failure. If the list
+  has no customers, stop and report the test as skipped: no customer data.'

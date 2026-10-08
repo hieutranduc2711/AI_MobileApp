@@ -1,0 +1,31 @@
+id: FLEET-CHK-001
+title: Kiểm tra xe đầu ngày (Daily Pre-trip Vehicle Inspection)
+feature: fleet_vehicle_inspection
+priority: Normal
+description: 'Kiểm thử tính năng quản lý và kiểm tra xe tải KTV #1'
+preconditions: KTV đã đăng nhập vào hệ thống
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn Vehicle Inspection
+  action: tap_selector
+  text: Vehicle Inspection
+  delay: 1.0
+- desc: Nhập số Odometer hiện tại
+  action: type_text
+  value: '45230'
+  delay: 0.5
+- desc: Tích chọn kiểm tra lốp, phanh, đèn
+  action: tap_selector
+  text: Tires OK
+  delay: 0.5
+- desc: Bấm Submit Checklist
+  action: tap_selector
+  content_desc: Submit
+  delay: 1.2
+expected:
+- assert_text: Inspection Passed
+  desc: Xe đủ điều kiện an toàn lăn bánh

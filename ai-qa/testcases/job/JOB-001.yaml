@@ -1,0 +1,24 @@
+id: JOB-001
+title: Job detail hub renders
+feature: job
+priority: High
+description: The job detail shows its header, info and scrollable content.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-001] Job detail hub shows header, info, and scroll surface'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). After step 1,
+  "Job Details" should be displayed with the job header (status and check-in), the
+  job info and the scrollable content.

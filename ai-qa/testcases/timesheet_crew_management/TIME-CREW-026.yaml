@@ -1,0 +1,19 @@
+id: TIME-CREW-026
+title: 'Quản lý chấm công và đội thợ hiện trường ca #26'
+feature: timesheet_crew_management
+priority: Normal
+description: 'Xác thực nghiệp vụ quản lý nhân sự và chấm công KTV #26'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Xem bảng chấm công tuần
+  action: tap_selector
+  text: Timesheet
+  delay: 0.8
+- desc: 'Xem chi tiết ngày #26'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Timesheet
+  desc: Bảng tổng hợp công giờ hiển thị chuẩn xác

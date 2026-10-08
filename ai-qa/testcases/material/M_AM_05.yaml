@@ -1,0 +1,46 @@
+id: M_AM_05
+title: All Materials row menu edit/delete
+feature: material
+priority: High
+description: The first row on All Materials opens a menu with Edit and Delete.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_AM_05][Material][AllMaterial] Menu appears when tapping on material
+  item in list'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+- desc: Tap the first material row.
+  action: tap_selector
+  text: Tap the first material row.
+  delay: 0.8
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+expected:
+- assert_text: All Materials
+  desc: Hiển thị 'All Materials' trên màn hình
+- assert_text: the material menu
+  desc: the material menu
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap "Show All" under the section. After step 3,
+  the "All Materials" list should be displayed. (4) Tap the first material row. After
+  step 4, the material menu should show "Edit Material" and "Delete Material". (5)
+  Close the sheet by tapping the handle at its top (id: indicator). If there is no
+  "Show All" under "Materials", stop and report the test as skipped: fewer than 5
+  materials.'

@@ -1,0 +1,18 @@
+id: CHEM-EPA-009
+title: Tính tổng diện tích xử lý (Square Footage Treated)
+feature: chemical_epa_tracking
+priority: Normal
+description: Nhập diện tích xử lý thực tế tính theo Sq Ft hoặc Linear Ft
+preconditions: Đang ở Treatment Measurement
+steps:
+- desc: Nhập diện tích xử lý
+  action: type_text
+  value: 2500 sq ft
+  delay: 0.5
+- desc: Lưu diện tích
+  action: tap_selector
+  content_desc: Save
+  delay: 0.8
+expected:
+- assert_text: 2500 sq ft
+  desc: Diện tích hiển thị trên hóa đơn và report

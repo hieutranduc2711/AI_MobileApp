@@ -1,0 +1,33 @@
+name: Module Offline Resilience Suite
+description: Chạy toàn bộ 30 test cases cho phân hệ offline_resilience
+tests:
+- OFF-JOB-001
+- OFF-NET-003
+- OFF-NET-004
+- OFF-NET-005
+- OFF-NET-006
+- OFF-NET-007
+- OFF-NET-008
+- OFF-NET-009
+- OFF-NET-010
+- OFF-NET-011
+- OFF-NET-012
+- OFF-NET-013
+- OFF-NET-014
+- OFF-NET-015
+- OFF-NET-016
+- OFF-NET-017
+- OFF-NET-018
+- OFF-NET-019
+- OFF-NET-020
+- OFF-NET-021
+- OFF-NET-022
+- OFF-NET-023
+- OFF-NET-024
+- OFF-NET-025
+- OFF-NET-026
+- OFF-NET-027
+- OFF-NET-028
+- OFF-NET-029
+- OFF-NET-030
+- OFF-SYNC-002

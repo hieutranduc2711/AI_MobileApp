@@ -1,0 +1,42 @@
+id: DASHBOARD-dashboard.edge-05
+title: Revenue by Staff See All and back
+feature: dashboard
+priority: High
+description: See All on Revenue by Staff opens its detail and back returns.
+preconditions: 'Cases 01, 02, 04–06: Logged in with the DEFAULT E2E account (non-technician
+  role with dashboard access, so all boards show), app on the Home screen (online).
+  Case 03 needs an account WITHOUT dashboard access (with the default account it reports
+  skipped). TECH-01/TECH-02: logged in with the TECH_PRIME (technician) account instead,
+  app on the Home screen.'
+detox_reference: GIVEN dashboard WHEN show-all links are tapped THEN user can return
+  back without getting stuck
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [Revenue by Staff]
+  action: tap_selector
+  text: Revenue by Staff
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll to the "Revenue by Staff" board and
+  tap "See All". (3) If the Revenue by Staff detail opens, tap the back arrow at the
+  top-left. If there is no "See All", stop and report the test as skipped: no show-all
+  link.'

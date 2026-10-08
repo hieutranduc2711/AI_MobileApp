@@ -1,0 +1,29 @@
+id: TC_HOME_058
+title: Menu opens and Calendar closes it
+feature: home
+priority: High
+description: The menu opens with Log Out and the Calendar row closes it.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_058] menu opens drawer and Calendar
+  row closes it'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chạm vào mục [Calendar]
+  action: tap_selector
+  text: Calendar
+  delay: 1.0
+expected:
+- assert_text: Log Out
+  desc: Hiển thị 'Log Out' trên màn hình
+- assert_text: the Home menu icon
+  desc: the Home menu icon
+goal_summary: 'Open the GorillaDesk app on the Home screen. The top-left menu icon
+  and the top bar (id: home-bar) should be displayed. (1) Tap the menu icon. After
+  step 1, "Log Out" should be displayed. (2) Tap "Calendar" in the menu. After step
+  2, the Home menu icon should be displayed.'

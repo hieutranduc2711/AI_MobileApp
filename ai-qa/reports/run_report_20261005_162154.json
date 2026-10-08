@@ -1,0 +1,15 @@
+{
+  "timestamp": "20261005_162154",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "results": [
+    {
+      "id": "CUSTOMER-CREATE-002",
+      "status": "PASS",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\CUSTOMER-CREATE-002_1791192114.png",
+      "time_sec": 49.71
+    }
+  ]
+}

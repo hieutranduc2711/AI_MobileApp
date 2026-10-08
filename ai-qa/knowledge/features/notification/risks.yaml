@@ -1,0 +1,4 @@
+risks:
+  - id: RISK-NOTIFICATION-001
+    name: 'UI transition delay'
+    mitigation: 'Ensure minimum 650ms delay between screen transitions'

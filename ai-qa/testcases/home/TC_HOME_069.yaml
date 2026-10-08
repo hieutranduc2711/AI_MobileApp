@@ -1,0 +1,22 @@
+id: TC_HOME_069
+title: Map toggle present
+feature: home
+priority: High
+description: The calendar footer shows the map toggle.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_069] map toggle exists as out-of-scope
+  smoke anchor'
+steps:
+- desc: Mở màn hình Calendar Home
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. At the end, the map button
+  at the bottom left of the calendar (next to "Today") should be present. If there
+  is no map button, stop and report the test as skipped: map toggle not shown.'

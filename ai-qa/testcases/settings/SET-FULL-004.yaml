@@ -1,0 +1,28 @@
+id: SET-FULL-004
+title: Line Items list opens and returns
+feature: settings
+priority: High
+description: Line Items Manage opens the Line Items screen and Android back returns
+  to Settings.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-FULL-002…007 need the “System Settings” section on Settings (company setting
+  editSetting on; typically a super admin per docs/features/settings.md); without
+  it they report skipped (SET-FULL-007 just skips its rows).
+detox_reference: '[SET-FULL-004] [Settings][Main][P0] open Line Items list and recover
+  to Settings'
+steps:
+- desc: Chạm vào mục [Manage]
+  action: tap_selector
+  text: Manage
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Line Items
+  desc: Hiển thị 'Line Items' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Tap "Manage" next to "Line Items". After step 1, the header
+  title (id: header-title) should read "Line Items". (2) Press the Android back button.
+  At the end, the header title should read "Settings". If there is no "Line Items"
+  row, stop and report the test as skipped: not available in this account/plan.'

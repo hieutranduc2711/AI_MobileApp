@@ -1,0 +1,22 @@
+id: EST-TIER-002
+title: Khách hàng chọn gói Option 2 (Better) và tự động cập nhật tổng tiền
+feature: estimates_good_better_best
+priority: Normal
+description: 'Kiểm thử kịch bản báo giá nhiều tầng lựa chọn ca #2'
+preconditions: Màn hình Estimates
+steps:
+- desc: Xem báo giá
+  action: tap_selector
+  text: Estimate Details
+  delay: 0.8
+- desc: Chọn Option 2 (Better Package)
+  action: tap_selector
+  text: Option 2
+  delay: 0.6
+- desc: Bấm Accept Option
+  action: tap_selector
+  content_desc: Accept
+  delay: 1.0
+expected:
+- assert_text: 'Accepted: Option 2'
+  desc: Gói Option 2 được phê duyệt

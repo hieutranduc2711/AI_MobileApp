@@ -1,0 +1,61 @@
+id: BUGREG-024
+title: 'Assgin building not sync when back to online: Assgin building not sync when
+  back to online'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Assgin building not sync when back to online
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Go to Assign Units in offline
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Assgin any building
+  action: tap_selector
+  text: Assgin any building
+  delay: 1.0
+- desc: Back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Or
+  action: tap_selector
+  text: Or
+  delay: 1.0
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Add new building (offline)
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Add new unit for that building (offline)
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Assign building (offline)
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to desktop app. New building & unit has added but not assign
+  action: tap_selector
+  text: Go to desktop app. New buildin
+  delay: 1.0
+expected:
+- desc: Should be can assign any building from offline when back to online
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

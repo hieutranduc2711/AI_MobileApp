@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_103848",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "results": [
+    {
+      "id": "KONG-AI-001",
+      "status": "PASS",
+      "runner_hint": "LIKELY_PASS",
+      "judge_summary": "Ảnh kết quả xác nhận màn hình Kong AI Assistant hiển thị rõ dòng “How can I help?”, đáp ứng tiêu chí nghiệm thu. Cảnh báo phiên bản cũ không che khuất nội dung cần kiểm tra.",
+      "judge_reasoning": "Đã trực tiếp quan sát ảnh D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png: màn hình có hình đại diện Kong, dòng “How can I help?”, vùng nhập với hướng dẫn “Beta version. Kong is still becoming wiser. What do you want to know?” và nút Templates. Kết quả này phù hợp với nhật ký Runner ghi nhận hai thao tác mở Drawer Menu và chọn Kong AI đều OK. Banner “Your app version is not up to date.” nằm phía trên, không phải hộp thoại chặn màn hình và không làm thất bại tiêu chí hiển thị đã nêu. Theo hồ sơ Runner, không phát hiện crash/ANR; đây là bằng chứng hỗ trợ, không phải căn cứ duy nhất cho PASS. Ảnh tĩnh xác nhận trạng thái cuối, còn trình tự điều hướng dựa trên nhật ký Runner. Phán quyết chỉ áp dụng cho việc mở màn hình và hiển thị lời chào, không xác nhận chức năng gửi câu hỏi hoặc phản hồi AI.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png",
+      "time_sec": 9.21
+    }
+  ]
+}

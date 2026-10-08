@@ -1,0 +1,15 @@
+{
+  "timestamp": "20261005_164612",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "results": [
+    {
+      "id": "KONG-AI-001",
+      "status": "PASS",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_1791193572.png",
+      "time_sec": 13.09
+    }
+  ]
+}

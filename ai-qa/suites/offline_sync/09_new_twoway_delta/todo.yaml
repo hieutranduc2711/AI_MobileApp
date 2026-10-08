@@ -1,0 +1,9 @@
+name: offline-09-todo
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [todo] (6 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0067.yaml
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0068.yaml
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0069.yaml
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0070.yaml
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0071.yaml
+- testcases/offline_sync/09_new_twoway_delta/todo/V4-TW-0072.yaml

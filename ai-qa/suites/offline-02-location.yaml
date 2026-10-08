@@ -1,0 +1,31 @@
+name: offline-02-location
+description: Offline Suite for Sheet [02_offline_to_online] > Module [location] (27
+  cases)
+testcases:
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01456.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01457.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01458.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01459.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01460.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01461.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01462.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01463.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01464.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01465.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01466.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01467.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01468.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01469.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01470.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01471.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01472.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01473.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01474.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01475.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01476.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01477.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01478.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01479.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01480.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01481.yaml
+- testcases/offline_sync/02_offline_to_online/location/SYNC-01482.yaml

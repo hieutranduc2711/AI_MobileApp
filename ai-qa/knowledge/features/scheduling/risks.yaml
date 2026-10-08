@@ -1,0 +1,9 @@
+risks:
+  - id: RISK-SCHED-001
+    name: "Search bar trigger"
+    details: "Tap vào vùng Y < 350px tại Customer list sẽ mở bàn phím ảo che mất danh sách"
+    mitigation: "Luôn tap vào item đầu tiên tại tọa độ an toàn (540, 440)"
+  - id: RISK-SCHED-002
+    name: "Modal close touch swallow"
+    details: "Sau khi lưu Line item, form Estimate/Job cần 850ms để re-render, tap sớm sẽ bị nuốt nút Save"
+    mitigation: "Đặt delay tối thiểu 850ms trước khi tap Save"

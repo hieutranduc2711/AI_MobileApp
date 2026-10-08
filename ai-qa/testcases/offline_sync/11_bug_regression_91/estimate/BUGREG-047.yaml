@@ -1,0 +1,55 @@
+id: BUGREG-047
+title: 'Show error "JSON Parse error: Unexpected character:<" when add estimate after
+  back to online: Show error "JSON Parse error: Unexpected character:<" when add estimate
+  after back to online'
+sheet: 11_Bug_Regression_91
+module: Estimate
+action: 'Show error "JSON Parse error: Unexpected character:<" when add estimate after
+  back to online'
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Add new estimate
+  action: tap_selector
+  text: Add new estimate
+  delay: 1.0
+- desc: Press on Continute & Add 1 line item (any)
+  action: tap_selector
+  text: Press on Continute & Add 1 lin
+  delay: 1.0
+- desc: Save estimate
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: 'Show error "JSON Parse error: Unexpected character:<" & estimate is empty
+    in job detail'
+  action: tap_selector
+  text: 'JSON Parse error: Unexpected character:<'
+  delay: 1.0
+- desc: Go to desktop app. Estimate has added
+  action: tap_selector
+  text: Go to desktop app. Estimate ha
+  delay: 1.0
+- desc: Back to Home calendar & Go back to Job detail. Estimate is showing
+  action: back
+  delay: 1.0
+expected:
+- desc: Should be not show error after back to online
+  assert_text: Estimate
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

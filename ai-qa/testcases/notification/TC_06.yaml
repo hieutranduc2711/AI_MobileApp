@@ -1,0 +1,28 @@
+id: TC_06
+title: Pull to refresh Unread list
+feature: notification
+priority: High
+description: Pull-to-refresh on the Unread list keeps the list displayed.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_05 toggles every notification setting and then restores it; the settings list
+  is empty unless the account's editSetting flag is on.
+detox_reference: '[TC_06][DOC+][Refresh] User pulls to refresh on unread list and
+  sees list refreshed'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+- desc: Pull down on the unread list to refresh it.
+  action: tap_selector
+  text: Pull down on the unread list t
+  delay: 0.8
+expected:
+- assert_text: Notifications
+  desc: Hiển thị 'Notifications' trên màn hình
+- assert_text: the unread list
+  desc: the unread list
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the bell icon in
+  the top bar. After step 1, the "Notifications" screen with the unread list (may
+  be empty) should be displayed. (2) Pull down on the unread list to refresh it. After
+  step 2, the unread list should still be displayed.

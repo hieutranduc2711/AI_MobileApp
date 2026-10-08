@@ -1,0 +1,29 @@
+id: TC_HOME_003
+title: Select another schedule
+feature: home
+priority: High
+description: A schedule can be picked from the schedule sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_003] open Schedule modal and select
+  another schedule when available'
+steps:
+- desc: 'Tap the schedule chip in the top bar (id: button-schedule).'
+  action: tap_selector
+  text: Tap the schedule chip in the t
+  delay: 0.8
+- desc: Tap the first schedule, then the second one if it exists.
+  action: tap_selector
+  text: Tap the first schedule, then t
+  delay: 0.8
+expected:
+- assert_text: the schedule list
+  desc: the schedule list
+- assert_text: the date bar
+  desc: the date bar
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the schedule chip
+  in the top bar (id: button-schedule). After step 1, the schedule list should be
+  displayed. (2) Tap the first schedule, then the second one if it exists. After step
+  2, the date bar should be displayed.'

@@ -1,0 +1,11 @@
+name: offline-12-material
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [material] (7
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-202.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-203.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-204.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-205.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-206.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-207.yaml
+- testcases/offline_sync/12_perf_rerender_245/material/PERF-208.yaml

@@ -1,0 +1,19 @@
+id: TIME-CREW-002
+title: Ghi nhận giờ nghỉ trưa (Take Lunch Break)
+feature: timesheet_crew_management
+priority: Normal
+description: 'Xác thực nghiệp vụ quản lý nhân sự và chấm công KTV #2'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Bấm Start Break
+  action: tap_selector
+  text: Start Break
+  delay: 1.0
+expected:
+- assert_text: On Break
+  desc: Đồng hồ tính giờ nghỉ trưa bắt đầu chạy

@@ -1,0 +1,23 @@
+name: offline-module-technical_coverage
+description: Cross-sheet comprehensive offline suite for Module [technical_coverage]
+  (19 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03316.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03300.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03306.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03307.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03309.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03314.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03302.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03304.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03315.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03311.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03310.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03305.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03313.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03308.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03303.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03301.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03299.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03317.yaml
+- testcases/offline_sync/05_cross_cutting/technical_coverage/SYNC-03312.yaml

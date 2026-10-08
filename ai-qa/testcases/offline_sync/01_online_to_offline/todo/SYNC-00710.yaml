@@ -1,0 +1,57 @@
+id: SYNC-00710
+title: 'Delete Todo List: Delete Todo List: server/queue ACK → mất mạng trước authoritative
+  downlink'
+sheet: 01_Online_to_Offline
+module: Todo
+action: Delete Todo List
+priority: P0
+flow_phase: O2F-04 Drop after ACK before downlink
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job > Todo > Delete List
+preconditions: Đăng nhập đúng account/branch; user có quyền Delete Todo List; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > Job > Todo > Delete List.
+test_data: Valid mutation
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Thực hiện Delete Todo List.
+  action: tap_selector
+  text: Delete Todo List
+  delay: 1.0
+- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
+  action: tap_selector
+  text: Cho queue/API nhận request/ACK
+  delay: 1.0
+- desc: Cắt network trước khi authoritative row mới về local.
+  action: tap_selector
+  text: Cắt network trước khi authorit
+  delay: 1.0
+- desc: Mở/reopen entity khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Quan sát optimistic/local state.
+  action: tap_selector
+  text: Quan sát optimistic/local stat
+  delay: 1.0
+expected:
+- desc: Queue ACK không được xem là backend business completion.
+  assert_text: Todo
+- desc: Optimistic state không bị xóa quá sớm.
+  assert_text: Todo
+- desc: UI không snap-back về old server value sau khi mất mạng.
+  assert_text: Todo
+- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
+  assert_text: Todo
+source_tickets: RN-5569, RN-5540, RN-5587, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
+
+  https://gorilladesk1.atlassian.net/browse/RN-5540
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Early patch removal/snap-back
+notes: ''

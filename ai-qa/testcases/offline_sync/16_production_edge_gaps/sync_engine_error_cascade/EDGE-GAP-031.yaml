@@ -1,0 +1,46 @@
+id: EDGE-GAP-031
+title: 'Parent Rejection Cascading Child Blocker: Nút cha bị Server Reject (Customer
+  A bị 422 trùng Email) → Các nút con (L1, J1, I1) tự động chuyển '''
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Error Cascade
+action: Parent Rejection Cascading Child Blocker
+priority: P0
+flow_phase: Parent local:* Dependency
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Sync Manager / Alerts
+preconditions: Thiết bị offline tạo Customer A (email đã tồn tại trên server) kèm
+  Location, Job, Invoice phụ thuộc.
+test_data: 'Duplicate email: ''existing@gorilladesk.com'' triggers server 422 Unprocessable
+  Entity.'
+steps:
+- desc: Tạo chuỗi 4 cấp offline như testcase EDGE-GAP-030.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật mạng để sync.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Server xử lý Customer A và trả về 422 Duplicate Email.
+  action: tap_selector
+  text: Server xử lý Customer A và trả
+  delay: 1.0
+- desc: Kiểm tra trạng thái của Location, Job và Invoice trong hàng đợi.
+  action: tap_selector
+  text: Kiểm tra trạng thái của Locati
+  delay: 1.0
+expected:
+- desc: Customer A dừng lại ở trạng thái 'Failed (Duplicate Email)'.
+  assert_text: Failed (Duplicate Email)
+- desc: Sync Engine KHÔNG gửi Location, Job, Invoice lên server với foreign key rác
+    hoặc rỗng (tránh tạo orphaned records).
+  assert_text: Sync Engine / Error Cascade
+- desc: Các entity con được đánh dấu trạng thái 'Blocked by Parent Dependency'.
+  assert_text: Blocked by Parent Dependency
+- desc: 'Giao diện hiển thị hướng dẫn: ''Sửa lỗi email của Khách hàng để tiếp tục
+    đồng bộ các mục liên quan''.'
+  assert_text: Sửa lỗi email của Khách hàng để tiếp tục đồng bộ các mục liên quan
+source_tickets: RN-5477 / Cascade-Failure
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Orphaned Records / Server Crash
+notes: Đảm bảo không xả các entity con khi entity cha bị reject.

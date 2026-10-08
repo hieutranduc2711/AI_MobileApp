@@ -1,0 +1,41 @@
+id: SYNC-03300
+title: 'Deeply review Seamless Offline Mode: RN-5517 regression'
+sheet: 05_Cross_Cutting
+module: Technical Coverage
+action: Deeply review Seamless Offline Mode
+priority: P2
+flow_phase: Architecture/Infra
+direction: CROSS-CUTTING
+app_path: Technical behavior related to Deeply review Seamless Offline Mode
+preconditions: Target implementation/status available.
+test_data: Deeply review Seamless Offline Mode
+steps:
+- desc: Exercise implementation related to Deeply review Seamless Offline Mode.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Run representative online path.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Run offline path if applicable.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect/restart.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Compare Offline Mode invariants.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
+  assert_text: Technical Coverage
+- desc: If not implemented due status, mark Blocked/N/A.
+  assert_text: Technical Coverage
+source_tickets: RN-5517
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5517
+risk: Architecture coverage
+notes: Carried from V2 OFFV2-03244

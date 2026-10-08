@@ -1,0 +1,9 @@
+routes:
+  - id: "ROUTE-DOWNTOWN-01"
+    name: "Tuyến Downtown Miami"
+    assigned_technician: "TECH-002"
+    stops:
+      - customer_id: "CUS-001"
+        order: 1
+      - customer_id: "CUS-002"
+        order: 2

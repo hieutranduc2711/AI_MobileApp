@@ -1,0 +1,10 @@
+name: offline-04-document
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [document]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02587.yaml
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02588.yaml
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02589.yaml
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02590.yaml
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02591.yaml
+- testcases/offline_sync/04_server_to_local_offline/document/SYNC-02592.yaml

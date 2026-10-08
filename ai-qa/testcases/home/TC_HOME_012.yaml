@@ -1,0 +1,26 @@
+id: TC_HOME_012
+title: Agenda list scroll and refresh
+feature: home
+priority: High
+description: The agenda list can be scrolled and pulled to refresh.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_012] agenda mode: scroll list and trigger
+  pull-to-refresh'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and, in "Calendar View", tap "Agenda". (2) Scroll
+  the agenda list to the bottom, back to the top, and pull down to refresh. If the
+  agenda list is not shown, stop and report the test as skipped: no agenda list.'

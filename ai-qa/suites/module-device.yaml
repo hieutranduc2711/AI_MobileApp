@@ -1,0 +1,15 @@
+name: Module Device Suite
+description: Chạy toàn bộ 12 test cases cho phân hệ device
+tests:
+- TC_01
+- TC_02
+- TC_03
+- TC_04
+- TC_05
+- TC_06
+- TC_07
+- TC_08
+- TC_09
+- TC_10
+- TC_11
+- TC_12

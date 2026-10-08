@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_115701",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "results": [
+    {
+      "id": "CUST_E2E_003",
+      "status": "PASS",
+      "runner_hint": "LIKELY_PASS",
+      "judge_summary": "Ảnh kết quả cuối cùng hiển thị rõ tiêu đề 'New Customer', đáp ứng tiêu chí nghiệm thu. Các trường First Name, Last Name, Email và nút Save cũng hiện diện, phù hợp mục tiêu kiểm tra các thành phần cốt lõi của form.",
+      "judge_reasoning": "Đã trực tiếp kiểm tra ba keyframe, ảnh cuối cùng và chuỗi ảnh lấy mẫu mỗi giây từ video. Diễn tiến quan sát được là màn hình Calendar ban đầu → Drawer có mục Customers → danh sách Customers có dữ liệu và nút '+' → màn hình New Customer. Keyframe 3 và mẫu video gần cuối còn hiển thị biểu tượng tải dưới tiêu đề New Customer; riêng những hình này chưa chứng minh các trường đã tải xong. Tuy nhiên, ảnh CUST_E2E_003_final.png xác nhận form đã hiển thị các trường First Name, Last Name, Email cùng nút Save, không còn biểu tượng tải. Danh sách text do Runner cung cấp nhất quán với ảnh cuối. Banner 'Your app version is not up to date.' nằm phía trên, không che tiêu đề hoặc các thành phần cần kiểm tra và không phải blocker cho tiêu chí này. Kết luận dựa trên bằng chứng trực quan, không dựa riêng vào trạng thái thao tác OK hay heuristic LIKELY_PASS. Phạm vi PASS chỉ bao gồm việc mở và hiển thị form; không suy diễn khả năng lưu dữ liệu. Bằng chứng chưa độc lập xác nhận tài khoản đang dùng chính là DEFAULT E2E, vai trò cụ thể, trạng thái online hoặc việc relaunch loại bỏ form sau ca kiểm thử.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\CUST_E2E_003_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\CUST_E2E_003_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\CUST_E2E_003_final.png",
+      "time_sec": 11.52
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+id: TC_02
+title: Need Help sheet opens and closes
+feature: onboarding
+priority: High
+description: Need Help on Getting Started opens the help sheet with its two options,
+  and the sheet can be closed.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_03, TC_06, TC_12 and TC_13 need a non-trial plan (Detox guard E2E_TRIAL_PLAN;
+  trial plans hide the tabs). The server Getting Started checklist must contain the
+  add-logo, add-customer, add-job, add-invoice and plans-and-pricing items with a
+  Start/Done button.
+detox_reference: '[TC_02][DOC+][HelpButton] User taps "Need help" button and sees
+  Help modal'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Fast Start] trong Drawer Menu
+  action: tap_selector
+  content_desc: Fast Start
+  delay: 1.2
+- desc: Chạm vào mục [Need Help]
+  action: tap_selector
+  text: Need Help
+  delay: 1.0
+- desc: 'Close the sheet by tapping its top handle (id: indicator).'
+  action: tap_selector
+  text: Close the sheet by tapping its
+  delay: 0.8
+expected:
+- assert_text: Chat with Support
+  desc: Hiển thị 'Chat with Support' trên màn hình
+- assert_text: Book a Training Call
+  desc: Hiển thị 'Book a Training Call' trên màn hình
+- assert_text: Book a Sales Call
+  desc: Hiển thị 'Book a Sales Call' trên màn hình
+- assert_text: Chat with Support
+  desc: Hiển thị 'Chat with Support' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Fast Start" under "Help" (scroll the menu if needed). (2) Tap "Need
+  Help" at the top-right. After step 2, "Chat with Support" and "Book a Training Call"
+  or "Book a Sales Call" should be displayed. (3) Close the sheet by tapping its top
+  handle (id: indicator). After step 3, "Chat with Support" should no longer be displayed.'

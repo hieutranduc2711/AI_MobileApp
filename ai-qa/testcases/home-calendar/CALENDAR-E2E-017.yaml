@@ -1,0 +1,26 @@
+id: CALENDAR-E2E-017
+title: Calendar View twice
+feature: home-calendar
+priority: High
+description: Calendar View opens and closes twice without breaking Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-017: open agenda modal twice with dismiss between'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: 'Repeat step 1. After each of steps 1 and 2, the Home top bar (id: home-bar)
+    shou'
+  action: tap_selector
+  text: Repeat step 1. After each of s
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar, then close "Calendar View" by tapping the handle
+  at its top (id: indicator). (2) Repeat step 1. After each of steps 1 and 2, the
+  Home top bar (id: home-bar) should be displayed.'

@@ -1,0 +1,21 @@
+id: CALENDAR-E2E-011
+title: Calendar shows events
+feature: home-calendar
+priority: High
+description: The calendar shows at least one event.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-011: webview has at least one visible event anchor
+  (graceful skip)'
+steps:
+- desc: Report whether the calendar shows at least one event; none is not a failure.
+  action: tap_selector
+  text: Report whether the calendar sh
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. The Home top bar (id:
+  home-bar) should be displayed. (1) Report whether the calendar shows at least one
+  event; none is not a failure.'

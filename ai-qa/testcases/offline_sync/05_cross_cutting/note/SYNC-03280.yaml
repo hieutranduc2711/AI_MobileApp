@@ -1,0 +1,37 @@
+id: SYNC-03280
+title: 'Note parent filtering: item_type + item_id'
+sheet: 05_Cross_Cutting
+module: Note
+action: Note parent filtering
+priority: P1
+flow_phase: Schema Parity
+direction: CROSS-CUTTING
+app_path: GD Mobile > Notes
+preconditions: Prepare environment/data as described.
+test_data: item_type + item_id
+steps:
+- desc: Create similar IDs across parent types.
+  action: tap_selector
+  text: Create similar IDs across pare
+  delay: 1.0
+- desc: Sync.
+  action: tap_selector
+  text: Sync.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Open each notes screen.
+  action: tap_selector
+  text: Open each notes screen.
+  delay: 1.0
+expected:
+- desc: No cross-parent note/topnote/comment.
+  assert_text: Note
+source_tickets: RN-5567, RN-5536
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
+
+  https://gorilladesk1.atlassian.net/browse/RN-5536'
+risk: Known fix
+notes: Carried from V2 OFFV2-03209

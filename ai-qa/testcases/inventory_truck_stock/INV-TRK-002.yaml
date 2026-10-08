@@ -1,0 +1,18 @@
+id: INV-TRK-002
+title: Trừ kho tự động khi hoàn thành Work Order
+feature: inventory_truck_stock
+priority: Normal
+description: 'Kiểm thử tính năng quản lý vật tư kho xe tải trường hợp #2'
+preconditions: Thiết bị đang kết nối cơ sở dữ liệu nội bộ
+steps:
+- desc: Hoàn tất Job có dùng 2 bẫy chuột Rodent Bait Station
+  action: tap_selector
+  content_desc: Complete Job
+  delay: 1.2
+- desc: Mở kho xem số lượng tồn
+  action: tap_selector
+  text: Inventory
+  delay: 1.0
+expected:
+- assert_text: Quantity Updated
+  desc: Số lượng tồn kho trên xe giảm tương ứng

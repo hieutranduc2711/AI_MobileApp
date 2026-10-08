@@ -1,0 +1,18 @@
+name: offline-12-home
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [home] (15 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-001.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-002.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-003.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-004.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-005.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-006.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-007.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-008.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-009.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-010.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-011.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-012.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-013.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-014.yaml
+- testcases/offline_sync/12_perf_rerender_245/home/PERF-015.yaml

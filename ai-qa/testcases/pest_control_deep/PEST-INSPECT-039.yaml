@@ -1,0 +1,19 @@
+id: PEST-INSPECT-039
+title: 'Kiểm tra trạm giám sát côn trùng thiết bị #39'
+feature: pest_control_deep
+priority: Medium
+description: 'Quy trình kiểm tra trạm bẫy và bả diệt côn trùng định kỳ #39'
+preconditions: Đang thực hiện công việc kiểm soát dịch hại
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Xem danh mục Equipment & Devices
+  action: tap_selector
+  content_desc: Equipment
+  delay: 1.2
+expected:
+- assert_text: Equipment
+  desc: Màn hình quản lý thiết bị sẵn sàng

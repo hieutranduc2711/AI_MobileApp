@@ -1,0 +1,26 @@
+id: MEDIA-PHT-002
+title: Chụp và đính kèm ảnh Kết quả sau xử lý (After Photo)
+feature: media_photo_inspection
+priority: Normal
+description: 'Kiểm thử chụp ảnh hiện trường và nghiệm thu công trình #2'
+preconditions: Job đang mở ở màn hình thực địa
+steps:
+- desc: Mở mục Photos trong Job
+  action: tap_selector
+  text: Photos
+  delay: 0.8
+- desc: Bấm Add After Photo
+  action: tap_selector
+  content_desc: Add After Photo
+  delay: 1.0
+- desc: Chọn ảnh từ thư viện
+  action: tap_selector
+  text: Choose from Library
+  delay: 1.2
+- desc: Lưu ảnh
+  action: tap_selector
+  content_desc: Save Photo
+  delay: 1.5
+expected:
+- assert_text: After
+  desc: Cặp ảnh Before-After được ghép cặp hoàn chỉnh

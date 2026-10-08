@@ -1,0 +1,18 @@
+id: CHAOS-RES-001
+title: App bị hệ điều hành Android kill khi đang upload ảnh hiện trường
+feature: network_chaos_edge_cases
+priority: Normal
+description: 'Kiểm thử khả năng phục hồi dữ liệu trong điều kiện khắc nghiệt #1'
+preconditions: Calendar Home
+steps:
+- desc: Đang upload ảnh Before Photo
+  action: tap_selector
+  content_desc: Save Photo
+  delay: 0.5
+- desc: Mở lại ứng dụng GorillaDesk
+  action: tap_selector
+  text: GorillaDesk
+  delay: 1.5
+expected:
+- assert_text: Upload Resumed
+  desc: Ứng dụng tự động khôi phục tải ảnh dở dang

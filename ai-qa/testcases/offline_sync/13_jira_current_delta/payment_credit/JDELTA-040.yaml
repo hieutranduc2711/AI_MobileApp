@@ -1,0 +1,40 @@
+id: JDELTA-040
+title: 'Pagination, date format/order and no duplicate/missing rows: Pagination, date
+  format/order and no duplicate/missing rows'
+sheet: 13_Jira_Current_Delta
+module: Payment/Credit
+action: Pagination, date format/order and no duplicate/missing rows
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Prepare multi-page payment/credit history.
+  action: tap_selector
+  text: Prepare multi-page payment/cre
+  delay: 1.0
+- desc: Open Online then Offline lists.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Load additional pages if available.
+  action: tap_selector
+  text: Load additional pages if avail
+  delay: 1.0
+- desc: Compare dates/order/IDs with web.
+  action: tap_selector
+  text: Compare dates/order/IDs with w
+  delay: 1.0
+expected:
+- desc: Date format/order matches product expectation.
+  assert_text: Payment/Credit
+- desc: No duplicate/missing rows across pagination.
+  assert_text: Payment/Credit
+- desc: Read-only Offline behavior remains clear.
+  assert_text: Payment/Credit
+source_tickets: RN-5618
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5618
+risk: Schema / Comment Regression
+notes: ''

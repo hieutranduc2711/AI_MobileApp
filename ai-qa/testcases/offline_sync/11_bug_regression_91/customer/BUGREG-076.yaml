@@ -1,0 +1,57 @@
+id: BUGREG-076
+title: 'Update wrong top note of customer in offline after save: Update wrong top
+  note of customer in offline after save'
+sheet: 11_Bug_Regression_91
+module: Customer
+action: Update wrong top note of customer in offline after save
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to screen customer list
+  action: tap_selector
+  text: Go to screen customer list
+  delay: 1.0
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new customer with top note
+  action: tap_selector
+  text: Create new customer with top n
+  delay: 1.0
+- desc: Done create customer
+  action: tap_selector
+  text: Done create customer
+  delay: 1.0
+- desc: Go to detail of customer just create
+  action: tap_selector
+  text: 'Go to detail of customer just '
+  delay: 1.0
+- desc: Edit top note of customer
+  action: tap_selector
+  text: Edit top note of customer
+  delay: 1.0
+- desc: Back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Web show customer created with first top note
+  action: tap_selector
+  text: Web show customer created with
+  delay: 1.0
+- desc: Top note update created with normal note
+  action: tap_selector
+  text: Top note update created with n
+  delay: 1.0
+expected:
+- desc: 'Expect: Update correct top note of customer'
+  assert_text: Customer
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

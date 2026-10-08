@@ -1,0 +1,5 @@
+name: offline-module-unit_signature
+description: Cross-sheet comprehensive offline suite for Module [unit_signature] (1
+  cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/unit_signature/BUGREG-088.yaml

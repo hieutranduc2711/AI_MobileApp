@@ -1,0 +1,19 @@
+name: offline-01-location
+description: Offline Suite for Sheet [01_online_to_offline] > Module [location] (15
+  cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00395.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00396.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00397.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00398.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00399.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00400.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00401.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00402.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00403.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00404.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00405.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00406.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00407.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00408.yaml
+- testcases/offline_sync/01_online_to_offline/location/SYNC-00409.yaml

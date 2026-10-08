@@ -1,0 +1,60 @@
+id: SYNC-00160
+title: 'Scan Barcode: Bắt đầu Scan Barcode online → mất mạng ngay trước Save/Confirm'
+sheet: 01_Online_to_Offline
+module: Device
+action: Scan Barcode
+priority: P0
+flow_phase: O2F-02 Drop before Save
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job > Devices > Scan
+preconditions: Đăng nhập đúng account/branch; user có quyền Scan Barcode; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > Job > Devices > Scan.
+test_data: Valid edited values
+steps:
+- desc: Bật network ổn định và mở flow.
+  action: tap_selector
+  text: Bật network ổn định và mở flow
+  delay: 1.0
+- desc: Bắt đầu Scan Barcode khi đang Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Chờ indicator chuyển Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
+  action: tap_selector
+  text: Tiếp tục thao tác nếu còn fiel
+  delay: 1.0
+- desc: Nhấn Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
+  assert_text: Device
+- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
+  assert_text: Device
+- desc: Local UI phản ánh đúng result.
+  assert_text: Device
+- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
+  assert_text: Device
+source_tickets: RN-5591, RN-5614
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
+
+  https://gorilladesk1.atlassian.net/browse/RN-5614'
+risk: Data loss at transition
+notes: ''

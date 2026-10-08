@@ -1,0 +1,48 @@
+id: EDGE-GAP-032
+title: 'Dead-Letter Queue Inspection & In-App Retry UX: Mutation bị server reject
+  vĩnh viễn (422/400) → Hiển thị badge đỏ ''Cần xử lý'' → Cho phép sửa trực ti'
+sheet: 16_Production_Edge_Gaps
+module: Sync Manager / UX
+action: Dead-Letter Queue Inspection & In-App Retry UX
+priority: P1
+flow_phase: Dead Letter
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Menu > Sync Status > Failed Items
+preconditions: Có 1 mutation bị reject do sai định dạng zip code khi offline.
+test_data: 'Invalid zip code: ''ABCDE'' rejected by server address validator.'
+steps:
+- desc: Chuyển online, item bị server reject 422.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Quan sát thông báo trên thanh tiêu đề GD Mobile (hiện badge đỏ số 1).
+  action: tap_selector
+  text: 'Quan sát thông báo trên thanh '
+  delay: 1.0
+- desc: Chạm vào badge để mở màn hình 'Chi tiết lỗi đồng bộ'.
+  action: tap_selector
+  text: Chi tiết lỗi đồng bộ
+  delay: 1.0
+- desc: Chạm vào item lỗi, chọn 'Chỉnh sửa' (sửa zip code thành '33401').
+  action: tap_selector
+  text: Chỉnh sửa
+  delay: 1.0
+- desc: Bấm nút 'Thử lại đồng bộ' (Retry Sync).
+  action: tap_selector
+  text: Thử lại đồng bộ
+  delay: 1.0
+expected:
+- desc: 'Màn hình hiển thị nguyên nhân lỗi bằng ngôn ngữ dễ hiểu: ''Mã bưu chính không
+    hợp lệ''.'
+  assert_text: Mã bưu chính không hợp lệ
+- desc: Cho phép người dùng chỉnh sửa dữ liệu ngay trong bản ghi pending.
+  assert_text: Sync Manager / UX
+- desc: 'Khi bấm Retry: Sync Engine đóng gói payload mới và gửi lại thành công.'
+  assert_text: Sync Manager / UX
+- desc: Badge cảnh báo biến mất, hàng đợi trở về trạng thái sạch (All Synced).
+  assert_text: Sync Manager / UX
+source_tickets: RN-5477 / Dead-Letter-UX
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Trapped Unrecoverable Data
+notes: Người dùng hiện trường phải có công cụ tự khắc phục lỗi mà không cần gọi tổng
+  đài IT.

@@ -1,0 +1,33 @@
+id: BUGREG-005
+title: 'Change orders of todo list don''t update (Online/Offline): Change orders of
+  todo list don''t update (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Change orders of todo list don't update (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail/ All Todo
+  action: tap_selector
+  text: Go to Job detail/ All Todo
+  delay: 1.0
+- desc: Change order of todo list
+  action: tap_selector
+  text: Change order of todo list
+  delay: 1.0
+- desc: Todo list not change with new order
+  action: tap_selector
+  text: 'Todo list not change with new '
+  delay: 1.0
+expected:
+- desc: Todo list should be update with new order change
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,5 @@
+name: "Routing Regression Suite"
+description: "Kiểm thử chuyên sâu tính năng điều phối lộ trình và bản đồ"
+testcases:
+  - "testcases/routing/ROUTE-OPTIMIZE-001.yaml"
+  - "testcases/routing/ROUTE-OPTIMIZE-002.yaml"

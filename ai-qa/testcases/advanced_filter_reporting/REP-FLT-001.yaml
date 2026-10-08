@@ -1,0 +1,26 @@
+id: REP-FLT-001
+title: Lọc danh sách Job theo trạng thái Unassigned
+feature: advanced_filter_reporting
+priority: Normal
+description: 'Kiểm thử bộ lọc đa điều kiện và báo cáo thực địa #1'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Calendar Home
+  action: tap_selector
+  text: Calendar
+  delay: 0.8
+- desc: Bấm nút Filter
+  action: tap_selector
+  content_desc: Filter
+  delay: 0.8
+- desc: Chọn Status Unassigned
+  action: tap_selector
+  text: Unassigned
+  delay: 0.5
+- desc: Áp dụng bộ lọc
+  action: tap_selector
+  content_desc: Apply Filter
+  delay: 1.0
+expected:
+- assert_text: Unassigned
+  desc: Chỉ hiển thị các job chưa có người phụ trách

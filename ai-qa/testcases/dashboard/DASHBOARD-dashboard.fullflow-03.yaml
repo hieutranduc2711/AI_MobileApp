@@ -1,0 +1,44 @@
+id: DASHBOARD-dashboard.fullflow-03
+title: Stats date sheet dismisses
+feature: dashboard
+priority: High
+description: The Stats board date sheet can be closed without leaving the Dashboard.
+preconditions: Logged in with the DEFAULT E2E account (non-technician role with dashboard
+  access, so all boards show), app on the Home screen (online). Year cases change
+  the board's selected year for the session.
+detox_reference: GIVEN dashboard WHEN open Stats calendar THEN modal can be dismissed
+  without leaving dashboard
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [Stats]
+  action: tap_selector
+  text: Stats
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+- assert_text: the Dashboard
+  desc: the Dashboard
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll to the "Stats" board and tap its date-range
+  button (calendar icon). (3) In the date sheet tap "Save" (press the Android back
+  button if no sheet opened). After step 3, the Dashboard should still be displayed.
+  If the board or its date-range button is missing, stop and report the test as skipped:
+  board not available for this role.'

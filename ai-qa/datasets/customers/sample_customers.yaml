@@ -1,0 +1,21 @@
+customers:
+  - id: "CUS-001"
+    first_name: "QA Auto"
+    last_name: "Customer John"
+    email: "qa.john@gorilladesk.test"
+    phone: "5550192834"
+    location:
+      address: "123 Ocean Drive"
+      city: "Miami"
+      state: "FL"
+      zip: "33139"
+  - id: "CUS-002"
+    first_name: "QA Auto"
+    last_name: "Customer Sarah"
+    email: "qa.sarah@gorilladesk.test"
+    phone: "5550987654"
+    location:
+      address: "456 Palm Avenue"
+      city: "Tampa"
+      state: "FL"
+      zip: "33602"

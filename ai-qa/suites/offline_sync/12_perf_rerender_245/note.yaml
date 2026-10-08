@@ -1,0 +1,25 @@
+name: offline-12-note
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [note] (22 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-112.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-113.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-114.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-115.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-116.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-117.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-118.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-119.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-120.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-121.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-122.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-123.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-124.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-125.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-126.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-127.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-128.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-129.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-130.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-131.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-132.yaml
+- testcases/offline_sync/12_perf_rerender_245/note/PERF-133.yaml

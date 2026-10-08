@@ -1,0 +1,19 @@
+id: BEDBUG-RM-032
+title: 'Quy trình xử lý rệp giường chuyên sâu #32'
+feature: bedbug_room_by_room
+priority: Normal
+description: 'Kiểm thử kiểm tra và xử lý rệp giường ca #32'
+preconditions: Đang ở Job Details
+steps:
+- desc: Mở hồ sơ kiểm tra rệp
+  action: tap_selector
+  text: Bedbug Inspection
+  delay: 0.8
+- desc: 'Kiểm tra hạng mục #32'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Bedbug Inspection
+  desc: Hạng mục kiểm tra hiển thị đúng

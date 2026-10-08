@@ -1,0 +1,23 @@
+id: TC_HOME_001
+title: Home chrome and calendar
+feature: home
+priority: High
+description: Home shows the top bar, menu, date bar and a calendar or agenda.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_001] reach Home with authenticated chrome
+  and calendar surface'
+steps:
+- desc: Mở màn hình Calendar Home
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. At the end, the top bar
+  (id: home-bar), the top-left menu icon, the date bar and either the calendar or
+  the agenda list (or its empty state) should be displayed.'

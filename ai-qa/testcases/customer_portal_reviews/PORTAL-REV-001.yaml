@@ -1,0 +1,26 @@
+id: PORTAL-REV-001
+title: Gửi tin nhắn SMS mời khách hàng đánh giá Google Review 5 sao
+feature: customer_portal_reviews
+priority: Normal
+description: 'Kiểm thử trải nghiệm khách hàng và đánh giá chất lượng #1'
+preconditions: Job hoặc Estimate đã được lưu thành công
+steps:
+- desc: Hoàn thành Job
+  action: tap_selector
+  content_desc: Complete Job
+  delay: 1.0
+- desc: Bấm Send Review Request
+  action: tap_selector
+  text: Request Review
+  delay: 0.8
+- desc: Chọn kênh gửi SMS
+  action: tap_selector
+  text: Send SMS
+  delay: 0.8
+- desc: Bấm gửi
+  action: tap_selector
+  content_desc: Send
+  delay: 1.2
+expected:
+- assert_text: Review Request Sent
+  desc: Link đánh giá Google My Business được gửi cho khách

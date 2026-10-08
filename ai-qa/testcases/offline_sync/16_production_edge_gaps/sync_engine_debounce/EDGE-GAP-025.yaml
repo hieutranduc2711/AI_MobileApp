@@ -1,0 +1,33 @@
+id: EDGE-GAP-025
+title: 'Rapid Flapping Network Debounce Stabilization: Mạng bật tắt liên tục (Flapping:
+  3s có mạng, 2s mất mạng x 10 lần) → Sync Engine duy trì Debounce 3-'
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Debounce
+action: Rapid Flapping Network Debounce Stabilization
+priority: P1
+flow_phase: Network Interface Handover
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Network Change Listener
+preconditions: Hàng đợi có 10 items. Mạng Wi-Fi bị bật tắt liên tục mỗi 3 giây.
+test_data: Rapid toggle network state 10 times in 30 seconds.
+steps:
+- desc: Chạy script bật tắt toggle Wi-Fi liên tục 10 lần.
+  action: tap_selector
+  text: Chạy script bật tắt toggle Wi-
+  delay: 1.0
+- desc: Quan sát log các thread sync được khởi tạo.
+  action: tap_selector
+  text: Quan sát log các thread sync đ
+  delay: 1.0
+expected:
+- desc: Sync Engine áp dụng Debounce (chờ mạng duy trì ổn định tối thiểu 3-5 giây
+    liên tục mới bắt đầu phát động đợt sync).
+  assert_text: Sync Engine / Debounce
+- desc: Không tạo ra 10 sync workers chạy chồng chéo cạnh tranh tài nguyên (Race Condition).
+  assert_text: Sync Engine / Debounce
+- desc: Mutex lock của SQLite không bị dính `SQLITE_BUSY`.
+  assert_text: Sync Engine / Debounce
+source_tickets: RN-5477 / Flapping-Network
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Thread Race Condition / SQLite Lock
+notes: Sử dụng single-flight pattern hoặc concurrency lock cho sync runner.

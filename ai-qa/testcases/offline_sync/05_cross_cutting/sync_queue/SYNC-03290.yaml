@@ -1,0 +1,41 @@
+id: SYNC-03290
+title: 'Dead-letter bad row: Malformed row before valid rows'
+sheet: 05_Cross_Cutting
+module: Sync Queue
+action: Dead-letter bad row
+priority: P0
+flow_phase: Dead Letter
+direction: CROSS-CUTTING
+app_path: Test hook
+preconditions: Prepare environment/data as described.
+test_data: Malformed row before valid rows
+steps:
+- desc: Place bad row first.
+  action: tap_selector
+  text: Place bad row first.
+  delay: 1.0
+- desc: Add 25 valid rows.
+  action: tap_selector
+  text: Add 25 valid rows.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe terminal/retry.
+  action: tap_selector
+  text: Observe terminal/retry.
+  delay: 1.0
+- desc: Verify later rows.
+  action: tap_selector
+  text: Verify later rows.
+  delay: 1.0
+expected:
+- desc: Bad row does not block valid rows.
+  assert_text: Sync Queue
+source_tickets: RN-5587, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: High
+notes: Carried from V2 OFFV2-03219

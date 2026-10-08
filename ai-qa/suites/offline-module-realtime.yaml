@@ -1,0 +1,4 @@
+name: offline-module-realtime
+description: Cross-sheet comprehensive offline suite for Module [realtime] (1 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/realtime/SYNC-03285.yaml

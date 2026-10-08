@@ -1,0 +1,63 @@
+id: M_MUF_02
+title: Usage form Name accepts text
+feature: material
+priority: High
+description: The Name field of the usage form accepts text.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+  M_MUF_04 adds “E2E Material” to the company material list.
+detox_reference: '[M_MUF_02][Material][MaterialUsageForm] Name input accepts text'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Manage Material List]
+  action: tap_selector
+  text: Manage Material List
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'E2E Test Material' vào ô [input]
+  action: type_text
+  value: E2E Test Material
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage Material List
+  desc: Hiển thị 'Manage Material List' trên màn hình
+- assert_text: Add Material
+  desc: Hiển thị 'Add Material' trên màn hình
+- assert_text: Name
+  desc: Hiển thị 'Name' trên màn hình
+- assert_text: the field
+  desc: the field
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Manage Material List". After step 4, the "Manage Material List" screen
+  with its list should be displayed. (5) Tap the plus icon at the top-right. After
+  step 5, the "Add Material" form with "Name" should be displayed. (6) Type "E2E Test
+  Material" in "Name". After step 6, the field should show "E2E Test Material". (7)
+  Tap the back arrow at the top-left.

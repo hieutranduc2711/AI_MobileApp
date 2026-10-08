@@ -1,0 +1,35 @@
+id: TC_09
+title: Reopen device type list
+feature: device
+priority: High
+description: Add Device opens the device type list again.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map).
+detox_reference: '[TC_09][DOC+][DeviceTypeReentry] User re-navigates to SelectDeviceType
+  and sees device types'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Device
+  desc: Hiển thị 'Device' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", and scroll to
+  "Device" (id: devices-container). (2) Tap the plus on "Device" and choose "Add Device".
+  After step 2, the device type list (title "Device") should be displayed. (3) Tap
+  the back arrow at the top-left. If "Device" is missing, stop and report the test
+  as skipped: device addon off.'

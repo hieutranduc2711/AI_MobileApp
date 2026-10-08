@@ -1,0 +1,23 @@
+id: CALENDAR-E2E-015
+title: Event icons present
+feature: home-calendar
+priority: High
+description: Events may show recurring, lock, time-window and draft-invoice icons.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-015: icon matrix renders expected SVG markers (graceful
+  skips)'
+steps:
+- desc: 'Report which of these event icons are visible on the calendar: recurring,
+    lock, '
+  action: tap_selector
+  text: Report which of these event ic
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. The Home top bar (id:
+  home-bar) should be displayed. (1) Report which of these event icons are visible
+  on the calendar: recurring, lock, clock (time window), attention (draft invoice);
+  missing icons are not failures.'

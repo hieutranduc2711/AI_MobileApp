@@ -1,0 +1,10 @@
+name: offline-04-customer_task
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [customer_task]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02569.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02570.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02571.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02572.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02573.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_task/SYNC-02574.yaml

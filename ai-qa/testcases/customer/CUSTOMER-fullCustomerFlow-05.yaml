@@ -1,0 +1,40 @@
+id: CUSTOMER-fullCustomerFlow-05
+title: All Job Show More when paginated
+feature: customer
+priority: High
+description: All Job shows Show More when the list can paginate.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'all jobs: show more button appears when list can paginate (best-effort)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Jobs]
+  action: tap_selector
+  text: Jobs
+  delay: 1.0
+- desc: Chạm vào mục [Show More]
+  action: tap_selector
+  text: Show More
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Scroll to the "Jobs" section
+  and tap its "Show All". (4) If "Show More" is shown, tap it. If there is no customer
+  or no "Show All" under "Jobs", stop and report the test as skipped: not enough jobs.'

@@ -1,0 +1,26 @@
+id: TC_08
+title: Tap checkbox of first unread notification
+feature: notification
+priority: High
+description: The first unread notification shows a checkbox that can be tapped.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_08 needs at least one unread notification (Detox fails otherwise); TC_09 reports
+  skipped when the Read list is empty.
+detox_reference: '[TC_08][DOC+][MarkRead] User taps checkbox on unread notification
+  and sees item removed from unread list'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+- desc: Tap the checkbox of the first unread notification.
+  action: tap_selector
+  text: 'Tap the checkbox of the first '
+  delay: 0.8
+expected:
+- assert_text: Notifications
+  desc: Hiển thị 'Notifications' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the bell icon in
+  the top bar. After step 1, the "Notifications" screen should show the "Unread" list
+  with at least one notification and its checkbox on the right. (2) Tap the checkbox
+  of the first unread notification.

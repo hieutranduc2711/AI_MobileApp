@@ -1,0 +1,12 @@
+bug:
+  id: "MANTIS-9757"
+  title: "Recurring Job bị khóa và hiển thị popup cảnh báo khi job quá khứ chưa hoàn thành"
+  feature: "scheduling"
+  severity: "Trivial"
+  status: "Working_As_Designed"
+  reproduction_steps:
+    - "Tạo một Job lặp lại hàng tuần"
+    - "Để job tuần trước ở trạng thái Incomplete"
+    - "Thử mở job tuần này trên Calendar"
+  actual_result: "Hiển thị popup 'Recurring Job: There is an incomplete job in the past...'"
+  expected_result: "Người dùng phải hoàn thành hoặc hủy job trước mới được mở job tiếp theo"

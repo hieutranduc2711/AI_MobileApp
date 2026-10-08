@@ -1,0 +1,22 @@
+id: BEDBUG-RM-002
+title: Ghi nhật ký nhiệt độ xử lý nhiệt (Heat Treatment Temp Log)
+feature: bedbug_room_by_room
+priority: Normal
+description: 'Kiểm thử kiểm tra và xử lý rệp giường ca #2'
+preconditions: Đang ở Job Details
+steps:
+- desc: Mở Heat Treatment Log
+  action: tap_selector
+  text: Heat Log
+  delay: 0.8
+- desc: Nhập nhiệt độ phòng
+  action: type_text
+  value: 135 F
+  delay: 0.5
+- desc: Lưu mốc nhiệt độ
+  action: tap_selector
+  content_desc: Log Temp
+  delay: 1.0
+expected:
+- assert_text: 135 F
+  desc: Ghi nhận nhiệt độ tiêu diệt rệp thành công

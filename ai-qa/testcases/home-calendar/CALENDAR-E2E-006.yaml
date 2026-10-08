@@ -1,0 +1,21 @@
+id: CALENDAR-E2E-006
+title: Calendar View select Week
+feature: home-calendar
+priority: High
+description: Week can be chosen in Calendar View.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-006: agenda mode modal select week (safe close)'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+expected:
+- assert_text: 'the Home top bar (id: home-bar)'
+  desc: 'the Home top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and, in "Calendar View", tap "Week". After step
+  1, the Home top bar (id: home-bar) should be displayed. If "Calendar View" does
+  not open, stop and report the test as skipped: calendar view button not available.'

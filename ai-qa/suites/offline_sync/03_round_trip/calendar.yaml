@@ -1,0 +1,33 @@
+name: offline-03-calendar
+description: Offline Suite for Sheet [03_round_trip] > Module [calendar] (30 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02086.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02087.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02088.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02089.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02090.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02091.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02092.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02093.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02094.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02095.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02096.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02097.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02098.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02099.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02100.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02101.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02102.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02103.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02104.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02105.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02106.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02107.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02108.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02109.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02110.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02111.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02112.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02113.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02114.yaml
+- testcases/offline_sync/03_round_trip/calendar/SYNC-02115.yaml

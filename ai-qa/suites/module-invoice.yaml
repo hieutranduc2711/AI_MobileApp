@@ -1,0 +1,19 @@
+name: Module Invoice Suite
+description: Chạy toàn bộ 16 test cases cho phân hệ invoice
+tests:
+- TC_CREATE_01
+- TC_CREATE_02
+- TC_DETAIL_01
+- TC_DETAIL_02
+- TC_DETAIL_03
+- TC_DETAIL_05
+- TC_DETAIL_06
+- TC_DETAIL_07
+- TC_DETAIL_08
+- TC_LINEITEM_01
+- TC_LINEITEM_02
+- TC_LIST_01
+- TC_LIST_02
+- TC_LIST_03
+- TC_LIST_04
+- TC_LIST_05

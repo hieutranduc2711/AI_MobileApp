@@ -1,0 +1,10 @@
+name: offline-04-material
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [material]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02629.yaml
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02630.yaml
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02631.yaml
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02632.yaml
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02633.yaml
+- testcases/offline_sync/04_server_to_local_offline/material/SYNC-02634.yaml

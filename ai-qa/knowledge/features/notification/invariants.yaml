@@ -1,0 +1,3 @@
+invariants:
+  - id: NOTIFICATION-INV-001
+    description: 'Ensure data integrity for module notification'

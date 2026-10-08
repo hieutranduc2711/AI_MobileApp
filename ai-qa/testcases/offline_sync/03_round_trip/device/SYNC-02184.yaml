@@ -1,0 +1,56 @@
+id: SYNC-02184
+title: 'Update Sentricon: Online → Offline Update Sentricon → restart → Online'
+sheet: 03_Round_Trip
+module: Device
+action: Update Sentricon
+priority: P1
+flow_phase: RT-03 Round trip with app restart
+direction: ROUND TRIP
+app_path: GD Mobile > Job > Device > Sentricon
+preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Update Sentricon
+  accessible.
+test_data: Valid entity
+steps:
+- desc: Load entity Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Update Sentricon.
+  action: tap_selector
+  text: Update Sentricon
+  delay: 1.0
+- desc: Force close app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại app Offline và verify local result.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ sync completion.
+  action: tap_selector
+  text: Chờ sync completion.
+  delay: 1.0
+- desc: Verify server/local.
+  action: tap_selector
+  text: Verify server/local.
+  delay: 1.0
+expected:
+- desc: Local mutation sống qua restart.
+  assert_text: Device
+- desc: Reconnect không tạo lại/nhân đôi mutation.
+  assert_text: Device
+- desc: Final authoritative state đúng.
+  assert_text: Device
+source_tickets: RN-5591
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5591
+risk: Round-trip durability
+notes: ''

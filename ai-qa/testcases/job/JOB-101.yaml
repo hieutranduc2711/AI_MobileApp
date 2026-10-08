@@ -1,0 +1,27 @@
+id: JOB-101
+title: Job detail reachable after reset
+feature: job
+priority: High
+description: Going Home and reopening the job still lands on the job detail.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar.
+detox_reference: '[JOB-101] Repeated baseline reset leaves job detail reachable'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the back
+  arrow at the top-left, then open the first job on today's calendar again. After
+  step 2, "Job Details" should be displayed.

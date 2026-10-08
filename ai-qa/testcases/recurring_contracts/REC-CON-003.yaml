@@ -1,0 +1,22 @@
+id: REC-CON-003
+title: Sửa đổi toàn bộ các kỳ tương lai (Edit All Future Visits)
+feature: recurring_contracts
+priority: Normal
+description: 'Kiểm tra tính năng hợp đồng định kỳ và lịch lặp lại trường hợp #3'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Job trong chuỗi
+  action: tap_selector
+  text: Recurring Job
+  delay: 0.8
+- desc: Đổi giờ phục vụ sang 14:00
+  action: type_text
+  value: 02:00 PM
+  delay: 0.5
+- desc: Chọn 'All future events'
+  action: tap_selector
+  text: All future events
+  delay: 1.0
+expected:
+- assert_text: Updated
+  desc: Các lịch tương lai tự động cập nhật mốc 14:00

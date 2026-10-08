@@ -1,0 +1,19 @@
+id: REC-CON-025
+title: 'Nghiệp vụ hợp đồng dịch vụ định kỳ biến thể #25'
+feature: recurring_contracts
+priority: Normal
+description: 'Kiểm tra tính năng hợp đồng định kỳ và lịch lặp lại trường hợp #25'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Truy cập danh sách Hợp đồng
+  action: tap_selector
+  text: Agreements
+  delay: 0.8
+- desc: 'Thao tác kiểm tra hợp đồng #25'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Agreements
+  desc: Thông tin hợp đồng hiển thị chính xác

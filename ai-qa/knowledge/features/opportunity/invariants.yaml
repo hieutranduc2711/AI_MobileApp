@@ -1,0 +1,3 @@
+invariants:
+  - id: OPPORTUNITY-INV-001
+    description: 'Ensure data integrity for module opportunity'

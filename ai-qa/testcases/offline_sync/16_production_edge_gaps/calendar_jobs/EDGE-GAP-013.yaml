@@ -1,0 +1,48 @@
+id: EDGE-GAP-013
+title: 'Timezone Crossing During Offline State: Thiết bị đổi Timezone khi đang Offline
+  (di chuyển qua ranh giới múi giờ EST → CST) → Lịch hẹn Job St'
+sheet: 16_Production_Edge_Gaps
+module: Calendar / Jobs
+action: Timezone Crossing During Offline State
+priority: P1
+flow_phase: Clock Drift & Timestamp Tampering
+direction: CROSS-CUTTING
+app_path: GD Mobile > Calendar / Agenda
+preconditions: Technician nhận lịch Job lúc 9:00 AM EST; offline và di chuyển qua
+  khu vực CST (chậm hơn 1 tiếng); OS tự cập nhật timezone.
+test_data: 'Original Job Start: 2026-10-08T09:00:00-04:00 (EST); New Device Timezone:
+  America/Chicago (-05:00).'
+steps:
+- desc: Tải lịch khi online ở múi giờ EST.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chuyển sang Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Đổi timezone của hệ điều hành sang CST.
+  action: tap_selector
+  text: 'Đổi timezone của hệ điều hành '
+  delay: 1.0
+- desc: Mở tab Agenda / Calendar kiểm tra giờ hiển thị của Job.
+  action: tap_selector
+  text: 'Mở tab Agenda / Calendar kiểm '
+  delay: 1.0
+- desc: Bật mạng online lại và kiểm tra sync.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Job vẫn giữ đúng giờ hẹn với khách hàng theo quy định của chi nhánh (Branch
+    Timezone) hoặc hiển thị rõ ràng múi giờ gốc.
+  assert_text: Calendar / Jobs
+- desc: Không bị cộng/trừ sai 1 tiếng dẫn đến technician đến sớm hoặc muộn giờ hẹn.
+  assert_text: Calendar / Jobs
+- desc: Khi sync lại, start_time UTC trên server không bị dịch chuyển lệch giờ.
+  assert_text: Calendar / Jobs
+source_tickets: RN-5477 / Calendar
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Missed Appointment / Wrong Schedule
+notes: Cần thống nhất lưu timestamp dạng ISO 8601 UTC kèm timezone offset gốc của
+  Branch.

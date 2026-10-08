@@ -1,0 +1,16 @@
+name: offline-05-location
+description: Offline Suite for Sheet [05_cross_cutting] > Module [location] (13 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03004.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03003.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03002.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03005.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03001.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03000.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03011.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03010.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03009.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03008.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03007.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03006.yaml
+- testcases/offline_sync/05_cross_cutting/location/SYNC-03278.yaml

@@ -1,0 +1,5 @@
+name: offline-module-storage
+description: Cross-sheet comprehensive offline suite for Module [storage] (2 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/storage/SYNC-03293.yaml
+- testcases/offline_sync/05_cross_cutting/storage/SYNC-03294.yaml

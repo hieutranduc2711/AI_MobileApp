@@ -1,0 +1,7 @@
+name: offline-10-downloaded_data_app_restart
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [downloaded_data_app_restart]
+  (3 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/downloaded_data_app_restart/DEV-UI-004.yaml
+- testcases/offline_sync/10_dev_checklist_167/downloaded_data_app_restart/DEV-UI-005.yaml
+- testcases/offline_sync/10_dev_checklist_167/downloaded_data_app_restart/DEV-UI-006.yaml

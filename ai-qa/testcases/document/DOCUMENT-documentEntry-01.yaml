@@ -1,0 +1,27 @@
+id: DOCUMENT-documentEntry-01
+title: Documents card on customer detail
+feature: document
+priority: High
+description: The embedded Documents card is shown on customer detail.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document (5 or more
+  for the “Show All” paths) and at least one service location; at least one Doc template
+  exists. No case saves data.
+detox_reference: User sees the embedded document card on customer detail
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+expected:
+- assert_text: Documents
+  desc: Hiển thị 'Documents' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  After step 2, the "Documents" section should be displayed.

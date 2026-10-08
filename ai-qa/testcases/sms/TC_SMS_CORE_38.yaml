@@ -1,0 +1,15 @@
+id: TC_SMS_CORE_38
+title: List realtime sync
+feature: sms
+priority: High
+description: The SMS list syncs a realtime update.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_38][DOC+][RealtimeContract] User waits for list-level
+  realtime sync contract when enabled'
+steps: []
+expected: []
+goal_summary: ''

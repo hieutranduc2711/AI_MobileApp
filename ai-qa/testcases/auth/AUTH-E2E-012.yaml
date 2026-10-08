@@ -1,0 +1,47 @@
+id: AUTH-E2E-012
+title: Enable-biometric prompt Cancel and OK
+feature: auth
+priority: High
+description: The enable-biometric prompt after login can be dismissed with Cancel
+  and accepted with OK, both reaching Home.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'login: enable-biometric prompt should be dismissible (Cancel / OK)'
+steps:
+- desc: Chạm vào mục [Email or Username]
+  action: tap_selector
+  text: Email or Username
+  delay: 1.0
+- desc: Chạm vào mục [Confirmations]
+  action: tap_selector
+  text: Confirmations
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chạm vào mục [OK]
+  action: tap_selector
+  text: OK
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account") and clear both fields. (1) Type <TEST_EMAIL> in "Email
+  or Username" and <TEST_PASSWORD> in "Password", then tap "Login". (2) In the "Confirmations"
+  dialog asking to enable biometric login, tap "Cancel". (3) Close any popup without
+  updating; press back if "Getting Started" opens. (4) Log out via the top-left menu
+  icon and "Log Out". (5) Repeat steps 1–4, tapping "OK" instead of "Cancel". After
+  step 3 and its repeat, the Home screen (id: home-bar) should be displayed. If the
+  biometric dialog does not appear, stop and report the test as skipped: no biometric
+  prompt on this device. If "Verification required" appears, stop and report the test
+  as skipped: 2FA required.'

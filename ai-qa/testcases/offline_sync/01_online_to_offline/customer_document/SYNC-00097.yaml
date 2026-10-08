@@ -1,0 +1,55 @@
+id: SYNC-00097
+title: 'Delete Customer Document: Delete Customer Document: mất mạng giữa upload'
+sheet: 01_Online_to_Offline
+module: Customer Document
+action: Delete Customer Document
+priority: P0
+flow_phase: O2F-06 Upload interrupted
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Customer > Documents > Delete
+preconditions: Đăng nhập đúng account/branch; user có quyền Delete Customer Document;
+  prerequisite/local data cần thiết đã sync; mở đúng GD Mobile > Customer > Documents
+  > Delete.
+test_data: Valid photo/file/signature/document
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Bắt đầu Delete Customer Document có binary upload.
+  action: tap_selector
+  text: Bắt đầu Delete Customer Docume
+  delay: 1.0
+- desc: Khi upload đang transfer, tắt toàn bộ network.
+  action: tap_selector
+  text: 'Khi upload đang transfer, tắt '
+  delay: 1.0
+- desc: Navigate ra/vào màn hình liên quan.
+  action: tap_selector
+  text: 'Navigate ra/vào màn hình liên '
+  delay: 1.0
+- desc: Background/foreground app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Kiểm tra preview/local reference.
+  action: tap_selector
+  text: Kiểm tra preview/local referen
+  delay: 1.0
+expected:
+- desc: Upload dở không được mark synced.
+  assert_text: Customer Document
+- desc: Local source/preview phải còn để retry sau.
+  assert_text: Customer Document
+- desc: Không tạo orphan business mutation trỏ tới asset chưa upload.
+  assert_text: Customer Document
+- desc: Không duplicate local attachment/image/signature.
+  assert_text: Customer Document
+source_tickets: RN-5624, RN-5577, RN-5525
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5624
+
+  https://gorilladesk1.atlassian.net/browse/RN-5577
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525'
+risk: Attachment/upload loss
+notes: ''

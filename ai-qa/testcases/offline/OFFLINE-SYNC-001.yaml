@@ -1,0 +1,20 @@
+id: OFFLINE-SYNC-001
+title: Kiểm thử tạo Job khi mất mạng và tự động đồng bộ khi có mạng lại
+feature: offline
+priority: Critical
+steps:
+- desc: Ngắt kết nối mạng (Bật chế độ Ngoại Tuyến)
+  action: set_network
+  value: 'false'
+  delay: 1.0
+- desc: Mở Calendar Home ngoại tuyến
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Khôi phục kết nối mạng (Trực Tuyến)
+  action: set_network
+  value: 'true'
+  delay: 1.5
+expected:
+- assert_text: Jobs

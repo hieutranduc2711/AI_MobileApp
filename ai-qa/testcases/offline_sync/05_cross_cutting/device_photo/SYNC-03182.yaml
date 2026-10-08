@@ -1,0 +1,67 @@
+id: SYNC-03182
+title: 'Delete Device Photo: 2 devices conflict on Delete Device Photo'
+sheet: 05_Cross_Cutting
+module: Device Photo
+action: Delete Device Photo
+priority: P0
+flow_phase: Multi-device Conflict
+direction: CROSS-CUTTING
+app_path: GD Mobile > Job > Device > Photos > Delete
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Delete Device
+  Photo; prerequisite cho Device Photo đã sync khi cần. Có Device A/B cùng initial
+  record.
+test_data: Two devices
+steps:
+- desc: Sync same entity lên A/B.
+  action: tap_selector
+  text: Sync same entity lên A/B.
+  delay: 1.0
+- desc: Cả hai offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: A thực hiện value/action A.
+  action: tap_selector
+  text: Delete Device Photo
+  delay: 1.0
+- desc: B thực hiện conflicting value/action B.
+  action: tap_selector
+  text: Delete Device Photo
+  delay: 1.0
+- desc: Reconnect B rồi A.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect server/A/B.
+  action: tap_selector
+  text: Inspect server/A/B.
+  delay: 1.0
+- desc: Lặp reconnect order ngược.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Delete Device Photo không làm app crash/mất dữ liệu.
+  assert_text: Device Photo
+- desc: Local/UI của Device Photo phản ánh đúng business result.
+  assert_text: Device Photo
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Device Photo
+- desc: Không duplicate logical operation.
+  assert_text: Device Photo
+- desc: No structural corruption/duplicate.
+  assert_text: Device Photo
+- desc: Outcome reproducible.
+  assert_text: Device Photo
+- desc: Không tự giả định winner; capture actual policy.
+  assert_text: Device Photo
+source_tickets: RN-5591, RN-5525, RN-5587, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Operational conflict
+notes: Carried from V2 OFFV2-02618

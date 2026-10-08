@@ -1,0 +1,11 @@
+id: CUSTOMER-customerEdge-01
+title: Leads / Assign Lead selector probe
+feature: customer
+priority: High
+description: Probes whether Leads or Assign Lead testIDs exist on the customer list.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+detox_reference: 'assign lead: lead field opens lead selector and selecting a lead
+  does not crash'
+steps: []
+expected: []
+goal_summary: ''

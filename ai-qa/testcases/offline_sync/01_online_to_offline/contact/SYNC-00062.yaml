@@ -1,0 +1,60 @@
+id: SYNC-00062
+title: 'Edit Contact: Bắt đầu Edit Contact online → mất mạng ngay trước Save/Confirm'
+sheet: 01_Online_to_Offline
+module: Contact
+action: Edit Contact
+priority: P0
+flow_phase: O2F-02 Drop before Save
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Customer > Contacts > Edit
+preconditions: Đăng nhập đúng account/branch; user có quyền Edit Contact; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > Customer > Contacts > Edit.
+test_data: Valid edited values
+steps:
+- desc: Bật network ổn định và mở flow.
+  action: tap_selector
+  text: Bật network ổn định và mở flow
+  delay: 1.0
+- desc: Bắt đầu Edit Contact khi đang Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Chờ indicator chuyển Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
+  action: tap_selector
+  text: Tiếp tục thao tác nếu còn fiel
+  delay: 1.0
+- desc: Nhấn Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
+  assert_text: Contact
+- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
+  assert_text: Contact
+- desc: Local UI phản ánh đúng result.
+  assert_text: Contact
+- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
+  assert_text: Contact
+source_tickets: RN-5600, RN-5599
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5600
+
+  https://gorilladesk1.atlassian.net/browse/RN-5599'
+risk: Data loss at transition
+notes: ''

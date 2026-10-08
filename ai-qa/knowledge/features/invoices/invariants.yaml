@@ -1,0 +1,7 @@
+invariants:
+  - id: INV-INV-001
+    description: "Tổng tiền Invoice phải bằng Subtotal + Tax - Discount"
+  - id: INV-INV-002
+    description: "Sau khi thu tiền đủ 100%, trạng thái Invoice phải chuyển từ Unpaid sang Paid"
+  - id: INV-INV-003
+    description: "Balance Due không được là số âm trừ trường hợp có ghi nhận tiền đặt cọc dư (Credit)"

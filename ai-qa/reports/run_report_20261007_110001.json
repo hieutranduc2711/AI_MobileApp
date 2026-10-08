@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_110001",
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "pass_rate": "0.0%",
+  "results": [
+    {
+      "id": "KONG-AI-001",
+      "status": "EVIDENCE_COLLECTED",
+      "runner_hint": "LIKELY_PASS",
+      "judge_summary": "",
+      "judge_reasoning": "",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png",
+      "time_sec": 7.33
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+id: SENDSMS-sendSmsElements-04
+title: All Invoices SMS blank content
+feature: sendsms
+priority: High
+description: Sending an empty SMS from an invoice opened via Show All is refused.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on, Admin-like role),
+  app on the Home screen (online). The first customer in “Customers” has a phone number,
+  at least one invoice and estimate (5 or more of each for the Show All cases), a
+  document in “Documents” and a job in “Jobs”. No SMS is sent (only validation errors
+  are triggered).
+detox_reference: 'INVOICE_SHOW_ALL: shows error when SMS content is blank'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [Enter text here]
+  action: tap_selector
+  text: Enter text here
+  delay: 1.0
+expected:
+- assert_text: Send by SMS
+  desc: Hiển thị 'Send by SMS' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Invoice", tap "Show All",
+  the first invoice, then the three-dots icon and "Send Invoice by SMS". After step
+  2, the "Send by SMS" screen should be displayed. (3) Clear the message field ("Enter
+  text here") and tap "Send"; if the "SMS content can not be blank." dialog appears,
+  tap "OK". If there is no "Show All" under "Invoice", stop and report the test as
+  skipped: not enough invoices.'

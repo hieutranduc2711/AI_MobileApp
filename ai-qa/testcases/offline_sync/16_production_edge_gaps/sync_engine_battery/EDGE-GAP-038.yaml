@@ -1,0 +1,43 @@
+id: EDGE-GAP-038
+title: 'Extreme Battery Saver Sync Throttling: Chế độ tiết kiệm pin tối đa (Extreme
+  Battery Saver) kích hoạt khi Offline → App hoãn background sync'
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Battery
+action: Extreme Battery Saver Sync Throttling
+priority: P2
+flow_phase: Device Edge
+direction: CROSS-CUTTING
+app_path: GD Mobile > Power State Listener
+preconditions: Thiết bị dưới 15% pin, kích hoạt chế độ Tiết kiệm pin của hệ điều hành;
+  có dữ liệu pending.
+test_data: 'Battery level: 10%; Power Saver Mode: Enabled.'
+steps:
+- desc: Bật chế độ tiết kiệm pin trên Android/iOS.
+  action: tap_selector
+  text: 'Bật chế độ tiết kiệm pin trên '
+  delay: 1.0
+- desc: Kết nối mạng có internet.
+  action: tap_selector
+  text: Kết nối mạng có internet.
+  delay: 1.0
+- desc: Quan sát hành vi sync tự động ngầm.
+  action: tap_selector
+  text: 'Quan sát hành vi sync tự động '
+  delay: 1.0
+- desc: Thực hiện thao tác kéo màn hình xuống (Pull-to-refresh).
+  action: tap_selector
+  text: Extreme Battery Saver Sync Throttling
+  delay: 1.0
+expected:
+- desc: App tuân thủ chính sách tiết kiệm pin, không đánh thức CPU liên tục trong
+    nền.
+  assert_text: Sync Engine / Battery
+- desc: 'Khi người dùng chủ động mở app và thực hiện Pull-to-refresh: App kích hoạt
+    sync ngay lập tức.'
+  assert_text: Sync Engine / Battery
+- desc: 'Thông báo rõ trạng thái: ''Đang tiết kiệm pin - Chạm để đồng bộ''.'
+  assert_text: Đang tiết kiệm pin - Chạm để đồng bộ
+source_tickets: RN-5477 / Power-Management
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Unexpected Battery Drain
+notes: Tuân thủ chặt chẽ nguyên tắc Android JobScheduler và iOS BackgroundTasks.

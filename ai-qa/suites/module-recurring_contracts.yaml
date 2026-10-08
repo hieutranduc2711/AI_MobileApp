@@ -1,0 +1,33 @@
+name: Module Recurring Contracts Suite
+description: Chạy toàn bộ 30 test cases cho phân hệ recurring_contracts
+tests:
+- REC-CON-001
+- REC-CON-002
+- REC-CON-003
+- REC-CON-004
+- REC-CON-005
+- REC-CON-006
+- REC-CON-007
+- REC-CON-008
+- REC-CON-009
+- REC-CON-010
+- REC-CON-011
+- REC-CON-012
+- REC-CON-013
+- REC-CON-014
+- REC-CON-015
+- REC-CON-016
+- REC-CON-017
+- REC-CON-018
+- REC-CON-019
+- REC-CON-020
+- REC-CON-021
+- REC-CON-022
+- REC-CON-023
+- REC-CON-024
+- REC-CON-025
+- REC-CON-026
+- REC-CON-027
+- REC-CON-028
+- REC-CON-029
+- REC-CON-030

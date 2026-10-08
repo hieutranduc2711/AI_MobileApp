@@ -1,0 +1,44 @@
+id: EDGE-GAP-033
+title: 'Rapid Status Coalescing (Squash Mutations): Sửa liên tiếp Job: Pending → In
+  Progress → Completed trong 2 phút khi Offline → Outbox gộp thành 1 m'
+sheet: 16_Production_Edge_Gaps
+module: Job / Status
+action: Rapid Status Coalescing (Squash Mutations)
+priority: P1
+flow_phase: Semantic Action Ordering
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job Execution
+preconditions: Thiết bị offline.
+test_data: 'Job #100: Status transitions: Pending -> In Progress -> Completed within
+  120 seconds.'
+steps:
+- desc: 'Mở Job #100 khi offline, bấm ''Start Job'' (In Progress).'
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Sau 30s bấm 'Finish Job' (Completed).
+  action: tap_selector
+  text: Finish Job
+  delay: 1.0
+- desc: Kiểm tra các dòng bản ghi trong bảng outbox queue của SQLite.
+  action: tap_selector
+  text: Kiểm tra các dòng bản ghi tron
+  delay: 1.0
+- desc: Bật mạng online để đồng bộ.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: 'Hoặc outbox thông minh gộp (squash) thành 1 mutation cuối cùng cập nhật `status:
+    ''Completed''` kèm thời gian bắt đầu và kết thúc.'
+  assert_text: Completed
+- desc: Hoặc outbox đẩy 2 mutation theo đúng thứ tự thời gian nghiêm ngặt (FIFO).
+  assert_text: Job / Status
+- desc: 'Kết quả cuối cùng trên server là Job #100 ở trạng thái Completed với đầy
+    đủ lịch sử hoạt động chính xác.'
+  assert_text: Job / Status
+source_tickets: RN-5477 / Coalesce-Mutations
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Out-of-order Status / Stale Override
+notes: Tránh tình trạng race condition gửi request Completed trước rồi request In
+  Progress đến sau ghi đè.

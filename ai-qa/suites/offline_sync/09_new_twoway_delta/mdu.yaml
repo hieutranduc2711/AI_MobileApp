@@ -1,0 +1,6 @@
+name: offline-09-mdu
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [mdu] (3 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/mdu/V4-TW-0064.yaml
+- testcases/offline_sync/09_new_twoway_delta/mdu/V4-TW-0065.yaml
+- testcases/offline_sync/09_new_twoway_delta/mdu/V4-TW-0066.yaml

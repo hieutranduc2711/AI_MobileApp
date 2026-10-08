@@ -1,0 +1,5 @@
+name: offline-16-signature_sqlite
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [signature_sqlite]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/signature_sqlite/EDGE-GAP-010.yaml

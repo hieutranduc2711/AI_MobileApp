@@ -1,0 +1,5 @@
+name: offline-module-account_data_isolation
+description: Cross-sheet comprehensive offline suite for Module [account_data_isolation]
+  (1 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/account_data_isolation/DEV-UI-162.yaml

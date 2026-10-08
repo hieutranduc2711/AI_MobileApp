@@ -1,0 +1,5 @@
+name: offline-module-permissions_camera
+description: Cross-sheet comprehensive offline suite for Module [permissions_camera]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/permissions_camera/EDGE-GAP-039.yaml

@@ -1,0 +1,31 @@
+id: CALENDAR-E2E-007
+title: Toggle Show Weekends then close
+feature: home-calendar
+priority: High
+description: Show Weekends can be toggled and Calendar View closed.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-007: agenda mode modal toggle weekend then dismiss'
+steps:
+- desc: Tap the calendar view button at the left of the date bar.
+  action: tap_selector
+  text: Tap the calendar view button a
+  delay: 0.8
+- desc: Chạm vào mục [Show Weekends]
+  action: tap_selector
+  text: Show Weekends
+  delay: 1.0
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+expected:
+- assert_text: 'the Home top bar (id: home-bar)'
+  desc: 'the Home top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar. (2) If "Show Weekends" is shown, tap it. (3)
+  Close "Calendar View" by tapping the handle at its top (id: indicator) if it is
+  still open. After step 3, the Home top bar (id: home-bar) should be displayed. If
+  "Calendar View" does not open, stop and report the test as skipped: calendar view
+  button not available.'

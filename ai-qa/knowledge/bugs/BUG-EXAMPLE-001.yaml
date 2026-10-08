@@ -1,0 +1,14 @@
+bug:
+  id: "BUG-EXAMPLE-001"
+  title: "Touch swallow on Save Estimate button immediately after saving line item"
+  feature: "scheduling/estimates"
+  severity: "Major"
+  status: "Verified_Fixed"
+  reproduction_steps:
+    - "Mở form tạo New Estimate"
+    - "Chọn Customer & Template"
+    - "Thêm Line item và bấm Save"
+    - "Ngay lập tức bấm nút Save tím trên header"
+  actual_result: "Nút Save tím không nhận sự kiện chạm do React Native modal đang unmount"
+  expected_result: "Sự kiện chạm phải được nhận hoặc nút Save được enable lại sau 850ms"
+  resolution: "Thêm transition delay 850ms giữa bước lưu line item và lưu estimate"

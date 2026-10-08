@@ -1,0 +1,7 @@
+name: offline-13-image_signature_cache
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [image_signature_cache]
+  (3 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/image_signature_cache/JDELTA-001.yaml
+- testcases/offline_sync/13_jira_current_delta/image_signature_cache/JDELTA-002.yaml
+- testcases/offline_sync/13_jira_current_delta/image_signature_cache/JDELTA-003.yaml

@@ -1,0 +1,41 @@
+id: BUGREG-062
+title: 'Schedule not display after change: Schedule not display after change'
+sheet: 11_Bug_Regression_91
+module: Job
+action: Schedule not display after change
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new job
+  action: tap_selector
+  text: Create new job
+  delay: 1.0
+- desc: Edit job & assign new schedule
+  action: tap_selector
+  text: Edit job & assign new schedule
+  delay: 1.0
+- desc: Back to Job detail
+  action: back
+  delay: 1.0
+- desc: Edit job
+  action: tap_selector
+  text: Edit job
+  delay: 1.0
+expected:
+- desc: 'Expect: At job detail must display new schedule'
+  assert_text: Job
+- desc: 'Actual: Still display old schedule before change'
+  assert_text: Job
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

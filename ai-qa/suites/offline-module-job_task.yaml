@@ -1,0 +1,4 @@
+name: offline-module-job_task
+description: Cross-sheet comprehensive offline suite for Module [job_task] (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/job_task/EDGE-GAP-035.yaml

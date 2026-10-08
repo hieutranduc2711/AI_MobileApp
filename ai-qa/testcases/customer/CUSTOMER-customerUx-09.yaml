@@ -1,0 +1,38 @@
+id: CUSTOMER-customerUx-09
+title: Customer Add New menu has options
+feature: customer
+priority: High
+description: The plus on customer detail opens Add New with at least one option.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: 'customer detail: can open Add menu and see at least one option'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Add New
+  desc: Hiển thị 'Add New' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap the plus icon in the
+  top bar. After step 3, the "Add New" menu should show at least one of "New Job",
+  "New Invoice", "New Estimate", "Add Document" or "Add Payment". If the list has
+  no customers, stop and report the test as skipped: no customer data.'

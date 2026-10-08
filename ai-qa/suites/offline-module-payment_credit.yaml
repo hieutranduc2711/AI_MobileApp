@@ -1,0 +1,11 @@
+name: offline-module-payment_credit
+description: Cross-sheet comprehensive offline suite for Module [payment_credit] (7
+  cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02647.yaml
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02648.yaml
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02649.yaml
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02650.yaml
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02651.yaml
+- testcases/offline_sync/04_server_to_local_offline/payment_credit/SYNC-02652.yaml
+- testcases/offline_sync/13_jira_current_delta/payment_credit/JDELTA-040.yaml

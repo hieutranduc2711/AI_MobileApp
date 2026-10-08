@@ -1,0 +1,30 @@
+id: TC_LIST_03
+title: Scroll All Invoices to bottom
+feature: invoice
+priority: High
+description: The All Invoices list can be scrolled to the bottom to load more.
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  invoice access), app on the Home screen (online). The first customer in “Customers”
+  has at least 5 invoices (so “Show All” appears under “Invoice”) and at least one
+  service location.
+detox_reference: '[TC_03][DOC+] User scrolls and loads more invoices'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [All Invoices]
+  action: tap_selector
+  text: All Invoices
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its "Show All". (3) On "All Invoices", scroll to the bottom of the list.

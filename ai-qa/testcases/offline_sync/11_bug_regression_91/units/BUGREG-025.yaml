@@ -1,0 +1,47 @@
+id: BUGREG-025
+title: 'Assigned building list not update in job detail & Assign units screen (Offline):
+  Assigned building list not update in job detail & Assign units screen (Offline)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Assigned building list not update in job detail & Assign units screen (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail without units
+  action: tap_selector
+  text: Go to job detail without units
+  delay: 1.0
+- desc: Go to Manage Units
+  action: tap_selector
+  text: Go to Manage Units
+  delay: 1.0
+- desc: Add new building, add new unit for building
+  action: tap_selector
+  text: Add new building, add new unit
+  delay: 1.0
+- desc: Back to job detail
+  action: back
+  delay: 1.0
+- desc: Go to Assign units screen
+  action: tap_selector
+  text: Go to Assign units screen
+  delay: 1.0
+- desc: Select all & Save to assign all building
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Back to job detail. Not show assigned building after save
+  action: back
+  delay: 1.0
+expected:
+- desc: Should be show assigned building after assigned in offline
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

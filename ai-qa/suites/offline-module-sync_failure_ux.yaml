@@ -1,0 +1,6 @@
+name: offline-module-sync_failure_ux
+description: Cross-sheet comprehensive offline suite for Module [sync_failure_ux]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/sync_failure_ux/JDELTA-011.yaml
+- testcases/offline_sync/13_jira_current_delta/sync_failure_ux/JDELTA-012.yaml

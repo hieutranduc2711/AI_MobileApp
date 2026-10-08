@@ -1,0 +1,22 @@
+id: MEDIA-PHT-003
+title: Vẽ chú thích (Markup / Annotation) mũi tên khoanh vùng mối mọt lên ảnh
+feature: media_photo_inspection
+priority: Normal
+description: 'Kiểm thử chụp ảnh hiện trường và nghiệm thu công trình #3'
+preconditions: Job đang mở ở màn hình thực địa
+steps:
+- desc: Bấm vào ảnh vừa chụp để mở trình vẽ
+  action: tap_selector
+  content_desc: Annotate
+  delay: 1.0
+- desc: Chọn công cụ vẽ hình tròn Red Marker
+  action: tap_selector
+  content_desc: Draw Circle
+  delay: 0.8
+- desc: Lưu ảnh có chú thích
+  action: tap_selector
+  content_desc: Save Markup
+  delay: 1.2
+expected:
+- assert_text: Markup Saved
+  desc: Ảnh có lớp phủ vẽ chú thích lưu thành công

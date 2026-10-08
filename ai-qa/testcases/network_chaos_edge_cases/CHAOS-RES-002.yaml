@@ -1,0 +1,18 @@
+id: CHAOS-RES-002
+title: Cuộc gọi điện thoại cắt ngang khi đang ký tên khách hàng
+feature: network_chaos_edge_cases
+priority: Normal
+description: 'Kiểm thử khả năng phục hồi dữ liệu trong điều kiện khắc nghiệt #2'
+preconditions: Calendar Home
+steps:
+- desc: Mở màn hình chữ ký Signature Pad
+  action: tap_selector
+  text: Signature
+  delay: 0.8
+- desc: Mô phỏng app quay lại từ cuộc gọi
+  action: tap_selector
+  text: Signature
+  delay: 1.0
+expected:
+- assert_text: Sign Here
+  desc: Chữ ký đang vẽ không bị crash hoặc mất nét

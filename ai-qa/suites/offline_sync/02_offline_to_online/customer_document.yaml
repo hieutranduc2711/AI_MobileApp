@@ -1,0 +1,31 @@
+name: offline-02-customer_document
+description: Offline Suite for Sheet [02_offline_to_online] > Module [customer_document]
+  (27 cases)
+testcases:
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00916.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00917.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00918.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00919.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00920.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00921.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00922.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00923.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00924.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00925.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00926.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00927.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00928.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00929.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00930.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00931.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00932.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00933.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00934.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00935.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00936.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00937.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00938.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00939.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00940.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00941.yaml
+- testcases/offline_sync/02_offline_to_online/customer_document/SYNC-00942.yaml

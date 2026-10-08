@@ -1,0 +1,47 @@
+id: TC_EST_05
+title: Scroll edit form to bottom
+feature: estimate
+priority: High
+description: The estimate edit form scrolls to its bottom (navigation only).
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  estimate access, e.g. Admin), app on the Home screen (online). The first customer
+  in “Customers” has at least 5 estimates (so “Show All” appears under “Estimate”),
+  the first estimate on “All Estimates” has no generated invoice (so “Edit Estimate”
+  is offered), the customer has at least one service location, and at least one estimate
+  template exists. TC_EST_06 saves that estimate; TC_EST_07 creates a new estimate.
+detox_reference: '[TC_EST_05][DOC+][EstimateType] User navigates to estimate details
+  and edit estimate success'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Estimate]
+  action: tap_selector
+  text: Estimate
+  delay: 1.0
+- desc: Chạm vào mục [All Estimates]
+  action: tap_selector
+  text: All Estimates
+  delay: 1.0
+- desc: Chạm vào mục [Edit Estimate]
+  action: tap_selector
+  text: Edit Estimate
+  delay: 1.0
+- desc: Scroll the estimate form to the bottom.
+  action: tap_selector
+  text: Scroll the estimate form to th
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. (2) Tap the first customer. (3) Scroll to the "Estimate"
+  section and tap its "Show All". (4) On "All Estimates", tap the first estimate.
+  (5) Tap the three-dots icon at the top-right and choose "Edit Estimate". (6) Scroll
+  the estimate form to the bottom.

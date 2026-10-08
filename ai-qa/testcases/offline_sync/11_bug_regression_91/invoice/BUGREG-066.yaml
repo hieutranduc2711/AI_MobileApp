@@ -1,0 +1,38 @@
+id: BUGREG-066
+title: 'Invoice created in offline don''t display service name: Invoice created in
+  offline don''t display service name'
+sheet: 11_Bug_Regression_91
+module: Invoice
+action: Invoice created in offline don't display service name
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to customer detail
+  action: tap_selector
+  text: Go to customer detail
+  delay: 1.0
+- desc: Create new invoice
+  action: tap_selector
+  text: Create new invoice
+  delay: 1.0
+- desc: Back customer detail view list invoice
+  action: back
+  delay: 1.0
+expected:
+- desc: 'Expect: Invoice just created must display text "n/a"'
+  assert_text: n/a
+- desc: 'Actual: Invoice just created don''t display "n/a"'
+  assert_text: 't display '
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

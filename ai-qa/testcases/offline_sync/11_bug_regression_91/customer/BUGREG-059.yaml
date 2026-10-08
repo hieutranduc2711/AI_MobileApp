@@ -1,0 +1,31 @@
+id: BUGREG-059
+title: 'Don''t add phone number when create customer in offline mode: Don''t add phone
+  number when create customer in offline mode'
+sheet: 11_Bug_Regression_91
+module: Customer
+action: Don't add phone number when create customer in offline mode
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new customner in offline mode with phone number
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: 'Expect: Create new customer has phone number in offline'
+  assert_text: Customer
+- desc: 'Actual: Create new customer hasn''t phone number'
+  assert_text: Customer
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

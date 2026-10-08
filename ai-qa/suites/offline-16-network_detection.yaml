@@ -1,0 +1,5 @@
+name: offline-16-network_detection
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [network_detection]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/network_detection/EDGE-GAP-023.yaml

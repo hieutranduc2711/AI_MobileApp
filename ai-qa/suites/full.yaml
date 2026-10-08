@@ -1,0 +1,12 @@
+name: "Full End-to-End Test Suite"
+description: "Toàn bộ kịch bản kiểm thử của hệ thống"
+testcases:
+  - "testcases/scheduling/JOB-CREATE-001.yaml"
+  - "testcases/scheduling/ESTIMATE-CREATE-001.yaml"
+  - "testcases/customers/CUSTOMER-CREATE-001.yaml"
+  - "testcases/customers/CUSTOMER-CREATE-002.yaml"
+  - "testcases/customers/CUSTOMER-EDIT-001.yaml"
+  - "testcases/customers/CUSTOMER-DELETE-001.yaml"
+  - "testcases/routing/ROUTE-OPTIMIZE-001.yaml"
+  - "testcases/routing/ROUTE-OPTIMIZE-002.yaml"
+  - "testcases/offline/OFFLINE-SYNC-001.yaml"

@@ -1,0 +1,30 @@
+id: JOB-014
+title: Tasks and Materials sections
+feature: job
+priority: High
+description: After scrolling, the Tasks and Materials sections are present.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-014] Tasks and material section anchors exist after scrolling'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Tasks]
+  action: tap_selector
+  text: Tasks
+  delay: 1.0
+expected:
+- assert_text: Tasks
+  desc: Hiển thị 'Tasks' trên màn hình
+- assert_text: Materials
+  desc: Hiển thị 'Materials' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll down
+  to the "Tasks" section. After step 2, the "Tasks" and "Materials" sections should
+  be displayed.

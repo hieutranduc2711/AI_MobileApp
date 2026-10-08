@@ -1,0 +1,29 @@
+id: TC_HOME_024
+title: Footer plus opens Add
+feature: home
+priority: High
+description: The footer plus opens the Add sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_024] open Add modal from footer plus
+  when visible'
+steps:
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: 'Close it by tapping the handle at its top (id: indicator). If there is no
+    plus b'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: Add
+  desc: Hiển thị 'Add' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the plus button
+  in the calendar footer. After step 1, the "Add" sheet should be displayed. (2) Close
+  it by tapping the handle at its top (id: indicator). If there is no plus button,
+  stop and report the test as skipped: add not available.'

@@ -1,0 +1,32 @@
+id: TC_SMS_CORE_33
+title: Read tab Show More
+feature: sms
+priority: High
+description: The Read tab opens and Show More can be tapped.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_33][DOC+][List] User opens read tab and taps load-more
+  when available'
+steps:
+- desc: Tap the SMS button at the top-right (next to the bell).
+  action: tap_selector
+  text: Tap the SMS button at the top-
+  delay: 0.8
+- desc: Chạm vào mục [Read]
+  action: tap_selector
+  text: Read
+  delay: 1.0
+- desc: Chạm vào mục [Show More]
+  action: tap_selector
+  text: Show More
+  delay: 1.0
+expected:
+- assert_text: the SMS list
+  desc: the SMS list
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the SMS button
+  at the top-right (next to the bell). (2) Tap "Read". After step 2, the SMS list
+  should be displayed. (3) If "Show More" is shown at the end of the list, tap it.
+  If there is no SMS button, stop and report the test as skipped: SMS addon off.'

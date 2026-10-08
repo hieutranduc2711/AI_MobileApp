@@ -1,0 +1,33 @@
+id: TC_HOME_070
+title: Date-range sheet dismiss and recover
+feature: home
+priority: High
+description: Tapping the calendar may open the date-range sheet; it is handled and
+  Home recovers.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_070] WebView taps may open SelectDateRangeModal
+  — dismiss and recover'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Tap an empty calendar slot (up to 5 times) until a date-range sheet opens.
+  action: tap_selector
+  text: Tap an empty calendar slot (up
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: the top-left menu icon
+  desc: the top-left menu icon
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap an empty calendar slot (up to 5 times) until a date-range
+  sheet opens. (3) If it offers "New Job", tap it and go back with the back arrow;
+  otherwise close it by tapping the handle at its top (id: indicator). After step
+  3, the top-left menu icon should be displayed. If there is no calendar (agenda mode),
+  stop and report the test as skipped: calendar not visible.'

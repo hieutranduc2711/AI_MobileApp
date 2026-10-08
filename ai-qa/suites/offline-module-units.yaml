@@ -1,0 +1,16 @@
+name: offline-module-units
+description: Cross-sheet comprehensive offline suite for Module [units] (13 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-023.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-024.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-025.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-026.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-027.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-028.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-029.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-030.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-031.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-032.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-033.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-034.yaml
+- testcases/offline_sync/11_bug_regression_91/units/BUGREG-071.yaml

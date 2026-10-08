@@ -1,0 +1,26 @@
+id: CHEM-EPA-005
+title: Ghi nhận vị trí xử lý cụ thể (Target Areas)
+feature: chemical_epa_tracking
+priority: Normal
+description: 'Chọn khu vực xử lý: Perimeter, Baseboards, Attic, Crawl Space, Kitchen'
+preconditions: Đang ở phần Application Site
+steps:
+- desc: Bấm chọn Target Application Area
+  action: tap_selector
+  text: Application Area
+  delay: 0.8
+- desc: Chọn Exterior Perimeter
+  action: tap_selector
+  text: Exterior Perimeter
+  delay: 0.5
+- desc: Chọn Crawlspace
+  action: tap_selector
+  text: Crawl Space
+  delay: 0.5
+- desc: Xác nhận
+  action: tap_selector
+  content_desc: Done
+  delay: 0.8
+expected:
+- assert_text: Exterior Perimeter
+  desc: Các khu vực đã chọn được gắn vào bản ghi

@@ -1,0 +1,25 @@
+id: TC_HOME_035
+title: Customer search and back
+feature: home
+priority: High
+description: The customer search opens from Home and the user returns.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_035] open customer search when permitted
+  and return to Home (Recovery)'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. (2) Tap the back arrow at the top-left. If there is no search
+  icon, stop and report the test as skipped: customer search not permitted.'

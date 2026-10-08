@@ -1,0 +1,10 @@
+name: offline-04-contact
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [contact]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02539.yaml
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02540.yaml
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02541.yaml
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02542.yaml
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02543.yaml
+- testcases/offline_sync/04_server_to_local_offline/contact/SYNC-02544.yaml

@@ -1,0 +1,41 @@
+id: EDGE-GAP-039
+title: 'Runtime Permission Revocation While Offline: Thu hồi quyền Camera/Storage
+  trong OS Settings khi app đang chạy ngầm Offline → App xử lý bắt lỗi gr'
+sheet: 16_Production_Edge_Gaps
+module: Permissions / Camera
+action: Runtime Permission Revocation While Offline
+priority: P2
+flow_phase: Device Edge
+direction: CROSS-CUTTING
+app_path: GD Mobile > Camera Module
+preconditions: App đang mở ở chế độ offline. Chuyển sang Settings hệ điều hành, tước
+  quyền Camera và Files/Photos của app GD Mobile.
+test_data: 'Revoked runtime OS permissions: `CAMERA`, `READ_MEDIA_IMAGES`.'
+steps:
+- desc: Mở GD Mobile offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Vào Cài đặt máy > Ứng dụng > GD Mobile > Tắt quyền Camera.
+  action: tap_selector
+  text: Vào Cài đặt máy > Ứng dụng > G
+  delay: 1.0
+- desc: Quay lại app GD Mobile (OS có thể reload process do permission change).
+  action: back
+  delay: 1.0
+- desc: Vào Job và bấm nút Chụp ảnh.
+  action: tap_selector
+  text: Vào Job và bấm nút Chụp ảnh.
+  delay: 1.0
+expected:
+- desc: App kiểm tra lại runtime permission trước khi gọi API native camera.
+  assert_text: Permissions / Camera
+- desc: 'Phát hiện chưa có quyền: Hiển thị Dialog giải thích lý do cần quyền kèm nút
+    ''Mở Cài đặt'' (Open Settings).'
+  assert_text: Mở Cài đặt
+- desc: Không bị crash trắng màn hình do Uncaught SecurityException.
+  assert_text: Permissions / Camera
+source_tickets: RN-5477 / Permissions
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: App Crash on Resume
+notes: Quy chuẩn bắt buộc của Google Play Store và Apple App Store Review.

@@ -1,0 +1,26 @@
+id: INV-FIN-002
+title: Xóa nợ xấu khó đòi (Write-off Bad Debt)
+feature: invoice_advanced_financial
+priority: Normal
+description: 'Kiểm thử nghiệp vụ tài chính và đối soát hóa đơn ca #2'
+preconditions: Màn hình Invoices
+steps:
+- desc: Mở Invoice quá hạn
+  action: tap_selector
+  text: Invoices
+  delay: 0.8
+- desc: Mở tùy chọn bổ sung
+  action: tap_selector
+  content_desc: More Options
+  delay: 0.6
+- desc: Chọn Write Off Bad Debt
+  action: tap_selector
+  text: Write Off
+  delay: 0.8
+- desc: Xác nhận xóa nợ
+  action: tap_selector
+  text: Confirm
+  delay: 1.0
+expected:
+- assert_text: Written Off
+  desc: Hóa đơn chuyển sang trạng thái nợ xấu đã xóa

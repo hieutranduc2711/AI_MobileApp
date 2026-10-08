@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Audit Report - CUST-VAL-001 (PASS)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #09090b;
+            color: #f4f4f5;
+            margin: 0;
+            padding: 24px;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #121214;
+            border: 1px solid #27272a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .grid-item {
+            background: #18181b;
+            border: 1px solid #27272a;
+            border-radius: 8px;
+            padding: 14px;
+        }
+        .grid-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #a1a1aa;
+            margin-bottom: 4px;
+            letter-spacing: 0.05em;
+        }
+        .grid-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fafafa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background: #18181b;
+            padding: 12px 14px;
+            color: #a1a1aa;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.05em;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fafafa;
+            margin-top: 0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center; border-left: 6px solid #10b981;">
+            <div>
+                <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #a1a1aa; margin-bottom: 4px;">GORILLADESK QA AUTOMATION AUDIT</div>
+                <h1 style="margin: 0; font-size: 26px; font-weight: 800; color: #fafafa;">CUST-VAL-001: Negative Test - Block Save Customer When Service Address is Missing</h1>
+                <div style="margin-top: 6px; color: #a1a1aa; font-size: 14px;">Mô tả: Kiểm tra hệ thống bắt buộc nhập Service Address, chặn lưu và giữ người dùng ở lại form New Customer khi cố tình bỏ trống Service Address.</div>
+            </div>
+            <div>
+                <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid #10b981; font-size: 18px; padding: 8px 22px;">
+                    ✅ PASS
+                </span>
+            </div>
+        </div>
+
+        <!-- METADATA GRID -->
+        <div class="card">
+            <div class="grid">
+                <div class="grid-item">
+                    <div class="grid-label">Phân hệ (Module)</div>
+                    <div class="grid-value" style="color: #38bdf8;">Customer</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-label">Loại Kiểm Thử (Tier)</div>
+                    <div class="grid-value">Tier 1: NEGATIVE_VALIDATION</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-label">Thời Gian Chạy</div>
+                    <div class="grid-value">17.0s</div>
+                </div>
+                <div class="grid-item">
+                    <div class="grid-label">Thiết Bị Kiểm Thử</div>
+                    <div class="grid-value">Google Pixel 5 (ADB)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXPECTED VS ACTUAL MATRIX -->
+        <div class="card">
+            <h3 class="section-title">🎯 Ma Trận Đối Soát Nghiệm Thu (Expected vs Actual Matrix)</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tiêu Chí Nghiệm Thu</th>
+                            <th>Kết Quả Kỳ Vọng (Expected)</th>
+                            <th>Kết Quả Thực Tế (Actual)</th>
+                            <th>Kết Luận</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; color: #f4f4f5; font-weight: 500;">Hệ thống phải chặn lưu và giữ nguyên người dùng ở form New Customer</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #e4e4e7;">"New Customer" xuất hiện trên màn hình</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">Đã xác nhận sự hiện diện thực tế qua DOM & OCR</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">PASS ✅</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; color: #f4f4f5; font-weight: 500;">Trường Service Address vẫn hiện diện (được đánh dấu đỏ bắt buộc)</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #e4e4e7;">"Service Address" xuất hiện trên màn hình</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">Đã xác nhận sự hiện diện thực tế qua DOM & OCR</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">PASS ✅</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EXECUTION STEPS TIMELINE -->
+        <div class="card">
+            <h3 class="section-title">⏱️ Trình Tự Thực Thi Từng Bước (Execution Timeline)</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bước</th>
+                            <th>Mô Tả Thao Tác</th>
+                            <th>Hành Động</th>
+                            <th>Thời Gian</th>
+                            <th>Trạng Thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#1</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Bấm nút Thêm mới (+) trên màn hình Customers</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">tap_selector</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">3.4s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#2</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Chạm vào ô First Name</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">tap_selector</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">3.51s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#3</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Nhập First Name</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">type_text</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">0.78s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#4</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Chạm vào ô Last Name</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">tap_selector</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">3.14s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#5</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Nhập Last Name</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">type_text</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">0.84s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#6</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Ẩn bàn phím ảo</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">hide_keyboard</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">0.57s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+            <tr style="border-bottom: 1px solid #27272a;">
+                <td style="padding: 10px 14px; font-weight: 600; color: #a1a1aa;">#7</td>
+                <td style="padding: 10px 14px; color: #f4f4f5;">Cố tình bấm nút Save khi chưa chọn Service Address</td>
+                <td style="padding: 10px 14px; font-family: monospace; color: #38bdf8;">tap_selector</td>
+                <td style="padding: 10px 14px; color: #a1a1aa;">4.75s</td>
+                <td style="padding: 10px 14px; color: #10b981; font-weight: 600;">OK</td>
+            </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VISUAL EVIDENCE GALLERY -->
+        <div class="card">
+            <h3 class="section-title">📸 Bằng Chứng Trực Quan (Visual Keyframes & Screenshots)</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+                
+                <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: #a1a1aa; margin-bottom: 8px;">Keyframe 1</div>
+                    <a href="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_1.png" target="_blank">
+                        <img src="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_1.png" style="max-width: 100%; height: 260px; object-fit: contain; border-radius: 6px; border: 1px solid #3f3f46; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+                    </a>
+                </div>
+                
+                <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: #a1a1aa; margin-bottom: 8px;">Keyframe 2</div>
+                    <a href="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_2.png" target="_blank">
+                        <img src="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_2.png" style="max-width: 100%; height: 260px; object-fit: contain; border-radius: 6px; border: 1px solid #3f3f46; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+                    </a>
+                </div>
+                
+                <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 13px; font-weight: 600; color: #a1a1aa; margin-bottom: 8px;">Keyframe 3</div>
+                    <a href="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_3.png" target="_blank">
+                        <img src="file:///D:/artemis/ai-qa/runs/keyframes/CUST-VAL-001_keyframe_3.png" style="max-width: 100%; height: 260px; object-fit: contain; border-radius: 6px; border: 1px solid #3f3f46; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+                    </a>
+                </div>
+                
+            <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 12px; text-align: center;">
+                <div style="font-size: 13px; font-weight: 600; color: #38bdf8; margin-bottom: 8px;">Final Screen State</div>
+                <a href="file:///D:/artemis/ai-qa/runs/CUST-VAL-001_final.png" target="_blank">
+                    <img src="file:///D:/artemis/ai-qa/runs/CUST-VAL-001_final.png" style="max-width: 100%; height: 260px; object-fit: contain; border-radius: 6px; border: 1px solid #38bdf8; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+                </a>
+            </div>
+            
+            </div>
+            
+            <div style="margin-top: 16px; background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 16px;">
+                <h4 style="margin: 0 0 12px 0; color: #f4f4f5;">🎥 60fps Screen Recording Video</h4>
+                <video controls style="width: 100%; max-width: 450px; border-radius: 6px; border: 1px solid #3f3f46; display: block; margin: 0 auto;">
+                    <source src="file:///D:/artemis/ai-qa/runs/videos/CUST-VAL-001.mp4" type="video/mp4">
+                    Trình duyệt không hỗ trợ thẻ video HTML5. <a href="file:///D:/artemis/ai-qa/runs/videos/CUST-VAL-001.mp4" style="color: #38bdf8;">Bấm vào đây để tải video</a>.
+                </video>
+                <div style="text-align: center; margin-top: 8px;">
+                    <a href="file:///D:/artemis/ai-qa/runs/videos/CUST-VAL-001.mp4" target="_blank" style="font-size: 13px; color: #38bdf8; text-decoration: none;">🔗 Mở file video trực tiếp (D:\artemis\ai-qa\runs\videos\CUST-VAL-001.mp4)</a>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- HERMES AUDIT VERDICT -->
+        <div class="card" style="border-left: 6px solid #818cf8;">
+            <h3 class="section-title" style="color: #818cf8;">🤖 Phán Quyết Độc Lập Từ Auditor (Hermes AI Judge)</h3>
+            <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+                <div style="font-weight: 600; color: #f4f4f5; margin-bottom: 6px;">Tóm tắt của Judge:</div>
+                <div style="color: #d4d4d8;">Ứng dụng từ chối thao tác Save khi Service Address để trống, hiển thị cảnh báo bắt buộc và giữ người dùng ở form New Customer. Bằng chứng giao diện đáp ứng tiêu chí Negative Validation; không quan sát thấy chuyển sang Customer Profile hoặc văng ứng dụng.</div>
+            </div>
+            <div style="background: #18181b; border: 1px solid #27272a; border-radius: 8px; padding: 16px;">
+                <div style="font-weight: 600; color: #f4f4f5; margin-bottom: 6px;">Lập luận & Chứng cứ đối soát chi tiết:</div>
+                <div style="color: #a1a1aa; font-size: 13.5px; white-space: pre-wrap; line-height: 1.6;">Đã kiểm tra trực tiếp ba keyframe, ảnh chụp cuối và các khung hình trích từ video, bao gồm khung hình sát cuối. Diễn tiến thể hiện từ màn hình Customers sang New Customer, nhập First Name = NegativeQA và Last Name = NoAddressTest, không nhập Service Address. Sau bước Save được Runner ghi nhận, keyframe 3 và khung hình cuối video hiển thị thông báo 'Missed required fields. You have to complete "Service Address", "Custom Fields" fields'. Đây là bằng chứng phản hồi validation thực tế, không chỉ là nút Save hiện diện hoặc trạng thái thao tác OK. Service Address vẫn trống và được đánh dấu bằng chữ đỏ, nền hồng nhạt, đường viền dưới đỏ cùng chấm đỏ bắt buộc. Ảnh CUST-VAL-001_final.png xác nhận form New Customer vẫn mở, tên đã nhập được giữ nguyên và Service Address tiếp tục hiển thị lỗi sau khi thông báo tạm thời biến mất. Không có bằng chứng chuyển sang Customer Profile hoặc lưu thành công; báo cáo Logcat do Runner cung cấp cũng ghi nhận không có crash/ANR. Lưu ý giới hạn: thông báo đồng thời nêu Custom Fields, nên lần chạy này không cô lập Service Address là điều kiện thiếu duy nhất, nhưng xác nhận rõ trường này được validation nhận diện và cảnh báo đúng. Hồ sơ không có đối soát API/database để kiểm chứng độc lập việc không phát sinh bản ghi phía backend; phán quyết PASS dựa trên oracle giao diện Tier 1 đã quy định, không khẳng định đã kiểm tra persistence. Banner yêu cầu cập nhật phiên bản không phải lỗi validation và không ngăn hoàn thành ca kiểm thử. Kết luận không dựa vào gợi ý LIKELY_PASS của Runner.</div>
+            </div>
+            <div style="margin-top: 12px; font-size: 13px; color: #a1a1aa;">
+                Độ tin cậy của Judge: <strong style="color: #10b981;">95%</strong> | Crash Logcat: <strong style="color: #10b981;">0 phát hiện (Sạch)</strong>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="text-align: center; color: #71717a; font-size: 12px; margin-top: 32px; padding-bottom: 24px;">
+            GorillaDesk AI-QA Automation System • Generated at 2026-10-07 16:46:37
+        </div>
+    </div>
+</body>
+</html>

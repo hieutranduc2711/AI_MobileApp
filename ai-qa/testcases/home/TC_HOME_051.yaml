@@ -1,0 +1,30 @@
+id: TC_HOME_051
+title: Add New Lead and back
+feature: home
+priority: High
+description: The footer plus opens Add and New Lead opens its form; back returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_051] Add (+) → New Lead → back → Home
+  when option visible'
+steps:
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Add
+  desc: Hiển thị 'Add' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the plus button
+  in the calendar footer. After step 1, the "Add" sheet should be displayed. (2) Tap
+  "New Lead", then return with the back arrow at the top-left (confirm leaving if
+  asked). If "New Lead" is not offered, close it by tapping the handle at its top
+  (id: indicator) instead. At the end, the Home screen with its top bar (id: home-bar)
+  should be displayed. If there is no plus button, stop and report the test as skipped:
+  add not available.'

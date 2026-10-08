@@ -1,0 +1,29 @@
+id: TC_HOME_002
+title: Schedule sheet opens and closes
+feature: home
+priority: High
+description: The schedule chip opens the schedule sheet, which closes via its handle.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_002] open Schedule modal from header
+  and close via indicator (Recovery)'
+steps:
+- desc: 'Tap the schedule chip in the top bar (id: button-schedule).'
+  action: tap_selector
+  text: Tap the schedule chip in the t
+  delay: 0.8
+- desc: 'Close it by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: the schedule sheet
+  desc: the schedule sheet
+- assert_text: the sheet
+  desc: the sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the schedule chip
+  in the top bar (id: button-schedule). After step 1, the schedule sheet should be
+  displayed. (2) Close it by tapping the handle at its top (id: indicator). After
+  step 2, the sheet should be closed.'

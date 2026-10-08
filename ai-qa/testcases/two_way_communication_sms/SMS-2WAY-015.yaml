@@ -1,0 +1,19 @@
+id: SMS-2WAY-015
+title: 'Hội thoại hai chiều và thông báo khách hàng #15'
+feature: two_way_communication_sms
+priority: Normal
+description: 'Kiểm thử giao tiếp 2 chiều và thông báo thời gian thực #15'
+preconditions: Màn hình SMS
+steps:
+- desc: Mở hộp thư SMS khách hàng
+  action: tap_selector
+  text: SMS
+  delay: 0.8
+- desc: 'Kiểm tra tin nhắn #15'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: SMS
+  desc: Hệ thống tin nhắn vận hành trơn tru

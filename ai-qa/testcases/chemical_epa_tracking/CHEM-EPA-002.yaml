@@ -1,0 +1,18 @@
+id: CHEM-EPA-002
+title: Ghi nhận số đăng ký EPA Reg No bắt buộc
+feature: chemical_epa_tracking
+priority: High
+description: Kiểm tra số EPA hiển thị tự động và không thể bị sửa sai
+preconditions: Hóa chất được chọn từ danh mục sản phẩm của công ty
+steps:
+- desc: Mở chi tiết hóa chất vừa thêm
+  action: tap_selector
+  text: Talstar P Professional
+  delay: 0.8
+- desc: Kiểm tra trường EPA Registration Number
+  action: tap_selector
+  text: 'EPA Reg. #'
+  delay: 0.5
+expected:
+- assert_text: 279-3206
+  desc: Mã EPA hợp chuẩn hiển thị chính xác theo quy định pháp lý

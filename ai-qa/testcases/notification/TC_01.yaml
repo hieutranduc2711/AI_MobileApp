@@ -1,0 +1,20 @@
+id: TC_01
+title: Open notification screen
+feature: notification
+priority: High
+description: The bell icon on Home opens the notification screen (navigation only).
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_05 toggles every notification setting and then restores it; the settings list
+  is empty unless the account's editSetting flag is on.
+detox_reference: '[TC_01][DOC+][Entry] User navigates to notification screen and sees
+  screen loaded'
+steps:
+- desc: Tap the bell icon in the top bar to open notifications.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the bell icon in
+  the top bar to open notifications.

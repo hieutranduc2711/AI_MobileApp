@@ -1,0 +1,6 @@
+name: offline-13-recurring
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [recurring]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/recurring/JDELTA-021.yaml
+- testcases/offline_sync/13_jira_current_delta/recurring/JDELTA-022.yaml

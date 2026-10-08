@@ -1,0 +1,41 @@
+id: BUGREG-009
+title: 'Save todo list as Template show error "Failed to connect server" (Offline):
+  Save todo list as Template show error "Failed to connect server" (Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Save todo list as Template show error "Failed to connect server" (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Open todo list menu & press on Save todo list as Template
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Go to Template screen & fill template name & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Show error "Failed to connect server"
+  action: tap_selector
+  text: Failed to connect server
+  delay: 1.0
+- desc: Press on back icon to leave Template screen but can't leave this screen
+  action: back
+  delay: 1.0
+expected:
+- desc: Should be don't show error alert & can support Save as template in offline.
+    Can leave template screen when press on back icon if not continute to save.
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

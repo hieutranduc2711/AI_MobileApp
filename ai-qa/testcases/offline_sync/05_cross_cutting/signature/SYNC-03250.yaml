@@ -1,0 +1,65 @@
+id: SYNC-03250
+title: 'Capture Invoice Tech Signature: Capture Invoice Tech Signature pending rồi
+  logout/switch Account'
+sheet: 05_Cross_Cutting
+module: Signature
+action: Capture Invoice Tech Signature
+priority: P0
+flow_phase: Pending Account Switch
+direction: CROSS-CUTTING
+app_path: GD Mobile > Invoice > Signature
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Capture Invoice
+  Tech Signature; prerequisite cho Invoice Tech Signature đã sync khi cần.
+test_data: Valid representative data
+steps:
+- desc: Login A.
+  action: tap_selector
+  text: Login A.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Capture Invoice Tech Signature.
+  action: tap_selector
+  text: Capture Invoice Tech Signature
+  delay: 1.0
+- desc: Logout/switch B.
+  action: tap_selector
+  text: Logout/switch B.
+  delay: 1.0
+- desc: Reconnect B.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect B.
+  action: tap_selector
+  text: Inspect B.
+  delay: 1.0
+- desc: Login lại A.
+  action: tap_selector
+  text: Login lại A.
+  delay: 1.0
+- desc: Verify.
+  action: tap_selector
+  text: Verify.
+  delay: 1.0
+expected:
+- desc: Capture Invoice Tech Signature không làm app crash/mất dữ liệu.
+  assert_text: Signature
+- desc: Local/UI của Invoice Tech Signature phản ánh đúng business result.
+  assert_text: Signature
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Signature
+- desc: Không duplicate logical operation.
+  assert_text: Signature
+- desc: B không nhận data/pending/result của A.
+  assert_text: Signature
+- desc: A mutation không reassigned sang B.
+  assert_text: Signature
+source_tickets: RN-5605, RN-5525
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525'
+risk: Cross-account
+notes: Carried from V2 OFFV2-02875

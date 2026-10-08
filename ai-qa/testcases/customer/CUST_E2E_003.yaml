@@ -1,0 +1,33 @@
+id: CUST_E2E_003
+title: New customer form core fields
+feature: customer
+priority: High
+description: The New Customer form shows name, email and Save.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_003] customer form: core fields visible after tapping
+  Add'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: New Customer
+  desc: Hiển thị 'New Customer' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the plus icon at the top-right. After step 2, the
+  "New Customer" form should show "First Name", "Last Name" and "Save", and an "Email"
+  field should be present (scroll if needed).

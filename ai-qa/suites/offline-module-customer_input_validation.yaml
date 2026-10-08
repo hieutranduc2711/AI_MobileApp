@@ -1,0 +1,5 @@
+name: offline-module-customer_input_validation
+description: Cross-sheet comprehensive offline suite for Module [customer_input_validation]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/customer_input_validation/EDGE-GAP-027.yaml

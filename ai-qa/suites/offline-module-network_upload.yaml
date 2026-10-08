@@ -1,0 +1,5 @@
+name: offline-module-network_upload
+description: Cross-sheet comprehensive offline suite for Module [network_upload] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/network_upload/EDGE-GAP-022.yaml

@@ -1,0 +1,41 @@
+id: CUSTOMER-fullCustomerFlow-10
+title: Add New menu document option
+feature: customer
+priority: High
+description: The Add New menu on customer detail may offer Add Document.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'customer detail: add menu → document option exists when permitted'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Add Document]
+  action: tap_selector
+  text: Add Document
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap the plus icon in the
+  top bar. (4) Report whether "Add Document" is offered; its absence is not a failure.
+  If the list has no customers, stop and report the test as skipped: no customer data.'

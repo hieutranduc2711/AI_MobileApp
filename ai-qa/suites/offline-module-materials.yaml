@@ -1,0 +1,8 @@
+name: offline-module-materials
+description: Cross-sheet comprehensive offline suite for Module [materials] (5 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/materials/DEV-UI-103.yaml
+- testcases/offline_sync/10_dev_checklist_167/materials/DEV-UI-104.yaml
+- testcases/offline_sync/10_dev_checklist_167/materials/DEV-UI-105.yaml
+- testcases/offline_sync/10_dev_checklist_167/materials/DEV-UI-106.yaml
+- testcases/offline_sync/10_dev_checklist_167/materials/DEV-UI-107.yaml

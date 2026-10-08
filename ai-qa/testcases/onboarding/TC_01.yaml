@@ -1,0 +1,31 @@
+id: TC_01
+title: Getting Started screen loads
+feature: onboarding
+priority: High
+description: The drawer Fast Start entry opens the Getting Started screen with its
+  header title.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_03, TC_06, TC_12 and TC_13 need a non-trial plan (Detox guard E2E_TRIAL_PLAN;
+  trial plans hide the tabs). The server Getting Started checklist must contain the
+  add-logo, add-customer, add-job, add-invoice and plans-and-pricing items with a
+  Start/Done button.
+detox_reference: '[TC_01][DOC+][ScreenLoad] User navigates to Getting Started and
+  sees screen with header'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Fast Start] trong Drawer Menu
+  action: tap_selector
+  content_desc: Fast Start
+  delay: 1.2
+expected:
+- assert_text: Getting Started
+  desc: Hiển thị 'Getting Started' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Fast Start" under "Help" (scroll the menu if needed). After step 1,
+  the "Getting Started" screen with its header title (id: header-title) should be
+  displayed. If there is no "Fast Start" item, stop and report the test as skipped:
+  navigation not available.'

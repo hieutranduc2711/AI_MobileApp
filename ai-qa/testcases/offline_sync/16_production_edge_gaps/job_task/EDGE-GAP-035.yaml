@@ -1,0 +1,46 @@
+id: EDGE-GAP-035
+title: 'Offline Create Then Delete Cancellation: Tạo Job/Task mới khi Offline (`local:j99`),
+  sau đó bấm Xóa luôn khi vẫn Offline → Outbox tự triệt ti'
+sheet: 16_Production_Edge_Gaps
+module: Job / Task
+action: Offline Create Then Delete Cancellation
+priority: P1
+flow_phase: Create→Delete Before Sync
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Task List
+preconditions: Thiết bị offline hoàn toàn.
+test_data: New local task `local:task_99` created then deleted within same offline
+  session.
+steps:
+- desc: 'Offline: Bấm Add Task, nhập ''Kiểm tra bẫy chuột'', bấm Save (sinh outbox
+    `CREATE local:task_99`).'
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Ngay sau đó nhận ra nhầm lẫn, bấm Delete task đó (sinh lệnh `DELETE local:task_99`).
+  action: tap_selector
+  text: 'Ngay sau đó nhận ra nhầm lẫn, '
+  delay: 1.0
+- desc: Kiểm tra bảng outbox queue trong SQLite.
+  action: tap_selector
+  text: Kiểm tra bảng outbox queue tro
+  delay: 1.0
+- desc: Bật mạng online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Outbox Engine nhận diện 2 lệnh tạo và xóa cùng 1 local entity chưa từng tồn
+    tại trên server.
+  assert_text: Job / Task
+- desc: Tự động triệt tiêu (annihilate) cả 2 bản ghi khỏi outbox queue tại local.
+  assert_text: Job / Task
+- desc: Khi có mạng, không gửi bất kỳ HTTP request vô nghĩa nào lên server.
+  assert_text: Job / Task
+- desc: Không làm tốn băng thông và không gây lỗi 404 trên server.
+  assert_text: Job / Task
+source_tickets: RN-5477 / Outbox-Optimization
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Unnecessary Traffic / Server 404
+notes: Tiết kiệm tài nguyên và loại bỏ hoàn toàn nguy cơ server báo lỗi 'Entity not
+  found to delete'.

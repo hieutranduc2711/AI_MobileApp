@@ -1,0 +1,14 @@
+id: KONG-ADV-002
+title: Sử dụng Templates mẫu câu hỏi trong Kong AI
+feature: kong_ai_advanced
+priority: High
+description: Bấm nút Templates để xem các kịch bản mẫu được cấu hình sẵn
+preconditions: Màn hình Kong AI
+steps:
+- desc: Bấm nút Templates
+  action: tap_selector
+  text: Templates
+  delay: 1.2
+expected:
+- assert_text: Templates
+  desc: Danh sách câu hỏi mẫu hiển thị

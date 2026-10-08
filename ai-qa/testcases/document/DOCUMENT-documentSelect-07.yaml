@@ -1,0 +1,47 @@
+id: DOCUMENT-documentSelect-07
+title: Pull to refresh keeps first template
+feature: document
+priority: High
+description: Pull-to-refresh on the Doc template list keeps the same first template.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document and at least
+  one service location. Templates exist on both the Docs and PDFs tabs (enough Doc
+  templates to scroll). DOCUMENT-documentSelect-05 creates a document from the first
+  Doc template.
+detox_reference: User pulls down on the doc template list to refresh and list reloads
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Note the name of the first Doc template.
+  action: tap_selector
+  text: Note the name of the first Doc
+  delay: 0.8
+- desc: Pull the list down from the top to refresh, twice.
+  action: tap_selector
+  text: Pull the list down from the to
+  delay: 0.8
+expected:
+- assert_text: Select Document
+  desc: Hiển thị 'Select Document' trên màn hình
+- assert_text: the Doc template list
+  desc: the Doc template list
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the plus icon on the "Documents" section header; if a location list opens,
+  tap the first location. After step 3, the "Select Document" screen should be displayed.
+  (4) Note the name of the first Doc template. (5) Pull the list down from the top
+  to refresh, twice. After step 5, the Doc template list should be displayed and its
+  first template should have the same name as noted.

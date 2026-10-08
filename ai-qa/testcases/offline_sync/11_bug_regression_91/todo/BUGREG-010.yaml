@@ -1,0 +1,33 @@
+id: BUGREG-010
+title: 'Add todo offline haven''t sync when online: Add todo offline haven''t sync
+  when online'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Add todo offline haven't sync when online
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail in onffline
+  action: tap_selector
+  text: Go to Job detail in onffline
+  delay: 1.0
+- desc: Add new todo & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Go back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Should be sync new todo when back to online
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

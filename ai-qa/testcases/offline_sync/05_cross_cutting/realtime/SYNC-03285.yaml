@@ -1,0 +1,45 @@
+id: SYNC-03285
+title: 'Socket vs PowerSync: Duplicate/out-of-order update'
+sheet: 05_Cross_Cutting
+module: Realtime
+action: Socket vs PowerSync
+priority: P1
+flow_phase: Architecture Gap
+direction: CROSS-CUTTING
+app_path: GD Mobile + Web same Job
+preconditions: Prepare environment/data as described.
+test_data: Duplicate/out-of-order update
+steps:
+- desc: Open same Job web/mobile.
+  action: tap_selector
+  text: Open same Job web/mobile.
+  delay: 1.0
+- desc: Web change status.
+  action: tap_selector
+  text: Web change status.
+  delay: 1.0
+- desc: Observe socket.
+  action: tap_selector
+  text: Observe socket.
+  delay: 1.0
+- desc: Observe PowerSync/local.
+  action: tap_selector
+  text: Observe PowerSync/local.
+  delay: 1.0
+- desc: Repeat with socket disconnect.
+  action: tap_selector
+  text: Repeat with socket disconnect.
+  delay: 1.0
+expected:
+- desc: Final correct.
+  assert_text: Realtime
+- desc: No oscillation/duplicate.
+  assert_text: Realtime
+- desc: Missing backstop = gap.
+  assert_text: Realtime
+source_tickets: RN-5565, RN-5634
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5565
+
+  https://gorilladesk1.atlassian.net/browse/RN-5634'
+risk: Backlog architecture
+notes: Carried from V2 OFFV2-03214

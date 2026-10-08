@@ -1,0 +1,24 @@
+name: offline-01-customer
+description: Offline Suite for Sheet [01_online_to_offline] > Module [customer] (20
+  cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00066.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00067.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00068.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00069.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00070.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00071.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00072.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00073.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00074.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00075.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00076.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00077.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00078.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00079.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00080.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00081.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00082.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00083.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00084.yaml
+- testcases/offline_sync/01_online_to_offline/customer/SYNC-00085.yaml

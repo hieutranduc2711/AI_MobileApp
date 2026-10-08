@@ -1,0 +1,40 @@
+name: offline-01-visible_image
+description: Offline Suite for Sheet [01_online_to_offline] > Module [visible_image]
+  (36 cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00727.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00728.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00729.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00730.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00731.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00732.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00733.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00734.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00735.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00736.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00737.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00738.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00739.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00740.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00741.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00742.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00743.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00744.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00745.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00746.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00747.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00748.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00749.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00750.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00751.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00752.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00753.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00754.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00755.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00756.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00757.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00758.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00759.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00760.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00761.yaml
+- testcases/offline_sync/01_online_to_offline/visible_image/SYNC-00762.yaml

@@ -1,0 +1,38 @@
+id: DASHBOARD-dashboard.edge-06
+title: Jobs pie toggle twice
+feature: dashboard
+priority: High
+description: Tapping the Jobs board pie toggle twice keeps the Dashboard.
+preconditions: 'Cases 01, 02, 04–06: Logged in with the DEFAULT E2E account (non-technician
+  role with dashboard access, so all boards show), app on the Home screen (online).
+  Case 03 needs an account WITHOUT dashboard access (with the default account it reports
+  skipped). TECH-01/TECH-02: logged in with the TECH_PRIME (technician) account instead,
+  app on the Home screen.'
+detox_reference: GIVEN dashboard WHEN Jobs pie toggle is tapped THEN it does not crash
+  and remains on dashboard
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [Jobs]
+  action: tap_selector
+  text: Jobs
+  delay: 1.0
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll to the "Jobs" board and tap its pie-chart
+  toggle twice. If the toggle is missing, stop and report the test as skipped: jobs
+  pie toggle not shown.'

@@ -1,0 +1,5 @@
+name: offline-13-task_schema
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [task_schema]
+  (1 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/task_schema/JDELTA-018.yaml

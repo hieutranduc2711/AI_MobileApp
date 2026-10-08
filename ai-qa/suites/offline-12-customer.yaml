@@ -1,0 +1,19 @@
+name: offline-12-customer
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [customer] (15
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-035.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-036.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-037.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-038.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-039.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-040.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-041.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-042.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-043.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-044.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-045.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-046.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-047.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-048.yaml
+- testcases/offline_sync/12_perf_rerender_245/customer/PERF-049.yaml

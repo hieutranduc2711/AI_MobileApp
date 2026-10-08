@@ -1,0 +1,37 @@
+id: BUGREG-032
+title: 'Can''t add Attach Photo in Job unit detail (Online): Can''t add Attach Photo
+  in Job unit detail (Online)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Can't add Attach Photo in Job unit detail (Online)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to any job unit detail
+  action: tap_selector
+  text: Go to any job unit detail
+  delay: 1.0
+- desc: Press on Attach a Photo
+  action: tap_selector
+  text: Press on Attach a Photo
+  delay: 1.0
+- desc: Snap a New Photo & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Show alert "Ops!" & can't attach a photo
+  action: tap_selector
+  text: Ops!
+  delay: 1.0
+expected:
+- desc: Can add attach a photo
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,23 @@
+name: offline-01-task
+description: Offline Suite for Sheet [01_online_to_offline] > Module [task] (20 cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00672.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00673.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00674.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00675.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00676.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00677.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00678.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00679.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00680.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00681.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00682.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00683.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00684.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00685.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00686.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00687.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00688.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00689.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00690.yaml
+- testcases/offline_sync/01_online_to_offline/task/SYNC-00691.yaml

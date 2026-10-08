@@ -1,0 +1,5 @@
+name: Module Routing Suite
+description: Chạy toàn bộ 2 test cases cho phân hệ routing
+tests:
+- ROUTE-OPTIMIZE-001
+- ROUTE-OPTIMIZE-002

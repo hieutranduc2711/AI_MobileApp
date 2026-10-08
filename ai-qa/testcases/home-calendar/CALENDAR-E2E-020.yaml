@@ -1,0 +1,27 @@
+id: CALENDAR-E2E-020
+title: Menu opens and swipes closed
+feature: home-calendar
+priority: High
+description: The side menu opens over the date bar and closes by swiping.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-020: drawer open while date bar visible'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Swipe the menu closed to the left.
+  action: tap_selector
+  text: Swipe the menu closed to the l
+  delay: 0.8
+expected:
+- assert_text: Calendar
+  desc: Hiển thị 'Calendar' trên màn hình
+- assert_text: 'the Home top bar (id: home-bar)'
+  desc: 'the Home top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon. After step 1, "Calendar" should be displayed in the menu. (2) Swipe the menu
+  closed to the left. After step 2, the Home top bar (id: home-bar) should be displayed.'

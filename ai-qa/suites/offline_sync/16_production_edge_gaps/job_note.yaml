@@ -1,0 +1,6 @@
+name: offline-16-job_note
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [job_note]
+  (2 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/job_note/EDGE-GAP-026.yaml
+- testcases/offline_sync/16_production_edge_gaps/job_note/EDGE-GAP-028.yaml

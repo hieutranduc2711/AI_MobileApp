@@ -1,0 +1,22 @@
+id: TERM-WDO-002
+title: Ghi nhận chỉ số đo độ ẩm bằng máy Moisture Meter
+feature: termite_wdo_inspection
+priority: Normal
+description: 'Kiểm thử quy trình khảo sát mối công trình ca #2'
+preconditions: Job đang mở
+steps:
+- desc: Mở tab Moisture Readings
+  action: tap_selector
+  text: Moisture Readings
+  delay: 0.8
+- desc: Nhập độ ẩm dầm gỗ tầng trệt
+  action: type_text
+  value: 18.5%
+  delay: 0.5
+- desc: Lưu chỉ số
+  action: tap_selector
+  content_desc: Save
+  delay: 1.0
+expected:
+- assert_text: 18.5%
+  desc: Chỉ số độ ẩm được lưu vào hồ sơ

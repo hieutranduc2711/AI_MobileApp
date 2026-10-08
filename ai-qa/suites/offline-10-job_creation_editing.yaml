@@ -1,0 +1,13 @@
+name: offline-10-job_creation_editing
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [job_creation_editing]
+  (9 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-013.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-014.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-015.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-016.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-017.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-018.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-019.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-020.yaml
+- testcases/offline_sync/10_dev_checklist_167/job_creation_editing/DEV-UI-021.yaml

@@ -1,0 +1,40 @@
+name: offline-02-customer_task
+description: Offline Suite for Sheet [02_offline_to_online] > Module [customer_task]
+  (36 cases)
+testcases:
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00943.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00944.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00945.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00946.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00947.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00948.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00949.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00950.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00951.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00952.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00953.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00954.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00955.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00956.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00957.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00958.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00959.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00960.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00961.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00962.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00963.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00964.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00965.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00966.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00967.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00968.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00969.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00970.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00971.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00972.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00973.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00974.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00975.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00976.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00977.yaml
+- testcases/offline_sync/02_offline_to_online/customer_task/SYNC-00978.yaml

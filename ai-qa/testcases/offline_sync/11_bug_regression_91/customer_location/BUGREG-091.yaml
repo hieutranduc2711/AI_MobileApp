@@ -1,0 +1,48 @@
+id: BUGREG-091
+title: 'Show wrong total unit of customer location after deleted or add new unit:
+  Show wrong total unit of customer location after deleted or add new unit'
+sheet: 11_Bug_Regression_91
+module: Customer Location
+action: Show wrong total unit of customer location after deleted or add new unit
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off network
+  action: tap_selector
+  text: Turn off network
+  delay: 1.0
+- desc: Go to detail of any customer
+  action: tap_selector
+  text: Go to detail of any customer
+  delay: 1.0
+- desc: Press on Service Locations
+  action: tap_selector
+  text: Press on Service Locations
+  delay: 1.0
+- desc: Press on any Customer location
+  action: tap_selector
+  text: Press on any Customer location
+  delay: 1.0
+- desc: Delete building & unit of location
+  action: tap_selector
+  text: Delete building & unit of loca
+  delay: 1.0
+- desc: Back to Service Locations list view
+  action: back
+  delay: 1.0
+- desc: Still show total units of location include unit has deleted
+  action: tap_selector
+  text: Still show total units of loca
+  delay: 1.0
+expected:
+- desc: 'Expected: Show correct total unit of location'
+  assert_text: Customer Location
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

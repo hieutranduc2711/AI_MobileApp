@@ -1,0 +1,69 @@
+id: SYNC-03269
+title: 'Capture Unit Signature: 2 devices conflict on Capture Unit Signature'
+sheet: 05_Cross_Cutting
+module: Signature
+action: Capture Unit Signature
+priority: P0
+flow_phase: Multi-device Conflict
+direction: CROSS-CUTTING
+app_path: GD Mobile > MDU > Unit > Signature
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Capture Unit
+  Signature; prerequisite cho Unit Signature đã sync khi cần. Có Device A/B cùng initial
+  record.
+test_data: Two devices
+steps:
+- desc: Sync same entity lên A/B.
+  action: tap_selector
+  text: Sync same entity lên A/B.
+  delay: 1.0
+- desc: Cả hai offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: A thực hiện value/action A.
+  action: tap_selector
+  text: Capture Unit Signature
+  delay: 1.0
+- desc: B thực hiện conflicting value/action B.
+  action: tap_selector
+  text: Capture Unit Signature
+  delay: 1.0
+- desc: Reconnect B rồi A.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect server/A/B.
+  action: tap_selector
+  text: Inspect server/A/B.
+  delay: 1.0
+- desc: Lặp reconnect order ngược.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Capture Unit Signature không làm app crash/mất dữ liệu.
+  assert_text: Signature
+- desc: Local/UI của Unit Signature phản ánh đúng business result.
+  assert_text: Signature
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Signature
+- desc: Không duplicate logical operation.
+  assert_text: Signature
+- desc: No structural corruption/duplicate.
+  assert_text: Signature
+- desc: Outcome reproducible.
+  assert_text: Signature
+- desc: Không tự giả định winner; capture actual policy.
+  assert_text: Signature
+source_tickets: RN-5590, RN-5605, RN-5525, RN-5587, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5590
+
+  https://gorilladesk1.atlassian.net/browse/RN-5605
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Operational conflict
+notes: Carried from V2 OFFV2-02945

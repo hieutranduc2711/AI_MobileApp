@@ -1,0 +1,37 @@
+id: EMAIL-emailFormElements-21
+title: All Estimates email pick To recipient
+feature: email
+priority: High
+description: On the email form opened from all estimates, the user can pick To recipient.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; job work-order
+  options visible), app on the Home screen (online). The first customer in “Customers”
+  has contacts with email addresses, a job in “Jobs”, at least one invoice and estimate
+  (5 or more of each for the Show All cases) and a document in “Documents”. No email
+  is sent.
+detox_reference: 'ESTIMATE_SHOW_ALL: opens TO modal and saves'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Estimate]
+  action: tap_selector
+  text: Estimate
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Estimate", tap "Show All",
+  the first estimate, then the three-dots icon and "Send by Email". (3) Tap the drop-down
+  arrow on the email To row, tap the first email in "Email to", then tap "Save" (id:
+  saveButton). (4) Tap the back arrow at the top-left. If there is no "Show All" under
+  "Estimate", stop and report the test as skipped: not enough estimates.'

@@ -1,0 +1,54 @@
+id: SYNC-00701
+title: 'Create Todo: Hoàn tất Create Todo online → authoritative state về local →
+  chuyển Offline'
+sheet: 01_Online_to_Offline
+module: Todo
+action: Create Todo
+priority: P1
+flow_phase: O2F-05 Authoritative cached
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job > Todo > Add
+preconditions: Đăng nhập đúng account/branch; user có quyền Create Todo; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > Job > Todo > Add.
+test_data: Valid action
+steps:
+- desc: Thực hiện action hoàn toàn khi Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ backend xử lý xong và authoritative state sync về local.
+  action: back
+  delay: 1.0
+- desc: Refresh/reopen để xác nhận giá trị mới.
+  action: tap_selector
+  text: Refresh/reopen để xác nhận giá
+  delay: 1.0
+- desc: Tắt toàn bộ network.
+  action: tap_selector
+  text: Tắt toàn bộ network.
+  delay: 1.0
+- desc: Force close/reopen app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại entity/list.
+  action: tap_selector
+  text: Mở lại entity/list.
+  delay: 1.0
+expected:
+- desc: Latest authoritative state đã được persist local trước khi mất mạng.
+  assert_text: Todo
+- desc: Sau restart Offline vẫn thấy đúng state mới.
+  assert_text: Todo
+- desc: Không quay lại stale value cũ.
+  assert_text: Todo
+- desc: Không cần remote API để đọc state đã cache.
+  assert_text: Todo
+source_tickets: RN-5569, RN-5540, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
+
+  https://gorilladesk1.atlassian.net/browse/RN-5540
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Online→local cache durability
+notes: ''

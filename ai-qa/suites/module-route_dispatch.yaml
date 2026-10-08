@@ -1,0 +1,28 @@
+name: Module Route Dispatch Suite
+description: Chạy toàn bộ 25 test cases cho phân hệ route_dispatch
+tests:
+- ROUT-GPS-001
+- ROUT-MAP-003
+- ROUT-MAP-004
+- ROUT-MAP-005
+- ROUT-MAP-006
+- ROUT-MAP-007
+- ROUT-MAP-008
+- ROUT-MAP-009
+- ROUT-MAP-010
+- ROUT-MAP-011
+- ROUT-MAP-012
+- ROUT-MAP-013
+- ROUT-MAP-014
+- ROUT-MAP-015
+- ROUT-MAP-016
+- ROUT-MAP-017
+- ROUT-MAP-018
+- ROUT-MAP-019
+- ROUT-MAP-020
+- ROUT-MAP-021
+- ROUT-MAP-022
+- ROUT-MAP-023
+- ROUT-MAP-024
+- ROUT-MAP-025
+- ROUT-OPT-001

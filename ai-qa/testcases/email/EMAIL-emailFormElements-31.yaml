@@ -1,0 +1,38 @@
+id: EMAIL-emailFormElements-31
+title: All Documents email pick To recipient
+feature: email
+priority: High
+description: On the email form opened from all documents, the user can pick To recipient.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; job work-order
+  options visible), app on the Home screen (online). The first customer in “Customers”
+  has contacts with email addresses, a job in “Jobs”, at least one invoice and estimate
+  (5 or more of each for the Show All cases) and a document in “Documents”. No email
+  is sent.
+detox_reference: 'DOCUMENT_SHOW_ALL: opens TO modal and saves'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Send by email
+  desc: Hiển thị 'Send by email' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Documents", tap "Show
+  All" if shown, tap the first document and choose "Send by Email". After step 2,
+  the "Send by email" screen should be displayed. (3) Tap the drop-down arrow on the
+  email To row, tap the first email in "Email to", then tap "Save" (id: saveButton).
+  (4) Tap the back arrow at the top-left. If there is no "Documents" section or document,
+  stop and report the test as skipped: no document.'

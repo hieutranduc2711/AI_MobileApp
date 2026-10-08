@@ -1,0 +1,42 @@
+id: TC_03
+title: Edit seeded location name
+feature: location
+priority: High
+description: The seeded service location can be renamed and the new name appears in
+  the list.
+preconditions: 'Logged in with the DEFAULT E2E account (can edit customers) on the
+  Home screen (online). Detox beforeAll seeds one location — before TC_03…TC_05 create
+  it once: Home search icon → first customer → “Service Locations” → plus → “Location
+  Name” “E2E Manage <current time>”, “Service Address” 200 Oak St, Houston, TX 77001
+  → “Save”; keep exactly one location whose name starts with “E2E Manage”. TC_05 deletes
+  it: run only where destructive deletes are allowed (Detox guard E2E_ALLOW_LOCATION_DELETE=true).
+  TC_06 needs at least one location on that customer.'
+detox_reference: '[TC_03][DOC+][ServiceLocationEditData] User edits seeded location
+  name and verifies updated value in list'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Service Locations]
+  action: tap_selector
+  text: Service Locations
+  delay: 1.0
+- desc: Chạm vào mục [E2E Manage]
+  action: tap_selector
+  text: E2E Manage
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Edit Location
+  desc: Hiển thị 'Edit Location' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right, then the first customer. (2) Tap "Service Locations". (3)
+  Tap the three-dots icon of the location whose name starts with "E2E Manage", then
+  "Edit Location". After step 3, the "Edit Location" screen should be displayed. (4)
+  Append " UPDATED" to its "Location Name" and tap "Save". At the end, the "Service
+  Locations" list should show that location with its name ending in "UPDATED".

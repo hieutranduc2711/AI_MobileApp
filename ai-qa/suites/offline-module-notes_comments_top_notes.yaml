@@ -1,0 +1,16 @@
+name: offline-module-notes_comments_top_notes
+description: Cross-sheet comprehensive offline suite for Module [notes_comments_top_notes]
+  (12 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-082.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-083.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-084.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-085.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-086.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-087.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-088.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-089.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-090.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-091.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-092.yaml
+- testcases/offline_sync/10_dev_checklist_167/notes_comments_top_notes/DEV-UI-093.yaml

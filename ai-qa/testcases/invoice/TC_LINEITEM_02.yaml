@@ -1,0 +1,39 @@
+id: TC_LINEITEM_02
+title: Open add line item from new invoice
+feature: invoice
+priority: High
+description: From All Invoices, starting a new invoice and tapping add on Line Item
+  opens the add line item screen.
+preconditions: 'Logged in with the DEFAULT E2E account (Admin-like role: techs cannot
+  add line items), app on the Home screen (online). The first customer in “Customers”
+  has at least 5 invoices (so “Show All” appears under “Invoice”) and at least one
+  service location; at least one line item and one tax exist in company settings.'
+detox_reference: '[TC_02][Invoice] User Adds a line item'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its "Show All". (3) On "All Invoices", tap the plus icon at the top-right;
+  if "Select Location" opens, tap the first location. (4) On "Line Item", tap the
+  plus icon at the top-right.

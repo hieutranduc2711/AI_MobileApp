@@ -1,0 +1,19 @@
+id: LOC-COMM-044
+title: 'Quản lý vị trí dịch vụ đa điểm thương mại #44'
+feature: multi_service_locations
+priority: Normal
+description: 'Kiểm thử quản lý đa địa điểm dịch vụ khách hàng #44'
+preconditions: Customers
+steps:
+- desc: Mở danh mục địa điểm
+  action: tap_selector
+  text: Locations
+  delay: 0.8
+- desc: 'Kiểm tra địa điểm #44'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Locations
+  desc: Thông tin chi nhánh lưu trữ chính xác

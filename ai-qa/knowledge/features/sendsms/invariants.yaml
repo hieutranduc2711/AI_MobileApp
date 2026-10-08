@@ -1,0 +1,3 @@
+invariants:
+  - id: SENDSMS-INV-001
+    description: 'Ensure data integrity for module sendsms'

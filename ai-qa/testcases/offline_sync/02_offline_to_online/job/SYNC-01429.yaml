@@ -1,0 +1,56 @@
+id: SYNC-01429
+title: 'Edit Job emoji: Edit Job emoji: Offline save → reconnect mạng tốt'
+sheet: 02_Offline_to_Online
+module: Job
+action: Edit Job emoji
+priority: P0
+flow_phase: F2O-01 Normal reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Edit
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Edit Job emoji.
+test_data: Valid representative entity/action
+steps:
+- desc: Mở app khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Edit Job emoji.
+  action: tap_selector
+  text: Edit Job emoji
+  delay: 1.0
+- desc: Xác nhận local result/pending.
+  action: tap_selector
+  text: Xác nhận local result/pending.
+  delay: 1.0
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Không tạo thêm action.
+  action: tap_selector
+  text: Không tạo thêm action.
+  delay: 1.0
+- desc: Chờ sync worker + BE + PowerSync.
+  action: tap_selector
+  text: Chờ sync worker + BE + PowerSy
+  delay: 1.0
+- desc: Refresh/reopen và đối chiếu server.
+  action: tap_selector
+  text: Refresh/reopen và đối chiếu se
+  delay: 1.0
+expected:
+- desc: Pending mutation được push đúng action/account/branch.
+  assert_text: Job
+- desc: Backend xử lý đúng business result.
+  assert_text: Job
+- desc: Authoritative downlink reconcile local.
+  assert_text: Job
+- desc: Không duplicate, không snap-back.
+  assert_text: Job
+- desc: Pending kết thúc đúng trạng thái synced.
+  assert_text: Job
+source_tickets: RN-5582
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5582
+risk: Core upload/reconcile
+notes: ''

@@ -1,0 +1,7 @@
+invariants:
+  - id: CUS-INV-001
+    description: "Khách hàng bắt buộc phải có First Name hoặc Company Name"
+  - id: CUS-INV-002
+    description: "Service Location mặc định được tạo cùng lúc khi tạo Customer mới"
+  - id: CUS-INV-003
+    description: "Xóa Customer phải hiển thị popup xác nhận để tránh mất dữ liệu liên đới"

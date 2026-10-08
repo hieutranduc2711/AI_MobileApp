@@ -1,0 +1,24 @@
+name: offline-03-signature
+description: Offline Suite for Sheet [03_round_trip] > Module [signature] (21 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/signature/SYNC-02455.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02456.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02457.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02458.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02459.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02460.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02461.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02462.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02463.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02464.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02465.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02466.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02467.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02468.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02469.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02470.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02471.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02472.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02473.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02474.yaml
+- testcases/offline_sync/03_round_trip/signature/SYNC-02475.yaml

@@ -1,0 +1,30 @@
+id: INV-FIN-001
+title: Tạo hóa đơn có chiết khấu coupon giảm giá phần trăm
+feature: invoice_advanced_financial
+priority: Normal
+description: 'Kiểm thử nghiệp vụ tài chính và đối soát hóa đơn ca #1'
+preconditions: Màn hình Invoices
+steps:
+- desc: Mở Invoice
+  action: tap_selector
+  text: Invoices
+  delay: 0.8
+- desc: Bấm Add Discount
+  action: tap_selector
+  text: Add Discount
+  delay: 0.6
+- desc: Chọn loại phần trăm (%)
+  action: tap_selector
+  text: Percentage
+  delay: 0.5
+- desc: Nhập 15%
+  action: type_text
+  value: '15'
+  delay: 0.5
+- desc: Lưu chiết khấu
+  action: tap_selector
+  content_desc: Apply
+  delay: 1.0
+expected:
+- assert_text: 'Discount: 15%'
+  desc: Hóa đơn được giảm 15% tổng tiền

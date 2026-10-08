@@ -1,0 +1,19 @@
+id: FLEET-CHK-014
+title: 'Kiểm tra an toàn phương tiện cơ giới #14'
+feature: fleet_vehicle_inspection
+priority: Normal
+description: 'Kiểm thử tính năng quản lý và kiểm tra xe tải KTV #14'
+preconditions: KTV đã đăng nhập vào hệ thống
+steps:
+- desc: Truy cập mục Đội xe
+  action: tap_selector
+  text: Fleet
+  delay: 0.8
+- desc: 'Kiểm tra mục thiết bị xe #14'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Fleet
+  desc: Dữ liệu kiểm tra xe lưu trữ an toàn

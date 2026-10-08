@@ -1,0 +1,5 @@
+name: offline-16-auth_permissions
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [auth_permissions]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_permissions/EDGE-GAP-005.yaml

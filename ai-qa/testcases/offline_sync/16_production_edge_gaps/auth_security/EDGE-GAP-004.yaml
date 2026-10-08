@@ -1,0 +1,50 @@
+id: EDGE-GAP-004
+title: 'Password Changed by Admin While Offline: Admin đổi mật khẩu tài khoản trên
+  Web khi Technician đang làm việc Offline → Bật mạng lại → Queue pa'
+sheet: 16_Production_Edge_Gaps
+module: Auth / Security
+action: Password Changed by Admin While Offline
+priority: P1
+flow_phase: Auth Expiry & Session Lifecycle
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Sync Engine / Password Prompt
+preconditions: Technician đi hiện trường tắt mạng, tạo 2 Jobs. Trên Web portal, Admin
+  thực hiện reset/đổi mật khẩu của technician đó.
+test_data: User account password changed from 'OldPass123' to 'NewPass456'; 2 pending
+  jobs in mobile.
+steps:
+- desc: Technician offline tạo 2 Jobs.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Admin đổi mật khẩu tài khoản trên Web.
+  action: tap_selector
+  text: Admin đổi mật khẩu tài khoản t
+  delay: 1.0
+- desc: Technician bật 4G kết nối lại.
+  action: tap_selector
+  text: Technician bật 4G kết nối lại.
+  delay: 1.0
+- desc: Sync Engine gửi request đồng bộ và nhận 401 Password Invalidated.
+  action: tap_selector
+  text: Sync Engine gửi request đồng b
+  delay: 1.0
+- desc: Kiểm tra hành vi xử lý của mobile.
+  action: tap_selector
+  text: Kiểm tra hành vi xử lý của mob
+  delay: 1.0
+expected:
+- desc: Sync Engine lập tức tạm dừng hàng đợi (Pause Sync), không spam retry gây khóa
+    tài khoản (lockout).
+  assert_text: Auth / Security
+- desc: 'Hiển thị thông báo: ''Mật khẩu tài khoản đã thay đổi. Vui lòng nhập mật khẩu
+    mới để tiếp tục đồng bộ''.'
+  assert_text: Mật khẩu tài khoản đã thay đổi. Vui lòng nhập mật khẩu mới để tiếp
+    tục đồng bộ
+- desc: Sau khi nhập đúng 'NewPass456', queue tiếp tục xả và đẩy 2 Jobs lên server
+    thành công.
+  assert_text: NewPass456
+source_tickets: RN-5477 / Security
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Account Lockout / Dropped Queue
+notes: Tránh loop 401 retry vô hạn làm kích hoạt brute-force rate limiter của backend.

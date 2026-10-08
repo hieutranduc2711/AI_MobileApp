@@ -1,0 +1,49 @@
+id: BUGREG-081
+title: 'Can''t save customer with Customer Form Settings: Word order Email, Custom
+  Fields, Payment, Messing is Required in offline: Can''t save customer with Customer
+  Form Settings: Word order Email, Custom Fields, Payment, Messing i'
+sheet: 11_Bug_Regression_91
+module: Customer
+action: 'Can''t save customer with Customer Form Settings: Word order Email, Custom
+  Fields, Payment, Messing is Required in offline'
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to screen customer list
+  action: tap_selector
+  text: Go to screen customer list
+  delay: 1.0
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new customer
+  action: tap_selector
+  text: Create new customer
+  delay: 1.0
+- desc: 'Change Customer Form Settings in Default form: Word order Email, Custom Fields,
+    Payment, Messing to Required & Save'
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Fill info of new customer & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: 'Show warning missing fields: Word order Email, Custom Fields, Payment, Messing'
+  action: tap_selector
+  text: 'Show warning missing fields: W'
+  delay: 1.0
+expected:
+- desc: 'Expect: Should be hide customer fields in Customer Form Settings if not support
+    in offline when create customer'
+  assert_text: Customer
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,43 @@
+name: Module Hardware Peripherals Deep Suite
+description: Chạy toàn bộ 40 test cases cho phân hệ hardware_peripherals_deep
+tests:
+- HW-PRNT-001
+- HW-PRNT-002
+- HW-PRNT-003
+- HW-PRNT-004
+- HW-PRNT-005
+- HW-PRNT-006
+- HW-PRNT-007
+- HW-PRNT-008
+- HW-PRNT-009
+- HW-PRNT-010
+- HW-PRNT-011
+- HW-PRNT-012
+- HW-PRNT-013
+- HW-PRNT-014
+- HW-PRNT-015
+- HW-PRNT-016
+- HW-PRNT-017
+- HW-PRNT-018
+- HW-PRNT-019
+- HW-PRNT-020
+- HW-PRNT-021
+- HW-PRNT-022
+- HW-PRNT-023
+- HW-PRNT-024
+- HW-PRNT-025
+- HW-PRNT-026
+- HW-PRNT-027
+- HW-PRNT-028
+- HW-PRNT-029
+- HW-PRNT-030
+- HW-PRNT-031
+- HW-PRNT-032
+- HW-PRNT-033
+- HW-PRNT-034
+- HW-PRNT-035
+- HW-PRNT-036
+- HW-PRNT-037
+- HW-PRNT-038
+- HW-PRNT-039
+- HW-PRNT-040

@@ -1,0 +1,27 @@
+id: JOB-202
+title: Open job from Agenda
+feature: job
+priority: High
+description: Tapping a job in the Agenda list opens the job detail.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-202] User taps job in agenda list and lands on job detail'
+steps:
+- desc: Chạm vào mục [Agenda]
+  action: tap_selector
+  text: Agenda
+  delay: 1.0
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and choose "Agenda". (2) Tap the first job in
+  the list. After step 2, "Job Details" should be displayed.

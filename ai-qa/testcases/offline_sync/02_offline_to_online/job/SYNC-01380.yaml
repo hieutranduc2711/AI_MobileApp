@@ -1,0 +1,54 @@
+id: SYNC-01380
+title: 'Change Job status: Change Job status: Offline queue → timeout → retry'
+sheet: 02_Offline_to_Online
+module: Job
+action: Change Job status
+priority: P1
+flow_phase: F2O-06 Timeout then retry
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Status
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Change Job status.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Delay response quá timeout.
+  action: tap_selector
+  text: Delay response quá timeout.
+  delay: 1.0
+- desc: Quan sát pending.
+  action: tap_selector
+  text: Quan sát pending.
+  delay: 1.0
+- desc: Restore API.
+  action: tap_selector
+  text: Restore API.
+  delay: 1.0
+- desc: Cho retry chạy.
+  action: tap_selector
+  text: Cho retry chạy.
+  delay: 1.0
+- desc: Verify.
+  action: tap_selector
+  text: Verify.
+  delay: 1.0
+expected:
+- desc: Timeout không bị hiểu là success.
+  assert_text: Job
+- desc: Mutation còn retryable.
+  assert_text: Job
+- desc: Không duplicate sau retry.
+  assert_text: Job
+source_tickets: RN-5571, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5571
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Unknown outcome
+notes: ''

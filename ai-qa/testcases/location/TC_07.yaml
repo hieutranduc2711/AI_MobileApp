@@ -1,0 +1,42 @@
+id: TC_07
+title: Add invoice opens Select Location
+feature: location
+priority: High
+description: Adding an invoice from customer detail opens Select Location with its
+  search field.
+preconditions: Logged in with the DEFAULT E2E account (can search and edit customers,
+  sees the customer “Invoice” section) on the Home screen (online). The first customer
+  in “Customers” has at least one service location (TC_05 reports skipped otherwise).
+  TC_03/TC_04 do not create data (Save stays blocked).
+detox_reference: '[TC_07][DOC+][SelectLocationEntry] User enters add invoice flow
+  and sees select location screen'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Customers
+  desc: Hiển thị 'Customers' trên màn hình
+- assert_text: the customer detail screen
+  desc: the customer detail screen
+- assert_text: Select Location
+  desc: Hiển thị 'Select Location' trên màn hình
+- assert_text: Search Locations
+  desc: Hiển thị 'Search Locations' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. After step 1, the "Customers" list with at least one customer
+  should be displayed. (2) Tap the first customer. After step 2, the customer detail
+  screen should be displayed. (3) Scroll to the "Invoice" section and tap its plus
+  icon. After step 3, the "Select Location" screen with the "Search Locations" field
+  should be displayed.

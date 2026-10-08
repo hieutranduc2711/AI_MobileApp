@@ -1,0 +1,37 @@
+id: SYNC-03288
+title: '45 pending auto-drain: >20 operations'
+sheet: 05_Cross_Cutting
+module: Sync Queue
+action: 45 pending auto-drain
+priority: P0
+flow_phase: Batch
+direction: CROSS-CUTTING
+app_path: Any supported actions
+preconditions: Prepare environment/data as described.
+test_data: '>20 operations'
+steps:
+- desc: Create 45 pending.
+  action: tap_selector
+  text: Create 45 pending.
+  delay: 1.0
+- desc: Reconnect once.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Do nothing else.
+  action: tap_selector
+  text: Do nothing else.
+  delay: 1.0
+- desc: Wait idle.
+  action: tap_selector
+  text: Wait idle.
+  delay: 1.0
+expected:
+- desc: All batches auto-drain.
+  assert_text: Sync Queue
+- desc: 21+ not stuck.
+  assert_text: Sync Queue
+source_tickets: RN-5587
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5587
+risk: High
+notes: Carried from V2 OFFV2-03217

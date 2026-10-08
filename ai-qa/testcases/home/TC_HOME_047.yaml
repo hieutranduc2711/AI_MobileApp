@@ -1,0 +1,32 @@
+id: TC_HOME_047
+title: Recurring Move all
+feature: home
+priority: High
+description: Dragging a recurring job and choosing Move all returns to Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_047] recurring modal: Move all when
+  modal visible'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Long-press on a recurring job in the calendar and swipe slowly left.
+  action: tap_selector
+  text: 'Long-press on a recurring job '
+  delay: 0.8
+- desc: Chạm vào mục [Update recurring …]
+  action: tap_selector
+  text: Update recurring …
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Long-press on a recurring job in the calendar and swipe slowly
+  left. (3) If an "Update recurring …" dialog opens, tap "Move this … and all recurring",
+  then return to Home.

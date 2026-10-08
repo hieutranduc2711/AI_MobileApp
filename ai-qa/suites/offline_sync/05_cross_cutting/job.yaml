@@ -1,0 +1,35 @@
+name: offline-05-job
+description: Offline Suite for Sheet [05_cross_cutting] > Module [job] (32 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02734.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02733.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02732.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02728.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02727.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02726.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-03273.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02731.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02730.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02729.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02715.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02714.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02713.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02716.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02712.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02711.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02725.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02724.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02723.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02719.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02718.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02717.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02722.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02721.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02720.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02737.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02736.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02735.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-03275.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02740.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02739.yaml
+- testcases/offline_sync/05_cross_cutting/job/SYNC-02738.yaml

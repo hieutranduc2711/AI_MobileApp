@@ -1,0 +1,15 @@
+name: offline-03-document
+description: Offline Suite for Sheet [03_round_trip] > Module [document] (12 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/document/SYNC-02218.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02219.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02220.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02221.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02222.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02223.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02224.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02225.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02226.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02227.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02228.yaml
+- testcases/offline_sync/03_round_trip/document/SYNC-02229.yaml

@@ -1,0 +1,16 @@
+name: offline-module-mdu_buildings_units
+description: Cross-sheet comprehensive offline suite for Module [mdu_buildings_units]
+  (12 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-124.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-125.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-126.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-127.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-128.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-129.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-130.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-131.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-132.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-133.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-134.yaml
+- testcases/offline_sync/10_dev_checklist_167/mdu_buildings_units/DEV-UI-135.yaml

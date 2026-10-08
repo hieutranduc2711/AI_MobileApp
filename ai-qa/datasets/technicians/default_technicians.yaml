@@ -1,0 +1,9 @@
+technicians:
+  - id: "TECH-001"
+    name: "Alex Dispatcher"
+    email: "alex@gorilladesk.test"
+    role: "Admin"
+  - id: "TECH-002"
+    name: "David FieldTech"
+    email: "david@gorilladesk.test"
+    role: "Technician"

@@ -1,0 +1,35 @@
+id: TC_HOME_033
+title: Open job from calendar and back
+feature: home
+priority: High
+description: Opening a job from the calendar is recoverable back to Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_033] webview event contract: opening
+  job detail is recoverable'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Chạm vào mục [Open Incomplete Job]
+  action: tap_selector
+  text: Open Incomplete Job
+  delay: 1.0
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap a job in the calendar; if an incomplete-job dialog appears,
+  tap "Open Incomplete Job". (3) If the job detail opens, tap the back arrow at the
+  top-left; after that the Home screen with the top-left menu icon should be displayed.
+  If no job detail opens, stop and report the test as skipped: no job opened from
+  the calendar.'

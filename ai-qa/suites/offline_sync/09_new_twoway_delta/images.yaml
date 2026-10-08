@@ -1,0 +1,6 @@
+name: offline-09-images
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [images] (3 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0061.yaml
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0062.yaml
+- testcases/offline_sync/09_new_twoway_delta/images/V4-TW-0063.yaml

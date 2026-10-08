@@ -1,0 +1,14 @@
+id: CHEM-EPA-008
+title: Kiểm tra số chứng chỉ hành nghề của KTV (Applicator License)
+feature: chemical_epa_tracking
+priority: High
+description: Chứng chỉ hành nghề của KTV phải tự động in vào báo cáo hóa chất
+preconditions: Job được assign cho KTV Minh Tri
+steps:
+- desc: Xem mục Certified Applicator
+  action: tap_selector
+  text: Applicator Info
+  delay: 0.8
+expected:
+- assert_text: 'License #'
+  desc: Mã chứng chỉ hành nghề xuất hiện

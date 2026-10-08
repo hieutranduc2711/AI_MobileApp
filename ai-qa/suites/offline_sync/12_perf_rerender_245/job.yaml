@@ -1,0 +1,22 @@
+name: offline-12-job
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [job] (19 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-016.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-017.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-018.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-019.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-020.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-021.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-022.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-023.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-024.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-025.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-026.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-027.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-028.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-029.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-030.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-031.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-032.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-033.yaml
+- testcases/offline_sync/12_perf_rerender_245/job/PERF-034.yaml

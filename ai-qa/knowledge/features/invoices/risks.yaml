@@ -1,0 +1,5 @@
+risks:
+  - id: RISK-INV-001
+    name: "Draft invoice payment balance due latency"
+    details: "Khi thu tiền trên Invoice Draft, giao diện React Native có thể không cập nhật Balance Due ngay lập tức nếu không refresh lại danh sách"
+    mitigation: "Kéo vuốt nhẹ để pull-to-refresh sau khi hoàn tất giao dịch thanh toán"

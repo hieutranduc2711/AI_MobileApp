@@ -1,0 +1,49 @@
+id: SIG-102
+title: Type signature and continue
+feature: signature
+priority: High
+description: A typed technician signature can be continued with Next.
+preconditions: 'Logged in with the DEFAULT E2E account (role that sees the job work-order
+  options: “Take a Work Order Signature” in the job three-dots menu), app on the Home
+  screen (online) with at least one job on today''s calendar. Cases that tap “Next”/“Save”
+  store a technician (and client) signature on that job.'
+detox_reference: '[SIG-102][XLSX] Type mode: enter name, save, return to parent'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Take a Work Order Signature]
+  action: tap_selector
+  text: Take a Work Order Signature
+  delay: 1.0
+- desc: Chạm vào mục [Type]
+  action: tap_selector
+  text: Type
+  delay: 1.0
+- desc: Chạm vào mục [John Smith]
+  action: tap_selector
+  text: John Smith
+  delay: 1.0
+- desc: Chạm vào mục [Next]
+  action: tap_selector
+  text: Next
+  delay: 1.0
+expected:
+- assert_text: Technician's Signature
+  desc: Hiển thị 'Technician's Signature' trên màn hình
+- assert_text: Text to signture
+  desc: Hiển thị 'Text to signture' trên màn hình
+- assert_text: the field
+  desc: the field
+- assert_text: Client's Signature
+  desc: Hiển thị 'Client's Signature' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (tap "Open Incomplete Job" if offered). (2) In the job''s three-dots
+  menu choose "Take a Work Order Signature". After step 2, "Technician''s Signature"
+  should be displayed. (3) Tap the "Type" tab. After step 3, the "Text to signture"
+  field should be displayed. (4) Type "John Smith". After step 4, the field should
+  show it and "Next" should be displayed. (5) Tap "Next". After step 5, the "Client''s
+  Signature" screen, the job detail or an error should be shown. If that option is
+  missing, stop and report the test as skipped: no work order options.'

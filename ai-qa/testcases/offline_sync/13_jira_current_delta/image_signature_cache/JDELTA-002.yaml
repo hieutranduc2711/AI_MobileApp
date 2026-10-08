@@ -1,0 +1,32 @@
+id: JDELTA-002
+title: 'Image/signature cache read performance: Image/signature cache read performance'
+sheet: 13_Jira_Current_Delta
+module: Image/Signature Cache
+action: Image/signature cache read performance
+priority: P2
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Seed small, medium and large cached image/signature sets.
+  action: tap_selector
+  text: Seed small, medium and large c
+  delay: 1.0
+- desc: Measure cold reopen and warm reopen read latency.
+  action: tap_selector
+  text: Measure cold reopen and warm r
+  delay: 1.0
+- desc: Repeat after app restart and after background/foreground.
+  action: back
+  delay: 1.0
+expected:
+- desc: Read latency remains within an agreed performance budget.
+  assert_text: Image/Signature Cache
+- desc: No UI freeze/OOM while rendering cached assets.
+  assert_text: Image/Signature Cache
+source_tickets: RN-5680
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
+risk: Schema / Comment Regression
+notes: ''

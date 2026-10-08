@@ -1,0 +1,42 @@
+id: JDELTA-007
+title: 'Low/no connection toast and warning state: Low/no connection toast and warning
+  state'
+sheet: 13_Jira_Current_Delta
+module: Connectivity UI
+action: Low/no connection toast and warning state
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Open Home Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Disconnect network.
+  action: tap_selector
+  text: Disconnect network.
+  delay: 1.0
+- desc: Observe warning/toast.
+  action: tap_selector
+  text: Observe warning/toast.
+  delay: 1.0
+- desc: Reconnect stable network.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: No-internet/low-connection UI appears appropriately.
+  assert_text: Connectivity UI
+- desc: Warning disappears after stable recovery.
+  assert_text: Connectivity UI
+- desc: No old manual offline switching bar is required.
+  assert_text: Connectivity UI
+source_tickets: RN-5558,RN-5516
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5558
+
+  https://gorilladesk1.atlassian.net/browse/RN-5516'
+risk: Schema / Comment Regression
+notes: ''

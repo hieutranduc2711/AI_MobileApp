@@ -1,0 +1,5 @@
+name: offline-module-auth_permissions
+description: Cross-sheet comprehensive offline suite for Module [auth_permissions]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_permissions/EDGE-GAP-005.yaml

@@ -1,0 +1,33 @@
+id: TC_SMS_CORE_17
+title: Double-tap sent message copies
+feature: sms
+priority: High
+description: Double-tapping a sent message shows the copy toast.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_17][DOC+][MessageList] User double-taps sent message
+  and sees copy toast when message exists'
+steps:
+- desc: Tap the SMS button at the top-right (next to the bell).
+  action: tap_selector
+  text: Tap the SMS button at the top-
+  delay: 0.8
+- desc: Tap the first conversation.
+  action: tap_selector
+  text: Tap the first conversation.
+  delay: 0.8
+- desc: Chạm vào mục [Copied To Clipboard.]
+  action: tap_selector
+  text: Copied To Clipboard.
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the SMS button
+  at the top-right (next to the bell). (2) Tap the first conversation. (3) Double-tap
+  the latest sent message; a "Copied To Clipboard." toast may appear. If there is
+  no SMS button, conversation or sent message, stop and report the test as skipped:
+  no sent message.'

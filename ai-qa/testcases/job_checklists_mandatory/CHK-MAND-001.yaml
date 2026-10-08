@@ -1,0 +1,18 @@
+id: CHK-MAND-001
+title: Chặn hoàn thành Job nếu chưa hoàn tất Checklist bắt buộc
+feature: job_checklists_mandatory
+priority: Normal
+description: 'Kiểm thử danh mục kiểm tra bắt buộc trước nghiệm thu #1'
+preconditions: Job Details
+steps:
+- desc: Mở Job có checklist bắt buộc
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+- desc: Bấm nút Complete Job ngay lập tức
+  action: tap_selector
+  content_desc: Complete Job
+  delay: 1.0
+expected:
+- assert_text: Incomplete Checklist
+  desc: Cảnh báo phải hoàn thành danh mục kiểm tra trước khi xong việc

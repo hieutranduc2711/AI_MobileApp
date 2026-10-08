@@ -1,0 +1,25 @@
+id: TC_HOME_059
+title: Calendar View sheet opens
+feature: home
+priority: High
+description: The calendar view button opens the Calendar View sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_059] agenda mode control opens modal'
+steps:
+- desc: Tap it.
+  action: tap_selector
+  text: Tap it.
+  delay: 0.8
+- desc: 'Close it by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: Calendar View
+  desc: Hiển thị 'Calendar View' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. The calendar view button
+  at the left of the date bar should be displayed. (1) Tap it. After step 1, the "Calendar
+  View" sheet should be displayed. (2) Close it by tapping the handle at its top (id:
+  indicator).'

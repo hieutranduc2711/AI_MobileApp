@@ -1,0 +1,6 @@
+name: offline-module-document_field_asset
+description: Cross-sheet comprehensive offline suite for Module [document_field_asset]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/document_field_asset/JDELTA-034.yaml
+- testcases/offline_sync/13_jira_current_delta/document_field_asset/JDELTA-035.yaml

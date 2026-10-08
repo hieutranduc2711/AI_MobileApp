@@ -1,0 +1,19 @@
+id: INV-TRK-001
+title: Xem danh sách tồn kho trên xe tải (Truck Inventory List)
+feature: inventory_truck_stock
+priority: Normal
+description: 'Kiểm thử tính năng quản lý vật tư kho xe tải trường hợp #1'
+preconditions: Thiết bị đang kết nối cơ sở dữ liệu nội bộ
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục Inventory
+  action: tap_selector
+  text: Inventory
+  delay: 1.0
+expected:
+- assert_text: Truck Stock
+  desc: Danh mục vật tư trên xe hiển thị chính xác

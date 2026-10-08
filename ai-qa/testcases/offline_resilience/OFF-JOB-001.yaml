@@ -1,0 +1,22 @@
+id: OFF-JOB-001
+title: Hoàn thành công việc (Complete Job) khi ở ngoài vùng phủ sóng
+feature: offline_resilience
+priority: Critical
+description: Kỹ thuật viên đổi trạng thái sang Complete ở hầm nhà không có sóng
+preconditions: Job Details
+steps:
+- desc: Ngắt kết nối mạng
+  action: set_network
+  value: 'false'
+  delay: 1.0
+- desc: Đổi trạng thái Job sang Complete
+  action: tap_selector
+  text: Complete
+  delay: 1.5
+- desc: Khôi phục mạng để đồng bộ
+  action: set_network
+  value: 'true'
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Trạng thái công việc đồng bộ thành công

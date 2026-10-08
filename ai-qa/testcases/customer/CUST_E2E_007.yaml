@@ -1,0 +1,34 @@
+id: CUST_E2E_007
+title: Customer search accepts typing
+feature: customer
+priority: High
+description: The customer search field accepts typed text.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_007] customer list: search input accepts typing'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chạm vào mục [Search customers...]
+  action: tap_selector
+  text: Search customers...
+  delay: 1.0
+- desc: Clear the search field.
+  action: tap_selector
+  text: Clear the search field.
+  delay: 0.8
+expected:
+- assert_text: the search field
+  desc: the search field
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap "Search customers..." and type "a". After step 2,
+  the search field should show "a". (3) Clear the search field.

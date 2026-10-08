@@ -1,0 +1,15 @@
+id: TC_07
+title: Area fetch error dialog
+feature: device
+priority: High
+description: An error dialog appears when areas fail to load.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map).
+detox_reference: '[TC_07][XLSX][DeviceTypeError] Error dialog appears on area fetch
+  failure'
+steps: []
+expected: []
+goal_summary: ''

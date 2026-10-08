@@ -1,0 +1,10 @@
+name: offline-04-calendar
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [calendar]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02527.yaml
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02528.yaml
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02529.yaml
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02530.yaml
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02531.yaml
+- testcases/offline_sync/04_server_to_local_offline/calendar/SYNC-02532.yaml

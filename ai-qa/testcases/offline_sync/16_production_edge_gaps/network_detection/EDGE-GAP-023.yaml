@@ -1,0 +1,46 @@
+id: EDGE-GAP-023
+title: 'Captive Portal Wi-Fi Detection Without Data Corruption: Kết nối vào Wi-Fi
+  công cộng có Captive Portal (trả về HTML login thay vì JSON) → Nhận diện No-Intern'
+sheet: 16_Production_Edge_Gaps
+module: Network / Detection
+action: Captive Portal Wi-Fi Detection Without Data Corruption
+priority: P0
+flow_phase: Network Interface Handover
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Connectivity Listener
+preconditions: Thiết bị kết nối Wi-Fi khách sạn/quán café chưa authenticate (mọi request
+  HTTP bị redirect 302 về trang đăng nhập HTML).
+test_data: 'Captive portal redirect (HTTP 302 to hotel-login.html; Content-Type: text/html).'
+steps:
+- desc: Có 3 mutations pending offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Kết nối vào mạng Wi-Fi Captive Portal.
+  action: tap_selector
+  text: Kết nối vào mạng Wi-Fi Captive
+  delay: 1.0
+- desc: Kiểm tra trạng thái Network State của GD Mobile.
+  action: tap_selector
+  text: Kiểm tra trạng thái Network St
+  delay: 1.0
+- desc: Kiểm tra phản hồi của Sync Engine.
+  action: tap_selector
+  text: Kiểm tra phản hồi của Sync Eng
+  delay: 1.0
+expected:
+- desc: 'Cơ chế ping endpoint kiểm tra internet thực tế (ví dụ: Google 204 generate_204)
+    nhận diện đây là Captive Portal / Chưa có internet thực sự.'
+  assert_text: Network / Detection
+- desc: App duy trì trạng thái 'Offline / Limited Connectivity'.
+  assert_text: Offline / Limited Connectivity
+- desc: 'Sync Engine KHÔNG gửi request API lên server để nhận về HTML rồi parse JSON
+    lỗi (`SyntaxError: Unexpected token < in JSON`).'
+  assert_text: Network / Detection
+- desc: Dữ liệu outbox được giữ nguyên trạng thái chờ mạng thật.
+  assert_text: Network / Detection
+source_tickets: RN-5477 / Network-Detection
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: JSON Parse Crash / Corrupted Cache
+notes: Rất nhiều app bị crash hoặc xóa trắng cache do parse nhầm HTML của trang Captive
+  Portal.

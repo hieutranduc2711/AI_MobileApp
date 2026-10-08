@@ -1,0 +1,32 @@
+id: TC_02
+title: Add location opens the form
+feature: location
+priority: High
+description: The plus button on Service Locations opens the Add Location form with
+  Save.
+preconditions: Logged in with the DEFAULT E2E account (can search and edit customers,
+  sees the customer “Invoice” section) on the Home screen (online). The first customer
+  in “Customers” has at least one service location (TC_05 reports skipped otherwise).
+  TC_03/TC_04 do not create data (Save stays blocked).
+detox_reference: '[TC_02][DOC+][LocationFormEntry] User taps add location and sees
+  location form'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Add Location
+  desc: Hiển thị 'Add Location' trên màn hình
+- assert_text: Save
+  desc: Hiển thị 'Save' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right, then the first customer. (2) Tap "Service Locations", then
+  the plus icon at the top-right. After step 2, the "Add Location" screen with the
+  "Save" button should be displayed.

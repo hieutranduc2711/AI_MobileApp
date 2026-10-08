@@ -1,0 +1,5 @@
+name: offline-13-customer
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [customer] (1
+  cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/customer/JDELTA-045.yaml

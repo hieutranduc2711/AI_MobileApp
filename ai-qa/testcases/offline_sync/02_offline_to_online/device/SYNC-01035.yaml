@@ -1,0 +1,50 @@
+id: SYNC-01035
+title: 'Edit Device Area: Edit Device Area: Offline save → network bật/tắt liên tục'
+sheet: 02_Offline_to_Online
+module: Device
+action: Edit Device Area
+priority: P1
+flow_phase: F2O-03 Flapping reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Devices > Areas > Edit
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Edit Device Area.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật/tắt network 5–10 lần trong 30–60 giây.
+  action: tap_selector
+  text: Bật/tắt network 5–10 lần trong
+  delay: 1.0
+- desc: Không Save lại.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Cuối cùng giữ Online ổn định.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ queue idle.
+  action: tap_selector
+  text: Chờ queue idle.
+  delay: 1.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Không reconnect storm tạo duplicate send.
+  assert_text: Device
+- desc: Action chỉ có một logical effect.
+  assert_text: Device
+- desc: Queue không kẹt sau flapping.
+  assert_text: Device
+source_tickets: RN-5591, RN-5607
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
+
+  https://gorilladesk1.atlassian.net/browse/RN-5607'
+risk: Reconnect storm
+notes: ''

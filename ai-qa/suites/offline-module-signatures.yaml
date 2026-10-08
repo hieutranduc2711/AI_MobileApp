@@ -1,0 +1,8 @@
+name: offline-module-signatures
+description: Cross-sheet comprehensive offline suite for Module [signatures] (5 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/signatures/DEV-UI-136.yaml
+- testcases/offline_sync/10_dev_checklist_167/signatures/DEV-UI-137.yaml
+- testcases/offline_sync/10_dev_checklist_167/signatures/DEV-UI-138.yaml
+- testcases/offline_sync/10_dev_checklist_167/signatures/DEV-UI-139.yaml
+- testcases/offline_sync/10_dev_checklist_167/signatures/DEV-UI-140.yaml

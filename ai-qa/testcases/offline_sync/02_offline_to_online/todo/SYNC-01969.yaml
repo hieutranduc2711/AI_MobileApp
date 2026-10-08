@@ -1,0 +1,60 @@
+id: SYNC-01969
+title: 'Change Todo status: Change Todo status: Offline save → reconnect mạng tốt'
+sheet: 02_Offline_to_Online
+module: Todo
+action: Change Todo status
+priority: P0
+flow_phase: F2O-01 Normal reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Todo > Status
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Change Todo status.
+test_data: Valid representative entity/action
+steps:
+- desc: Mở app khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Change Todo status.
+  action: tap_selector
+  text: Change Todo status
+  delay: 1.0
+- desc: Xác nhận local result/pending.
+  action: tap_selector
+  text: Xác nhận local result/pending.
+  delay: 1.0
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Không tạo thêm action.
+  action: tap_selector
+  text: Không tạo thêm action.
+  delay: 1.0
+- desc: Chờ sync worker + BE + PowerSync.
+  action: tap_selector
+  text: Chờ sync worker + BE + PowerSy
+  delay: 1.0
+- desc: Refresh/reopen và đối chiếu server.
+  action: tap_selector
+  text: Refresh/reopen và đối chiếu se
+  delay: 1.0
+expected:
+- desc: Pending mutation được push đúng action/account/branch.
+  assert_text: Todo
+- desc: Backend xử lý đúng business result.
+  assert_text: Todo
+- desc: Authoritative downlink reconcile local.
+  assert_text: Todo
+- desc: Không duplicate, không snap-back.
+  assert_text: Todo
+- desc: Pending kết thúc đúng trạng thái synced.
+  assert_text: Todo
+source_tickets: RN-5569, RN-5540, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
+
+  https://gorilladesk1.atlassian.net/browse/RN-5540
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Core upload/reconcile
+notes: ''

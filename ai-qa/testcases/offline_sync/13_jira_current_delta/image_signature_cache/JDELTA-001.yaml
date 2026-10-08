@@ -1,0 +1,47 @@
+id: JDELTA-001
+title: 'Cache image/signature offline without base64 or fast-image: Cache image/signature
+  offline without base64 or fast-image'
+sheet: 13_Jira_Current_Delta
+module: Image/Signature Cache
+action: Cache image/signature offline without base64 or fast-image
+priority: P2
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Prepare representative work-order, invoice, estimate, document and unit signatures/images.
+  action: tap_selector
+  text: Prepare representative work-or
+  delay: 1.0
+- desc: Run the target cache implementation without base64 and without fast-image
+    package.
+  action: tap_selector
+  text: Run the target cache implement
+  delay: 1.0
+- desc: Download/cache assets Online, then switch Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reopen app and reopen each cached image/signature.
+  action: tap_selector
+  text: Reopen app and reopen each cac
+  delay: 1.0
+- desc: Inspect file/cache persistence, memory and storage behavior.
+  action: tap_selector
+  text: Inspect file/cache persistence
+  delay: 1.0
+expected:
+- desc: Offline render works from the new cache solution.
+  assert_text: Image/Signature Cache
+- desc: No base64/fast-image dependency is required.
+  assert_text: Image/Signature Cache
+- desc: No missing/blank signature after remount.
+  assert_text: Image/Signature Cache
+- desc: No cross-account cached asset leak.
+  assert_text: Image/Signature Cache
+source_tickets: RN-5680
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
+risk: Schema / Comment Regression
+notes: ''

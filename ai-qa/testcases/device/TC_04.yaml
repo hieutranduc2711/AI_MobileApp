@@ -1,0 +1,41 @@
+id: TC_04
+title: Plus opens add type form
+feature: device
+priority: High
+description: The plus on the device type list opens the add form.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map).
+detox_reference: '[TC_04][XLSX][AddDeviceType] User taps add button and navigates
+  to manage device types'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: 'the add form with its name field (id: de'
+  desc: 'the add form with its name field (id: device-name-input)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", and scroll to
+  "Device" (id: devices-container). (2) Tap the plus on "Device" and choose "Add Device".
+  (3) Tap the plus icon at the top-right. After step 3, the add form with its name
+  field (id: device-name-input) should be displayed. (4) Tap the back arrow at the
+  top-left. If "Device" is missing, stop and report the test as skipped: device addon
+  off.'

@@ -1,0 +1,37 @@
+id: BUGREG-056
+title: 'Display modal Cannot read property ''customer_name'' of null: Display modal
+  Cannot read property ''customer_name'' of null'
+sheet: 11_Bug_Regression_91
+module: Job Unit
+action: Display modal Cannot read property 'customer_name' of null
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: create new unit & assign for job
+  action: tap_selector
+  text: create new unit & assign for j
+  delay: 1.0
+- desc: Edit job unit
+  action: tap_selector
+  text: Edit job unit
+  delay: 1.0
+- desc: Add client signature for job unit & save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+expected:
+- desc: 'Expect: Must add signature successfully on local'
+  assert_text: Job Unit
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

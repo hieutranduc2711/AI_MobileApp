@@ -1,0 +1,38 @@
+id: CUSTOMER-fullCustomerFlow-03
+title: Jobs Show All opens All Job
+feature: customer
+priority: High
+description: Show All under Jobs opens All Job with its status tabs.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'customer detail: show all jobs navigates to AllJob screen'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Jobs]
+  action: tap_selector
+  text: Jobs
+  delay: 1.0
+expected:
+- assert_text: All Job
+  desc: Hiển thị 'All Job' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Scroll to the "Jobs" section
+  and tap its "Show All". After step 3, the "All Job" screen should show a plus icon
+  at the top-right and the "Active", "Complete" and "Canceled" tabs. If there is no
+  customer or no "Show All" under "Jobs", stop and report the test as skipped: not
+  enough jobs.'

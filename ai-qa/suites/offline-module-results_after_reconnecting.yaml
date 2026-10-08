@@ -1,0 +1,11 @@
+name: offline-module-results_after_reconnecting
+description: Cross-sheet comprehensive offline suite for Module [results_after_reconnecting]
+  (7 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-151.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-152.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-153.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-154.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-155.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-156.yaml
+- testcases/offline_sync/10_dev_checklist_167/results_after_reconnecting/DEV-UI-157.yaml

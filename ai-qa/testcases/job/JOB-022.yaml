@@ -1,0 +1,33 @@
+id: JOB-022
+title: Check-in dialog close
+feature: job
+priority: High
+description: The check-in dialog opens and closes with its close button.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-022] User opens check-in dialog and closes it with close button'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Check In]
+  action: tap_selector
+  text: Check In
+  delay: 1.0
+- desc: Chạm vào mục [Check In]
+  action: tap_selector
+  text: Check In
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap "Check
+  In" in the job header. (3) If the check-in dialog opens, close it with its close
+  button. If there is no "Check In" button, stop and report the test as skipped: check-in
+  not available.'

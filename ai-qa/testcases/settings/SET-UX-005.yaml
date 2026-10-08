@@ -1,0 +1,29 @@
+id: SET-UX-005
+title: Biometric row stays actionable
+feature: settings
+priority: High
+description: The biometric login row is still displayed after being tapped twice.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-UX-001 needs the “System Settings” section on Settings (company setting editSetting
+  on; typically a super admin per docs/features/settings.md) — Detox has no skip for
+  it; SET-UX-004 skips rows that are missing. SET-UX-005 needs a device with biometrics
+  (the “Log In with …” row), otherwise it reports skipped.
+detox_reference: '[SET-UX-005] [Settings][Main][P1] biometric row remains actionable
+  after repeated taps'
+steps:
+- desc: Chạm vào mục [Log In with …]
+  action: tap_selector
+  text: Log In with …
+  delay: 1.0
+- desc: Chạm vào mục [Log In with …]
+  action: tap_selector
+  text: Log In with …
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Tap the "Log In with …" row. (2) Tap the same row position
+  again. At the end, the "Log In with …" row should still be displayed. If there is
+  no "Log In with …" row, stop and report the test as skipped: biometric option not
+  available on this account/device.'

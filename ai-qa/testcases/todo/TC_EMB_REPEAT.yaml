@@ -1,0 +1,31 @@
+id: TC_EMB_REPEAT
+title: Tap todo repeat pull control
+feature: todo
+priority: High
+description: The todo repeat pull control can be tapped when shown.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_EDIT_LINE
+  edits the first todo; TC_TEMPLATE_APPLY applies the first template to the job; TC_TEMPLATE_RENAME
+  renames the first template.
+detox_reference: '[Todo][TC_EMB_REPEAT][Embedded] User taps repeat pull control when
+  the job allows repeat and todos exist'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap the repeat pull button left of the three-dots button on "Todo
+  List". If there is no todo or no repeat pull button, stop and report the test as
+  skipped: repeat not available.'

@@ -1,0 +1,40 @@
+id: TC_08
+title: Search on Select Location
+feature: location
+priority: High
+description: Typing a search on Select Location keeps the location list area displayed.
+preconditions: Logged in with the DEFAULT E2E account (can search and edit customers,
+  sees the customer “Invoice” section) on the Home screen (online). The first customer
+  in “Customers” has at least one service location (TC_05 reports skipped otherwise).
+  TC_03/TC_04 do not create data (Save stays blocked).
+detox_reference: '[TC_08][DOC+][SelectLocationSearch] User searches location and list
+  container remains available'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'main' vào ô [input]
+  action: type_text
+  value: main
+  delay: 0.8
+expected:
+- assert_text: Select Location
+  desc: Hiển thị 'Select Location' trên màn hình
+- assert_text: 'the location list area (id: location-lis'
+  desc: 'the location list area (id: location-list)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right, then the first customer. (2) Scroll to the "Invoice" section
+  and tap its plus icon. After step 2, the "Select Location" screen should be displayed.
+  (3) Type "main" in "Search Locations". After step 3, the location list area (id:
+  location-list) should still be displayed (it may be empty).'

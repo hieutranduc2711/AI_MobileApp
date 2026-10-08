@@ -1,0 +1,31 @@
+id: CHEM-EPA-003
+title: Ghi nhận điều kiện thời tiết ngoài trời (Weather/Wind)
+feature: chemical_epa_tracking
+priority: High
+description: 'Tuân thủ luật EPA: ghi nhận tốc độ gió, hướng gió và nhiệt độ khi phun
+  ngoài trời'
+preconditions: Job đang ở tab Treatment Details
+steps:
+- desc: Mở mục Weather Conditions
+  action: tap_selector
+  text: Weather Conditions
+  delay: 0.8
+- desc: Nhập nhiệt độ (Temperature)
+  action: type_text
+  value: 78 F
+  delay: 0.5
+- desc: Nhập tốc độ gió (Wind Speed)
+  action: type_text
+  value: 3 mph
+  delay: 0.5
+- desc: Chọn hướng gió (Wind Direction)
+  action: tap_selector
+  text: SE
+  delay: 0.5
+- desc: Lưu điều kiện thời tiết
+  action: tap_selector
+  content_desc: Done
+  delay: 1.0
+expected:
+- assert_text: 78 F
+  desc: Thông số nhiệt độ được lưu trên biên bản nghiệm thu

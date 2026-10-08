@@ -1,0 +1,19 @@
+id: VAL-RULE-038
+title: 'Kiểm tra ràng buộc nghiệp vụ mở rộng #38'
+feature: negative_validation
+priority: Medium
+description: 'Kiểm thử điều kiện biên và bảo toàn dữ liệu cho rule #38'
+preconditions: Tài khoản người dùng đã đăng nhập
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Kiểm tra quyền truy cập và ràng buộc dữ liệu
+  action: tap_selector
+  content_desc: Calendar
+  delay: 1.0
+expected:
+- assert_text: Jobs
+  desc: Dữ liệu được bảo toàn

@@ -1,0 +1,33 @@
+id: BUGREG-007
+title: 'Change recurring of todo list not update UI (Online/Offline).: Change recurring
+  of todo list not update UI (Online/Offline).'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Change recurring of todo list not update UI (Online/Offline).
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail /All Todo
+  action: tap_selector
+  text: Go to Job detail /All Todo
+  delay: 1.0
+- desc: Change recurring of todo list
+  action: tap_selector
+  text: Change recurring of todo list
+  delay: 1.0
+- desc: Show incorrect status of icon recurring
+  action: tap_selector
+  text: 'Show incorrect status of icon '
+  delay: 1.0
+expected:
+- desc: Should be show correct status of icon recurring
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

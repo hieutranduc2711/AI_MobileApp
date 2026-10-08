@@ -1,0 +1,21 @@
+name: offline-05-document
+description: Offline Suite for Sheet [05_cross_cutting] > Module [document] (18 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02871.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02870.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02869.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02875.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02874.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02872.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02868.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02867.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02873.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02881.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02880.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02879.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02878.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02877.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02876.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02884.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02883.yaml
+- testcases/offline_sync/05_cross_cutting/document/SYNC-02882.yaml

@@ -1,0 +1,45 @@
+id: BUGREG-070
+title: 'Can''t save invoice with added client & tech signature in offline: Can''t
+  save invoice with added client & tech signature in offline'
+sheet: 11_Bug_Regression_91
+module: Invoice
+action: Can't save invoice with added client & tech signature in offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Press to add new Invoice
+  action: tap_selector
+  text: Press to add new Invoice
+  delay: 1.0
+- desc: Edit invoice
+  action: tap_selector
+  text: Edit invoice
+  delay: 1.0
+- desc: Add client & tech signature for invoice
+  action: tap_selector
+  text: Add client & tech signature fo
+  delay: 1.0
+- desc: Press Save invoice
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Button save disable & can't auto back to job detail after Save
+  action: back
+  delay: 1.0
+expected:
+- desc: Can save invoice with added client & tech signature. Show invoice added in
+    job detail
+  assert_text: Invoice
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

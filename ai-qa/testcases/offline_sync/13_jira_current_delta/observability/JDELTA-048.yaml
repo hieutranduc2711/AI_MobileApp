@@ -1,0 +1,30 @@
+id: JDELTA-048
+title: 'API error log includes endpoint/method/status/idempotency/retry/network context:
+  API error log includes endpoint/method/status/idempotency/retry/network context'
+sheet: 13_Jira_Current_Delta
+module: Observability
+action: API error log includes endpoint/method/status/idempotency/retry/network context
+priority: P2
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Force sync/API failures across 4xx/5xx/timeout.
+  action: tap_selector
+  text: Force sync/API failures across
+  delay: 1.0
+- desc: Inspect error log schema/output.
+  action: tap_selector
+  text: Inspect error log schema/outpu
+  delay: 1.0
+expected:
+- desc: Diagnostic fields required by RN-5661 are populated where available.
+  assert_text: Observability
+- desc: Logs are isolated by account/branch and do not themselves block sync.
+  assert_text: Observability
+source_tickets: RN-5661
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5661
+risk: Schema / Comment Regression
+notes: ''

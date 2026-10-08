@@ -1,0 +1,9 @@
+name: "Regression Test Suite"
+description: "Bộ kiểm thử hồi quy ngăn chặn lỗi cũ tái diễn"
+testcases:
+  - "testcases/scheduling/JOB-CREATE-001.yaml"
+  - "testcases/scheduling/ESTIMATE-CREATE-001.yaml"
+  - "testcases/customers/CUSTOMER-CREATE-001.yaml"
+  - "testcases/customers/CUSTOMER-CREATE-002.yaml"
+  - "testcases/customers/CUSTOMER-EDIT-001.yaml"
+  - "testcases/offline/OFFLINE-SYNC-001.yaml"

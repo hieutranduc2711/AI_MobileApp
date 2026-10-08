@@ -1,0 +1,20 @@
+id: CF-SCHEMA-006
+title: 'Trường dữ liệu tùy chỉnh Custom Field nghiệp vụ #6'
+feature: custom_fields_schema
+priority: Normal
+description: 'Kiểm thử khả năng lưu trữ và hiển thị trường dữ liệu động của khách
+  hàng ca #6'
+preconditions: Hồ sơ khách hàng đang mở
+steps:
+- desc: Mở tab Custom Fields
+  action: tap_selector
+  text: Custom Fields
+  delay: 0.8
+- desc: 'Nhập dữ liệu trường #6'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Custom Fields
+  desc: Trường dữ liệu tùy biến lưu thành công

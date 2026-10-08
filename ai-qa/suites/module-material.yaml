@@ -1,0 +1,33 @@
+name: Module Material Suite
+description: Chạy toàn bộ 30 test cases cho phân hệ material
+tests:
+- M_AM_01
+- M_AM_02
+- M_AM_03
+- M_AM_04
+- M_AM_05
+- M_AM_06
+- M_MF_01
+- M_MF_02
+- M_MF_03
+- M_MF_04
+- M_MF_05
+- M_MF_06
+- M_MML_01
+- M_MML_02
+- M_MML_03
+- M_MML_04
+- M_MML_05
+- M_MUF_01
+- M_MUF_02
+- M_MUF_03
+- M_MUF_04
+- M_MUF_05
+- M_MUF_06
+- M_M_01
+- M_M_02
+- M_M_03
+- M_M_04
+- M_M_05
+- M_M_06
+- M_M_07

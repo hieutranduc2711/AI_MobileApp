@@ -1,0 +1,41 @@
+id: SYNC-03315
+title: 'Handle query customer job list: RN-5621 regression'
+sheet: 05_Cross_Cutting
+module: Technical Coverage
+action: Handle query customer job list
+priority: P2
+flow_phase: Architecture/Infra
+direction: CROSS-CUTTING
+app_path: Technical behavior related to Handle query customer job list
+preconditions: Target implementation/status available.
+test_data: Handle query customer job list
+steps:
+- desc: Exercise implementation related to Handle query customer job list.
+  action: tap_selector
+  text: Exercise implementation relate
+  delay: 1.0
+- desc: Run representative online path.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Run offline path if applicable.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect/restart.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Compare Offline Mode invariants.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
+  assert_text: Technical Coverage
+- desc: If not implemented due status, mark Blocked/N/A.
+  assert_text: Technical Coverage
+source_tickets: RN-5621
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5621
+risk: Architecture coverage
+notes: Carried from V2 OFFV2-03259

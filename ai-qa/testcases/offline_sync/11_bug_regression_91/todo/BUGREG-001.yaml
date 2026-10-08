@@ -1,0 +1,32 @@
+id: BUGREG-001
+title: 'Add new todo don''t update todo list in Job detail/Edit list (Online/Offline):
+  Add new todo don''t update todo list in Job detail/Edit list (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Add new todo don't update todo list in Job detail/Edit list (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail/ Edit list
+  action: tap_selector
+  text: Go to Job detail/ Edit list
+  delay: 1.0
+- desc: Add new Todo
+  action: tap_selector
+  text: Add new Todo
+  delay: 1.0
+- desc: Back to job detail/Edit list. Todo list don't update
+  action: back
+  delay: 1.0
+expected:
+- desc: Todo list should be update with new todo
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

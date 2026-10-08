@@ -1,0 +1,35 @@
+id: TC_SMS_CORE_34
+title: Mark one conversation as unread
+feature: sms
+priority: High
+description: A read conversation can be marked as unread.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_34][DOC+][ListMark] User marks one conversation as
+  unread from read tab'
+steps:
+- desc: Tap the SMS button at the top-right (next to the bell).
+  action: tap_selector
+  text: Tap the SMS button at the top-
+  delay: 0.8
+- desc: Chạm vào mục [Read]
+  action: tap_selector
+  text: Read
+  delay: 1.0
+- desc: Chạm vào mục [Mark as Unread]
+  action: tap_selector
+  text: Mark as Unread
+  delay: 1.0
+expected:
+- assert_text: the SMS list
+  desc: the SMS list
+- assert_text: the SMS list
+  desc: the SMS list
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the SMS button
+  at the top-right (next to the bell). (2) Tap "Read". After step 2, the SMS list
+  should be displayed. (3) Tick the first conversation''s checkbox and tap "Mark as
+  Unread". After step 3, the SMS list should be displayed. If there is no SMS button
+  or no checkbox, stop and report the test as skipped: no read conversation.'

@@ -1,0 +1,10 @@
+name: offline-04-estimate
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [estimate]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02593.yaml
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02594.yaml
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02595.yaml
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02596.yaml
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02597.yaml
+- testcases/offline_sync/04_server_to_local_offline/estimate/SYNC-02598.yaml

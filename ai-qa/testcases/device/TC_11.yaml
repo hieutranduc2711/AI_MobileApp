@@ -1,0 +1,34 @@
+id: TC_11
+title: Open Device Map
+feature: device
+priority: High
+description: The Map shortcut opens the Device Map.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map). TC_02 needs the Detox env flag E2E_TEST_MODE=true (tester precondition
+  only).
+detox_reference: '[TC_11][XLSX][DeviceMap] User can navigate to device map'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Map]
+  action: tap_selector
+  text: Map
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Device Map
+  desc: Hiển thị 'Device Map' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", and scroll to
+  "Device" (id: devices-container). (2) Tap "Map" on the "Device" section header.
+  After step 2, the "Device Map" screen should be displayed. (3) Tap the back arrow
+  at the top-left. If "Device" is missing, stop and report the test as skipped: device
+  addon off.'

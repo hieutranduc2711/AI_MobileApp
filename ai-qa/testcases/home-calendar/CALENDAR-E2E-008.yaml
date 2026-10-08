@@ -1,0 +1,21 @@
+id: CALENDAR-E2E-008
+title: Date sheet Today applies
+feature: home-calendar
+priority: High
+description: The date sheet shortcut Today closes the sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-008: date picker Today applies and modal closes'
+steps:
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+expected:
+- assert_text: 'the Home top bar (id: home-bar)'
+  desc: 'the Home top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the date text
+  in the middle of the date bar, then "Today". After step 1, the Home top bar (id:
+  home-bar) should be displayed. If the date sheet does not open, stop and report
+  the test as skipped: date sheet not available.'

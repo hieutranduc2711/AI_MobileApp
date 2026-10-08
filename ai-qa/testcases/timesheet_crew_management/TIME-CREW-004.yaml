@@ -1,0 +1,26 @@
+id: TIME-CREW-004
+title: Phân bổ nhiều kỹ thuật viên vào 1 Job (Multi-tech assignment)
+feature: timesheet_crew_management
+priority: Normal
+description: 'Xác thực nghiệp vụ quản lý nhân sự và chấm công KTV #4'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở chi tiết Job
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+- desc: Bấm chọn Technicians
+  action: tap_selector
+  text: Assigned Techs
+  delay: 0.8
+- desc: Chọn Tech 1 và Tech 2
+  action: tap_selector
+  text: Minh Tri
+  delay: 0.5
+- desc: Lưu phân bổ
+  action: tap_selector
+  content_desc: Save
+  delay: 1.0
+expected:
+- assert_text: Assigned Techs
+  desc: Cả hai kỹ thuật viên đều thấy lịch làm việc

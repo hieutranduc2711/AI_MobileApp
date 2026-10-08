@@ -1,0 +1,29 @@
+id: JDELTA-017
+title: 'Job length/duration live sync: Job length/duration live sync'
+sheet: 13_Jira_Current_Delta
+module: Job Schema
+action: Job length/duration live sync
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Change Job duration/length from web and verify mobile down-sync.
+  action: tap_selector
+  text: Change Job duration/length fro
+  delay: 1.0
+- desc: Change duration on mobile Offline and reconnect.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Duration/length remains correct in both directions.
+  assert_text: Job Schema
+- desc: No stale calendar duration.
+  assert_text: Job Schema
+source_tickets: RN-5518
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5518
+risk: Schema / Comment Regression
+notes: ''

@@ -1,0 +1,23 @@
+id: MAP_E2E_006
+title: Tap map location button
+feature: map
+priority: High
+description: The map location button can be tapped to start centering on the user.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted. MAP_E2E_001–004 change the saved map event-type filter
+  and layer.
+detox_reference: '[MAP_E2E_006][DOC+][Map] User taps tracking button and starts location
+  centering flow'
+steps:
+- desc: Tap the location button in the bottom-right button column (below the refresh
+    but
+  action: tap_selector
+  text: Tap the location button in the
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the location button in the bottom-right button column (below the refresh button).
+  If the map cannot be shown, stop and report the test as skipped: map view not available.'

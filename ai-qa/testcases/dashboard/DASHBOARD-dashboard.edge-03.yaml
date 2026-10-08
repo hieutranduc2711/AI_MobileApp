@@ -1,0 +1,34 @@
+id: DASHBOARD-dashboard.edge-03
+title: No dashboard entry without permission
+feature: dashboard
+priority: High
+description: Without dashboard permission the menu has no Dashboard and Home stays
+  usable.
+preconditions: 'Cases 01, 02, 04–06: Logged in with the DEFAULT E2E account (non-technician
+  role with dashboard access, so all boards show), app on the Home screen (online).
+  Case 03 needs an account WITHOUT dashboard access (with the default account it reports
+  skipped). TECH-01/TECH-02: logged in with the TECH_PRIME (technician) account instead,
+  app on the Home screen.'
+detox_reference: GIVEN home WHEN dashboard permission missing THEN drawer entry is
+  absent and app stays stable
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chạm vào mục [Dashboard]
+  action: tap_selector
+  text: Dashboard
+  delay: 1.0
+- desc: Close the menu.
+  action: tap_selector
+  text: Close the menu.
+  delay: 0.8
+expected:
+- assert_text: the Home screen with the top-left menu i
+  desc: the Home screen with the top-left menu icon
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon. (2) If "Dashboard" is in the menu, stop and report the test as skipped: dashboard
+  is enabled for this account. (3) Close the menu. After step 3, the Home screen with
+  the top-left menu icon should be displayed.'

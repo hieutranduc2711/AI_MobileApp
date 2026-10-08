@@ -1,0 +1,59 @@
+id: CUST-E2E-001
+tier: 2
+type: E2E_MUTATION
+title: Create New Customer with Real Data and Verify Persistence
+feature: customer
+priority: High
+description: Tạo mới khách hàng hoàn chỉnh với tên độc nhất (Dynamic Nonce), chọn Service Address bắt buộc, lưu dữ liệu và kiểm tra hồ sơ Customer Profile.
+steps:
+  - desc: Chạm vào ô First Name
+    action: tap_selector
+    text: First Name
+    delay: 0.5
+  - desc: Nhập tên First Name độc nhất
+    action: type_text
+    value: "{{DYNAMIC_NONCE}}"
+    delay: 0.5
+  - desc: Chạm vào ô Last Name
+    action: tap_selector
+    text: Last Name
+    delay: 0.5
+  - desc: Nhập họ Last Name
+    action: type_text
+    value: "MasterQA"
+    delay: 0.5
+  - desc: Ẩn bàn phím ảo để lộ trường địa chỉ
+    action: hide_keyboard
+    delay: 0.5
+  - desc: Mở Modal chọn Service Address
+    action: tap_selector
+    text: Service Address
+    delay: 1.2
+  - desc: Chạm vào ô tìm kiếm địa chỉ
+    action: tap_selector
+    text: Search
+    delay: 0.8
+  - desc: Nhập từ khóa tìm địa chỉ 'Miami'
+    action: type_text
+    value: "Miami"
+    delay: 2.0
+  - desc: Chọn địa chỉ gợi ý đầu tiên
+    action: tap_selector
+    text: Miami
+    index: 0
+    delay: 1.0
+  - desc: Bấm nút Save trên Modal địa chỉ
+    action: tap_selector
+    text: Save
+    delay: 1.0
+  - desc: Bấm nút Save New Customer (Hoàn tất tạo khách hàng)
+    action: tap_selector
+    text: Save
+    delay: 3.0
+expected:
+  - assert_text: "{{DYNAMIC_NONCE}}"
+    desc: "Tên khách hàng độc nhất phải hiển thị trên màn hình Profile"
+  - assert_text: "All Locations"
+    desc: "Giao diện đã chuyển từ Form sang Customer Profile Hub"
+  - assert_no_text: "New Customer"
+    desc: "Form New Customer đã đóng hoàn toàn"

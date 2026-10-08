@@ -1,0 +1,32 @@
+id: AUTH-E2E-015
+title: Sign-up step 1 fields visible
+feature: auth
+priority: High
+description: Sign-up step 1 shows the email, password and confirm-password fields
+  with Next and the have-account link.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'signup: should show step 1 fields'
+steps:
+- desc: Chạm vào mục [Get started]
+  action: tap_selector
+  text: Get started
+  delay: 1.0
+expected:
+- assert_text: Email
+  desc: Hiển thị 'Email' trên màn hình
+- assert_text: Password
+  desc: Hiển thị 'Password' trên màn hình
+- assert_text: Confirm Password
+  desc: Hiển thị 'Confirm Password' trên màn hình
+- assert_text: Next
+  desc: Hiển thị 'Next' trên màn hình
+- assert_text: Have an account
+  desc: Hiển thị 'Have an account' trên màn hình
+goal_summary: Open the GorillaDesk app on the Welcome screen. (1) Tap "Get started".
+  After step 1, "Email", "Password", "Confirm Password", "Next" and "Have an account"
+  should be displayed.

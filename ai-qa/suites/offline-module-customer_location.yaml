@@ -1,0 +1,6 @@
+name: offline-module-customer_location
+description: Cross-sheet comprehensive offline suite for Module [customer_location]
+  (2 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer_location/BUGREG-085.yaml
+- testcases/offline_sync/11_bug_regression_91/customer_location/BUGREG-091.yaml

@@ -1,0 +1,22 @@
+id: TC_HOME_066
+title: Tracking button and back
+feature: home
+priority: High
+description: The tracking button can be tapped and the user returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_066] tracking button is tappable and
+  can return Home'
+steps:
+- desc: Tap the time-tracking button on Home, then return to Home. If there is no
+    time-t
+  action: tap_selector
+  text: Tap the time-tracking button o
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the time-tracking
+  button on Home, then return to Home. If there is no time-tracking button, stop and
+  report the test as skipped: tracking not available.'

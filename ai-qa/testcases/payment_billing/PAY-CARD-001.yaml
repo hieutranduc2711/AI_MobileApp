@@ -1,0 +1,18 @@
+id: PAY-CARD-001
+title: Thanh toán thẻ tín dụng qua Stripe
+feature: payment_billing
+priority: Critical
+description: Xử lý thanh toán thẻ ngân hàng trực tuyến an toàn
+preconditions: Màn hình Collect Payment
+steps:
+- desc: Chọn phương thức Credit Card
+  action: tap_selector
+  text: Credit Card
+  delay: 1.0
+- desc: Xác nhận xử lý qua cổng Stripe
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Invoices
+  desc: Giao dịch thẻ thành công và cập nhật số dư $0.00

@@ -1,0 +1,6 @@
+name: offline-module-visible_images
+description: Cross-sheet comprehensive offline suite for Module [visible_images] (2
+  cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/visible_images/JDELTA-036.yaml
+- testcases/offline_sync/13_jira_current_delta/visible_images/JDELTA-037.yaml

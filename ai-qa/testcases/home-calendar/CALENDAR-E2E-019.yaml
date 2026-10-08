@@ -1,0 +1,26 @@
+id: CALENDAR-E2E-019
+title: Add sheet then schedule sheet
+feature: home-calendar
+priority: High
+description: Opening Add then the schedule sheet does not crash Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-019: add modal then schedule tap without crash'
+steps:
+- desc: Chạm vào mục [Add]
+  action: tap_selector
+  text: Add
+  delay: 1.0
+- desc: 'Tap the schedule chip (id: button-schedule); if the schedule list opens,
+    close i'
+  action: tap_selector
+  text: 'Tap the schedule chip (id: but'
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the footer plus;
+  if "Add" opens, close it via the handle at its top (id: indicator). (2) Tap the
+  schedule chip (id: button-schedule); if the schedule list opens, close it the same
+  way. After each of steps 1 and 2, the Home top bar (id: home-bar) should be displayed.'

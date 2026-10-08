@@ -1,0 +1,33 @@
+id: BUGREG-004
+title: 'Update todo status not update progress of list (Online/Offline): Update todo
+  status not update progress of list (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Todo
+action: Update todo status not update progress of list (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Update status of any todo
+  action: tap_selector
+  text: Update status of any todo
+  delay: 1.0
+- desc: Todo progress not update
+  action: tap_selector
+  text: Todo progress not update
+  delay: 1.0
+expected:
+- desc: Should be update status of progress list
+  assert_text: Todo
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

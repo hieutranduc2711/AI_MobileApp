@@ -1,0 +1,32 @@
+id: TC_HOME_063
+title: Date shortcuts Tomorrow and This Week
+feature: home
+priority: High
+description: The date sheet shortcuts Tomorrow and This Week keep Home usable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_063] DatePickerModal shortcuts Tomorrow
+  and This week when WebView calendar'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Chạm vào mục [Tomorrow]
+  action: tap_selector
+  text: Tomorrow
+  delay: 1.0
+- desc: Chạm vào mục [This Week]
+  action: tap_selector
+  text: This Week
+  delay: 1.0
+expected:
+- assert_text: the top-left menu icon and the top bar (
+  desc: 'the top-left menu icon and the top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the date text in the date bar, then "Tomorrow" (or close
+  the sheet via its handle, id: indicator, if missing). (3) Tap the date text again,
+  then "This Week" (or close the sheet). After step 3, the top-left menu icon and
+  the top bar (id: home-bar) should be displayed.'

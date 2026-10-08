@@ -1,0 +1,16 @@
+name: offline-module-sentricon
+description: Cross-sheet comprehensive offline suite for Module [sentricon] (13 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0052.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0053.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0054.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0055.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0056.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0057.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0058.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0059.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0060.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-120.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-121.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-122.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-123.yaml

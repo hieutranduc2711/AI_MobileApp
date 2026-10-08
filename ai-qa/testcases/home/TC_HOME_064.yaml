@@ -1,0 +1,27 @@
+id: TC_HOME_064
+title: Date shortcut Today
+feature: home
+priority: High
+description: The date sheet shortcut Today applies and closes the sheet.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_064] DatePickerModal shortcut Today
+  applies and modal dismisses'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+expected:
+- assert_text: the top-left menu icon and the top bar (
+  desc: 'the top-left menu icon and the top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the date text in the date bar, then "Today" (or close
+  the sheet via its handle, id: indicator, if missing). After step 2, the top-left
+  menu icon and the top bar (id: home-bar) should be displayed.'

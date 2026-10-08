@@ -1,0 +1,38 @@
+id: TC_12
+title: Quest Log tab shows content
+feature: onboarding
+priority: High
+description: The Quest Log tab shows its content (alerts and levels).
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_03, TC_06, TC_12 and TC_13 need a non-trial plan (Detox guard E2E_TRIAL_PLAN;
+  trial plans hide the tabs). The server Getting Started checklist must contain the
+  add-logo, add-customer, add-job, add-invoice and plans-and-pricing items with a
+  Start/Done button.
+detox_reference: '[TC_12][DOC+][QuestLogsContent] User switches to Quest Logs tab
+  and sees content'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Fast Start] trong Drawer Menu
+  action: tap_selector
+  content_desc: Fast Start
+  delay: 1.2
+- desc: Chạm vào mục [Quest Log]
+  action: tap_selector
+  text: Quest Log
+  delay: 1.0
+- desc: Chạm vào mục [Onboarding]
+  action: tap_selector
+  text: Onboarding
+  delay: 1.0
+expected:
+- assert_text: Alerts
+  desc: Hiển thị 'Alerts' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Fast Start" under "Help" (scroll the menu if needed). (2) Tap the "Quest
+  Log" tab. After step 2, the Quest Log content with "Alerts" should be displayed.
+  (3) Tap the "Onboarding" tab. If the "Onboarding" and "Quest Log" tabs are not shown,
+  stop and report the test as skipped: tabs hidden (trial plan).'

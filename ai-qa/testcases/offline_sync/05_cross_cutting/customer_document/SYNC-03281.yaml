@@ -1,0 +1,45 @@
+id: SYNC-03281
+title: 'Edit offline-created doc: Cannot edit before fields pull'
+sheet: 05_Cross_Cutting
+module: Customer Document
+action: Edit offline-created doc
+priority: P0
+flow_phase: Known Limitation
+direction: CROSS-CUTTING
+app_path: GD Mobile > Customer > Documents
+preconditions: Prepare environment/data as described.
+test_data: Cannot edit before fields pull
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create Customer Document.
+  action: tap_selector
+  text: Create Customer Document.
+  delay: 1.0
+- desc: Open immediately.
+  action: tap_selector
+  text: Open immediately.
+  delay: 1.0
+- desc: Try Edit.
+  action: tap_selector
+  text: Try Edit.
+  delay: 1.0
+- desc: Reconnect/pull.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Try Edit again.
+  action: tap_selector
+  text: Try Edit again.
+  delay: 1.0
+expected:
+- desc: Before fields edit blocked safely.
+  assert_text: Customer Document
+- desc: After fields existing doc editable per permission.
+  assert_text: Customer Document
+source_tickets: RN-5624
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5624
+risk: BE limitation
+notes: Carried from V2 OFFV2-03210

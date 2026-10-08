@@ -1,0 +1,32 @@
+id: TC_HOME_041
+title: Drawer Kong AI and back
+feature: home
+priority: High
+description: The Kong AI drawer item opens its screen and back returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_041] drawer → Kong AI → back → Home
+  when visible'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Kong AI] trong Drawer Menu
+  action: tap_selector
+  content_desc: Kong AI
+  delay: 1.2
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Kong AI". (2) Return to Home with the back arrow at the top-left (in
+  Kong AI use its menu to go back to the app). At the end, the Home screen with its
+  top bar (id: home-bar) should be displayed. If "Kong AI" is not in the menu, stop
+  and report the test as skipped: Kong AI not available.'

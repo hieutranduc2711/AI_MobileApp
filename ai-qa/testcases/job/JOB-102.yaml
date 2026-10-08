@@ -1,0 +1,32 @@
+id: JOB-102
+title: Job menu twice
+feature: job
+priority: High
+description: The job menu opens and closes twice; the job detail stays.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar.
+detox_reference: '[JOB-102] Open Job menu twice, dismiss each time, detail remains
+  stable'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the
+  three-dots icon at the top-right of "Job Details", then close the sheet by tapping
+  the handle at its top (id: indicator). (3) Repeat step 2. At the end, "Job Details"
+  should be displayed.'

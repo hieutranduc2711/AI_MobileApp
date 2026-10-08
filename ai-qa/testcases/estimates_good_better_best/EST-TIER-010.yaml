@@ -1,0 +1,19 @@
+id: EST-TIER-010
+title: 'Quy trình báo giá đa tầng và phê duyệt dịch vụ #10'
+feature: estimates_good_better_best
+priority: Normal
+description: 'Kiểm thử kịch bản báo giá nhiều tầng lựa chọn ca #10'
+preconditions: Màn hình Estimates
+steps:
+- desc: Mở danh sách Estimates
+  action: tap_selector
+  text: Estimates
+  delay: 0.8
+- desc: 'Kiểm tra báo giá #10'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Estimates
+  desc: Màn hình báo giá hiển thị đầy đủ

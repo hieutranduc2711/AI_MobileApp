@@ -1,0 +1,10 @@
+name: offline-04-visible_note
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [visible_note]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02671.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02672.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02673.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02674.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02675.yaml
+- testcases/offline_sync/04_server_to_local_offline/visible_note/SYNC-02676.yaml

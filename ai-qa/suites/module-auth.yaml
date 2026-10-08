@@ -1,0 +1,30 @@
+name: Module Auth Suite
+description: Chạy toàn bộ 27 test cases cho phân hệ auth
+tests:
+- AUTH-E2E-001
+- AUTH-E2E-002
+- AUTH-E2E-003
+- AUTH-E2E-004
+- AUTH-E2E-005
+- AUTH-E2E-006
+- AUTH-E2E-007
+- AUTH-E2E-008
+- AUTH-E2E-009
+- AUTH-E2E-010
+- AUTH-E2E-011
+- AUTH-E2E-012
+- AUTH-E2E-013
+- AUTH-E2E-014
+- AUTH-E2E-015
+- AUTH-E2E-016
+- AUTH-E2E-017
+- AUTH-E2E-018
+- AUTH-E2E-019
+- AUTH-E2E-020
+- AUTH-E2E-021
+- AUTH-E2E-022
+- AUTH-E2E-023
+- AUTH-E2E-024
+- AUTH-E2E-025
+- AUTH-E2E-026
+- AUTH-authOfflineIntegration-01

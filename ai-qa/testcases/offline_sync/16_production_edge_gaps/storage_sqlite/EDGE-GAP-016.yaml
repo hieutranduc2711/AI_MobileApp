@@ -1,0 +1,48 @@
+id: EDGE-GAP-016
+title: 'Immediate App Swipe-Kill After Save: User vuốt tắt app từ Recent Apps ngay
+  sau khi bấm ''Save Job'' khi Offline → Mở lại app: Job vẫn nằm n'
+sheet: 16_Production_Edge_Gaps
+module: Storage / SQLite
+action: Immediate App Swipe-Kill After Save
+priority: P0
+flow_phase: OS Process Kill & Crash Recovery
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job Creation > Save
+preconditions: Thiết bị offline hoàn toàn.
+test_data: Full Job payload (Title, Customer, Time, Line Items).
+steps:
+- desc: Nhập thông tin Job mới offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Nhấn nút 'Save Job'.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Trong vòng 0.2 giây ngay khi popup thành công vừa hiện hoặc vừa đóng, lập
+    tức vuốt tắt app từ thanh Recent Apps (Task Switcher).
+  action: tap_selector
+  text: Trong vòng 0.2 giây ngay khi p
+  delay: 1.0
+- desc: Mở lại GD Mobile App.
+  action: tap_selector
+  text: Mở lại GD Mobile App.
+  delay: 1.0
+- desc: Kiểm tra danh sách Job trong ngày và trạng thái Outbox.
+  action: tap_selector
+  text: Kiểm tra danh sách Job trong n
+  delay: 1.0
+expected:
+- desc: Lệnh ghi đã được commit đồng bộ (synchronous SQLite commit) trước khi trả
+    quyền điều khiển về UI.
+  assert_text: Storage / SQLite
+- desc: 'Mở lại app: Job mới tạo xuất hiện đầy đủ trong danh sách cục bộ.'
+  assert_text: Storage / SQLite
+- desc: Biểu tượng pending/outbox hiển thị đúng trên thẻ Job.
+  assert_text: Storage / SQLite
+- desc: Không bị mất dữ liệu do app bị terminate đột ngột.
+  assert_text: Storage / SQLite
+source_tickets: RN-5477 / Persistence
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Data Loss on Exit
+notes: Tránh các thao tác async flush dữ liệu bị trì hoãn sau khi đã đóng màn hình.

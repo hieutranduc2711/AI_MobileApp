@@ -1,0 +1,5 @@
+name: offline-module-timetracker
+description: Cross-sheet comprehensive offline suite for Module [timetracker] (2 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/timetracker/PERF-233.yaml
+- testcases/offline_sync/12_perf_rerender_245/timetracker/PERF-234.yaml

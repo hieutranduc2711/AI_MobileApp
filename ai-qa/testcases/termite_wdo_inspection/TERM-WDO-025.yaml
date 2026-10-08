@@ -1,0 +1,19 @@
+id: TERM-WDO-025
+title: 'Khảo sát mối và cấu trúc gỗ kịch bản #25'
+feature: termite_wdo_inspection
+priority: Normal
+description: 'Kiểm thử quy trình khảo sát mối công trình ca #25'
+preconditions: Job đang mở
+steps:
+- desc: Truy cập mục Kiểm tra Mối
+  action: tap_selector
+  text: Termite Inspection
+  delay: 0.8
+- desc: 'Thực hiện kiểm tra mục #25'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Termite Inspection
+  desc: Màn hình kiểm tra hoạt động ổn định

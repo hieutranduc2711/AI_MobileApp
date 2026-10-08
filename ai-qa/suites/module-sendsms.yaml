@@ -1,0 +1,18 @@
+name: Module Sendsms Suite
+description: Chạy toàn bộ 15 test cases cho phân hệ sendsms
+tests:
+- SENDSMS-sendSmsElements-01
+- SENDSMS-sendSmsElements-02
+- SENDSMS-sendSmsElements-03
+- SENDSMS-sendSmsElements-04
+- SENDSMS-sendSmsElements-05
+- SENDSMS-sendSmsElements-06
+- SENDSMS-sendSmsElements-07
+- SENDSMS-sendSmsElements-08
+- SENDSMS-sendSmsElements-09
+- SENDSMS-sendSmsElements-10
+- SENDSMS-sendSmsElements-11
+- SENDSMS-sendSmsElements-12
+- SENDSMS-sendSmsElements-13
+- SENDSMS-sendSmsElements-14
+- SENDSMS-sendSmsElements-15

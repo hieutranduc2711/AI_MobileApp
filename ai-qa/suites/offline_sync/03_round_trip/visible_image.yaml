@@ -1,0 +1,22 @@
+name: offline-03-visible_image
+description: Offline Suite for Sheet [03_round_trip] > Module [visible_image] (18
+  cases)
+testcases:
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02509.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02510.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02511.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02512.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02513.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02514.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02515.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02516.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02517.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02518.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02519.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02520.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02521.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02522.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02523.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02524.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02525.yaml
+- testcases/offline_sync/03_round_trip/visible_image/SYNC-02526.yaml

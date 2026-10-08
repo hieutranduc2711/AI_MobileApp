@@ -1,0 +1,22 @@
+name: offline-01-location_photo
+description: Offline Suite for Sheet [01_online_to_offline] > Module [location_photo]
+  (18 cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00410.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00411.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00412.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00413.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00414.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00415.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00416.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00417.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00418.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00419.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00420.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00421.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00422.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00423.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00424.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00425.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00426.yaml
+- testcases/offline_sync/01_online_to_offline/location_photo/SYNC-00427.yaml

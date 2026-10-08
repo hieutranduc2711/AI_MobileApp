@@ -1,0 +1,28 @@
+name: offline-05-todo
+description: Offline Suite for Sheet [05_cross_cutting] > Module [todo] (25 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02797.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02796.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02795.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02784.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02783.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02782.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02785.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02781.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02780.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02791.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02790.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02789.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02794.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02793.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02792.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02788.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02787.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02786.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02800.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02799.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02798.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-03276.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02803.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02802.yaml
+- testcases/offline_sync/05_cross_cutting/todo/SYNC-02801.yaml

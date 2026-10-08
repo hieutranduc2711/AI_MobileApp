@@ -1,0 +1,5 @@
+name: offline-16-permissions_camera
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [permissions_camera]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/permissions_camera/EDGE-GAP-039.yaml

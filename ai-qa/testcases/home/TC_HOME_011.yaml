@@ -1,0 +1,23 @@
+id: TC_HOME_011
+title: Agenda mode shows agenda
+feature: home
+priority: High
+description: Agenda mode shows the agenda list or its empty state.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_011] switch to Agenda mode and verify
+  agenda surface'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+expected:
+- assert_text: the agenda list or its empty state
+  desc: the agenda list or its empty state
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and, in "Calendar View", tap "Agenda". After
+  step 1, the agenda list or its empty state should be displayed. If "Agenda" is not
+  offered, stop and report the test as skipped: mode not available.'

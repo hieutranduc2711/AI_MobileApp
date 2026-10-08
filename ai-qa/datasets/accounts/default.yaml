@@ -1,0 +1,6 @@
+account:
+  id: "stripe_sync_1"
+  company_name: "QA Gorilla Pest Control"
+  plan: "Pro Enterprise"
+  currency: "USD"
+  timezone: "America/New_York"

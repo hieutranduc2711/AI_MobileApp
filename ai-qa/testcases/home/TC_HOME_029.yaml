@@ -1,0 +1,27 @@
+id: TC_HOME_029
+title: Job Summary from job count
+feature: home
+priority: High
+description: The total job count opens Job Summary, which can be closed.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_029] open Job Summary modal from job
+  count and close'
+steps:
+- desc: Tap the total job count above the calendar.
+  action: tap_selector
+  text: 'Tap the total job count above '
+  delay: 0.8
+- desc: Chạm vào mục [Job Summary]
+  action: tap_selector
+  text: Job Summary
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the total job
+  count above the calendar. (2) If "Job Summary" opens, close it with its close button;
+  after that it should be closed. If there is no job count, stop and report the test
+  as skipped: job count not shown.'

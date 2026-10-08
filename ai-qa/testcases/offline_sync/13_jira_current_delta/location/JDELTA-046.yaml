@@ -1,0 +1,32 @@
+id: JDELTA-046
+title: 'Location fields persist: tags/invoice tags/tax1/tax2/payment terms: Location
+  fields persist: tags/invoice tags/tax1/tax2/payment terms'
+sheet: 13_Jira_Current_Delta
+module: Location
+action: 'Location fields persist: tags/invoice tags/tax1/tax2/payment terms'
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline create/edit Service Location with all listed fields.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reopen form Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect and reopen.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: All fields remain correct in local form and authoritative server data.
+  assert_text: Location
+source_tickets: RN-5602
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5602
+risk: Schema / Comment Regression
+notes: ''

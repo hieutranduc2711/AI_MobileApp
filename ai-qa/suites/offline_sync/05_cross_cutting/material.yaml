@@ -1,0 +1,36 @@
+name: offline-05-material
+description: Offline Suite for Sheet [05_cross_cutting] > Module [material] (33 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02853.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02852.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02851.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02854.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02850.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02849.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02838.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02837.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02836.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02839.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02835.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02834.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02862.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02861.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02860.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02863.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02859.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02858.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02845.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02844.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02843.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02857.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02856.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02855.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02842.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02841.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02840.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02866.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02865.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02864.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02848.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02847.yaml
+- testcases/offline_sync/05_cross_cutting/material/SYNC-02846.yaml

@@ -1,0 +1,48 @@
+id: BUGREG-071
+title: 'Show error "Failed to connect server" when pull material from 1st unit or
+  from previous unit: Show error "Failed to connect server" when pull material from
+  1st unit or from previous unit'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Show error "Failed to connect server" when pull material from 1st unit or
+  from previous unit
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Create building & 2 units of building
+  action: tap_selector
+  text: Create building & 2 units of b
+  delay: 1.0
+- desc: Assign buidling to job
+  action: tap_selector
+  text: Assign buidling to job
+  delay: 1.0
+- desc: Back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go to job unit detail of unit 2
+  action: tap_selector
+  text: 'Go to job unit detail of unit '
+  delay: 1.0
+- desc: Press on "Pull from 1st unit" or "Pull from previous unit" in Material Field
+  action: tap_selector
+  text: Pull from 1st unit
+  delay: 1.0
+- desc: Show error "Failed to connect server"
+  action: tap_selector
+  text: Failed to connect server
+  delay: 1.0
+expected:
+- desc: Should be disable 2 buttons "Pull from 1st unit" or "Pull from previous unit"
+    in offline
+  assert_text: Pull from 1st unit
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,22 @@
+id: TC_HOME_004
+title: Switch to Day mode
+feature: home
+priority: High
+description: The calendar can be switched to Day mode.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_004] open Agenda mode modal and switch
+  to Day mode'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) If the calendar is
+  not already in Day mode, tap the calendar view button at the left of the date bar
+  and, in "Calendar View", tap "Day".

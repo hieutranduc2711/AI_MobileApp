@@ -1,0 +1,5 @@
+name: offline-module-auth_storage
+description: Cross-sheet comprehensive offline suite for Module [auth_storage] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_storage/EDGE-GAP-002.yaml

@@ -1,0 +1,5 @@
+name: offline-module-sync_engine_conflict
+description: Cross-sheet comprehensive offline suite for Module [sync_engine_conflict]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/sync_engine_conflict/EDGE-GAP-011.yaml

@@ -1,0 +1,43 @@
+id: SYNC-03279
+title: 'Task job_id: job_id remains correct'
+sheet: 05_Cross_Cutting
+module: Task
+action: Task job_id
+priority: P1
+flow_phase: Schema Parity
+direction: CROSS-CUTTING
+app_path: GD Mobile > Task
+preconditions: Prepare environment/data as described.
+test_data: job_id remains correct
+steps:
+- desc: Prepare Job task.
+  action: tap_selector
+  text: Prepare Job task.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Edit task.
+  action: tap_selector
+  text: Edit task.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect relation.
+  action: tap_selector
+  text: Inspect relation.
+  delay: 1.0
+expected:
+- desc: job_id non-null/correct.
+  assert_text: Task
+- desc: Task remains correct Job.
+  assert_text: Task
+source_tickets: RN-5570, RN-5551
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5570
+
+  https://gorilladesk1.atlassian.net/browse/RN-5551'
+risk: Known bug
+notes: Carried from V2 OFFV2-03208

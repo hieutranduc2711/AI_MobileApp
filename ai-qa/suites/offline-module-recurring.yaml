@@ -1,0 +1,5 @@
+name: offline-module-recurring
+description: Cross-sheet comprehensive offline suite for Module [recurring] (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/recurring/JDELTA-021.yaml
+- testcases/offline_sync/13_jira_current_delta/recurring/JDELTA-022.yaml

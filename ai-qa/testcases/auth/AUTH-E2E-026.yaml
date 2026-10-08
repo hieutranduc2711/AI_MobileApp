@@ -1,0 +1,36 @@
+id: AUTH-E2E-026
+title: Sign-up step 1 invalid email recovery
+feature: auth
+priority: High
+description: Sign-up step 1 rejects a malformed email and accepts a unique valid one.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'signup: step1 blocks progress on invalid email and recovers to valid
+  format'
+steps:
+- desc: Chạm vào mục [Get started]
+  action: tap_selector
+  text: Get started
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'invalid-email' vào ô [input]
+  action: type_text
+  value: invalid-email
+  delay: 0.8
+- desc: Chạm vào mục [Email]
+  action: tap_selector
+  text: Email
+  delay: 1.0
+expected:
+- assert_text: Email is not a valid email address.
+  desc: Hiển thị 'Email is not a valid email address.' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Welcome screen. (1) Tap "Get started".
+  (2) Type "invalid-email" in "Email" and "ValidPass123" in "Password" and "Confirm
+  Password", then tap "Next". After step 2, the error "Email is not a valid email
+  address." should be displayed (id: error-wrapper). (3) Replace "Email" with "e2e.signup.<current
+  time as digits>@example.com", re-enter "ValidPass123" in both password fields and
+  tap "Next".'

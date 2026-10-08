@@ -1,0 +1,33 @@
+id: CALENDAR-E2E-018
+title: Date bar time chevrons in sequence
+feature: home-calendar
+priority: High
+description: Repeated time-chevron taps with sheet dismissal keep Home stable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-018: sequential date bar period taps'
+steps:
+- desc: Tap the double chevron just left of the date, then close any sheet via the
+    handl
+  action: tap_selector
+  text: Tap the double chevron just le
+  delay: 0.8
+- desc: Repeat step 1.
+  action: tap_selector
+  text: Repeat step 1.
+  delay: 0.8
+- desc: 'Tap the double chevron just right of the date, then close any sheet. After
+    each '
+  action: tap_selector
+  text: Tap the double chevron just ri
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the double chevron
+  just left of the date, then close any sheet via the handle at its top (id: indicator).
+  (2) Repeat step 1. (3) Tap the double chevron just right of the date, then close
+  any sheet. After each of steps 1–3, the Home top bar (id: home-bar) should be displayed.
+  If the date bar is not shown, stop and report the test as skipped: date bar not
+  available.'

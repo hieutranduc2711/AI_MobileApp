@@ -1,0 +1,56 @@
+id: SYNC-02228
+title: 'Reset Document: Reset Document qua Online → Offline → Online → Offline → Online'
+sheet: 03_Round_Trip
+module: Document
+action: Reset Document
+priority: P1
+flow_phase: RT-02 Multiple transitions
+direction: ROUND TRIP
+app_path: GD Mobile > Document > Reset
+preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Reset Document
+  accessible.
+test_data: Valid entity
+steps:
+- desc: Bắt đầu Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chuyển Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Reset Document.
+  action: tap_selector
+  text: Reset Document
+  delay: 1.0
+- desc: Bật Online trong thời gian ngắn rồi tắt lại trước khi chắc chắn sync complete.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Giữ Offline và reopen entity.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Cuối cùng bật Online ổn định.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ queue idle/downlink.
+  action: tap_selector
+  text: Chờ queue idle/downlink.
+  delay: 1.0
+- desc: Verify server/local.
+  action: tap_selector
+  text: Verify server/local.
+  delay: 1.0
+expected:
+- desc: Không duplicate action qua nhiều transition.
+  assert_text: Document
+- desc: Không mất pending state khi Online window quá ngắn.
+  assert_text: Document
+- desc: Final state converge sau khi network ổn định.
+  assert_text: Document
+source_tickets: RN-5577
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5577
+risk: Repeated transition
+notes: ''

@@ -1,0 +1,22 @@
+id: PORTAL-REV-002
+title: Khách hàng ký duyệt Estimate trực tuyến qua Portal Link
+feature: customer_portal_reviews
+priority: Normal
+description: 'Kiểm thử trải nghiệm khách hàng và đánh giá chất lượng #2'
+preconditions: Job hoặc Estimate đã được lưu thành công
+steps:
+- desc: Mở Estimate
+  action: tap_selector
+  text: Estimates
+  delay: 0.8
+- desc: Bấm Send Portal Link
+  action: tap_selector
+  text: Share Portal
+  delay: 0.8
+- desc: Gửi cho khách
+  action: tap_selector
+  content_desc: Send
+  delay: 1.0
+expected:
+- assert_text: Link Generated
+  desc: Link cổng thông tin khách hàng được khởi tạo

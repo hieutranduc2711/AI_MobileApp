@@ -1,0 +1,5 @@
+name: offline-module-auth_sync_engine
+description: Cross-sheet comprehensive offline suite for Module [auth_sync_engine]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_sync_engine/EDGE-GAP-001.yaml

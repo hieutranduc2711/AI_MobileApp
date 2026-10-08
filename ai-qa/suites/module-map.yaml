@@ -1,0 +1,15 @@
+name: Module Map Suite
+description: Chạy toàn bộ 12 test cases cho phân hệ map
+tests:
+- MAP_E2E_001
+- MAP_E2E_002
+- MAP_E2E_003
+- MAP_E2E_004
+- MAP_E2E_005
+- MAP_E2E_006
+- MAP_E2E_010
+- MAP_E2E_011
+- MAP_E2E_012
+- MAP_E2E_013
+- MAP_E2E_014
+- MAP_E2E_015

@@ -1,0 +1,14 @@
+id: AUTH-E2E-025
+title: Session-expired dialog (best-effort)
+feature: auth
+priority: High
+description: Login shows the session-expired dialog when the local session-expired
+  flag is set.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'session expired: should show session-expired dialog if flag is set
+  (best-effort)'
+steps: []
+expected: []
+goal_summary: ''

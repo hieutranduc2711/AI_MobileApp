@@ -1,0 +1,35 @@
+id: AUTH-E2E-023
+title: Forgot password email re-edit
+feature: auth
+priority: High
+description: The Forgot Password email field keeps accepting edits and holds the last
+  typed value.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'forgot password: email field stays editable across multiple edits'
+steps:
+- desc: Chạm vào mục [Forgot Your Password]
+  action: tap_selector
+  text: Forgot Your Password
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'qa.e2e@example.com' vào ô [input]
+  action: type_text
+  value: qa.e2e@example.com
+  delay: 0.8
+- desc: Chạm vào mục [Email]
+  action: tap_selector
+  text: Email
+  delay: 1.0
+expected:
+- assert_text: Forgot Password
+  desc: Hiển thị 'Forgot Password' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account"). (1) Tap "Forgot Your Password" (id: forgot-password-button).
+  After step 1, the "Forgot Password" screen should be displayed. (2) Type "qa.e2e@example.com"
+  in "Email". (3) Clear "Email" and type "qa.e2e+2@example.com". At the end, "Email"
+  should contain "qa.e2e+2@example.com".'

@@ -1,0 +1,56 @@
+id: SYNC-00368
+title: 'Create Job: Create Job: server/queue ACK → mất mạng trước authoritative downlink'
+sheet: 01_Online_to_Offline
+module: Job
+action: Create Job
+priority: P0
+flow_phase: O2F-04 Drop after ACK before downlink
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Add Job
+preconditions: Đăng nhập đúng account/branch; user có quyền Create Job; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > Add Job.
+test_data: Valid mutation
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Thực hiện Create Job.
+  action: tap_selector
+  text: Create Job
+  delay: 1.0
+- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
+  action: tap_selector
+  text: Cho queue/API nhận request/ACK
+  delay: 1.0
+- desc: Cắt network trước khi authoritative row mới về local.
+  action: tap_selector
+  text: Cắt network trước khi authorit
+  delay: 1.0
+- desc: Mở/reopen entity khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Quan sát optimistic/local state.
+  action: tap_selector
+  text: Quan sát optimistic/local stat
+  delay: 1.0
+expected:
+- desc: Queue ACK không được xem là backend business completion.
+  assert_text: Job
+- desc: Optimistic state không bị xóa quá sớm.
+  assert_text: Job
+- desc: UI không snap-back về old server value sau khi mất mạng.
+  assert_text: Job
+- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
+  assert_text: Job
+source_tickets: RN-5608, RN-5578, RN-5614, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5608
+
+  https://gorilladesk1.atlassian.net/browse/RN-5578
+
+  https://gorilladesk1.atlassian.net/browse/RN-5614
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Early patch removal/snap-back
+notes: ''

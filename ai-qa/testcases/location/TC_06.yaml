@@ -1,0 +1,50 @@
+id: TC_06
+title: Leave Manage Areas back to list
+feature: location
+priority: High
+description: Leaving Manage Areas with Android back returns to a displayed Service
+  Locations list.
+preconditions: 'Logged in with the DEFAULT E2E account (can edit customers) on the
+  Home screen (online). Detox beforeAll seeds one location — before TC_03…TC_05 create
+  it once: Home search icon → first customer → “Service Locations” → plus → “Location
+  Name” “E2E Manage <current time>”, “Service Address” 200 Oak St, Houston, TX 77001
+  → “Save”; keep exactly one location whose name starts with “E2E Manage”. TC_05 deletes
+  it: run only where destructive deletes are allowed (Detox guard E2E_ALLOW_LOCATION_DELETE=true).
+  TC_06 needs at least one location on that customer.'
+detox_reference: '[TC_06][DOC+][ServiceLocationRefresh] User exits nested manage area
+  flow and service location list remains visible (refresh path safe)'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Service Locations]
+  action: tap_selector
+  text: Service Locations
+  delay: 1.0
+- desc: Tap the three-dots icon of the first location.
+  action: tap_selector
+  text: Tap the three-dots icon of the
+  delay: 0.8
+- desc: Chạm vào mục [Manage Area List]
+  action: tap_selector
+  text: Manage Area List
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage Area List
+  desc: Hiển thị 'Manage Area List' trên màn hình
+- assert_text: Manage Areas
+  desc: Hiển thị 'Manage Areas' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right, then the first customer. (2) Tap "Service Locations". (3)
+  Tap the three-dots icon of the first location. After step 3, the action sheet with
+  "Manage Area List" should be displayed. (4) Tap "Manage Area List". After step 4,
+  the "Manage Areas" screen with its area list (id: area-list) should be displayed.
+  (5) Press the Android back button. At the end, the "Service Locations" screen with
+  its location list (id: location-list) should be displayed. If no location shows
+  a three-dots icon, stop and report the test as skipped: location action not available
+  (permission or data).'

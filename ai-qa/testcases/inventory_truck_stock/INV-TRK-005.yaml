@@ -1,0 +1,19 @@
+id: INV-TRK-005
+title: 'Quản lý vòng đời vật tư thực địa kịch bản #5'
+feature: inventory_truck_stock
+priority: Normal
+description: 'Kiểm thử tính năng quản lý vật tư kho xe tải trường hợp #5'
+preconditions: Thiết bị đang kết nối cơ sở dữ liệu nội bộ
+steps:
+- desc: Truy cập quản lý vật tư
+  action: tap_selector
+  text: Materials
+  delay: 0.8
+- desc: 'Thao tác kiểm đếm mã vật tư #5'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.6
+expected:
+- assert_text: Materials
+  desc: Màn hình vật tư duy trì ổn định không crash

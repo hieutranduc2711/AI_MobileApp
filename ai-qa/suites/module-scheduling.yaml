@@ -1,0 +1,5 @@
+name: Module Scheduling Suite
+description: Chạy toàn bộ 2 test cases cho phân hệ scheduling
+tests:
+- ESTIMATE-CREATE-001
+- JOB-CREATE-001

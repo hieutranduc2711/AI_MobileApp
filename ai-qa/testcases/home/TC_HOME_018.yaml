@@ -1,0 +1,36 @@
+id: TC_HOME_018
+title: Date sheet shortcuts
+feature: home
+priority: High
+description: The date sheet shortcuts Today, Tomorrow and This Week can be used.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_018] date picker shortcuts: today /
+  tomorrow / this week when available'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Tap the date text in the date bar.
+  action: tap_selector
+  text: 'Tap the date text in the date '
+  delay: 0.8
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+- desc: 'Close it by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the date text in the date bar. (3) For each of "Today",
+  "Tomorrow" and "This Week" that the sheet offers: tap it, then tap the date text
+  again. (4) Close it by tapping the handle at its top (id: indicator).'

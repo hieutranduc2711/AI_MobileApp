@@ -1,0 +1,19 @@
+id: KONG-QUERY-009
+title: 'Kịch bản tương tác và truy vấn thông minh Kong AI #9'
+feature: kong_ai_advanced
+priority: Medium
+description: 'Kiểm thử khả năng phản hồi tự động và hỗ trợ người dùng #9'
+preconditions: Người dùng đang ở màn hình chính
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn Kong AI
+  action: tap_selector
+  content_desc: Kong AI
+  delay: 1.5
+expected:
+- assert_text: How can I help?
+  desc: Trợ lý ảo Kong AI luôn sẵn sàng

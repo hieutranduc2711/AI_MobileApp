@@ -1,0 +1,46 @@
+id: BUGREG-086
+title: 'Still show comments, notes deleted of customer when back to All Notes from
+  Customer detail in offline: Still show comments, notes deleted of customer when
+  back to All Notes from Customer detail in offlin'
+sheet: 11_Bug_Regression_91
+module: Customer Notes
+action: Still show comments, notes deleted of customer when back to All Notes from
+  Customer detail in offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off network
+  action: tap_selector
+  text: Turn off network
+  delay: 1.0
+- desc: Go to detail of any customer
+  action: tap_selector
+  text: Go to detail of any customer
+  delay: 1.0
+- desc: Go to All Notes
+  action: tap_selector
+  text: Go to All Notes
+  delay: 1.0
+- desc: Delete any comment or notes in list
+  action: tap_selector
+  text: Delete any comment or notes in
+  delay: 1.0
+- desc: Back to customer detail & Go to All Notes again
+  action: back
+  delay: 1.0
+- desc: Still show comment or note deleted
+  action: tap_selector
+  text: Still show comment or note del
+  delay: 1.0
+expected:
+- desc: 'Expected: Not show comment or note has deleted'
+  assert_text: Customer Notes
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,38 @@
+id: TC_SMS_CORE_16
+title: Tap message list collapses composer
+feature: sms
+priority: High
+description: Tapping the message list collapses the composer to its preview.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_16][DOC+][MessageList] User taps message list to collapse
+  composer preview'
+steps:
+- desc: Tap the SMS button at the top-right (next to the bell).
+  action: tap_selector
+  text: Tap the SMS button at the top-
+  delay: 0.8
+- desc: Tap the first conversation.
+  action: tap_selector
+  text: Tap the first conversation.
+  delay: 0.8
+- desc: Tap the message list above the composer.
+  action: tap_selector
+  text: Tap the message list above the
+  delay: 0.8
+expected:
+- assert_text: Typing Message
+  desc: Hiển thị 'Typing Message' trên màn hình
+- assert_text: Send
+  desc: Hiển thị 'Send' trên màn hình
+- assert_text: Typing Message
+  desc: Hiển thị 'Typing Message' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the SMS button
+  at the top-right (next to the bell). (2) Tap the first conversation. After step
+  2, the conversation with the "Typing Message" box and "Send" should be displayed.
+  (3) Tap the message list above the composer. After step 3, the collapsed "Typing
+  Message" preview should be displayed. If there is no SMS button or no conversation,
+  stop and report the test as skipped: no SMS conversation.'

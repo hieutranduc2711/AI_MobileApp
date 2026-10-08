@@ -1,0 +1,70 @@
+id: SYNC-02809
+title: 'Create Task: Create Task khi parent chỉ có local ID'
+sheet: 05_Cross_Cutting
+module: Task
+action: Create Task
+priority: P0
+flow_phase: Parent local:* Dependency
+direction: CROSS-CUTTING
+app_path: GD Mobile > Tasks > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Task;
+  prerequisite cho Task đã sync khi cần.
+test_data: Parent created offline
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create parent để có local:* ID.
+  action: tap_selector
+  text: Create parent để có local:* ID
+  delay: 1.0
+- desc: Thực hiện child action Create Task.
+  action: tap_selector
+  text: Create Task
+  delay: 1.0
+- desc: Verify child links local parent.
+  action: tap_selector
+  text: Verify child links local paren
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe sync order.
+  action: tap_selector
+  text: Observe sync order.
+  delay: 1.0
+- desc: Verify real parent-child server relation.
+  action: tap_selector
+  text: Verify real parent-child serve
+  delay: 1.0
+expected:
+- desc: Create Task không làm app crash/mất dữ liệu.
+  assert_text: Task
+- desc: Local/UI của Task phản ánh đúng business result.
+  assert_text: Task
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Task
+- desc: Không duplicate logical operation.
+  assert_text: Task
+- desc: Child không gửi unresolved parent.
+  assert_text: Task
+- desc: Parent mapping đúng trước/khi child send.
+  assert_text: Task
+- desc: No orphan/duplicate relation.
+  assert_text: Task
+source_tickets: RN-5570, RN-5551, RN-5587, RN-5533, RN-5608, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5570
+
+  https://gorilladesk1.atlassian.net/browse/RN-5551
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533
+
+  https://gorilladesk1.atlassian.net/browse/RN-5608
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Dependency/orphan
+notes: Carried from V2 OFFV2-00725

@@ -1,0 +1,7 @@
+name: offline-11-notes
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [notes] (4 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/notes/BUGREG-012.yaml
+- testcases/offline_sync/11_bug_regression_91/notes/BUGREG-013.yaml
+- testcases/offline_sync/11_bug_regression_91/notes/BUGREG-014.yaml
+- testcases/offline_sync/11_bug_regression_91/notes/BUGREG-015.yaml

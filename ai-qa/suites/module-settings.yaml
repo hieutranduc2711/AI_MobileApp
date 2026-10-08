@@ -1,0 +1,20 @@
+name: Module Settings Suite
+description: Chạy toàn bộ 17 test cases cho phân hệ settings
+tests:
+- SET-EDGE-001
+- SET-EDGE-002
+- SET-EDGE-003
+- SET-EDGE-004
+- SET-EDGE-005
+- SET-FULL-001
+- SET-FULL-002
+- SET-FULL-003
+- SET-FULL-004
+- SET-FULL-005
+- SET-FULL-006
+- SET-FULL-007
+- SET-UX-001
+- SET-UX-002
+- SET-UX-003
+- SET-UX-004
+- SET-UX-005

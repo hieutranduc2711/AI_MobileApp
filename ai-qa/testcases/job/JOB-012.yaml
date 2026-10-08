@@ -1,0 +1,32 @@
+id: JOB-012
+title: Chat button opens conversation
+feature: job
+priority: High
+description: The job chat button opens the SMS conversation.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-012] User opens SMS chat from floating button and returns to
+  job detail'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Tap the floating chat button at the bottom-right.
+  action: tap_selector
+  text: Tap the floating chat button a
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the
+  floating chat button at the bottom-right. (3) Tap the back arrow at the top-left.
+  If there is no chat button, stop and report the test as skipped: SMS addon off.'

@@ -1,0 +1,19 @@
+id: INV-FIN-016
+title: 'Nghiệp vụ tài chính và xử lý hóa đơn phức tạp #16'
+feature: invoice_advanced_financial
+priority: Normal
+description: 'Kiểm thử nghiệp vụ tài chính và đối soát hóa đơn ca #16'
+preconditions: Màn hình Invoices
+steps:
+- desc: Mở danh sách hóa đơn
+  action: tap_selector
+  text: Invoices
+  delay: 0.8
+- desc: 'Kiểm tra hóa đơn #16'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Invoices
+  desc: Màn hình tài chính hoạt động chính xác

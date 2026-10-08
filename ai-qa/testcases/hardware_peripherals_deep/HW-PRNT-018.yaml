@@ -1,0 +1,19 @@
+id: HW-PRNT-018
+title: 'Tương thích thiết bị ngoại vi và máy in KTV #18'
+feature: hardware_peripherals_deep
+priority: Normal
+description: 'Kiểm thử phần cứng máy in và máy quét cầm tay ca #18'
+preconditions: Settings
+steps:
+- desc: Mở cấu hình thiết bị phần cứng
+  action: tap_selector
+  text: Hardware
+  delay: 0.8
+- desc: 'Kiểm tra cổng kết nối #18'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Hardware
+  desc: Thiết bị ngoại vi hoạt động tốt

@@ -1,0 +1,5 @@
+name: offline-module-sync_engine_idempotency
+description: Cross-sheet comprehensive offline suite for Module [sync_engine_idempotency]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/sync_engine_idempotency/EDGE-GAP-015.yaml

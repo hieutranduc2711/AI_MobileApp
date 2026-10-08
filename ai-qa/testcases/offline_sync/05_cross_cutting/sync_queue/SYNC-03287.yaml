@@ -1,0 +1,39 @@
+id: SYNC-03287
+title: 'Partial ACK: Server receives 2 of 5'
+sheet: 05_Cross_Cutting
+module: Sync Queue
+action: Partial ACK
+priority: P0
+flow_phase: Batch
+direction: CROSS-CUTTING
+app_path: Any supported action
+preconditions: Prepare environment/data as described.
+test_data: Server receives 2 of 5
+steps:
+- desc: Create 5 pending.
+  action: tap_selector
+  text: Create 5 pending.
+  delay: 1.0
+- desc: Reconnect mock received=2.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect statuses/patches.
+  action: tap_selector
+  text: Inspect statuses/patches.
+  delay: 1.0
+- desc: Restore server.
+  action: tap_selector
+  text: Restore server.
+  delay: 1.0
+expected:
+- desc: Only 2 advance.
+  assert_text: Sync Queue
+- desc: 3 remain pending.
+  assert_text: Sync Queue
+- desc: No loss.
+  assert_text: Sync Queue
+source_tickets: RN-5587
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5587
+risk: Critical
+notes: Carried from V2 OFFV2-03216

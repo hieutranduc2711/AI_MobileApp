@@ -1,0 +1,3 @@
+invariants:
+  - id: AUTH-INV-001
+    description: 'Ensure data integrity for module auth'

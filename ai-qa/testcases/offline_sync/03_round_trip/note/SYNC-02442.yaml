@@ -1,0 +1,58 @@
+id: SYNC-02442
+title: 'Edit Top Note: Online → Offline Edit Top Note → restart → Online'
+sheet: 03_Round_Trip
+module: Note
+action: Edit Top Note
+priority: P1
+flow_phase: RT-03 Round trip with app restart
+direction: ROUND TRIP
+app_path: GD Mobile > Top Note > Edit
+preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Edit Top Note
+  accessible.
+test_data: Valid entity
+steps:
+- desc: Load entity Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Edit Top Note.
+  action: tap_selector
+  text: Edit Top Note
+  delay: 1.0
+- desc: Force close app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại app Offline và verify local result.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ sync completion.
+  action: tap_selector
+  text: Chờ sync completion.
+  delay: 1.0
+- desc: Verify server/local.
+  action: tap_selector
+  text: Verify server/local.
+  delay: 1.0
+expected:
+- desc: Local mutation sống qua restart.
+  assert_text: Note
+- desc: Reconnect không tạo lại/nhân đôi mutation.
+  assert_text: Note
+- desc: Final authoritative state đúng.
+  assert_text: Note
+source_tickets: RN-5567, RN-5536
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
+
+  https://gorilladesk1.atlassian.net/browse/RN-5536'
+risk: Round-trip durability
+notes: ''

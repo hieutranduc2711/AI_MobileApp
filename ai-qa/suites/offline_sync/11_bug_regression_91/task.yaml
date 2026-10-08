@@ -1,0 +1,4 @@
+name: offline-11-task
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [task] (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/task/BUGREG-073.yaml

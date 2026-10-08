@@ -1,0 +1,43 @@
+id: DOCUMENT-documentSelect-06
+title: Doc template list load-more
+feature: document
+priority: High
+description: Scrolling the Doc template list to load more keeps it usable.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document and at least
+  one service location. Templates exist on both the Docs and PDFs tabs (enough Doc
+  templates to scroll). DOCUMENT-documentSelect-05 creates a document from the first
+  Doc template.
+detox_reference: User scrolls the doc template list to trigger load-more and list
+  remains usable
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Swipe up on the Doc template list 5 times.
+  action: tap_selector
+  text: Swipe up on the Doc template l
+  delay: 0.8
+expected:
+- assert_text: Select Document
+  desc: Hiển thị 'Select Document' trên màn hình
+- assert_text: the Doc template list
+  desc: the Doc template list
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the plus icon on the "Documents" section header; if a location list opens,
+  tap the first location. After step 3, the "Select Document" screen should be displayed.
+  (4) Swipe up on the Doc template list 5 times. After step 4, the Doc template list
+  should still be displayed.

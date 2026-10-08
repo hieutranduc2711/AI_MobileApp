@@ -1,0 +1,11 @@
+name: Module Location Suite
+description: Chạy toàn bộ 8 test cases cho phân hệ location
+tests:
+- TC_01
+- TC_02
+- TC_03
+- TC_04
+- TC_05
+- TC_06
+- TC_07
+- TC_08

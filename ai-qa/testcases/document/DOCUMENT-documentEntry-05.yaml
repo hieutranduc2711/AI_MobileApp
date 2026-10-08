@@ -1,0 +1,36 @@
+id: DOCUMENT-documentEntry-05
+title: Show All opens All Documents
+feature: document
+priority: High
+description: Show All on the Documents card opens All Documents, or the card stays
+  inline-only.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document (5 or more
+  for the “Show All” paths) and at least one service location; at least one Doc template
+  exists. No case saves data.
+detox_reference: User taps show-all and sees AllDocuments screen or verifies inline-only
+  card
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) If "Show All" is shown under the section, tap it; after that the "All Documents"
+  screen with its document list should be displayed. If there is no "Show All", the
+  plus icon on the "Documents" section header should be displayed instead.

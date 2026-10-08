@@ -1,0 +1,41 @@
+id: SYNC-03289
+title: 'ACK != BE complete: Delay backend business mutation'
+sheet: 05_Cross_Cutting
+module: Sync Queue
+action: ACK != BE complete
+priority: P0
+flow_phase: Completion
+direction: CROSS-CUTTING
+app_path: Any supported update
+preconditions: Prepare environment/data as described.
+test_data: Delay backend business mutation
+steps:
+- desc: Queue endpoint accepts.
+  action: tap_selector
+  text: Queue endpoint accepts.
+  delay: 1.0
+- desc: Delay BE mutation.
+  action: tap_selector
+  text: Delay BE mutation.
+  delay: 1.0
+- desc: Keep old authoritative row.
+  action: tap_selector
+  text: Keep old authoritative row.
+  delay: 1.0
+- desc: Then complete BE.
+  action: tap_selector
+  text: Then complete BE.
+  delay: 1.0
+expected:
+- desc: No premature fully-synced.
+  assert_text: Sync Queue
+- desc: No snap-back.
+  assert_text: Sync Queue
+- desc: BE completion drives final state.
+  assert_text: Sync Queue
+source_tickets: RN-5587, RN-5477
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5477'
+risk: Critical
+notes: Carried from V2 OFFV2-03218

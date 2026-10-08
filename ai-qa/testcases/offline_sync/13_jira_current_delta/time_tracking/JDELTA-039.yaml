@@ -1,0 +1,38 @@
+id: JDELTA-039
+title: 'Reconnect while timer running does not create second timer: Reconnect while
+  timer running does not create second timer'
+sheet: 13_Jira_Current_Delta
+module: Time Tracking
+action: Reconnect while timer running does not create second timer
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline start timer.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect while still running.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Wait for sync.
+  action: tap_selector
+  text: Wait for sync.
+  delay: 1.0
+- desc: Inspect app/web worklogs.
+  action: tap_selector
+  text: Inspect app/web worklogs.
+  delay: 1.0
+expected:
+- desc: One active timer/worklog only.
+  assert_text: Time Tracking
+- desc: Start time/status remains correct after reconcile.
+  assert_text: Time Tracking
+source_tickets: RN-5644
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5644
+risk: Schema / Comment Regression
+notes: ''

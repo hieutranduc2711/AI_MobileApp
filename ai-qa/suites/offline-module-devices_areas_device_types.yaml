@@ -1,0 +1,16 @@
+name: offline-module-devices_areas_device_types
+description: Cross-sheet comprehensive offline suite for Module [devices_areas_device_types]
+  (12 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-108.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-109.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-110.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-111.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-112.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-113.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-114.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-115.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-116.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-117.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-118.yaml
+- testcases/offline_sync/10_dev_checklist_167/devices_areas_device_types/DEV-UI-119.yaml

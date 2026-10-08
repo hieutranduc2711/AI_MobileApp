@@ -1,0 +1,26 @@
+id: WILD-TRAP-002
+title: Kiểm tra bắt được động vật và giấy phép di dời (Relocation Permit)
+feature: mosquito_wildlife_trapping
+priority: Normal
+description: 'Kiểm thử bẫy bắt động vật và phòng chống muỗi ca #2'
+preconditions: Đang ở Job
+steps:
+- desc: Mở Trap Check
+  action: tap_selector
+  text: Trap Check
+  delay: 0.8
+- desc: Chọn trạng thái Caught
+  action: tap_selector
+  text: Animal Captured
+  delay: 0.5
+- desc: Nhập mã giấy phép di dời FWCC
+  action: type_text
+  value: FWCC-78921
+  delay: 0.5
+- desc: Hoàn tất kiểm tra bẫy
+  action: tap_selector
+  content_desc: Done
+  delay: 1.0
+expected:
+- assert_text: Relocated
+  desc: Ghi nhận di dời động vật hợp pháp

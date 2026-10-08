@@ -1,0 +1,26 @@
+id: REP-FLT-002
+title: Lọc hóa đơn quá hạn nợ trên 60 ngày (Overdue Aging 60+)
+feature: advanced_filter_reporting
+priority: Normal
+description: 'Kiểm thử bộ lọc đa điều kiện và báo cáo thực địa #2'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Drawer -> Invoices
+  action: tap_selector
+  text: Invoices
+  delay: 1.0
+- desc: Bấm Filter Invoices
+  action: tap_selector
+  content_desc: Filter
+  delay: 0.8
+- desc: Chọn Aging 60+ Days
+  action: tap_selector
+  text: 60+ Days
+  delay: 0.5
+- desc: Áp dụng
+  action: tap_selector
+  content_desc: Apply
+  delay: 1.0
+expected:
+- assert_text: Overdue
+  desc: Hiển thị danh sách khách hàng nợ khó đòi

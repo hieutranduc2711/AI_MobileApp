@@ -1,0 +1,28 @@
+id: TC_HOME_017
+title: Next and previous period
+feature: home
+priority: High
+description: The outer chevrons move the period forward and back.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_017] shift period via prev/next period
+  controls'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Tap the single chevron at the far right of the date bar, then the one at the
+    far
+  action: tap_selector
+  text: 'Tap the single chevron at the '
+  delay: 0.8
+expected:
+- assert_text: 'the top bar (id: home-bar)'
+  desc: 'the top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the single chevron at the far right of the date bar, then
+  the one at the far left. After step 2, the top bar (id: home-bar) should be displayed.'

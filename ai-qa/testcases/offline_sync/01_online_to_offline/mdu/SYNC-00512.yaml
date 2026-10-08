@@ -1,0 +1,53 @@
+id: SYNC-00512
+title: 'Update Unit Visible Note: Hoàn tất Update Unit Visible Note online → authoritative
+  state về local → chuyển Offline'
+sheet: 01_Online_to_Offline
+module: MDU
+action: Update Unit Visible Note
+priority: P1
+flow_phase: O2F-05 Authoritative cached
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > MDU > Unit > Visible Note
+preconditions: Đăng nhập đúng account/branch; user có quyền Update Unit Visible Note;
+  prerequisite/local data cần thiết đã sync; mở đúng GD Mobile > MDU > Unit > Visible
+  Note.
+test_data: Valid action
+steps:
+- desc: Thực hiện action hoàn toàn khi Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ backend xử lý xong và authoritative state sync về local.
+  action: back
+  delay: 1.0
+- desc: Refresh/reopen để xác nhận giá trị mới.
+  action: tap_selector
+  text: Refresh/reopen để xác nhận giá
+  delay: 1.0
+- desc: Tắt toàn bộ network.
+  action: tap_selector
+  text: Tắt toàn bộ network.
+  delay: 1.0
+- desc: Force close/reopen app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại entity/list.
+  action: tap_selector
+  text: Mở lại entity/list.
+  delay: 1.0
+expected:
+- desc: Latest authoritative state đã được persist local trước khi mất mạng.
+  assert_text: MDU
+- desc: Sau restart Offline vẫn thấy đúng state mới.
+  assert_text: MDU
+- desc: Không quay lại stale value cũ.
+  assert_text: MDU
+- desc: Không cần remote API để đọc state đã cache.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5590
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5590'
+risk: Online→local cache durability
+notes: ''

@@ -1,0 +1,7 @@
+name: offline-11-job_unit
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [job_unit] (3
+  cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-056.yaml
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-057.yaml
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-058.yaml

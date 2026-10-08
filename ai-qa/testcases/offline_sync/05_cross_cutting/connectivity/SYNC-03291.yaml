@@ -1,0 +1,41 @@
+id: SYNC-03291
+title: 'Captive Portal: Wi-Fi connected no internet'
+sheet: 05_Cross_Cutting
+module: Connectivity
+action: Captive Portal
+priority: P1
+flow_phase: Network Edge
+direction: CROSS-CUTTING
+app_path: Any supported screen
+preconditions: Prepare environment/data as described.
+test_data: Wi-Fi connected no internet
+steps:
+- desc: Connect captive Wi-Fi.
+  action: tap_selector
+  text: Connect captive Wi-Fi.
+  delay: 1.0
+- desc: Open app.
+  action: tap_selector
+  text: Open app.
+  delay: 1.0
+- desc: Read/write local.
+  action: tap_selector
+  text: Read/write local.
+  delay: 1.0
+- desc: Restore internet.
+  action: tap_selector
+  text: Restore internet.
+  delay: 1.0
+expected:
+- desc: Not fooled by link-only state.
+  assert_text: Connectivity
+- desc: No endless spinner.
+  assert_text: Connectivity
+- desc: Pending syncs later.
+  assert_text: Connectivity
+source_tickets: RN-5637, RN-5566
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5566'
+risk: Network
+notes: Carried from V2 OFFV2-03220

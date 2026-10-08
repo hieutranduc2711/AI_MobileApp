@@ -1,0 +1,40 @@
+id: BUGREG-053
+title: 'Don''t push event move & resize: Don''t push event move & resize'
+sheet: 11_Bug_Regression_91
+module: Time-off/ custom event
+action: Don't push event move & resize
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to calendar
+  action: tap_selector
+  text: Go to calendar
+  delay: 1.0
+- desc: Create new time-off/event
+  action: tap_selector
+  text: Create new time-off/event
+  delay: 1.0
+- desc: Move Timeoff
+  action: tap_selector
+  text: Move Timeoff
+  delay: 1.0
+- desc: Turn on wifi
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Must push event create, move, resize
+  assert_text: Time-off/ custom event
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

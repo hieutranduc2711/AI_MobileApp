@@ -1,0 +1,53 @@
+id: SYNC-00470
+title: 'Delete Unit Comment: Thực hiện Delete Unit Comment online → mất mạng khi request
+  đang in-flight'
+sheet: 01_Online_to_Offline
+module: MDU
+action: Delete Unit Comment
+priority: P0
+flow_phase: O2F-03 Drop in-flight
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > MDU > Unit > Comment > Delete
+preconditions: Đăng nhập đúng account/branch; user có quyền Delete Unit Comment; prerequisite/local
+  data cần thiết đã sync; mở đúng GD Mobile > MDU > Unit > Comment > Delete.
+test_data: Valid action; proxy/network can cut immediately
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Thực hiện Delete Unit Comment và nhấn Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Ngay sau khi request bắt đầu, cắt network trước khi client nhận kết quả.
+  action: tap_selector
+  text: 'Ngay sau khi request bắt đầu, '
+  delay: 1.0
+- desc: Giữ app foreground.
+  action: tap_selector
+  text: Giữ app foreground.
+  delay: 1.0
+- desc: Quan sát UI/local state/pending state.
+  action: tap_selector
+  text: Quan sát UI/local state/pendin
+  delay: 1.0
+- desc: Navigate ra/vào lại entity khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: App không được mất action chỉ vì không biết request đã tới server hay chưa.
+  assert_text: MDU
+- desc: Không tạo duplicate local record/effect.
+  assert_text: MDU
+- desc: State phải ở local optimistic/pending hoặc trạng thái an toàn tương đương.
+  assert_text: MDU
+- desc: Không hiện fully synced khi chưa có xác nhận authoritative.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5590
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5590'
+risk: Unknown request outcome/idempotency
+notes: ''

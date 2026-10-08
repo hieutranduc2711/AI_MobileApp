@@ -1,0 +1,35 @@
+id: CUST_E2E_009
+title: Email field accepts typing
+feature: customer
+priority: High
+description: The Email field accepts a typed address.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_009] customer form: email accepts typing'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Email]
+  action: tap_selector
+  text: Email
+  delay: 1.0
+expected:
+- assert_text: the field
+  desc: the field
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the plus icon at the top-right. (3) Scroll to "Email"
+  and type "test.user@example.com". After step 3, the field should show "test.user@example.com".

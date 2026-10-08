@@ -1,0 +1,19 @@
+id: WILD-TRAP-037
+title: 'Nghiệp vụ bẫy bắt động vật và xịt muỗi #37'
+feature: mosquito_wildlife_trapping
+priority: Normal
+description: 'Kiểm thử bẫy bắt động vật và phòng chống muỗi ca #37'
+preconditions: Đang ở Job
+steps:
+- desc: Mở danh mục bẫy động vật
+  action: tap_selector
+  text: Traps
+  delay: 0.8
+- desc: 'Thao tác kiểm tra bẫy #37'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Traps
+  desc: Dữ liệu bẫy hiển thị đúng

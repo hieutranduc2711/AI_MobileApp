@@ -1,0 +1,21 @@
+id: TC_HOME_019
+title: Footer Today button
+feature: home
+priority: High
+description: Tapping Today in the calendar footer keeps Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_019] tap Today in footer when available'
+steps:
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+expected:
+- assert_text: 'the top bar (id: home-bar)'
+  desc: 'the top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap "Today" in the
+  calendar footer. After step 1, the top bar (id: home-bar) should be displayed. If
+  there is no "Today" button, stop and report the test as skipped: control not shown.'

@@ -1,0 +1,5 @@
+name: offline-module-customer_tags
+description: Cross-sheet comprehensive offline suite for Module [customer_tags] (1
+  cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer_tags/BUGREG-090.yaml

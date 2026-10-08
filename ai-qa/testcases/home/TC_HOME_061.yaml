@@ -1,0 +1,24 @@
+id: TC_HOME_061
+title: SMS button and back
+feature: home
+priority: High
+description: The SMS button opens messages and back returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_061] sms button is tappable and can
+  navigate/back when available'
+steps:
+- desc: Tap it.
+  action: tap_selector
+  text: Tap it.
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. The SMS button at the
+  top-right should be displayed. (1) Tap it. (2) Tap the back arrow at the top-left.
+  If there is no SMS button, stop and report the test as skipped: SMS not available.'

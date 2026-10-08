@@ -1,0 +1,31 @@
+id: TC_EMB_DRAG
+title: Long-press todo row for reorder
+feature: todo
+priority: High
+description: Long-pressing a todo row starts reorder and the row stays visible.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_EDIT_LINE
+  edits the first todo; TC_TEMPLATE_APPLY applies the first template to the job; TC_TEMPLATE_RENAME
+  renames the first template.
+detox_reference: '[Todo][TC_EMB_DRAG][Embedded] User long-presses a todo row to start
+  reorder and the row stays visible'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Long-press the first todo row for about 2 seconds.
+  action: tap_selector
+  text: 'Long-press the first todo row '
+  delay: 0.8
+expected:
+- assert_text: Todo List
+  desc: Hiển thị 'Todo List' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Long-press the first todo row for about 2 seconds. After step 2,
+  the first todo row should still be displayed. If there is no "Todo List" section
+  or no todo row, stop and report the test as skipped: no todos.'

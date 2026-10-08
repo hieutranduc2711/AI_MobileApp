@@ -1,0 +1,10 @@
+name: offline-04-task
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [task]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02653.yaml
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02654.yaml
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02655.yaml
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02656.yaml
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02657.yaml
+- testcases/offline_sync/04_server_to_local_offline/task/SYNC-02658.yaml

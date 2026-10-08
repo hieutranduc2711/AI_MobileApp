@@ -1,0 +1,10 @@
+name: offline-module-time_tracking
+description: Cross-sheet comprehensive offline suite for Module [time_tracking] (6
+  cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/time_tracking/DEV-UI-147.yaml
+- testcases/offline_sync/10_dev_checklist_167/time_tracking/DEV-UI-148.yaml
+- testcases/offline_sync/10_dev_checklist_167/time_tracking/DEV-UI-149.yaml
+- testcases/offline_sync/10_dev_checklist_167/time_tracking/DEV-UI-150.yaml
+- testcases/offline_sync/13_jira_current_delta/time_tracking/JDELTA-038.yaml
+- testcases/offline_sync/13_jira_current_delta/time_tracking/JDELTA-039.yaml

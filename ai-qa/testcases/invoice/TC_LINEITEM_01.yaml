@@ -1,0 +1,58 @@
+id: TC_LINEITEM_01
+title: Edit line item cost, quantity, tax
+feature: invoice
+priority: High
+description: In a new invoice the user picks a line item, sets service, price, quantity
+  and tax, and saves it.
+preconditions: 'Logged in with the DEFAULT E2E account (Admin-like role: techs cannot
+  add line items), app on the Home screen (online). The first customer in “Customers”
+  has at least 5 invoices (so “Show All” appears under “Invoice”) and at least one
+  service location; at least one line item and one tax exist in company settings.'
+detox_reference: '[TC_01][Invoice] User edits an existing line item with cost and
+  quantity'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Line Item]
+  action: tap_selector
+  text: Line Item
+  delay: 1.0
+- desc: Chạm vào mục [Select Line Item]
+  action: tap_selector
+  text: Select Line Item
+  delay: 1.0
+- desc: Chạm vào mục [Price]
+  action: tap_selector
+  text: Price
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its "Show All". (3) On "All Invoices", tap the plus icon at the top-right;
+  if "Select Location" opens, tap the first location. (4) On "Line Item", tap the
+  first line item. (5) Tap the service field and pick the first item in "Select Line
+  Item". (6) Replace "Price" with "100" and "Qty" with "2". (7) Tap "Tax 1", tap the
+  first tax, then tap "Save" (id: saveButton) in the tax sheet. (8) Tap "Save" at
+  the top-right.'

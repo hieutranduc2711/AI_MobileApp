@@ -1,0 +1,34 @@
+id: JDELTA-021
+title: 'WO note recurring action route: WO note recurring action route'
+sheet: 13_Jira_Current_Delta
+module: Recurring
+action: WO note recurring action route
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline create/save WO visible note.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Toggle recurring.
+  action: tap_selector
+  text: Toggle recurring.
+  delay: 1.0
+- desc: Reconnect and capture sync actions.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: WO note create and recurring update both survive.
+  assert_text: Recurring
+- desc: Recurring update uses correct business route/action; second action is not
+    coalesced away.
+  assert_text: Recurring
+source_tickets: RN-5597
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5597
+risk: Schema / Comment Regression
+notes: ''

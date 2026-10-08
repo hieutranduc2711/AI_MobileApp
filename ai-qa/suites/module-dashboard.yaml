@@ -1,0 +1,29 @@
+name: Module Dashboard Suite
+description: Chạy toàn bộ 26 test cases cho phân hệ dashboard
+tests:
+- DASHBOARD-dashboard.edge-01
+- DASHBOARD-dashboard.edge-02
+- DASHBOARD-dashboard.edge-03
+- DASHBOARD-dashboard.edge-04
+- DASHBOARD-dashboard.edge-05
+- DASHBOARD-dashboard.edge-06
+- DASHBOARD-dashboard.fullflow-01
+- DASHBOARD-dashboard.fullflow-02
+- DASHBOARD-dashboard.fullflow-03
+- DASHBOARD-dashboard.fullflow-04
+- DASHBOARD-dashboard.fullflow-05
+- DASHBOARD-dashboard.fullflow-06
+- DASHBOARD-dashboard.fullflow-07
+- DASHBOARD-dashboard.fullflow-08
+- DASHBOARD-dashboard.fullflow-09
+- DASHBOARD-dashboard.fullflow-10
+- DASHBOARD-dashboard.fullflow-11
+- DASHBOARD-dashboard.fullflow-12
+- TECH-01
+- TECH-02
+- UX-01
+- UX-02
+- UX-03
+- UX-04
+- UX-05
+- UX-06

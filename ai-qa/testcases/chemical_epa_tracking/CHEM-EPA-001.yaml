@@ -1,0 +1,35 @@
+id: CHEM-EPA-001
+title: Ghi nhận hóa chất sử dụng trong Work Order
+feature: chemical_epa_tracking
+priority: Critical
+description: Kiểm tra kỹ thuật viên có thể thêm hóa chất, liều lượng và vị trí xử
+  lý trên Job
+preconditions: Job đang mở ở trạng thái In Progress
+steps:
+- desc: Cuộn xuống phần Materials / Chemical Used
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm Add Chemical
+  action: tap_selector
+  content_desc: Add Chemical
+  delay: 1.0
+- desc: Chọn loại hóa chất Talstar P
+  action: tap_selector
+  text: Talstar P Professional
+  delay: 0.8
+- desc: Nhập lượng sử dụng (Dosage)
+  action: type_text
+  value: 1.0 oz
+  delay: 0.5
+- desc: Chọn đơn vị tính (Gallons pha trộn)
+  action: tap_selector
+  text: Finished Gallons
+  delay: 0.5
+- desc: Lưu hóa chất
+  action: tap_selector
+  content_desc: Save Chemical
+  delay: 1.2
+expected:
+- assert_text: Talstar P Professional
+  desc: Hóa chất hiển thị trong danh sách vật tư đã dùng

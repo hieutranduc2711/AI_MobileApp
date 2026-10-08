@@ -1,0 +1,6 @@
+name: offline-module-merchant
+description: Cross-sheet comprehensive offline suite for Module [merchant] (3 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/merchant/PERF-239.yaml
+- testcases/offline_sync/12_perf_rerender_245/merchant/PERF-240.yaml
+- testcases/offline_sync/12_perf_rerender_245/merchant/PERF-241.yaml

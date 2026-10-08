@@ -1,0 +1,41 @@
+id: BUGREG-039
+title: 'Show error "Failed to connect server" when open invoice menu & press on action
+  Message or Add Payment: Show error "Failed to connect server" when open invoice
+  menu & press on action Message or Add Paymen'
+sheet: 11_Bug_Regression_91
+module: Invoice
+action: Show error "Failed to connect server" when open invoice menu & press on action
+  Message or Add Payment
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Open invoice menu
+  action: tap_selector
+  text: Open invoice menu
+  delay: 1.0
+- desc: 'Press on message actions: Send invoice by Email or by SMS or Email for e-Sig
+    or SMS for e-Sig or by Postal Email or Add Payment'
+  action: tap_selector
+  text: 'Press on message actions: Send'
+  delay: 1.0
+- desc: Show error "Failed to connect server"
+  action: tap_selector
+  text: Failed to connect server
+  delay: 1.0
+expected:
+- desc: Historical failure must not reproduce; unsupported actions must be disabled/communicated
+    instead of failing unexpectedly.
+  assert_text: Invoice
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

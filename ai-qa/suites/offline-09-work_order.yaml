@@ -1,0 +1,7 @@
+name: offline-09-work_order
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [work_order] (3
+  cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/work_order/V4-TW-0049.yaml
+- testcases/offline_sync/09_new_twoway_delta/work_order/V4-TW-0050.yaml
+- testcases/offline_sync/09_new_twoway_delta/work_order/V4-TW-0051.yaml

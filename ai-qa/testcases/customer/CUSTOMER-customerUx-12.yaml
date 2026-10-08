@@ -1,0 +1,36 @@
+id: CUSTOMER-customerUx-12
+title: Custom fields section toggle
+feature: customer
+priority: High
+description: The custom fields section on customer detail can be toggled.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: 'customer detail: custom fields section toggle does not crash (addon-gated)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Custom fields]
+  action: tap_selector
+  text: Custom fields
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap the chevron on the "Custom
+  fields" section header. If there is no customer or no "Custom fields" section, stop
+  and report the test as skipped: no customer or custom fields addon off.'

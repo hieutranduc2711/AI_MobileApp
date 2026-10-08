@@ -1,0 +1,3 @@
+invariants:
+  - id: HOME-INV-001
+    description: 'Ensure data integrity for module home'

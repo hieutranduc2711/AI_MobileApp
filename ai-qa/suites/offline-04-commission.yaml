@@ -1,0 +1,10 @@
+name: offline-04-commission
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [commission]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02533.yaml
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02534.yaml
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02535.yaml
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02536.yaml
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02537.yaml
+- testcases/offline_sync/04_server_to_local_offline/commission/SYNC-02538.yaml

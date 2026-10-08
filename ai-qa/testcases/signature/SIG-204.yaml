@@ -1,0 +1,55 @@
+id: SIG-204
+title: Clear on empty and filled pad
+feature: signature
+priority: High
+description: Clear keeps the drawing area; after drawing or typing, Clear is available.
+preconditions: 'Logged in with the DEFAULT E2E account (role that sees the job work-order
+  options: “Take a Work Order Signature” in the job three-dots menu), app on the Home
+  screen (online) with at least one job on today''s calendar. No case saves a signature.'
+detox_reference: '[SIG-204][XLSX] Clear button is disabled when empty and enabled
+  when signature present'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Take a Work Order Signature]
+  action: tap_selector
+  text: Take a Work Order Signature
+  delay: 1.0
+- desc: Chạm vào mục [Clear]
+  action: tap_selector
+  text: Clear
+  delay: 1.0
+- desc: Draw a stroke.
+  action: tap_selector
+  text: Draw a stroke.
+  delay: 0.8
+- desc: Chạm vào mục [Clear]
+  action: tap_selector
+  text: Clear
+  delay: 1.0
+- desc: Chạm vào mục [Type]
+  action: tap_selector
+  text: Type
+  delay: 1.0
+expected:
+- assert_text: Technician's Signature
+  desc: Hiển thị 'Technician's Signature' trên màn hình
+- assert_text: the drawing area
+  desc: the drawing area
+- assert_text: Clear
+  desc: Hiển thị 'Clear' trên màn hình
+- assert_text: the drawing area
+  desc: the drawing area
+- assert_text: Clear
+  desc: Hiển thị 'Clear' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (tap "Open Incomplete Job" if offered). (2) In the job''s three-dots
+  menu choose "Take a Work Order Signature". After step 2, "Technician''s Signature"
+  should be displayed. (3) Tap "Clear" on the empty pad. After step 3, the drawing
+  area should be displayed. (4) Draw a stroke. After step 4, "Clear" should be displayed.
+  (5) Tap "Clear". After step 5, the drawing area should be displayed. (6) Tap the
+  "Type" tab and type "Jane Smith". After step 6, "Clear" should be displayed. If
+  that option is missing, stop and report the test as skipped: no work order options.'

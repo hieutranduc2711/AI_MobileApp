@@ -1,0 +1,45 @@
+id: BUGREG-088
+title: 'Not sync client signature of unit in offline: Not sync client signature of
+  unit in offline'
+sheet: 11_Bug_Regression_91
+module: Unit signature
+action: Not sync client signature of unit in offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off network
+  action: tap_selector
+  text: Turn off network
+  delay: 1.0
+- desc: Create new building, create new unit for building
+  action: tap_selector
+  text: Create new building, create ne
+  delay: 1.0
+- desc: Assign building to job
+  action: tap_selector
+  text: Assign building to job
+  delay: 1.0
+- desc: Open job unit detail just assigned
+  action: tap_selector
+  text: Open job unit detail just assi
+  delay: 1.0
+- desc: Add client signature
+  action: tap_selector
+  text: Add client signature
+  delay: 1.0
+- desc: Back to online
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: 'Expected: Client signature of unit must sync when back to online'
+  assert_text: Unit signature
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

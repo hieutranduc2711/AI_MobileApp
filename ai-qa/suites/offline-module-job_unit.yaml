@@ -1,0 +1,6 @@
+name: offline-module-job_unit
+description: Cross-sheet comprehensive offline suite for Module [job_unit] (3 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-056.yaml
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-057.yaml
+- testcases/offline_sync/11_bug_regression_91/job_unit/BUGREG-058.yaml

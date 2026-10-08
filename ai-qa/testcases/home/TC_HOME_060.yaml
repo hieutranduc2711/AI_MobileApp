@@ -1,0 +1,24 @@
+id: TC_HOME_060
+title: Notification bell and back
+feature: home
+priority: High
+description: The bell opens notifications and back returns Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_060] notification button is tappable
+  and can navigate/back'
+steps:
+- desc: Tap the bell icon at the top-right.
+  action: tap_selector
+  text: Tap the bell icon at the top-r
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the bell icon
+  at the top-right. (2) Tap the back arrow at the top-left. If there is no bell icon,
+  stop and report the test as skipped: notifications not shown.'

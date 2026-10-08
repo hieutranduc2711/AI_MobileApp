@@ -1,0 +1,14 @@
+id: DOC-PDF-001
+title: Xuất phiếu nghiệm thu Work Order định dạng PDF
+feature: workorder_signatures
+priority: High
+description: Tạo file PDF đầy đủ hình ảnh, hóa chất và chữ ký để gửi email cho khách
+preconditions: Job Details -> Work Order Summary
+steps:
+- desc: Bấm nút Preview PDF
+  action: tap_selector
+  text: PDF
+  delay: 2.0
+expected:
+- assert_text: PDF
+  desc: Bản xem trước PDF sẵn sàng để in hoặc gửi mail

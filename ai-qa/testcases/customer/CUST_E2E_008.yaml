@@ -1,0 +1,40 @@
+id: CUST_E2E_008
+title: First and last name accept typing
+feature: customer
+priority: High
+description: The First Name and Last Name fields accept typed text.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_008] customer form: first/last name accept typing'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'Test' vào ô [input]
+  action: type_text
+  value: Test
+  delay: 0.8
+expected:
+- assert_text: the fields
+  desc: the fields
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the plus icon at the top-right. (3) Type "Test"
+  in "First Name" and "User" in "Last Name". After step 3, the fields should show
+  "Test" and "User".

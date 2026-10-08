@@ -1,0 +1,32 @@
+id: BUGREG-022
+title: 'Add task not sync when back to online: Add task not sync when back to online'
+sheet: 11_Bug_Regression_91
+module: Tasks
+action: Add task not sync when back to online
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Add new task in offline
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Back to online. Task not sync after added from offline
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Should be sync new task added from offline when back to online
+  assert_text: Tasks
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

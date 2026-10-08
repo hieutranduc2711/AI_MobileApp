@@ -1,0 +1,18 @@
+id: PERM-ROLE-002
+title: Kỹ thuật viên không thể xóa Job đã hoàn thành
+feature: role_based_permissions
+priority: Normal
+description: 'Kiểm thử ma trận phân quyền KTV và Quản lý ca #2'
+preconditions: Đang đăng nhập
+steps:
+- desc: Mở Job Completed
+  action: tap_selector
+  text: Completed Job
+  delay: 0.8
+- desc: Kiểm tra nút Delete
+  action: tap_selector
+  content_desc: Delete
+  delay: 0.5
+expected:
+- assert_text: Permission Denied
+  desc: Báo lỗi không có quyền xóa job hoàn thành

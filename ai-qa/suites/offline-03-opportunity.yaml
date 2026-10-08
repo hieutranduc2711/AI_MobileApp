@@ -1,0 +1,12 @@
+name: offline-03-opportunity
+description: Offline Suite for Sheet [03_round_trip] > Module [opportunity] (9 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02446.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02447.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02448.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02449.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02450.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02451.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02452.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02453.yaml
+- testcases/offline_sync/03_round_trip/opportunity/SYNC-02454.yaml

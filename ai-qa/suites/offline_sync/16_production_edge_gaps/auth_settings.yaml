@@ -1,0 +1,5 @@
+name: offline-16-auth_settings
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [auth_settings]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_settings/EDGE-GAP-003.yaml

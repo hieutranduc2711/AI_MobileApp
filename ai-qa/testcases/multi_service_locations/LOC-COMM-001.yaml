@@ -1,0 +1,30 @@
+id: LOC-COMM-001
+title: Tạo nhiều tòa nhà chi nhánh (Sub-locations) cho một khách hàng doanh nghiệp
+feature: multi_service_locations
+priority: Normal
+description: 'Kiểm thử quản lý đa địa điểm dịch vụ khách hàng #1'
+preconditions: Customers
+steps:
+- desc: Mở hồ sơ khách hàng Commercial
+  action: tap_selector
+  text: Customers
+  delay: 0.8
+- desc: Mở tab Locations
+  action: tap_selector
+  text: Locations
+  delay: 0.8
+- desc: Bấm Add Location
+  action: tap_selector
+  content_desc: Add Location
+  delay: 1.0
+- desc: Nhập tên Tòa nhà B - Khu xưởng sản xuất
+  action: type_text
+  value: Building B - Plant
+  delay: 0.5
+- desc: Lưu chi nhánh
+  action: tap_selector
+  content_desc: Save
+  delay: 1.0
+expected:
+- assert_text: Building B - Plant
+  desc: Vị trí dịch vụ phụ được gán vào khách hàng

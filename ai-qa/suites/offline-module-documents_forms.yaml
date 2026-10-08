@@ -1,0 +1,13 @@
+name: offline-module-documents_forms
+description: Cross-sheet comprehensive offline suite for Module [documents_forms]
+  (9 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-094.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-095.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-096.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-097.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-098.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-099.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-100.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-101.yaml
+- testcases/offline_sync/10_dev_checklist_167/documents_forms/DEV-UI-102.yaml

@@ -1,0 +1,45 @@
+id: SYNC-03294
+title: 'SQLite Corruption: PowerSync DB corrupt'
+sheet: 05_Cross_Cutting
+module: Storage
+action: SQLite Corruption
+priority: P0
+flow_phase: Device Edge
+direction: CROSS-CUTTING
+app_path: Test build/device
+preconditions: Prepare environment/data as described.
+test_data: PowerSync DB corrupt
+steps:
+- desc: Seed cache/pending.
+  action: tap_selector
+  text: Seed cache/pending.
+  delay: 1.0
+- desc: Corrupt DB.
+  action: tap_selector
+  text: Corrupt DB.
+  delay: 1.0
+- desc: Launch app.
+  action: tap_selector
+  text: Launch app.
+  delay: 1.0
+- desc: Observe recovery/error.
+  action: tap_selector
+  text: Observe recovery/error.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: No silent saved state.
+  assert_text: Storage
+- desc: No cross-account fallback.
+  assert_text: Storage
+- desc: Explicit recovery/error.
+  assert_text: Storage
+source_tickets: RN-5637, RN-5477
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5477'
+risk: Data integrity
+notes: Carried from V2 OFFV2-03223

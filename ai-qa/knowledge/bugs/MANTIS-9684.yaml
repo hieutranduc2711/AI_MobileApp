@@ -1,0 +1,12 @@
+bug:
+  id: "MANTIS-9684"
+  title: "Balance Due không đổi khi thu tiền trên hóa đơn Draft"
+  feature: "invoices"
+  severity: "Minor"
+  status: "Under_Review"
+  reproduction_steps:
+    - "Mở một Invoice đang ở trạng thái Draft"
+    - "Bấm Collect Payment và thanh toán toàn bộ số tiền"
+    - "Quay lại màn hình chi tiết Invoice"
+  actual_result: "Balance Due vẫn hiển thị số tiền cũ cho đến khi người dùng thoát ra vào lại"
+  expected_result: "Balance Due phải tự động cập nhật về 0.00 ngay sau khi thanh toán thành công"

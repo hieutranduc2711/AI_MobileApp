@@ -1,0 +1,5 @@
+invariants:
+  - id: ROUTE-INV-001
+    description: "Mọi Job có tọa độ địa lý hợp lệ phải hiển thị ghim (Pin) trên bản đồ"
+  - id: ROUTE-INV-002
+    description: "Tối ưu lộ trình không được làm thay đổi các Job có khung giờ cố định (Fixed Time Window)"

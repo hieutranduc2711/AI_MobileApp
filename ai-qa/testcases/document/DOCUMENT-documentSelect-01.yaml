@@ -1,0 +1,35 @@
+id: DOCUMENT-documentSelect-01
+title: Doc template list shown
+feature: document
+priority: High
+description: Select Document shows the Doc template list.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document and at least
+  one service location. Templates exist on both the Docs and PDFs tabs (enough Doc
+  templates to scroll). DOCUMENT-documentSelect-05 creates a document from the first
+  Doc template.
+detox_reference: User sees the doc template list on select screen
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Select Document
+  desc: Hiển thị 'Select Document' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the plus icon on the "Documents" section header; if a location list opens,
+  tap the first location. After step 3, the "Select Document" screen should be displayed.
+  The "Docs" tab should show its template list.

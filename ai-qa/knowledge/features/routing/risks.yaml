@@ -1,0 +1,5 @@
+risks:
+  - id: RISK-ROUTE-001
+    name: "Location permission dialog"
+    details: "Lần đầu mở Map có thể bị popup xin quyền GPS của Android che mất màn hình"
+    mitigation: "Cấp quyền ACCESS_FINE_LOCATION trước qua lệnh ADB: pm grant com.gorilladesk.rn android.permission.ACCESS_FINE_LOCATION"

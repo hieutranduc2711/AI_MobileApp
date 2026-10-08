@@ -1,0 +1,25 @@
+id: MAP_E2E_015
+title: Calendar shortcut from the map
+feature: map
+priority: High
+description: The calendar view shortcut on the map can be tapped and the map filter
+  button is then shown.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted (Detox launches with location always). Detox relaunches
+  the app after each case.
+detox_reference: '[MAP_E2E_015][DOC+][Map] User taps calendar shortcut and test skips
+  safely when shortcut contract is missing'
+steps:
+- desc: Tap the calendar view button in the middle of the bottom-left button column.
+  action: tap_selector
+  text: Tap the calendar view button i
+  delay: 0.8
+expected:
+- assert_text: the map filter button
+  desc: the map filter button
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the calendar view button in the middle of the bottom-left button column. After
+  step 1, the map filter button should be displayed. If the map cannot be shown or
+  there is no calendar view button, stop and report the test as skipped: map view
+  or calendar shortcut not available.'

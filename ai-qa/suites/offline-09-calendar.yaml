@@ -1,0 +1,22 @@
+name: offline-09-calendar
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [calendar] (18
+  cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0001.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0002.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0003.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0004.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0005.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0006.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0025.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0026.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0027.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0028.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0029.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0030.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0031.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0032.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0033.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0034.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0035.yaml
+- testcases/offline_sync/09_new_twoway_delta/calendar/V4-TW-0036.yaml

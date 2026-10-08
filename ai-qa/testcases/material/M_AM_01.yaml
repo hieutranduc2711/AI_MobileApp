@@ -1,0 +1,33 @@
+id: M_AM_01
+title: Show All opens All Materials
+feature: material
+priority: High
+description: Show All under Materials opens the All Materials list.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_AM_01][Material][AllMaterial] AllMaterial flatlist is visible
+  after tapping Show All button'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap "Show All" under the section. If there is no
+  "Show All" under "Materials", stop and report the test as skipped: fewer than 5
+  materials.'

@@ -1,0 +1,8 @@
+name: offline-13-offline_restrictions
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [offline_restrictions]
+  (4 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/offline_restrictions/JDELTA-023.yaml
+- testcases/offline_sync/13_jira_current_delta/offline_restrictions/JDELTA-024.yaml
+- testcases/offline_sync/13_jira_current_delta/offline_restrictions/JDELTA-025.yaml
+- testcases/offline_sync/13_jira_current_delta/offline_restrictions/JDELTA-026.yaml

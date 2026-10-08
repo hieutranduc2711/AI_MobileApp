@@ -1,0 +1,63 @@
+id: SYNC-00325
+title: 'Delete Invoice line item: Load dữ liệu online → mất mạng → vẫn thực hiện Delete
+  Invoice line item'
+sheet: 01_Online_to_Offline
+module: Invoice
+action: Delete Invoice line item
+priority: P1
+flow_phase: O2F-01 Ready local cache
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Invoice > Line Items > Delete
+preconditions: Đăng nhập đúng account/branch; user có quyền Delete Invoice line item;
+  prerequisite/local data cần thiết đã sync; mở đúng GD Mobile > Invoice > Line Items
+  > Delete.
+test_data: Valid representative entity
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Ghi nhận giá trị hiện tại của entity.
+  action: tap_selector
+  text: 'Ghi nhận giá trị hiện tại của '
+  delay: 1.0
+- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Không reload app.
+  action: tap_selector
+  text: Không reload app.
+  delay: 1.0
+- desc: Thực hiện Delete Invoice line item.
+  action: tap_selector
+  text: Delete Invoice line item
+  delay: 1.0
+- desc: Navigate ra màn hình khác rồi quay lại.
+  action: back
+  delay: 1.0
+- desc: Giữ device Offline và kiểm tra kết quả.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
+  assert_text: Invoice
+- desc: Delete Invoice line item vẫn thực hiện được theo offline scope.
+  assert_text: Invoice
+- desc: Không cần manual Offline toggle.
+  assert_text: Invoice
+- desc: Kết quả được giữ local/pending, không rollback vì mất network.
+  assert_text: Invoice
+- desc: Không đọc nhầm data account/branch khác.
+  assert_text: Invoice
+source_tickets: RN-5579, RN-5575
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
+
+  https://gorilladesk1.atlassian.net/browse/RN-5575'
+risk: Transition/readiness
+notes: ''

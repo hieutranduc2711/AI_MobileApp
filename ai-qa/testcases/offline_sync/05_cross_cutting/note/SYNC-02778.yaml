@@ -1,0 +1,64 @@
+id: SYNC-02778
+title: 'Delete Comment: Delete Comment pending rồi logout/switch Account'
+sheet: 05_Cross_Cutting
+module: Note
+action: Delete Comment
+priority: P0
+flow_phase: Pending Account Switch
+direction: CROSS-CUTTING
+app_path: GD Mobile > Note > Comment > Delete
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Delete Comment;
+  prerequisite cho Comment đã sync khi cần.
+test_data: Valid representative data
+steps:
+- desc: Login A.
+  action: tap_selector
+  text: Login A.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Delete Comment.
+  action: tap_selector
+  text: Delete Comment
+  delay: 1.0
+- desc: Logout/switch B.
+  action: tap_selector
+  text: Logout/switch B.
+  delay: 1.0
+- desc: Reconnect B.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect B.
+  action: tap_selector
+  text: Inspect B.
+  delay: 1.0
+- desc: Login lại A.
+  action: tap_selector
+  text: Login lại A.
+  delay: 1.0
+- desc: Verify.
+  action: tap_selector
+  text: Verify.
+  delay: 1.0
+expected:
+- desc: Delete Comment không làm app crash/mất dữ liệu.
+  assert_text: Note
+- desc: Local/UI của Comment phản ánh đúng business result.
+  assert_text: Note
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Note
+- desc: Không duplicate logical operation.
+  assert_text: Note
+- desc: B không nhận data/pending/result của A.
+  assert_text: Note
+- desc: A mutation không reassigned sang B.
+  assert_text: Note
+source_tickets: RN-5567, RN-5536
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
+
+  https://gorilladesk1.atlassian.net/browse/RN-5536'
+risk: Cross-account
+notes: Carried from V2 OFFV2-00563

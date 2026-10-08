@@ -1,0 +1,26 @@
+id: BEDBUG-RM-001
+title: Kiểm tra rệp từng phòng (Room by Room Inspection Checklist)
+feature: bedbug_room_by_room
+priority: Normal
+description: 'Kiểm thử kiểm tra và xử lý rệp giường ca #1'
+preconditions: Đang ở Job Details
+steps:
+- desc: Mở danh mục phòng
+  action: tap_selector
+  text: Rooms Checklist
+  delay: 0.8
+- desc: Chọn Phòng ngủ chính (Master Bedroom)
+  action: tap_selector
+  text: Master Bedroom
+  delay: 0.6
+- desc: Tích chọn nệm có vết rệp (Mattress Activity)
+  action: tap_selector
+  text: Mattress / Box Spring
+  delay: 0.5
+- desc: Lưu phòng
+  action: tap_selector
+  content_desc: Save Room
+  delay: 1.0
+expected:
+- assert_text: Infested
+  desc: Trạng thái phòng chuyển sang có rệp

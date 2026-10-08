@@ -1,0 +1,46 @@
+id: TC_MGT_PTR
+title: Pull to refresh Manage Templates
+feature: todo
+priority: High
+description: Pull-to-refresh keeps Manage Templates displayed.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_EDIT_LINE
+  edits the first todo; TC_TEMPLATE_APPLY applies the first template to the job; TC_TEMPLATE_RENAME
+  renames the first template.
+detox_reference: '[Todo][TC_MGT_PTR][ManageTemplates] User pulls the manage templates
+  list to refresh'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+- desc: Chạm vào mục [Manage Template]
+  action: tap_selector
+  text: Manage Template
+  delay: 1.0
+- desc: Pull the template list down to refresh.
+  action: tap_selector
+  text: Pull the template list down to
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage Templates
+  desc: Hiển thị 'Manage Templates' trên màn hình
+- assert_text: Manage Templates
+  desc: Hiển thị 'Manage Templates' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap the three-dots button on "Todo List" (id: options-button).
+  (3) Tap "Manage Template". After step 3, the "Manage Templates" screen should be
+  displayed. (4) Pull the template list down to refresh. After step 4, "Manage Templates"
+  should still be displayed. (5) Tap the back arrow. If "Todo List" or "Manage Template"
+  is missing, stop and report the test as skipped: templates unavailable.'

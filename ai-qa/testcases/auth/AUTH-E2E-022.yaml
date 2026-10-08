@@ -1,0 +1,27 @@
+id: AUTH-E2E-022
+title: Android back to Welcome, Login again
+feature: auth
+priority: High
+description: Android back on Login returns to Welcome, and Login is reachable again
+  from there.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'login: Android hardware back returns to Welcome then Login is reachable
+  again (stack recovery)'
+steps:
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+- desc: Chạm vào mục [I already have an account]
+  action: tap_selector
+  text: I already have an account
+  delay: 1.0
+expected:
+- assert_text: I already have an account
+  desc: Hiển thị 'I already have an account' trên màn hình
+goal_summary: Open the GorillaDesk app on the Login screen (from Welcome, tap "I already
+  have an account"). (1) Press the Android back button. After step 1, the Welcome
+  screen with "I already have an account" should be displayed. (2) Tap "I already
+  have an account". Before step 1 and at the end, the Login screen with the "Login"
+  button should be displayed.

@@ -1,0 +1,19 @@
+id: CHAOS-RES-047
+title: 'Khả năng chịu lỗi và gián đoạn hệ thống kịch bản #47'
+feature: network_chaos_edge_cases
+priority: Normal
+description: 'Kiểm thử khả năng phục hồi dữ liệu trong điều kiện khắc nghiệt #47'
+preconditions: Calendar Home
+steps:
+- desc: Kích hoạt mô phỏng môi trường bất ổn định
+  action: tap_selector
+  text: Calendar
+  delay: 0.8
+- desc: 'Thực hiện kiểm tra resilience #47'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Calendar
+  desc: App tự bảo vệ dữ liệu và không sập

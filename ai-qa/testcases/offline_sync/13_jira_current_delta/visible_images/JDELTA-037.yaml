@@ -1,0 +1,41 @@
+id: JDELTA-037
+title: 'Multiple images consecutive Offline: Multiple images consecutive Offline'
+sheet: 13_Jira_Current_Delta
+module: Visible Images
+action: Multiple images consecutive Offline
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline add multiple images consecutively.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Edit one caption and remove one pending image.
+  action: tap_selector
+  text: Edit one caption and remove on
+  delay: 1.0
+- desc: Reopen screen Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: All remaining images/captions map correctly.
+  assert_text: Visible Images
+- desc: Removed item does not return.
+  assert_text: Visible Images
+- desc: No duplicate ordering issues.
+  assert_text: Visible Images
+source_tickets: RN-5596,RN-5525
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5596
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525'
+risk: Schema / Comment Regression
+notes: ''

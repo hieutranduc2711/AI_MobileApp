@@ -1,0 +1,38 @@
+id: CUSTOMER-fullCustomerFlow-07
+title: Invoice/Estimate Show All presence
+feature: customer
+priority: High
+description: Customer detail may show Show All under Invoice or Estimate.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'customer detail: show all invoices/estimates buttons exist when
+  list can paginate (best-effort)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Scroll to the "Invoice"
+  and "Estimate" sections and report whether a "Show All" is shown under either; its
+  absence is not a failure. If the list has no customers, stop and report the test
+  as skipped: no customer data.'

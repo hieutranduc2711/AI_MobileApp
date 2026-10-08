@@ -1,0 +1,48 @@
+id: CUSTOMER-fullCustomerFlow-02
+title: Contact row menu shows edit/delete
+feature: customer
+priority: High
+description: The first additional contact menu offers Edit Contact and Delete Contact.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'additional contacts: row menu opens and exposes edit/delete actions
+  (permission-gated)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Additional Contacts]
+  action: tap_selector
+  text: Additional Contacts
+  delay: 1.0
+- desc: Tap the three-dots icon on the first contact row.
+  action: tap_selector
+  text: Tap the three-dots icon on the
+  delay: 0.8
+expected:
+- assert_text: Additional Contacts
+  desc: Hiển thị 'Additional Contacts' trên màn hình
+- assert_text: Edit Contact
+  desc: Hiển thị 'Edit Contact' trên màn hình
+- assert_text: Delete Contact
+  desc: Hiển thị 'Delete Contact' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap "Additional Contacts".
+  After step 3, the "Additional Contacts" screen with a plus icon at the top-right
+  should be displayed. (4) Tap the three-dots icon on the first contact row. After
+  step 4, "Edit Contact" and "Delete Contact" should be displayed. If there is no
+  customer, no "Additional Contacts" row or no contact row with a three-dots icon,
+  stop and report the test as skipped: no editable contact.'

@@ -1,0 +1,53 @@
+id: V4-TW-0070
+title: 'Apply Todo List Template: Bắt đầu Apply Todo List Template Online, mất mạng
+  trước Save và hoàn tất Offline'
+sheet: 09_New_TwoWay_Delta
+module: Todo
+action: Apply Todo List Template
+priority: P0
+flow_phase: Two-Way Delta Action
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job > Todo > Template
+preconditions: User có quyền Apply Todo List Template; prerequisite data đã được tải
+  về local.
+test_data: ''
+steps:
+- desc: Mở flow khi network Online ổn định.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Bắt đầu Apply Todo List Template, điền/chọn dữ liệu nhưng chưa Save/Confirm.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Tắt Wi‑Fi và mobile data; chờ app nhận Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Tiếp tục hoàn tất flow và Save/Confirm khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Navigate ra/vào lại màn hình liên quan.
+  action: tap_selector
+  text: Navigate ra/vào lại màn hình l
+  delay: 1.0
+- desc: Giữ device Offline và kiểm tra local result.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: Input/draft không bị reset khi Online → Offline.
+  assert_text: Todo
+- desc: Apply Todo List Template được lưu local theo offline scope.
+  assert_text: Todo
+- desc: Không hiện network error làm mất thay đổi.
+  assert_text: Todo
+- desc: Local result tồn tại sau remount/navigation.
+  assert_text: Todo
+- desc: Không tạo duplicate pending action.
+  assert_text: Todo
+source_tickets: RN-5569
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5569
+risk: Delta Missing Action
+notes: ''

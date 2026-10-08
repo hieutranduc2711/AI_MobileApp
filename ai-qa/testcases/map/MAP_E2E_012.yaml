@@ -1,0 +1,36 @@
+id: MAP_E2E_012
+title: Filter, dark layer and refresh
+feature: map
+priority: High
+description: The user changes the event filter, applies the Dark layer, refreshes,
+  and the map controls remain.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted. The case changes the saved map event-type filter and
+  map layer; reset them afterwards if other cases depend on them.
+detox_reference: '[MAP_E2E_012][DOC+][Map] User updates filters, applies dark style,
+  refreshes map, and remains on map controls'
+steps:
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+- desc: Chạm vào mục [Dark]
+  action: tap_selector
+  text: Dark
+  delay: 1.0
+- desc: Tap the refresh button in the bottom-right column. At the end, the filter
+    button
+  action: tap_selector
+  text: 'Tap the refresh button in the '
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the filter button at the top of the bottom-left button column; in "Event Type"
+  tap "Custom Event", then tap "Save" (id: saveButton). (2) Tap the map layers button
+  at the bottom of the left column, tap "Dark", then tap "Apply". (3) Tap the refresh
+  button in the bottom-right column. At the end, the filter button, the map layers
+  button and the refresh button should be displayed. If the map cannot be shown, stop
+  and report the test as skipped: map view not available.'

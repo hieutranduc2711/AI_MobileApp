@@ -1,0 +1,51 @@
+id: EDGE-GAP-005
+title: 'Role/Permission Revoked While Offline: Quyền sửa Invoice bị thu hồi trên Web
+  khi đang Offline → Đồng bộ lại → Server trả về 403 Forbidden →'
+sheet: 16_Production_Edge_Gaps
+module: Auth / Permissions
+action: Role/Permission Revoked While Offline
+priority: P1
+flow_phase: Auth Expiry & Session Lifecycle
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Invoices / Sync Manager
+preconditions: Technician sửa Invoice offline. Trên web Admin hạ quyền của technician
+  xuống 'View Only' đối với Invoice.
+test_data: 'Revoked permission: ''invoices.update''; 1 pending invoice mutation, 2
+  pending job notes.'
+steps:
+- desc: Sửa Invoice offline (chuyển sang $200).
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thêm 2 Job notes offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Admin trên web bỏ quyền edit invoice của technician.
+  action: tap_selector
+  text: Admin trên web bỏ quyền edit i
+  delay: 1.0
+- desc: Bật mạng online để sync.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Kiểm tra xử lý mutation Invoice và 2 notes.
+  action: tap_selector
+  text: Kiểm tra xử lý mutation Invoic
+  delay: 1.0
+expected:
+- desc: Server trả về HTTP 403 Forbidden cho mutation Invoice.
+  assert_text: Auth / Permissions
+- desc: Sync Engine gắn cờ item Invoice này là 'Permission Denied / Rejected', chuyển
+    vào mục Cần giải quyết (Dead-letter).
+  assert_text: Permission Denied / Rejected
+- desc: Sync Engine KHÔNG bị kẹt tại item Invoice mà tiếp tục xả 2 Job notes thành
+    công.
+  assert_text: Auth / Permissions
+- desc: Người dùng nhận thông báo giải thích rõ quyền hạn đã thay đổi.
+  assert_text: Auth / Permissions
+source_tickets: RN-5477 / Permissions
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Queue Blocking / Silent Drop
+notes: Đảm bảo lỗi 403 của 1 item không làm tắc nghẽn (head-of-line blocking) các
+  item hợp lệ khác.

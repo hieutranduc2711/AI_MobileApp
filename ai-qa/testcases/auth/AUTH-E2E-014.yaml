@@ -1,0 +1,30 @@
+id: AUTH-E2E-014
+title: Welcome offline login without offline data
+feature: auth
+priority: High
+description: Offline login on Welcome shows the no-offline-data dialog when the device
+  has no offline data.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'welcome: offline login button (if shown) should show "no offline
+  data" dialog when empty'
+steps:
+- desc: Chạm vào mục [Login with Offline Mode]
+  action: tap_selector
+  text: Login with Offline Mode
+  delay: 1.0
+- desc: Chạm vào mục [OK]
+  action: tap_selector
+  text: OK
+  delay: 1.0
+expected:
+- assert_text: Offline data could not be found
+  desc: Hiển thị 'Offline data could not be found' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Welcome screen. (1) Tap "Login with
+  Offline Mode". After step 1, a dialog (id: dialog-title) with the message "Offline
+  data could not be found" should be displayed. (2) Tap "OK". If "Login with Offline
+  Mode" is not shown on Welcome, stop and report the test as skipped: device is online.'

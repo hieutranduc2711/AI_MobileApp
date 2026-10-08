@@ -1,0 +1,4 @@
+name: offline-module-job_wo
+description: Cross-sheet comprehensive offline suite for Module [job_wo] (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/job_wo/BUGREG-054.yaml

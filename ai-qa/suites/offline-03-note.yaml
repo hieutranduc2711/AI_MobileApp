@@ -1,0 +1,33 @@
+name: offline-03-note
+description: Offline Suite for Sheet [03_round_trip] > Module [note] (30 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/note/SYNC-02416.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02417.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02418.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02419.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02420.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02421.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02422.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02423.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02424.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02425.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02426.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02427.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02428.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02429.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02430.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02431.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02432.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02433.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02434.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02435.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02436.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02437.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02438.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02439.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02440.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02441.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02442.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02443.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02444.yaml
+- testcases/offline_sync/03_round_trip/note/SYNC-02445.yaml

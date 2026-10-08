@@ -1,0 +1,15 @@
+name: offline-05-contact
+description: Offline Suite for Sheet [05_cross_cutting] > Module [contact] (12 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02992.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02991.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02990.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02993.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02989.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02988.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02999.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02998.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02997.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02996.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02995.yaml
+- testcases/offline_sync/05_cross_cutting/contact/SYNC-02994.yaml

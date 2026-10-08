@@ -1,0 +1,19 @@
+name: offline-01-opportunity
+description: Offline Suite for Sheet [01_online_to_offline] > Module [opportunity]
+  (15 cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00615.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00616.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00617.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00618.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00619.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00620.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00621.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00622.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00623.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00624.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00625.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00626.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00627.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00628.yaml
+- testcases/offline_sync/01_online_to_offline/opportunity/SYNC-00629.yaml

@@ -1,0 +1,53 @@
+id: SYNC-03277
+title: 'Check in Unit → Check out Unit: Check in Unit → Check out Unit'
+sheet: 05_Cross_Cutting
+module: MDU
+action: Check in Unit → Check out Unit
+priority: P0
+flow_phase: Semantic Action Ordering
+direction: CROSS-CUTTING
+app_path: GD Mobile > MDU > Unit
+preconditions: Entity synced locally; device offline.
+test_data: One entity
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: 'Action 1: Check in.'
+  action: tap_selector
+  text: 'Action 1: Check in.'
+  delay: 1.0
+- desc: 'Action 2 ngay sau đó: Check out.'
+  action: tap_selector
+  text: 'Action 2 ngay sau đó: Check ou'
+  delay: 1.0
+- desc: Inspect local final state.
+  action: tap_selector
+  text: Inspect local final state.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Capture/order actions.
+  action: tap_selector
+  text: Capture/order actions.
+  delay: 1.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Cả hai action giữ đúng semantics.
+  assert_text: MDU
+- desc: Không coalesce chỉ vì same entity/UPDATE.
+  assert_text: MDU
+- desc: Final state đúng ordered effects.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Critical coalescing
+notes: Carried from V2 OFFV2-02953

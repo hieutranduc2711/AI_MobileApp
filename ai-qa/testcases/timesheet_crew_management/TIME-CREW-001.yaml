@@ -1,0 +1,19 @@
+id: TIME-CREW-001
+title: Kỹ thuật viên Clock In vào đầu ngày làm việc
+feature: timesheet_crew_management
+priority: Normal
+description: 'Xác thực nghiệp vụ quản lý nhân sự và chấm công KTV #1'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Bấm nút Clock In
+  action: tap_selector
+  text: Clock In
+  delay: 1.2
+expected:
+- assert_text: Clocked In
+  desc: Trạng thái đổi sang Clocked In kèm mốc thời gian

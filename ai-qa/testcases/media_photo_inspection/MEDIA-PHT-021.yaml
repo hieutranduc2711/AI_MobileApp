@@ -1,0 +1,19 @@
+id: MEDIA-PHT-021
+title: 'Quản lý hình ảnh và tài liệu đính kèm thực địa #21'
+feature: media_photo_inspection
+priority: Normal
+description: 'Kiểm thử chụp ảnh hiện trường và nghiệm thu công trình #21'
+preconditions: Job đang mở ở màn hình thực địa
+steps:
+- desc: Xem danh mục ảnh hiện trường
+  action: tap_selector
+  text: Photos
+  delay: 0.8
+- desc: 'Thao tác kiểm tra ảnh #21'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Photos
+  desc: Danh mục hình ảnh hoạt động trơn tru

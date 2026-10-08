@@ -1,0 +1,56 @@
+id: SYNC-00633
+title: 'Capture Estimate Customer Signature: Capture Estimate Customer Signature:
+  server/queue ACK → mất mạng trước authoritative downlink'
+sheet: 01_Online_to_Offline
+module: Signature
+action: Capture Estimate Customer Signature
+priority: P0
+flow_phase: O2F-04 Drop after ACK before downlink
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Estimate > Signature
+preconditions: Đăng nhập đúng account/branch; user có quyền Capture Estimate Customer
+  Signature; prerequisite/local data cần thiết đã sync; mở đúng GD Mobile > Estimate
+  > Signature.
+test_data: Valid mutation
+steps:
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Thực hiện Capture Estimate Customer Signature.
+  action: tap_selector
+  text: Capture Estimate Customer Signature
+  delay: 1.0
+- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
+  action: tap_selector
+  text: Cho queue/API nhận request/ACK
+  delay: 1.0
+- desc: Cắt network trước khi authoritative row mới về local.
+  action: tap_selector
+  text: Cắt network trước khi authorit
+  delay: 1.0
+- desc: Mở/reopen entity khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Quan sát optimistic/local state.
+  action: tap_selector
+  text: Quan sát optimistic/local stat
+  delay: 1.0
+expected:
+- desc: Queue ACK không được xem là backend business completion.
+  assert_text: Signature
+- desc: Optimistic state không bị xóa quá sớm.
+  assert_text: Signature
+- desc: UI không snap-back về old server value sau khi mất mạng.
+  assert_text: Signature
+- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
+  assert_text: Signature
+source_tickets: RN-5605, RN-5525, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Early patch removal/snap-back
+notes: ''

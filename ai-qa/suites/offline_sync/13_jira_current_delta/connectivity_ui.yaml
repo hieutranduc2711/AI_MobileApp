@@ -1,0 +1,7 @@
+name: offline-13-connectivity_ui
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [connectivity_ui]
+  (3 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/connectivity_ui/JDELTA-007.yaml
+- testcases/offline_sync/13_jira_current_delta/connectivity_ui/JDELTA-008.yaml
+- testcases/offline_sync/13_jira_current_delta/connectivity_ui/JDELTA-009.yaml

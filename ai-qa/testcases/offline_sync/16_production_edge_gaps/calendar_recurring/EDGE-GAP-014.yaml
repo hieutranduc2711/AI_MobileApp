@@ -1,0 +1,40 @@
+id: EDGE-GAP-014
+title: 'Daylight Saving Time (DST) Shift Offline: Sự kiện đổi giờ mùa hè (DST) diễn
+  ra khi thiết bị đang Offline → Các công việc lặp lại (Recurring Jo'
+sheet: 16_Production_Edge_Gaps
+module: Calendar / Recurring
+action: Daylight Saving Time (DST) Shift Offline
+priority: P2
+flow_phase: Clock Drift & Timestamp Tampering
+direction: CROSS-CUTTING
+app_path: GD Mobile > Calendar > Schedule
+preconditions: Thiết bị offline qua mốc 2:00 AM ngày chuyển đổi DST (mùa xuân nhảy
+  lên 3:00 AM hoặc mùa thu lùi về 1:00 AM).
+test_data: DST transition boundary date/time.
+steps:
+- desc: Đặt thiết bị offline vào đêm chuyển đổi DST.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Xem các lịch hẹn recurring của ngày hôm sau.
+  action: tap_selector
+  text: Xem các lịch hẹn recurring của
+  delay: 1.0
+- desc: Tạo 1 recurring job mới trong khoảng thời gian này.
+  action: tap_selector
+  text: 'Tạo 1 recurring job mới trong '
+  delay: 1.0
+- desc: Bật mạng online để đồng bộ.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Công việc lặp lại không bị tạo đúp thành 2 ca làm việc.
+  assert_text: Calendar / Recurring
+- desc: Thời gian bắt đầu công việc vẫn đúng vào giờ làm việc bình thường của cơ sở
+    kinh doanh.
+  assert_text: Calendar / Recurring
+source_tickets: RN-5477 / Recurring
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Duplicate Recurring Event
+notes: Kiểm tra với các thư viện tính toán ngày giờ trên mobile như dayjs, luxon.

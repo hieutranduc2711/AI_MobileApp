@@ -1,0 +1,42 @@
+id: SIG-307
+title: Continue signature and retry save
+feature: signature
+priority: High
+description: A drawn signature is continued and, if still possible, saved again.
+preconditions: 'Logged in with the DEFAULT E2E account (role that sees the job work-order
+  options: “Take a Work Order Signature” in the job three-dots menu), app on the Home
+  screen (online) with at least one job on today''s calendar. Cases that tap “Next”/“Save”
+  store a technician (and client) signature on that job.'
+detox_reference: '[SIG-307][XLSX] S3 presigned URL upload failure shows error and
+  allows retry'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Take a Work Order Signature]
+  action: tap_selector
+  text: Take a Work Order Signature
+  delay: 1.0
+- desc: Chạm vào mục [Next]
+  action: tap_selector
+  text: Next
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Technician's Signature
+  desc: Hiển thị 'Technician's Signature' trên màn hình
+- assert_text: Client's Signature
+  desc: Hiển thị 'Client's Signature' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (tap "Open Incomplete Job" if offered). (2) In the job''s three-dots
+  menu choose "Take a Work Order Signature". After step 2, "Technician''s Signature"
+  should be displayed. (3) Draw a signature stroke and tap "Next". After step 3, the
+  "Client''s Signature" screen, the job detail or an error should be shown. (4) If
+  "Next" or "Save" is still shown, tap it; after that the "Client''s Signature" screen,
+  the job detail or an error should be shown. If that option is missing, stop and
+  report the test as skipped: no work order options.'

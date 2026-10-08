@@ -1,0 +1,24 @@
+id: CALENDAR-E2E-014
+title: Status colors on calendar
+feature: home-calendar
+priority: High
+description: Visible events use the expected color for their status.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-014: status color matrix matches expected tokens (graceful
+  skips)'
+steps:
+- desc: 'Look at the visible events. Each visible event of these statuses should use
+    its '
+  action: tap_selector
+  text: Look at the visible events. Ea
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. The Home top bar (id:
+  home-bar) should be displayed. (1) Look at the visible events. Each visible event
+  of these statuses should use its color: Unconfirmed grey, Confirmed green, Completed
+  blue, Reschedule orange, Pending light orange, Canceled salmon, Booking pink. Statuses
+  with no visible event are skipped.'

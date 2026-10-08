@@ -1,0 +1,41 @@
+id: BUGREG-020
+title: 'Not update correct status of task (Offline): Not update correct status of
+  task (Offline)'
+sheet: 11_Bug_Regression_91
+module: Tasks
+action: Not update correct status of task (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Add new task
+  action: tap_selector
+  text: Add new task
+  delay: 1.0
+- desc: Change status of task to Done
+  action: tap_selector
+  text: Change status of task to Done
+  delay: 1.0
+- desc: Back to online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go to desktop app. Task only added without status to Done
+  action: tap_selector
+  text: Go to desktop app. Task only a
+  delay: 1.0
+expected:
+- desc: Should be added task with correct status
+  assert_text: Tasks
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

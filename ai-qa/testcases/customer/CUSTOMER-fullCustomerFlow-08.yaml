@@ -1,0 +1,39 @@
+id: CUSTOMER-fullCustomerFlow-08
+title: Open first invoice or estimate
+feature: customer
+priority: High
+description: Tapping the first invoice (or estimate) row on customer detail opens
+  it.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'customer detail: tapping first invoice/estimate row navigates to
+  detail (best-effort)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Scroll to the "Invoice"
+  section and tap its first invoice; if it has none, tap the first estimate under
+  "Estimate". If there is no customer or no invoice or estimate row, stop and report
+  the test as skipped: no invoice or estimate data.'

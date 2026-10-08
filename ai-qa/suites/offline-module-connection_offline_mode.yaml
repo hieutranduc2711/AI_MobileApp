@@ -1,0 +1,7 @@
+name: offline-module-connection_offline_mode
+description: Cross-sheet comprehensive offline suite for Module [connection_offline_mode]
+  (3 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/connection_offline_mode/DEV-UI-001.yaml
+- testcases/offline_sync/10_dev_checklist_167/connection_offline_mode/DEV-UI-002.yaml
+- testcases/offline_sync/10_dev_checklist_167/connection_offline_mode/DEV-UI-003.yaml

@@ -1,0 +1,41 @@
+id: JDELTA-005
+title: 'Configured threshold: packet loss triggers Offline/Weak behavior: Configured
+  threshold: packet loss triggers Offline/Weak behavior'
+sheet: 13_Jira_Current_Delta
+module: Connectivity
+action: 'Configured threshold: packet loss triggers Offline/Weak behavior'
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Start stable Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inject packet loss across configured boundary around recommended 5–10% if
+    measurable.
+  action: tap_selector
+  text: Inject packet loss across conf
+  delay: 1.0
+- desc: Observe mode and supported action behavior.
+  action: tap_selector
+  text: Observe mode and supported act
+  delay: 1.0
+- desc: Restore network.
+  action: tap_selector
+  text: Restore network.
+  delay: 1.0
+expected:
+- desc: Quality detection responds according to configured policy.
+  assert_text: Connectivity
+- desc: No mutation loss during transition.
+  assert_text: Connectivity
+source_tickets: RN-5477,RN-5566
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
+
+  https://gorilladesk1.atlassian.net/browse/RN-5566'
+risk: Schema / Comment Regression
+notes: ''

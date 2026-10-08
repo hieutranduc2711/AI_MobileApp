@@ -1,0 +1,28 @@
+id: MAP_E2E_004
+title: Apply Light map layer
+feature: map
+priority: High
+description: Selecting the Light layer and applying it returns to the map controls.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted. MAP_E2E_001–004 change the saved map event-type filter
+  and layer.
+detox_reference: '[MAP_E2E_004][DOC+][Map] User switches map layer to light and applies
+  style'
+steps:
+- desc: Tap the map layers button at the bottom of the left button column.
+  action: tap_selector
+  text: Tap the map layers button at t
+  delay: 0.8
+- desc: Chạm vào mục [Light]
+  action: tap_selector
+  text: Light
+  delay: 1.0
+expected:
+- assert_text: the layer popup
+  desc: the layer popup
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the map layers button at the bottom of the left button column. (2) Tap "Light",
+  then tap "Apply". After step 2, the layer popup should be closed and the map layers
+  button should be displayed. If the map cannot be shown or there is no "Light" option,
+  stop and report the test as skipped: Light layer not available.'

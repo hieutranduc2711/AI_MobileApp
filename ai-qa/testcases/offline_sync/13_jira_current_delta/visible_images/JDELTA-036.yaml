@@ -1,0 +1,38 @@
+id: JDELTA-036
+title: 'Caption edit persists across Offline reopen/reconnect: Caption edit persists
+  across Offline reopen/reconnect'
+sheet: 13_Jira_Current_Delta
+module: Visible Images
+action: Caption edit persists across Offline reopen/reconnect
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline add/select client-visible image.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Edit caption.
+  action: tap_selector
+  text: Edit caption.
+  delay: 1.0
+- desc: Leave/reopen screen Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect and reopen.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Caption persists locally and syncs to correct image.
+  assert_text: Visible Images
+- desc: No caption applied to wrong image.
+  assert_text: Visible Images
+source_tickets: RN-5596
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5596
+risk: Schema / Comment Regression
+notes: ''

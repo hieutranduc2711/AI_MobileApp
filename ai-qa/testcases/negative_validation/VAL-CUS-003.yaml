@@ -1,0 +1,22 @@
+id: VAL-CUS-003
+title: Nhập Email không đúng định dạng
+feature: negative_validation
+priority: High
+description: Kiểm tra validate cú pháp email (thiếu @ hoặc domain)
+preconditions: Đang ở màn hình New Customer
+steps:
+- desc: Chạm vào ô Email
+  action: tap_selector
+  text: Email
+  delay: 0.5
+- desc: Nhập email lỗi cú pháp
+  action: type_text
+  value: invalid_email_format
+  delay: 0.8
+- desc: Bấm Save
+  action: tap_selector
+  content_desc: Save
+  delay: 1.0
+expected:
+- assert_text: Email
+  desc: Cảnh báo định dạng email không hợp lệ

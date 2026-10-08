@@ -1,0 +1,22 @@
+id: REC-CON-002
+title: Bỏ qua một lần viếng thăm trong chuỗi (Skip This Occurrence Only)
+feature: recurring_contracts
+priority: Normal
+description: 'Kiểm tra tính năng hợp đồng định kỳ và lịch lặp lại trường hợp #2'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Job ngày hôm nay trong chuỗi
+  action: tap_selector
+  text: Recurring Job
+  delay: 0.8
+- desc: Chọn Hủy/Skip
+  action: tap_selector
+  content_desc: Skip Visit
+  delay: 0.8
+- desc: Chọn 'Only this visit'
+  action: tap_selector
+  text: Only this event
+  delay: 1.0
+expected:
+- assert_text: Skipped
+  desc: Chỉ hủy ngày hiện tại, các tháng sau vẫn giữ nguyên

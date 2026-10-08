@@ -1,0 +1,5 @@
+name: offline-module-customer_estimate
+description: Cross-sheet comprehensive offline suite for Module [customer_estimate]
+  (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer_estimate/BUGREG-082.yaml

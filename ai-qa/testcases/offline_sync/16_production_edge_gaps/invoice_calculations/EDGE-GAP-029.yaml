@@ -1,0 +1,44 @@
+id: EDGE-GAP-029
+title: 'Currency Precision, Discounts & Zero Balances: Hóa đơn chứa số lẻ thập phân
+  ($1,234.5678), giảm giá 100%, hoặc số âm hợp lệ → Lưu Offline và sync l'
+sheet: 16_Production_Edge_Gaps
+module: Invoice / Calculations
+action: Currency Precision, Discounts & Zero Balances
+priority: P1
+flow_phase: Boundary & Unicode Serialization
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Invoices > Line Items
+preconditions: Thiết bị offline.
+test_data: 'Item 1: $12.345 x 3 = $37.035; Discount: 100%; Total Balance: $0.00; Refund
+  adjustment: -$25.50.'
+steps:
+- desc: Tạo Invoice với các con số trên khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Kiểm tra tổng tiền hiển thị trên mobile khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật mạng online để sync lên server.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: So sánh số tiền trên mobile và số tiền server ghi sổ.
+  action: tap_selector
+  text: So sánh số tiền trên mobile và
+  delay: 1.0
+expected:
+- desc: Quy tắc làm tròn (Rounding Half-Up) tại client và server khớp nhau 100% đến
+    từng cent ($0.01).
+  assert_text: Invoice / Calculations
+- desc: 'Không xảy ra lỗi trôi dấu phẩy động (Floating point precision: 0.1 + 0.2
+    = 0.30000000000000004).'
+  assert_text: Invoice / Calculations
+- desc: Server chấp nhận hóa đơn $0.00 và hóa đơn điều chỉnh âm hợp lệ.
+  assert_text: Invoice / Calculations
+source_tickets: RN-5477 / Accounting-Accuracy
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Financial Discrepancy / Invoicing Error
+notes: Bắt buộc dùng integer cents hoặc thư viện Decimal chuyên dụng (bignumber.js
+  / currency.js).

@@ -1,0 +1,46 @@
+id: M_AM_02
+title: All Materials plus opens menu
+feature: material
+priority: High
+description: The plus on All Materials opens the material menu.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_AM_02][Material][AllMaterial] Material menu modal shows when
+  tapping add button'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Show All]
+  action: tap_selector
+  text: Show All
+  delay: 1.0
+expected:
+- assert_text: All Materials
+  desc: Hiển thị 'All Materials' trên màn hình
+- assert_text: the material menu sheet
+  desc: the material menu sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap "Show All" under the section. After step 3,
+  the "All Materials" list should be displayed. (4) Tap the plus icon at the top-right.
+  After step 4, the material menu sheet should be displayed. (5) Close the sheet by
+  tapping the handle at its top (id: indicator). If there is no "Show All" under "Materials",
+  stop and report the test as skipped: fewer than 5 materials.'

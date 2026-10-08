@@ -1,0 +1,31 @@
+id: JOB-104
+title: Back closes job menu
+feature: job
+priority: High
+description: The Android back button closes the job menu and the detail stays usable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar.
+detox_reference: '[JOB-104] Android back closes Job menu modal and keeps job detail
+  screen'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the three-dots
+  icon at the top-right of "Job Details", then press the Android back button. After
+  step 2, "Job Details" should be displayed. (3) Scroll the job detail down about
+  four times, then up three times. At the end, "Job Details" should be displayed.

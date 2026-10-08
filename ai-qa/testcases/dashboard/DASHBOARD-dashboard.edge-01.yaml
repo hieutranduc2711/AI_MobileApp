@@ -1,0 +1,44 @@
+id: DASHBOARD-dashboard.edge-01
+title: Invoices pie toggle on/off
+feature: dashboard
+priority: High
+description: Toggling the Invoices board pie chart on and off keeps the Dashboard
+  stable.
+preconditions: 'Cases 01, 02, 04–06: Logged in with the DEFAULT E2E account (non-technician
+  role with dashboard access, so all boards show), app on the Home screen (online).
+  Case 03 needs an account WITHOUT dashboard access (with the default account it reports
+  skipped). TECH-01/TECH-02: logged in with the TECH_PRIME (technician) account instead,
+  app on the Home screen.'
+detox_reference: GIVEN dashboard WHEN invoices pie toggle is visible THEN toggle on/off
+  keeps dashboard stable
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [Invoices]
+  action: tap_selector
+  text: Invoices
+  delay: 1.0
+- desc: If a pie chart appears, tap the toggle again. If the toggle is missing, stop
+    and
+  action: tap_selector
+  text: If a pie chart appears, tap th
+  delay: 0.8
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll to the "Invoices" board and tap its
+  pie-chart toggle. (3) If a pie chart appears, tap the toggle again. If the toggle
+  is missing, stop and report the test as skipped: invoices pie toggle not shown.'

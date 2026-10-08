@@ -1,0 +1,5 @@
+name: offline-module-observability
+description: Cross-sheet comprehensive offline suite for Module [observability] (1
+  cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/observability/JDELTA-048.yaml

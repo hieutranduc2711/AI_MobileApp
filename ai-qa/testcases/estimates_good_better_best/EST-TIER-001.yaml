@@ -1,0 +1,26 @@
+id: EST-TIER-001
+title: Tạo báo giá 3 mức lựa chọn Good / Better / Best
+feature: estimates_good_better_best
+priority: Normal
+description: 'Kiểm thử kịch bản báo giá nhiều tầng lựa chọn ca #1'
+preconditions: Màn hình Estimates
+steps:
+- desc: Mở New Estimate
+  action: tap_selector
+  content_desc: New Estimate
+  delay: 1.0
+- desc: Chọn chế độ Multi-Tier Options
+  action: tap_selector
+  text: Tiered Options
+  delay: 0.8
+- desc: Nhập giá gói Basic (Good)
+  action: type_text
+  value: '150'
+  delay: 0.5
+- desc: Lưu báo giá đa mức
+  action: tap_selector
+  content_desc: Save Estimate
+  delay: 1.2
+expected:
+- assert_text: Tiered Estimate Created
+  desc: Báo giá đa tùy chọn được lưu

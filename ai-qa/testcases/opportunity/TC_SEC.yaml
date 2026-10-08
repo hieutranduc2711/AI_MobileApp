@@ -1,0 +1,29 @@
+id: TC_SEC
+title: Opportunity section on customer detail
+feature: opportunity
+priority: High
+description: The Opportunity section is shown on customer detail.
+preconditions: Logged in with the DEFAULT E2E account on a Growth plan with the Opportunity
+  addon and customer-opportunity access plus add/edit opportunity permission, app
+  on the Home screen (online). The first customer in “Customers” has at least 6 opportunities
+  (so “Show All” appears) and at least one contact. No case saves data.
+detox_reference: '[DOC+][TC_SEC][CustomerDetail] User scrolls to Opportunity on customer
+  detail and sees the opportunity section anchor'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Opportunity]
+  action: tap_selector
+  text: Opportunity
+  delay: 1.0
+expected:
+- assert_text: Opportunity
+  desc: Hiển thị 'Opportunity' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Opportunity"
+  section. After step 2, the "Opportunity" section should be displayed. If there is
+  no "Opportunity" section, stop and report the test as skipped: opportunity addon,
+  Growth plan or permission missing.'

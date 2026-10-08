@@ -1,0 +1,22 @@
+name: offline-05-location_photo
+description: Offline Suite for Sheet [05_cross_cutting] > Module [location_photo]
+  (18 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03157.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03156.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03155.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03161.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03160.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03158.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03154.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03153.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03159.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03170.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03169.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03168.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03167.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03166.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03164.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03163.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03162.yaml
+- testcases/offline_sync/05_cross_cutting/location_photo/SYNC-03165.yaml

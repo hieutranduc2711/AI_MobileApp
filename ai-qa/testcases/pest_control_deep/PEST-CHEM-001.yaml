@@ -1,0 +1,27 @@
+id: PEST-CHEM-001
+title: Ghi nhận hóa chất diệt mối Termidor SC
+feature: pest_control_deep
+priority: Critical
+description: 'Nhập thông tin hóa chất: Tên sản phẩm, số đăng ký EPA, tỷ lệ pha chế'
+preconditions: Job Details -> Chemical Application
+steps:
+- desc: Mở mục Materials & Chemicals
+  action: tap_selector
+  text: Materials
+  delay: 1.2
+- desc: Bấm thêm hóa chất đã dùng (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Tìm kiếm Termidor SC
+  action: type_text
+  value: Termidor
+  delay: 1.0
+- desc: Lưu thông tin hóa chất
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Materials
+  desc: Hóa chất Termidor SC hiển thị trong báo cáo công việc

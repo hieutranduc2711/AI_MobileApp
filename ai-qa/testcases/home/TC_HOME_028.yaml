@@ -1,0 +1,31 @@
+id: TC_HOME_028
+title: Tap calendar and recover
+feature: home
+priority: High
+description: Tapping the calendar may open a job surface that can be closed.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_028] tap calendar webview to open job-related
+  surfaces then recover'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Tap the calendar body once.
+  action: tap_selector
+  text: Tap the calendar body once.
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the calendar body once. (3) If a date-range sheet, an
+  "Update recurring …" dialog or an incomplete-job dialog opens, close it; if another
+  screen opens, go back to Home.

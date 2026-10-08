@@ -1,0 +1,24 @@
+id: TC_03
+title: Switch to Read tab
+feature: notification
+priority: High
+description: Tapping Read shows the read notification list.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_05 toggles every notification setting and then restores it; the settings list
+  is empty unless the account's editSetting flag is on.
+detox_reference: '[TC_03][DOC+][TabSwitch] User taps read tab and sees read tab selected'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+- desc: Chạm vào mục [Read]
+  action: tap_selector
+  text: Read
+  delay: 1.0
+expected:
+- assert_text: the read notification list (may be empty
+  desc: the read notification list (may be empty)
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the bell icon in
+  the top bar. (2) Tap the "Read" tab. After step 2, the read notification list (may
+  be empty) should be displayed.

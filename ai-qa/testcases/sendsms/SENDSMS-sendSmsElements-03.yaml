@@ -1,0 +1,38 @@
+id: SENDSMS-sendSmsElements-03
+title: Invoice SMS pick phone
+feature: sendsms
+priority: High
+description: A phone number can be picked on the invoice SMS screen.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on, Admin-like role),
+  app on the Home screen (online). The first customer in “Customers” has a phone number,
+  at least one invoice and estimate (5 or more of each for the Show All cases), a
+  document in “Documents” and a job in “Jobs”. No SMS is sent (only validation errors
+  are triggered).
+detox_reference: 'INVOICE: can pick a phone number'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [To]
+  action: tap_selector
+  text: To
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Send by SMS
+  desc: Hiển thị 'Send by SMS' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Invoice", tap its first
+  invoice, then the three-dots icon and "Send Invoice by SMS". After step 2, the "Send
+  by SMS" screen should be displayed. (3) Tap the phone field next to "To". (4) Tap
+  the first phone number, then tap "Apply" (id: saveButton). If the customer has no
+  invoice, stop and report the test as skipped: no invoice.'

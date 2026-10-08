@@ -1,0 +1,7 @@
+name: offline-module-customer_notes
+description: Cross-sheet comprehensive offline suite for Module [customer_notes] (3
+  cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer_notes/BUGREG-086.yaml
+- testcases/offline_sync/11_bug_regression_91/customer_notes/BUGREG-087.yaml
+- testcases/offline_sync/13_jira_current_delta/customer_notes/JDELTA-044.yaml

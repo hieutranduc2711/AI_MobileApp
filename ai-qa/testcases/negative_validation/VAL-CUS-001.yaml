@@ -1,0 +1,36 @@
+id: VAL-CUS-001
+title: Tạo Customer bỏ trống First Name
+feature: negative_validation
+priority: Critical
+description: Kiểm tra hệ thống báo lỗi khi người dùng không nhập First Name
+preconditions: Đang ở màn hình Calendar Home
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục Customers
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào ô Last Name (bỏ qua First Name)
+  action: tap_selector
+  text: Last Name
+  delay: 0.5
+- desc: Nhập Last Name
+  action: type_text
+  value: DoeOnly
+  delay: 0.5
+- desc: Bấm Save Customer
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: New Customer
+  desc: App chặn không cho lưu và giữ lại ở New Customer

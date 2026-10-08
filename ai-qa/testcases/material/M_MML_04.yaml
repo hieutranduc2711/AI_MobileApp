@@ -1,0 +1,52 @@
+id: M_MML_04
+title: Catalog item menu edit/delete
+feature: material
+priority: High
+description: Tapping the first catalog material opens a menu with Edit and Delete.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_MML_04][Material][ManageMaterialList] Tap material item shows
+  menu modal with edit/delete'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Manage Material List]
+  action: tap_selector
+  text: Manage Material List
+  delay: 1.0
+- desc: Tap the first material in the list.
+  action: tap_selector
+  text: 'Tap the first material in the '
+  delay: 0.8
+- desc: 'Close the sheet by tapping the handle at its top (id: indicator). If the
+    list is'
+  action: tap_selector
+  text: Close the sheet by tapping the
+  delay: 0.8
+expected:
+- assert_text: Manage Material List
+  desc: Hiển thị 'Manage Material List' trên màn hình
+- assert_text: the menu
+  desc: the menu
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Manage Material List". After step 4, the "Manage Material List" screen
+  with its list should be displayed. (5) Tap the first material in the list. After
+  step 5, the menu should show "Edit Material" and "Delete Material". (6) Close the
+  sheet by tapping the handle at its top (id: indicator). If the list is empty, stop
+  and report the test as skipped: no catalog materials.'

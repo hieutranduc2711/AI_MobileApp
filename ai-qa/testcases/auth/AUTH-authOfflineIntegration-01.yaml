@@ -1,0 +1,29 @@
+id: AUTH-authOfflineIntegration-01
+title: Offline login or no-offline-data dialog
+feature: auth
+priority: High
+description: Offline login from Welcome either shows the no-offline-data dialog or
+  reaches the offline Home screen.
+preconditions: 'Logged out, app on the Welcome screen, device network disabled before
+  the run (Welcome then shows only “Login with Offline Mode”). Offline data may or
+  may not be on the device: without it the app shows the no-offline-data dialog, with
+  it the app opens the offline Home screen.'
+detox_reference: should show no-offline-data dialog or allow offline login
+steps:
+- desc: Chạm vào mục [Login with Offline Mode]
+  action: tap_selector
+  text: Login with Offline Mode
+  delay: 1.0
+- desc: Chạm vào mục [OK]
+  action: tap_selector
+  text: OK
+  delay: 1.0
+expected:
+- assert_text: the app
+  desc: the app
+goal_summary: 'Open the GorillaDesk app on the Welcome screen. (1) Tap "Login with
+  Offline Mode". (2) If a dialog appears, tap "OK"; if another "Login with Offline
+  Mode" button (id: offline-login-button) appears, tap it. After step 1, the app should
+  show either a dialog with the message "Offline data could not be found" or, after
+  step 2, the Home screen (id: home-bar). If "Login with Offline Mode" is not shown
+  on Welcome, stop and report the test as skipped: device is online.'

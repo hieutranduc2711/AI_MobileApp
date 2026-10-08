@@ -1,0 +1,44 @@
+id: DASHBOARD-dashboard.fullflow-12
+title: Customers & Leads year selection
+feature: dashboard
+priority: High
+description: Selecting a year on New Customers & Leads does not trap the user.
+preconditions: Logged in with the DEFAULT E2E account (non-technician role with dashboard
+  access, so all boards show), app on the Home screen (online). Year cases change
+  the board's selected year for the session.
+detox_reference: GIVEN dashboard WHEN open Customers & Leads year selector THEN selecting
+  year does not trap user
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+- desc: Chạm vào mục [New Customers & Leads by Source]
+  action: tap_selector
+  text: New Customers & Leads by Source
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+- assert_text: the Dashboard
+  desc: the Dashboard
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. (2) Scroll to the "New Customers & Leads by Source"
+  board and tap its year button. (3) In the year sheet tap last year''s row; if the
+  sheet stays open, tap "Save" (id: saveButton). After step 3, the Dashboard should
+  still be displayed. If the board or its year button is missing, stop and report
+  the test as skipped: board not available for this role.'

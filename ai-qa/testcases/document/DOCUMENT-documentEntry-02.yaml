@@ -1,0 +1,33 @@
+id: DOCUMENT-documentEntry-02
+title: Card plus opens template select
+feature: document
+priority: High
+description: The plus on the Documents card leads to Select Document.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document (5 or more
+  for the “Show All” paths) and at least one service location; at least one Doc template
+  exists. No case saves data.
+detox_reference: User taps add on embedded card and reaches template select
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the plus icon on the "Documents" section header; if a location list opens,
+  tap the first location.

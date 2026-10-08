@@ -1,0 +1,24 @@
+name: offline-03-todo
+description: Offline Suite for Sheet [03_round_trip] > Module [todo] (21 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/todo/SYNC-02488.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02489.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02490.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02491.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02492.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02493.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02494.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02495.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02496.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02497.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02498.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02499.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02500.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02501.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02502.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02503.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02504.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02505.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02506.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02507.yaml
+- testcases/offline_sync/03_round_trip/todo/SYNC-02508.yaml

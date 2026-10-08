@@ -1,0 +1,30 @@
+id: ESTIMATE-CREATE-001
+title: Tạo New Estimate hoàn tất với Line Item
+feature: scheduling
+priority: High
+steps:
+- desc: Mở Calendar Home
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Bấm FAB (+) Mở Action Sheet
+  action: tap_selector
+  resource_id: OutlinePlus
+  index: 0
+  delay: 1.0
+- desc: Chọn New Job từ Action Sheet
+  action: tap_selector
+  text: New Job
+  delay: 1.5
+- desc: Chọn Customer đầu tiên cho Job
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Save Job
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Job Details

@@ -1,0 +1,49 @@
+id: SYNC-01207
+title: 'Change Estimate package type: Change Estimate package type: Offline queue
+  → server 429 → retry success'
+sheet: 02_Offline_to_Online
+module: Estimate
+action: Change Estimate package type
+priority: P1
+flow_phase: F2O-04 429 then success
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Estimate > Package
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Change Estimate package type.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Mock sync/business API trả 429.
+  action: tap_selector
+  text: Mock sync/business API trả 429
+  delay: 1.0
+- desc: Xác nhận row vẫn retryable.
+  action: tap_selector
+  text: Xác nhận row vẫn retryable.
+  delay: 1.0
+- desc: Cho retry tiếp theo success.
+  action: tap_selector
+  text: Cho retry tiếp theo success.
+  delay: 1.0
+- desc: Verify final state.
+  action: tap_selector
+  text: Verify final state.
+  delay: 1.0
+expected:
+- desc: 429 không discard mutation.
+  assert_text: Estimate
+- desc: Backoff/retry không spam.
+  assert_text: Estimate
+- desc: Final action áp dụng đúng một lần.
+  assert_text: Estimate
+source_tickets: RN-5576
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5576
+risk: Retry/backoff
+notes: ''

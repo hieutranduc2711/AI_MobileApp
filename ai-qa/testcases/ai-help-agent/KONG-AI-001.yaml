@@ -1,0 +1,15 @@
+id: KONG-AI-001
+title: Mở Kong AI Assistant từ Drawer Menu
+feature: ai-help-agent
+priority: Critical
+steps:
+- desc: Mở Drawer Menu nếu ở Calendar
+  action: tap_selector
+  resource_id: outline-burger-icon
+  delay: 0.8
+- desc: Chọn mục Kong AI trong Navigation Menu
+  action: tap_selector
+  text: Kong AI
+  delay: 0.8
+expected:
+- assert_text: How can I help?

@@ -1,0 +1,12 @@
+name: Module Notification Suite
+description: Chạy toàn bộ 9 test cases cho phân hệ notification
+tests:
+- TC_01
+- TC_02
+- TC_03
+- TC_04
+- TC_05
+- TC_06
+- TC_07
+- TC_08
+- TC_09

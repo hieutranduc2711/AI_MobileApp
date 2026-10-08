@@ -1,0 +1,41 @@
+id: TC_FB
+title: Back from add form without saving
+feature: opportunity
+priority: High
+description: Leaving the add form with back returns to customer detail.
+preconditions: Logged in with the DEFAULT E2E account on a Growth plan with the Opportunity
+  addon and customer-opportunity access plus add/edit opportunity permission, app
+  on the Home screen (online). The first customer in “Customers” has at least 6 opportunities
+  (so “Show All” appears) and at least one contact. No case saves data.
+detox_reference: '[DOC+][TC_FB][Form] User opens add form and taps header back without
+  saving and returns to customer detail'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Opportunity]
+  action: tap_selector
+  text: Opportunity
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Add Opportunities
+  desc: Hiển thị 'Add Opportunities' trên màn hình
+- assert_text: the customer detail screen
+  desc: the customer detail screen
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Opportunity"
+  section. (3) Tap the plus icon on the "Opportunity" section header. After step 3,
+  the "Add Opportunities" form should be displayed. (4) Tap the back arrow at the
+  top-left without saving. After step 4, the customer detail screen should be displayed.
+  If there is no "Opportunity" section or plus icon, stop and report the test as skipped:
+  opportunity add not available.'

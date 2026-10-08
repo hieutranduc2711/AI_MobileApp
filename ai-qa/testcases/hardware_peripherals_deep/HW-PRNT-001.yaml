@@ -1,0 +1,26 @@
+id: HW-PRNT-001
+title: Kết nối máy in nhiệt Bluetooth Zebra ZQ520
+feature: hardware_peripherals_deep
+priority: Normal
+description: 'Kiểm thử phần cứng máy in và máy quét cầm tay ca #1'
+preconditions: Settings
+steps:
+- desc: Mở Settings -> Hardware
+  action: tap_selector
+  text: Hardware
+  delay: 0.8
+- desc: Bấm Scan Bluetooth Printers
+  action: tap_selector
+  text: Scan Devices
+  delay: 1.2
+- desc: Chọn máy in Zebra ZQ520
+  action: tap_selector
+  text: Zebra ZQ520
+  delay: 0.8
+- desc: In thử test print page
+  action: tap_selector
+  text: Test Print
+  delay: 1.5
+expected:
+- assert_text: Print Sent
+  desc: Lệnh in biên bản gửi thành công

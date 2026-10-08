@@ -1,0 +1,39 @@
+id: DOCUMENT-documentForm-08
+title: Tap a radio option
+feature: document
+priority: High
+description: The first option of a radio field can be tapped.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document; “Edit Document”
+  is offered for the first document (not e-signed) and its template contains the field
+  types used below (section, text, text area, radio, checkbox, list box, signature,
+  image). No case saves the document.
+detox_reference: User taps a radio option
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Chạm vào mục [Edit Document]
+  action: tap_selector
+  text: Edit Document
+  delay: 1.0
+- desc: Scroll to the first radio field and tap its first option. If the form has
+    no rad
+  action: tap_selector
+  text: Scroll to the first radio fiel
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section, then tap "Edit Document" in the menu.
+  (4) Scroll to the first radio field and tap its first option. If the form has no
+  radio field, stop and report the test as skipped: no radio field in this template.'

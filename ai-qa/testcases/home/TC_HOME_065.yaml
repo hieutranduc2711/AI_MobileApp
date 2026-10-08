@@ -1,0 +1,26 @@
+id: TC_HOME_065
+title: Progress bar does not block menu
+feature: home
+priority: High
+description: After refresh, a loading bar does not hide the menu icon.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_065] Chrome progress bar does not block
+  menu when briefly visible'
+steps:
+- desc: Tap the refresh button (circular arrows) in the calendar footer.
+  action: tap_selector
+  text: Tap the refresh button (circul
+  delay: 0.8
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the refresh button
+  (circular arrows) in the calendar footer. (2) If a loading progress bar appears,
+  the top-left menu icon should still be displayed.

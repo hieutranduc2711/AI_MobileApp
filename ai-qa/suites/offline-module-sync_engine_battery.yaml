@@ -1,0 +1,5 @@
+name: offline-module-sync_engine_battery
+description: Cross-sheet comprehensive offline suite for Module [sync_engine_battery]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/sync_engine_battery/EDGE-GAP-038.yaml

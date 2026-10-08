@@ -1,0 +1,18 @@
+id: INV-TRK-003
+title: Cảnh báo vật tư trên xe dưới mức tối thiểu (Low Stock Alert)
+feature: inventory_truck_stock
+priority: Normal
+description: 'Kiểm thử tính năng quản lý vật tư kho xe tải trường hợp #3'
+preconditions: Thiết bị đang kết nối cơ sở dữ liệu nội bộ
+steps:
+- desc: Mở màn hình Inventory
+  action: tap_selector
+  text: Inventory
+  delay: 0.8
+- desc: Kiểm tra icon cảnh báo tồn kho thấp
+  action: tap_selector
+  text: Low Stock
+  delay: 0.5
+expected:
+- assert_text: Reorder Required
+  desc: Hiển thị nhãn cảnh báo cần nhập thêm hàng vào xe

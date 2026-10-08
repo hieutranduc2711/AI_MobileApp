@@ -1,0 +1,5 @@
+name: offline-module-calendar_jobs
+description: Cross-sheet comprehensive offline suite for Module [calendar_jobs] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/calendar_jobs/EDGE-GAP-013.yaml

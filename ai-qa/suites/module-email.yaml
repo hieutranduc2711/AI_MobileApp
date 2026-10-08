@@ -1,0 +1,38 @@
+name: Module Email Suite
+description: Chạy toàn bộ 35 test cases cho phân hệ email
+tests:
+- EMAIL-emailFormElements-01
+- EMAIL-emailFormElements-02
+- EMAIL-emailFormElements-03
+- EMAIL-emailFormElements-04
+- EMAIL-emailFormElements-05
+- EMAIL-emailFormElements-06
+- EMAIL-emailFormElements-07
+- EMAIL-emailFormElements-08
+- EMAIL-emailFormElements-09
+- EMAIL-emailFormElements-10
+- EMAIL-emailFormElements-11
+- EMAIL-emailFormElements-12
+- EMAIL-emailFormElements-13
+- EMAIL-emailFormElements-14
+- EMAIL-emailFormElements-15
+- EMAIL-emailFormElements-16
+- EMAIL-emailFormElements-17
+- EMAIL-emailFormElements-18
+- EMAIL-emailFormElements-19
+- EMAIL-emailFormElements-20
+- EMAIL-emailFormElements-21
+- EMAIL-emailFormElements-22
+- EMAIL-emailFormElements-23
+- EMAIL-emailFormElements-24
+- EMAIL-emailFormElements-25
+- EMAIL-emailFormElements-26
+- EMAIL-emailFormElements-27
+- EMAIL-emailFormElements-28
+- EMAIL-emailFormElements-29
+- EMAIL-emailFormElements-30
+- EMAIL-emailFormElements-31
+- EMAIL-emailFormElements-32
+- EMAIL-emailFormElements-33
+- EMAIL-emailFormElements-34
+- EMAIL-emailFormElements-35

@@ -1,0 +1,5 @@
+name: offline-11-timeoff_custom_event
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [timeoff_custom_event]
+  (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/timeoff_custom_event/BUGREG-053.yaml

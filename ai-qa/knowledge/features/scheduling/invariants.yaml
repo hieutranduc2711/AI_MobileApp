@@ -1,0 +1,7 @@
+invariants:
+  - id: SCHED-INV-001
+    description: "Mọi Job phải liên kết với ít nhất 1 Customer và 1 Location"
+  - id: SCHED-INV-002
+    description: "Nút Save tím (993, 173) chỉ khả dụng khi form hợp lệ"
+  - id: SCHED-INV-003
+    description: "Job Details phải hiển thị mã Job và ngày giờ đã lên lịch"

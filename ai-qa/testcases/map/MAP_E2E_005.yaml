@@ -1,0 +1,23 @@
+id: MAP_E2E_005
+title: Refresh the map
+feature: map
+priority: High
+description: Tapping refresh on the map keeps the refresh control available.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted. MAP_E2E_001–004 change the saved map event-type filter
+  and layer.
+detox_reference: '[MAP_E2E_005][DOC+][Map] User taps refresh and sees map refresh
+  action triggered'
+steps:
+- desc: Tap the refresh button (circular arrows) in the bottom-right button column.
+  action: tap_selector
+  text: Tap the refresh button (circul
+  delay: 0.8
+expected:
+- assert_text: the refresh button
+  desc: the refresh button
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the refresh button (circular arrows) in the bottom-right button column. After
+  step 1, the refresh button should be displayed again once loading ends. If the map
+  cannot be shown, stop and report the test as skipped: map view not available.'

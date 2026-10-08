@@ -1,0 +1,30 @@
+id: JDELTA-024
+title: 'Branch switch while Offline is blocked with connection message: Branch switch
+  while Offline is blocked with connection message'
+sheet: 13_Jira_Current_Delta
+module: Offline Restrictions
+action: Branch switch while Offline is blocked with connection message
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Attempt switch branch.
+  action: tap_selector
+  text: Attempt switch branch.
+  delay: 1.0
+expected:
+- desc: Branch is not switched using stale/incomplete scope.
+  assert_text: Offline Restrictions
+- desc: User receives check-connection message.
+  assert_text: Offline Restrictions
+source_tickets: RN-5563
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5563
+risk: Schema / Comment Regression
+notes: ''

@@ -1,0 +1,20 @@
+name: offline-12-estimate
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [estimate] (16
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-171.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-172.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-173.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-174.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-175.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-176.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-177.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-178.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-179.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-180.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-181.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-182.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-183.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-184.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-185.yaml
+- testcases/offline_sync/12_perf_rerender_245/estimate/PERF-186.yaml

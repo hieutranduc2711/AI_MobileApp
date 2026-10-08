@@ -1,0 +1,7 @@
+name: Module Customers Suite
+description: Chạy toàn bộ 4 test cases cho phân hệ customers
+tests:
+- CUSTOMER-CREATE-001
+- CUSTOMER-CREATE-002
+- CUSTOMER-DELETE-001
+- CUSTOMER-EDIT-001

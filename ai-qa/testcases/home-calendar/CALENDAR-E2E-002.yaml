@@ -1,0 +1,24 @@
+id: CALENDAR-E2E-002
+title: Refresh keeps calendar events
+feature: home-calendar
+priority: High
+description: Refreshing Home keeps events on the calendar.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job). CALENDAR-E2E-001 creates
+  a job on the first customer (first location, first service), terminates it and deletes
+  it; the first customer needs a service location and at least one service must exist.
+detox_reference: 'CALENDAR-E2E-002: webview refresh keeps anchors visible'
+steps:
+- desc: Tap the refresh button (circular arrows) in the calendar footer.
+  action: tap_selector
+  text: Tap the refresh button (circul
+  delay: 0.8
+expected:
+- assert_text: 'the Home top bar (id: home-bar)'
+  desc: 'the Home top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the refresh button
+  (circular arrows) in the calendar footer. After step 1, the Home top bar (id: home-bar)
+  should be displayed and the calendar should still show at least one event. If the
+  calendar shows no event before refreshing, stop and report the test as skipped:
+  no events today.'

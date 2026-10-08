@@ -1,0 +1,44 @@
+id: EDGE-GAP-008
+title: 'Batch High-Res Photos Compression Memory Safety: Chụp liên tiếp 20 ảnh hiện
+  trường 48MP khi Offline → Tiến trình nén ảnh ngầm không gây Out-Of-Memory'
+sheet: 16_Production_Edge_Gaps
+module: Media / Photos
+action: Batch High-Res Photos Compression Memory Safety
+priority: P1
+flow_phase: Storage & Low Disk Limit
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job > Photos > Camera
+preconditions: Thiết bị camera 48MP; bộ nhớ RAM điện thoại trung bình (3GB - 4GB RAM);
+  app đang Offline.
+test_data: 20 high-resolution camera photos (~12MB mỗi file gốc RAW/JPEG).
+steps:
+- desc: Mở Job khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Dùng camera chụp liên tục 20 ảnh công việc.
+  action: tap_selector
+  text: Dùng camera chụp liên tục 20 ả
+  delay: 1.0
+- desc: Theo dõi mức tiêu thụ RAM qua Android Profiler / Xcode Instruments.
+  action: tap_selector
+  text: 'Theo dõi mức tiêu thụ RAM qua '
+  delay: 1.0
+- desc: Kiểm tra tiến trình sinh ảnh thumbnail và nén lưu file cục bộ.
+  action: tap_selector
+  text: Kiểm tra tiến trình sinh ảnh t
+  delay: 1.0
+expected:
+- desc: App nén ảnh tuần tự (sequential processing) hoặc worker pool giới hạn, không
+    load đồng thời 20 ảnh bitmap vào RAM.
+  assert_text: Media / Photos
+- desc: RAM không vượt ngưỡng giới hạn heap, không gây OOM Crash.
+  assert_text: Media / Photos
+- desc: Cả 20 ảnh được lưu thành công vào thư mục lưu trữ cục bộ kèm đường dẫn uri
+    trong SQLite.
+  assert_text: Media / Photos
+source_tickets: RN-5477 / RN-5680 / Media
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: OOM Crash / App Termination
+notes: Liên quan trực tiếp đến subtask RN-5680 về tối ưu hóa cache ảnh và tránh base64
+  string lớn.

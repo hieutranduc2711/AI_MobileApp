@@ -1,0 +1,5 @@
+name: offline-10-account_data_isolation
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [account_data_isolation]
+  (1 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/account_data_isolation/DEV-UI-162.yaml

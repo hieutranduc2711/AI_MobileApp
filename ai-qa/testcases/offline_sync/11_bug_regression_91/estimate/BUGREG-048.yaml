@@ -1,0 +1,51 @@
+id: BUGREG-048
+title: 'Show error "One or more of your estimate packages name are not complete".
+  Can''t save estimate (Online/Offline): Show error "One or more of your estimate
+  packages name are not complete". Can''t save estimate (Onlin'
+sheet: 11_Bug_Regression_91
+module: Estimate
+action: Show error "One or more of your estimate packages name are not complete".
+  Can't save estimate (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Add new estimate
+  action: tap_selector
+  text: Add new estimate
+  delay: 1.0
+- desc: Select any estimate template package
+  action: tap_selector
+  text: Select any estimate template p
+  delay: 1.0
+- desc: Change package type in Estimate Form to Package
+  action: tap_selector
+  text: Change package type in Estimat
+  delay: 1.0
+- desc: Fill package name & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Save estimate
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Show error "One or more of your estimate packages name are not complete"
+  action: tap_selector
+  text: One or more of your estimate packages name are not complete
+  delay: 1.0
+expected:
+- desc: Should be can save estimate
+  assert_text: Estimate
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

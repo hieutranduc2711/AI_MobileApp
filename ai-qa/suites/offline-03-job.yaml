@@ -1,0 +1,30 @@
+name: offline-03-job
+description: Offline Suite for Sheet [03_round_trip] > Module [job] (27 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/job/SYNC-02290.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02291.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02292.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02293.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02294.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02295.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02296.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02297.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02298.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02299.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02300.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02301.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02302.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02303.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02304.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02305.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02306.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02307.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02308.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02309.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02310.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02311.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02312.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02313.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02314.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02315.yaml
+- testcases/offline_sync/03_round_trip/job/SYNC-02316.yaml

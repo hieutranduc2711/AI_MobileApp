@@ -1,0 +1,9 @@
+risks:
+  - id: RISK-OFFLINE-001
+    name: "Unsynchronized data loss on app kill"
+    details: "Nếu người dùng ép đóng ứng dụng (kill process) ngay sau khi tạo offline trước khi DB commit"
+    mitigation: "Đảm bảo database write transaction hoàn tất trước khi chuyển màn hình"
+  - id: RISK-OFFLINE-002
+    name: "Sync queue blockage"
+    details: "Một payload bị lỗi 400 Bad Request có thể làm tắc toàn bộ các thao tác phía sau"
+    mitigation: "Kiểm tra logcat tag SyncManager để xác nhận từng batch được đẩy thành công"

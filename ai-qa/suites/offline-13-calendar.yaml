@@ -1,0 +1,5 @@
+name: offline-13-calendar
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [calendar] (1
+  cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/calendar/JDELTA-031.yaml

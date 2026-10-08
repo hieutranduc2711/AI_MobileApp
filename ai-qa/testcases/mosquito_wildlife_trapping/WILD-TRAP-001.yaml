@@ -1,0 +1,26 @@
+id: WILD-TRAP-001
+title: Đặt bẫy động vật hoang dã (Set Animal Live Trap)
+feature: mosquito_wildlife_trapping
+priority: Normal
+description: 'Kiểm thử bẫy bắt động vật và phòng chống muỗi ca #1'
+preconditions: Đang ở Job
+steps:
+- desc: Mở Wildlife Trapping Log
+  action: tap_selector
+  text: Wildlife Log
+  delay: 0.8
+- desc: Chọn loại động vật mục tiêu Raccoon
+  action: tap_selector
+  text: Raccoon
+  delay: 0.5
+- desc: Ghi số lượng bẫy đặt
+  action: type_text
+  value: '2'
+  delay: 0.5
+- desc: Lưu vị trí bẫy
+  action: tap_selector
+  content_desc: Save Trap
+  delay: 1.0
+expected:
+- assert_text: 'Traps Active: 2'
+  desc: Ghi nhận 2 bẫy đang hoạt động

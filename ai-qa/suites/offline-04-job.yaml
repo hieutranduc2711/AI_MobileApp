@@ -1,0 +1,16 @@
+name: offline-04-job
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [job] (12
+  cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02605.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02606.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02607.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02608.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02609.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02610.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02611.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02612.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02613.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02614.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02615.yaml
+- testcases/offline_sync/04_server_to_local_offline/job/SYNC-02616.yaml

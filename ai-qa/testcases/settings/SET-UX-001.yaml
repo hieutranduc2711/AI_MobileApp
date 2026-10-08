@@ -1,0 +1,30 @@
+id: SET-UX-001
+title: Settings buttons reachable by scrolling
+feature: settings
+priority: High
+description: Scrolling Settings reaches the Sources Manage button and scrolling back
+  reaches the map button.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-UX-001 needs the “System Settings” section on Settings (company setting editSetting
+  on; typically a super admin per docs/features/settings.md) — Detox has no skip for
+  it; SET-UX-004 skips rows that are missing. SET-UX-005 needs a device with biometrics
+  (the “Log In with …” row), otherwise it reports skipped.
+detox_reference: '[SET-UX-001] [Settings][Main][P1] key Settings CTAs remain reachable
+  with scrolling'
+steps:
+- desc: Chạm vào mục [Sources]
+  action: tap_selector
+  text: Sources
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage
+  desc: Hiển thị 'Manage' trên màn hình
+- assert_text: Map using
+  desc: Hiển thị 'Map using' trên màn hình
+goal_summary: Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Scroll down to the "Sources" row. After step 1, its "Manage"
+  button should be displayed. (2) Scroll back to the top. After step 2, the button
+  next to "Map using" should be displayed.

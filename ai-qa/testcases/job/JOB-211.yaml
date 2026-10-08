@@ -1,0 +1,34 @@
+id: JOB-211
+title: View PDF Work Order offered
+feature: job
+priority: High
+description: The job menu offers View PDF Work Order.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-211] User tap "View PDF work order" opens document viewer with
+  job PDF'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+- desc: Chạm vào mục [View PDF Work Order]
+  action: tap_selector
+  text: View PDF Work Order
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the
+  three-dots icon at the top-right of "Job Details". (3) Report whether "View PDF
+  Work Order" is offered, then close the sheet by tapping the handle at its top (id:
+  indicator).'

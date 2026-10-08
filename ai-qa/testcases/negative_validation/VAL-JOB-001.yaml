@@ -1,0 +1,23 @@
+id: VAL-JOB-001
+title: Tạo Job mà không chọn Customer
+feature: negative_validation
+priority: Critical
+description: Không cho phép lưu Job nếu chưa liên kết với hồ sơ khách hàng
+preconditions: Màn hình Calendar Home
+steps:
+- desc: Bấm FAB (+) Mở Action Sheet
+  action: tap_selector
+  resource_id: OutlinePlus
+  index: 0
+  delay: 1.0
+- desc: Chọn New Job
+  action: tap_selector
+  text: New Job
+  delay: 1.2
+- desc: Cố gắng bấm Save mà không chọn Customer
+  action: tap_selector
+  content_desc: Save
+  delay: 1.0
+expected:
+- assert_text: Customers
+  desc: Bắt buộc chọn khách hàng trước khi tiếp tục

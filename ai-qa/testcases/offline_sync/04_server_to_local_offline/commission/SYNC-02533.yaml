@@ -1,0 +1,50 @@
+id: SYNC-02533
+title: 'READ: Job/Invoice commissions: Job/Invoice commissions: Online load existing
+  → go Offline'
+sheet: 04_Server_to_Local_Offline
+module: Commission
+action: 'READ: Job/Invoice commissions'
+priority: P1
+flow_phase: S2L-01 Existing data cached
+direction: SERVER → LOCAL → OFFLINE
+app_path: GD Mobile > Job/Invoice > Commission
+preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có quyền thay
+  đổi cùng data.
+test_data: Job/Invoice commissions
+steps:
+- desc: Mở screen khi Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ local/PowerSync initial load hoàn tất.
+  action: tap_selector
+  text: Chờ local/PowerSync initial lo
+  delay: 1.0
+- desc: Ghi nhận record/value.
+  action: tap_selector
+  text: Ghi nhận record/value.
+  delay: 1.0
+- desc: Tắt network.
+  action: tap_selector
+  text: Tắt network.
+  delay: 1.0
+- desc: Force close/reopen app Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại screen.
+  action: tap_selector
+  text: Mở lại screen.
+  delay: 1.0
+expected:
+- desc: Existing data đã được persist local.
+  assert_text: Commission
+- desc: Offline reopen hiển thị đúng record/value mới nhất đã sync.
+  assert_text: Commission
+- desc: Không remote dependency.
+  assert_text: Commission
+source_tickets: RN-5640
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5640
+risk: Down-sync/cache correctness
+notes: 'Đây là chiều ngược quan trọng: server/online state phải xuống local trước
+  khi device mất mạng.'

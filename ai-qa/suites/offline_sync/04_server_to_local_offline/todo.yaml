@@ -1,0 +1,10 @@
+name: offline-04-todo
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [todo]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02659.yaml
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02660.yaml
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02661.yaml
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02662.yaml
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02663.yaml
+- testcases/offline_sync/04_server_to_local_offline/todo/SYNC-02664.yaml

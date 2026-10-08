@@ -1,0 +1,21 @@
+id: CUST_E2E_001
+title: Drawer shows Customers entry
+feature: customer
+priority: High
+description: The side menu contains the Customers entry.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_001] drawer: customers entry should be reachable'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: the side menu
+  desc: the side menu
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon. After step 1, the side menu should show "Customers".

@@ -1,0 +1,38 @@
+name: Module Workorder Signatures Suite
+description: Chạy toàn bộ 35 test cases cho phân hệ workorder_signatures
+tests:
+- DOC-PDF-001
+- SIG-CUS-001
+- SIG-DOC-004
+- SIG-DOC-005
+- SIG-DOC-006
+- SIG-DOC-007
+- SIG-DOC-008
+- SIG-DOC-009
+- SIG-DOC-010
+- SIG-DOC-011
+- SIG-DOC-012
+- SIG-DOC-013
+- SIG-DOC-014
+- SIG-DOC-015
+- SIG-DOC-016
+- SIG-DOC-017
+- SIG-DOC-018
+- SIG-DOC-019
+- SIG-DOC-020
+- SIG-DOC-021
+- SIG-DOC-022
+- SIG-DOC-023
+- SIG-DOC-024
+- SIG-DOC-025
+- SIG-DOC-026
+- SIG-DOC-027
+- SIG-DOC-028
+- SIG-DOC-029
+- SIG-DOC-030
+- SIG-DOC-031
+- SIG-DOC-032
+- SIG-DOC-033
+- SIG-DOC-034
+- SIG-DOC-035
+- SIG-TECH-001

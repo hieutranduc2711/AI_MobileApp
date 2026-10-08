@@ -1,0 +1,5 @@
+name: offline-module-job_draft_state
+description: Cross-sheet comprehensive offline suite for Module [job_draft_state]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/job_draft_state/EDGE-GAP-019.yaml

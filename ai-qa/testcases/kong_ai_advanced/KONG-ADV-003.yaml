@@ -1,0 +1,14 @@
+id: KONG-ADV-003
+title: Kích hoạt microphone tìm kiếm bằng giọng nói
+feature: kong_ai_advanced
+priority: Medium
+description: Bấm biểu tượng micro để đọc lệnh bằng giọng nói
+preconditions: Màn hình Kong AI
+steps:
+- desc: Chạm biểu tượng Microphone
+  action: tap_selector
+  resource_id: microphone
+  delay: 1.0
+expected:
+- assert_text: How can I help?
+  desc: Sẵn sàng nhận diện giọng nói

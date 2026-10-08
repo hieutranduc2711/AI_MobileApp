@@ -1,0 +1,37 @@
+id: SYNC-03283
+title: 'Existing old signature: Full offline viewing limitation'
+sheet: 05_Cross_Cutting
+module: Signature
+action: Existing old signature
+priority: P2
+flow_phase: Known Limitation
+direction: CROSS-CUTTING
+app_path: GD Mobile > Signed Entity
+preconditions: Prepare environment/data as described.
+test_data: Full offline viewing limitation
+steps:
+- desc: Sync signed record.
+  action: tap_selector
+  text: Sync signed record.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Open signed entity.
+  action: tap_selector
+  text: Open signed entity.
+  delay: 1.0
+- desc: Attempt full signature viewing.
+  action: tap_selector
+  text: Attempt full signature viewing
+  delay: 1.0
+expected:
+- desc: Match current limitation.
+  assert_text: Signature
+- desc: Never blank-overwrite old signature.
+  assert_text: Signature
+source_tickets: RN-5605
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5605
+risk: Known limitation
+notes: Carried from V2 OFFV2-03212

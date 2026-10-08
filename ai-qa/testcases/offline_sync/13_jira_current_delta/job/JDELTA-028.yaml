@@ -1,0 +1,37 @@
+id: JDELTA-028
+title: 'Service template with no Always Confirmed keeps expected status: Service template
+  with no Always Confirmed keeps expected status'
+sheet: 13_Jira_Current_Delta
+module: Job
+action: Service template with no Always Confirmed keeps expected status
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Prepare service template without always-confirmed.
+  action: tap_selector
+  text: Prepare service template witho
+  delay: 1.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create Job using template.
+  action: tap_selector
+  text: Create Job using template.
+  delay: 1.0
+- desc: Inspect status before and after reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Job status follows template/business rule (e.g. Unconfirmed where applicable),
+    not forced Confirmed.
+  assert_text: Job
+source_tickets: RN-5608
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5608
+risk: Schema / Comment Regression
+notes: ''

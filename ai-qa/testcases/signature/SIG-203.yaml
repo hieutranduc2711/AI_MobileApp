@@ -1,0 +1,46 @@
+id: SIG-203
+title: Typed name, clear, retype
+feature: signature
+priority: High
+description: Typed names show in the field; Clear and Next stay available.
+preconditions: 'Logged in with the DEFAULT E2E account (role that sees the job work-order
+  options: “Take a Work Order Signature” in the job three-dots menu), app on the Home
+  screen (online) with at least one job on today''s calendar. No case saves a signature.'
+detox_reference: '[SIG-203][XLSX] Text input accepts input and renders to canvas correctly'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Take a Work Order Signature]
+  action: tap_selector
+  text: Take a Work Order Signature
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu ' tab and type "John Smith' vào ô [input]
+  action: type_text
+  value: ' tab and type "John Smith'
+  delay: 0.8
+- desc: Chạm vào mục [Clear]
+  action: tap_selector
+  text: Clear
+  delay: 1.0
+expected:
+- assert_text: Technician's Signature
+  desc: Hiển thị 'Technician's Signature' trên màn hình
+- assert_text: the field
+  desc: the field
+- assert_text: the field
+  desc: the field
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (tap "Open Incomplete Job" if offered). (2) In the job''s three-dots
+  menu choose "Take a Work Order Signature". After step 2, "Technician''s Signature"
+  should be displayed. (3) Tap the "Type" tab and type "John Smith" in "Text to signture".
+  After step 3, the field should show "John Smith" and "Clear" should be displayed.
+  (4) Tap "Clear", empty the field and type "Jane Doe". After step 4, the field should
+  show "Jane Doe" and "Next" should be displayed. If that option is missing, stop
+  and report the test as skipped: no work order options.'

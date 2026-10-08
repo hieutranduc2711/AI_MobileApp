@@ -1,0 +1,51 @@
+id: SYNC-01350
+title: 'Edit Invoice line item: Edit Invoice line item: Offline save → network bật/tắt
+  liên tục'
+sheet: 02_Offline_to_Online
+module: Invoice
+action: Edit Invoice line item
+priority: P1
+flow_phase: F2O-03 Flapping reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Invoice > Line Items > Edit
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Edit Invoice line item.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật/tắt network 5–10 lần trong 30–60 giây.
+  action: tap_selector
+  text: Bật/tắt network 5–10 lần trong
+  delay: 1.0
+- desc: Không Save lại.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Cuối cùng giữ Online ổn định.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ queue idle.
+  action: tap_selector
+  text: Chờ queue idle.
+  delay: 1.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Không reconnect storm tạo duplicate send.
+  assert_text: Invoice
+- desc: Action chỉ có một logical effect.
+  assert_text: Invoice
+- desc: Queue không kẹt sau flapping.
+  assert_text: Invoice
+source_tickets: RN-5579, RN-5575
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
+
+  https://gorilladesk1.atlassian.net/browse/RN-5575'
+risk: Reconnect storm
+notes: ''

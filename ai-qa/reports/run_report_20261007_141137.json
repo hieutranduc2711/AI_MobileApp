@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_141137",
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "pass_rate": "0.0%",
+  "results": [
+    {
+      "id": "CUST-E2E-001",
+      "status": "FAIL",
+      "runner_hint": "HEURISTIC_WARNING: Missing expected text 'All Locations'",
+      "judge_summary": "Lượt kiểm thử không đạt: màn hình cuối vẫn là form New Customer, Service Address còn trống và không chuyển sang Customer Profile Hub. Nonce HieuQA_57000 xuất hiện trong ô nhập liệu nhưng không chứng minh khách hàng đã được tạo và lưu thành công.",
+      "judge_reasoning": "Đã trực tiếp kiểm tra cả ba keyframe và ảnh cuối; chưa xem trực tiếp toàn bộ MP4. Keyframe 1 hiển thị form New Customer chưa nhập dữ liệu. Keyframe 2 hiển thị First Name đúng HieuQA_57000, Last Name là MasterQA và con trỏ đang ở Last Name. Keyframe 3 hiển thị Last Name thành MasterQAMiami, Service Address trống và tô đỏ, đồng thời xuất hiện thông báo: 'Missed required fields. You have to complete \"Service Address\", \"Custom Fields\" fields'. Diễn tiến này phù hợp với việc bước 6 và 7 đều ELEMENT_NOT_FOUND, sau đó từ khóa Miami bị nhập vào Last Name thay vì ô tìm địa chỉ; đây là nhận định từ chuỗi bằng chứng, không phải xác nhận từng thao tác trong MP4. Ảnh cuối tiếp tục hiển thị tiêu đề New Customer, nút Save và các trường nhập liệu, không có All Locations hoặc mã Customer #ID. Đối soát rubric: (1) Có đúng chuỗi nonce, nhưng chỉ trong form, không đạt tiêu chí tên xuất hiện trên Profile và chưa chứng minh persistence; (2) Vi phạm trực tiếp điều kiện chuyển sang Customer Profile Hub và đóng hoàn toàn form, đủ để kết luận FAIL; (3) Runner báo không phát hiện crash/ANR, nhưng không cung cấp log gốc hoặc bằng chứng riêng xác nhận không có lỗi 500, nên chưa thể xác nhận Clean System đạt 100%. Trạng thái OK của thao tác tap/type không đồng nghĩa nghiệp vụ lưu thành công. Kết luận FAIL áp dụng cho lượt thực thi E2E; chưa đủ cơ sở kết luận ứng dụng có lỗi tạo khách hàng khi dữ liệu hợp lệ.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\CUST-E2E-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\CUST-E2E-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\CUST-E2E-001_final.png",
+      "time_sec": 31.21
+    }
+  ]
+}

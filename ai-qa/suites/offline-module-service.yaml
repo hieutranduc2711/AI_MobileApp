@@ -1,0 +1,7 @@
+name: offline-module-service
+description: Cross-sheet comprehensive offline suite for Module [service] (4 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-242.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-243.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-244.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-245.yaml

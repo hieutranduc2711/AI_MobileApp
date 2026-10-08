@@ -1,0 +1,33 @@
+id: BUGREG-014
+title: 'Not show Add comment in menu note (Offline): Not show Add comment in menu
+  note (Offline)'
+sheet: 11_Bug_Regression_91
+module: Notes
+action: Not show Add comment in menu note (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to All Notes
+  action: tap_selector
+  text: Go to All Notes
+  delay: 1.0
+- desc: Press on menu of note
+  action: tap_selector
+  text: Press on menu of note
+  delay: 1.0
+- desc: Not show Add comment in menu
+  action: tap_selector
+  text: Not show Add comment in menu
+  delay: 1.0
+expected:
+- desc: Should be show Add comment in menu of note & sync offline comment
+  assert_text: Notes
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

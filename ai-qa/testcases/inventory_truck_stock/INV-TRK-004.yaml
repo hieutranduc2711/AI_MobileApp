@@ -1,0 +1,26 @@
+id: INV-TRK-004
+title: Chuyển vật tư từ Kho tổng sang Xe tải (Transfer Warehouse to Truck)
+feature: inventory_truck_stock
+priority: Normal
+description: 'Kiểm thử tính năng quản lý vật tư kho xe tải trường hợp #4'
+preconditions: Thiết bị đang kết nối cơ sở dữ liệu nội bộ
+steps:
+- desc: Bấm Transfer Stock
+  action: tap_selector
+  content_desc: Transfer
+  delay: 0.8
+- desc: Chọn kho nguồn Main Warehouse
+  action: tap_selector
+  text: Main Warehouse
+  delay: 0.5
+- desc: 'Chọn xe nhận Truck #12'
+  action: tap_selector
+  text: 'Truck #12'
+  delay: 0.5
+- desc: Xác nhận chuyển
+  action: tap_selector
+  content_desc: Submit Transfer
+  delay: 1.0
+expected:
+- assert_text: Transfer Complete
+  desc: Phiếu chuyển kho thành công

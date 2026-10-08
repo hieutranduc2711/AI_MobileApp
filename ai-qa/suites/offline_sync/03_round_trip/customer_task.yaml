@@ -1,0 +1,16 @@
+name: offline-03-customer_task
+description: Offline Suite for Sheet [03_round_trip] > Module [customer_task] (12
+  cases)
+testcases:
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02146.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02147.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02148.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02149.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02150.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02151.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02152.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02153.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02154.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02155.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02156.yaml
+- testcases/offline_sync/03_round_trip/customer_task/SYNC-02157.yaml

@@ -1,0 +1,40 @@
+id: EDGE-GAP-028
+title: 'Massive Text Boundary Performance: Ghi chú cực dài (10,000 ký tự văn bản)
+  nhập khi Offline → Màn hình Job Detail render mượt mà khi Off'
+sheet: 16_Production_Edge_Gaps
+module: Job / Note
+action: Massive Text Boundary Performance
+priority: P2
+flow_phase: Boundary & Unicode Serialization
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job Detail > Notes View
+preconditions: Thiết bị offline.
+test_data: 10,000 characters text string (~10KB text payload).
+steps:
+- desc: Nhập ghi chú 10,000 ký tự vào Job khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Lưu lại.
+  action: tap_selector
+  text: Lưu lại.
+  delay: 1.0
+- desc: Cuộn màn hình Job Detail lên xuống liên tục.
+  action: tap_selector
+  text: Cuộn màn hình Job Detail lên x
+  delay: 1.0
+- desc: Đo FPS và thời gian render component.
+  action: tap_selector
+  text: Đo FPS và thời gian render com
+  delay: 1.0
+expected:
+- desc: Lưu thành công vào SQLite không bị lag.
+  assert_text: Job / Note
+- desc: Màn hình duy trì tốc độ khung hình >= 55 FPS, không bị đơ UI thread.
+  assert_text: Job / Note
+- desc: Khi có mạng, sync đẩy payload text lớn lên server thành công.
+  assert_text: Job / Note
+source_tickets: RN-5477 / Performance
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: UI Lag / Freeze
+notes: Kiểm tra giới hạn text input của React Native TextInput component.

@@ -1,0 +1,27 @@
+id: CALENDAR-E2E-010
+title: Schedule sheet opens and closes
+feature: home-calendar
+priority: High
+description: The schedule chip opens the schedule sheet, which closes via its handle.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-010: schedule tap opens modal then closes (safe)'
+steps:
+- desc: 'Tap the schedule chip in the top bar (id: button-schedule).'
+  action: tap_selector
+  text: Tap the schedule chip in the t
+  delay: 0.8
+- desc: 'If the schedule list opens, close it by tapping the handle at its top (id:
+    indic'
+  action: tap_selector
+  text: If the schedule list opens, cl
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the schedule chip
+  in the top bar (id: button-schedule). (2) If the schedule list opens, close it by
+  tapping the handle at its top (id: indicator); after that it should be closed. At
+  the end, the Home top bar (id: home-bar) should be displayed. If there is no schedule
+  chip, stop and report the test as skipped: schedule chip not shown.'

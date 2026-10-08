@@ -1,0 +1,43 @@
+id: AUTH-E2E-001
+title: Login invalid then valid, logout
+feature: auth
+priority: High
+description: A wrong password shows the login error, the correct one reaches Home,
+  and logout returns to the auth screens.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-001
+  logs in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD> at run
+  time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-002 only where creating
+  real accounts is allowed (Detox guard E2E_ALLOW_SIGNUP=true); it creates a new GorillaDesk
+  account on every run.'
+detox_reference: should login with existing account (invalid → valid) and logout
+steps:
+- desc: Chạm vào mục [Email or Username]
+  action: tap_selector
+  text: Email or Username
+  delay: 1.0
+- desc: Chạm vào mục [Login]
+  action: tap_selector
+  text: Login
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: a login error message
+  desc: a login error message
+- assert_text: 'the Home screen (id: home-bar)'
+  desc: 'the Home screen (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account") and clear both fields. (1) Type <TEST_EMAIL> in "Email
+  or Username" and "SomePassword1" in "Password", then tap "Login". After step 1,
+  a login error message should be displayed (id: error-wrapper). (2) Replace the values
+  with <TEST_EMAIL> and <TEST_PASSWORD>, then tap "Login". (3) Close any popup without
+  updating; press back if "Getting Started" opens. After step 3, the Home screen (id:
+  home-bar) should be displayed. (4) Log out via the top-left menu icon and "Log Out".
+  At the end, the Login or Welcome screen should be displayed. If "Verification required"
+  appears, stop and report the test as skipped: 2FA required.'

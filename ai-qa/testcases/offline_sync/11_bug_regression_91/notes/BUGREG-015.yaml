@@ -1,0 +1,39 @@
+id: BUGREG-015
+title: 'Not update note list in job detail after delete note or comment (Online/Offline):
+  Not update note list in job detail after delete note or comment (Online/Offline)'
+sheet: 11_Bug_Regression_91
+module: Notes
+action: Not update note list in job detail after delete note or comment (Online/Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to All notes
+  action: tap_selector
+  text: Go to All notes
+  delay: 1.0
+- desc: Delete any note or comment in list
+  action: tap_selector
+  text: 'Delete any note or comment in '
+  delay: 1.0
+- desc: Back to job detail
+  action: back
+  delay: 1.0
+- desc: Note list still show note has deleted, list not update.
+  action: tap_selector
+  text: 'Note list still show note has '
+  delay: 1.0
+- desc: Back to home calendar & go to job detail again. Note list updated
+  action: back
+  delay: 1.0
+expected:
+- desc: Should be update note list after delete a note or comment
+  assert_text: Notes
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

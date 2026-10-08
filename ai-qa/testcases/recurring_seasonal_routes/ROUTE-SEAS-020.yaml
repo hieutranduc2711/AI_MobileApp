@@ -1,0 +1,19 @@
+id: ROUTE-SEAS-020
+title: 'Điều phối và cân bằng tuyến đường theo mùa #20'
+feature: recurring_seasonal_routes
+priority: Normal
+description: 'Kiểm thử lộ trình và tần suất dịch vụ mùa vụ #20'
+preconditions: Calendar Home
+steps:
+- desc: Xem bản đồ lộ trình mùa
+  action: tap_selector
+  text: Routing
+  delay: 0.8
+- desc: 'Kiểm tra tuyến #20'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Routing
+  desc: Lộ trình mùa cân bằng hợp lý

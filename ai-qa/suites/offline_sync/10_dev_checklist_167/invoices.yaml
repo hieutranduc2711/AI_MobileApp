@@ -1,0 +1,11 @@
+name: offline-10-invoices
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [invoices] (7
+  cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-050.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-051.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-052.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-053.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-054.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-055.yaml
+- testcases/offline_sync/10_dev_checklist_167/invoices/DEV-UI-056.yaml

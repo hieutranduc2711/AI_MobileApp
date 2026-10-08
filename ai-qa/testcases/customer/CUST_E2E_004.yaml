@@ -1,0 +1,38 @@
+id: CUST_E2E_004
+title: Field settings open from form
+feature: customer
+priority: High
+description: The gear icon on the New Customer form opens the form settings.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: '[CUST_E2E_004] customer form: field settings entry is tappable'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Fast form]
+  action: tap_selector
+  text: Fast form
+  delay: 1.0
+expected:
+- assert_text: New Customer Form Settings
+  desc: Hiển thị 'New Customer Form Settings' trên màn hình
+- assert_text: Save
+  desc: Hiển thị 'Save' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the plus icon at the top-right. (3) Tap the gear
+  icon next to the "Fast form" switch at the top-right. After step 3, "New Customer
+  Form Settings" with a "Save" button should be displayed.

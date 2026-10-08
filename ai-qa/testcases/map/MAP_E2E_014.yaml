@@ -1,0 +1,30 @@
+id: MAP_E2E_014
+title: Location button with permission UI
+feature: map
+priority: High
+description: Tapping the map location button does not break the flow when a permission
+  prompt appears.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted (Detox launches with location always). Detox relaunches
+  the app after each case.
+detox_reference: '[MAP_E2E_014][DOC+][Map] User taps tracking on current platform
+  and flow stays deterministic when permission UI appears'
+steps:
+- desc: Tap the location button in the bottom-right button column (below the refresh
+    but
+  action: tap_selector
+  text: Tap the location button in the
+  delay: 0.8
+- desc: Chạm vào mục [Oops]
+  action: tap_selector
+  text: Oops
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the location button in the bottom-right button column (below the refresh button).
+  (2) If a system permission prompt or an "Oops" dialog appears, allow or close it.
+  If the map cannot be shown or there is no location button, stop and report the test
+  as skipped: map view or location button not available.'

@@ -1,0 +1,21 @@
+id: TC_HOME_005
+title: Day calendar swipes
+feature: home
+priority: High
+description: The Day calendar can be swiped left and right.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_005] day mode: swipe calendar left/right'
+steps:
+- desc: Swipe the calendar left, then right.
+  action: tap_selector
+  text: 'Swipe the calendar left, then '
+  delay: 0.8
+expected:
+- assert_text: the date bar
+  desc: the date bar
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Swipe the calendar
+  left, then right. After step 1, the date bar should be displayed. If no calendar
+  is shown (agenda mode), stop and report the test as skipped: calendar not visible.'

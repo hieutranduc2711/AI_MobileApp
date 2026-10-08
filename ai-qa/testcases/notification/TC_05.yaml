@@ -1,0 +1,43 @@
+id: TC_05
+title: Notification settings sheet
+feature: notification
+priority: High
+description: The gear icon opens the Notify Me For settings sheet; switches toggle
+  and are restored.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_05 toggles every notification setting and then restores it; the settings list
+  is empty unless the account's editSetting flag is on.
+detox_reference: '[TC_05][DOC+][Settings] User taps settings gear icon and sees settings
+  modal'
+steps:
+- desc: Tap the bell icon in the top bar.
+  action: tap_selector
+  text: Tap the bell icon in the top b
+  delay: 0.8
+- desc: Tap the gear icon at the top-right.
+  action: tap_selector
+  text: Tap the gear icon at the top-r
+  delay: 0.8
+- desc: 'Tap every switch (id: switch-field) in the sheet once.'
+  action: tap_selector
+  text: 'Tap every switch (id: switch-f'
+  delay: 0.8
+- desc: Tap every switch once more to restore the original settings.
+  action: tap_selector
+  text: 'Tap every switch once more to '
+  delay: 0.8
+- desc: 'Close the sheet by tapping its top handle (id: indicator).'
+  action: tap_selector
+  text: Close the sheet by tapping its
+  delay: 0.8
+expected:
+- assert_text: Notifications
+  desc: Hiển thị 'Notifications' trên màn hình
+- assert_text: Notify Me For
+  desc: Hiển thị 'Notify Me For' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the bell icon
+  in the top bar. After step 1, the "Notifications" screen should be displayed. (2)
+  Tap the gear icon at the top-right. After step 2, the "Notify Me For" settings sheet
+  should be displayed. (3) Tap every switch (id: switch-field) in the sheet once.
+  (4) Tap every switch once more to restore the original settings. (5) Close the sheet
+  by tapping its top handle (id: indicator).'

@@ -1,0 +1,50 @@
+id: DOCUMENT-documentMenu-05
+title: Postal mail confirm then cancel
+feature: document
+priority: High
+description: Send by Postal Mail asks for confirmation and Cancel returns to the card.
+preconditions: 'Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document. Menu actions
+  depend on gates: SMS addon for SMS actions, postal-mail permission, Pro plan for
+  e-signature. No case sends, deletes or saves.'
+detox_reference: User taps Postal Mail, sees confirm dialog, and cancels
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Tap the first document in the section.
+  action: tap_selector
+  text: 'Tap the first document in the '
+  delay: 0.8
+- desc: Chạm vào mục [Send by Postal Mail]
+  action: tap_selector
+  text: Send by Postal Mail
+  delay: 1.0
+- desc: Chạm vào mục [Cancel]
+  action: tap_selector
+  text: Cancel
+  delay: 1.0
+expected:
+- assert_text: the document menu
+  desc: the document menu
+- assert_text: Send by Postal Mail
+  desc: Hiển thị 'Send by Postal Mail' trên màn hình
+- assert_text: Cancel
+  desc: Hiển thị 'Cancel' trên màn hình
+- assert_text: Documents
+  desc: Hiển thị 'Documents' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section. After step 3, the document menu should
+  be displayed. (4) Tap "Send by Postal Mail". After step 4, a "Send by Postal Mail"
+  confirmation with "Cancel" should be displayed. (5) Tap "Cancel". After step 5,
+  the "Documents" section with its plus icon should be displayed. If "Send by Postal
+  Mail" is not in the menu, stop and report the test as skipped: postal mail hidden
+  by permission.'

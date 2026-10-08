@@ -1,0 +1,9 @@
+name: offline-03-device_photo
+description: Offline Suite for Sheet [03_round_trip] > Module [device_photo] (6 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02212.yaml
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02213.yaml
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02214.yaml
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02215.yaml
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02216.yaml
+- testcases/offline_sync/03_round_trip/device_photo/SYNC-02217.yaml

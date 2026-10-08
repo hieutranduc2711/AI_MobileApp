@@ -1,0 +1,10 @@
+name: Module Estimate Suite
+description: Chạy toàn bộ 7 test cases cho phân hệ estimate
+tests:
+- TC_EST_01
+- TC_EST_02
+- TC_EST_03
+- TC_EST_04
+- TC_EST_05
+- TC_EST_06
+- TC_EST_07

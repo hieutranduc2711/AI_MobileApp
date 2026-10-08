@@ -1,0 +1,36 @@
+name: offline-05-device
+description: Offline Suite for Sheet [05_cross_cutting] > Module [device] (33 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03038.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03037.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03036.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03028.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03027.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03026.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03029.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03025.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03024.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03046.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03045.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03044.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03047.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03043.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03042.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03035.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03034.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03033.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03053.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03052.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03051.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03032.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03031.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03030.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03050.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03049.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03048.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03041.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03040.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03039.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03056.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03055.yaml
+- testcases/offline_sync/05_cross_cutting/device/SYNC-03054.yaml

@@ -1,0 +1,62 @@
+id: SYNC-02806
+title: 'Create Task: Double-tap Save khi Create Task'
+sheet: 05_Cross_Cutting
+module: Task
+action: Create Task
+priority: P0
+flow_phase: Double Save
+direction: CROSS-CUTTING
+app_path: GD Mobile > Tasks > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Task;
+  prerequisite cho Task đã sync khi cần.
+test_data: Valid create payload
+steps:
+- desc: Go offline hoặc throttle.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Điền form Create Task.
+  action: tap_selector
+  text: Điền form Create Task.
+  delay: 1.0
+- desc: Tap Save/Confirm 2 lần nhanh.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Inspect local list/outbox.
+  action: tap_selector
+  text: Inspect local list/outbox.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Count server records.
+  action: tap_selector
+  text: Count server records.
+  delay: 1.0
+expected:
+- desc: Create Task không làm app crash/mất dữ liệu.
+  assert_text: Task
+- desc: Local/UI của Task phản ánh đúng business result.
+  assert_text: Task
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Task
+- desc: Không duplicate logical operation.
+  assert_text: Task
+- desc: Chỉ một logical record.
+  assert_text: Task
+- desc: Không duplicate local/server.
+  assert_text: Task
+source_tickets: RN-5570, RN-5551, RN-5587, RN-5637, RN-5533
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5570
+
+  https://gorilladesk1.atlassian.net/browse/RN-5551
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533'
+risk: Duplicate create
+notes: Carried from V2 OFFV2-00722

@@ -1,0 +1,32 @@
+id: JOB-240
+title: Todo List section plus
+feature: job
+priority: High
+description: The Todo List section is shown and its plus opens Add a Todo.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-240] User views and interacts with Todo section (add todo item)'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Todo List
+  desc: Hiển thị 'Todo List' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll down
+  to the "Todo List" section. After step 2, the "Todo List" section should be displayed.
+  (3) Tap its plus (id: add-button), then tap the back arrow at the top-left. If there
+  is no "Todo List" section, stop and report the test as skipped: offline or crew.'

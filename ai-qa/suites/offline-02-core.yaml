@@ -1,0 +1,4 @@
+name: offline-02-core
+description: Offline Suite for Sheet [02_offline_to_online] > Module [core] (1 cases)
+testcases:
+- testcases/offline_sync/02_offline_to_online/core/SYNC-03319.yaml

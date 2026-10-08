@@ -1,0 +1,10 @@
+name: offline-module-calendar_agenda
+description: Cross-sheet comprehensive offline suite for Module [calendar_agenda]
+  (6 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-007.yaml
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-008.yaml
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-009.yaml
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-010.yaml
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-011.yaml
+- testcases/offline_sync/10_dev_checklist_167/calendar_agenda/DEV-UI-012.yaml

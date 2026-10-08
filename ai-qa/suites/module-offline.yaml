@@ -1,0 +1,4 @@
+name: Module Offline Suite
+description: Chạy toàn bộ 1 test cases cho phân hệ offline
+tests:
+- OFFLINE-SYNC-001

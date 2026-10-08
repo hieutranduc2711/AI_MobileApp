@@ -1,0 +1,28 @@
+name: offline-12-mdu
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [mdu] (25 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-058.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-059.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-060.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-061.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-062.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-063.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-064.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-065.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-066.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-067.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-068.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-069.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-070.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-071.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-072.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-073.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-074.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-075.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-076.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-077.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-078.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-079.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-080.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-081.yaml
+- testcases/offline_sync/12_perf_rerender_245/mdu/PERF-082.yaml

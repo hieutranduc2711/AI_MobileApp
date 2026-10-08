@@ -1,0 +1,31 @@
+id: DOCUMENT-documentEntry-07
+title: Back from All Documents
+feature: document
+priority: High
+description: All Documents opens via Show All and back returns to customer detail.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document (5 or more
+  for the “Show All” paths) and at least one service location; at least one Doc template
+  exists. No case saves data.
+detox_reference: User taps back from AllDocuments and returns to embedded card
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) If "Show All" is shown under the section, tap it; after that the "All Documents"
+  screen should be displayed; then tap the back arrow at the top-left.

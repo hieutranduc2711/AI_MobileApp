@@ -1,0 +1,48 @@
+id: V4-TW-0038
+title: 'Update Sold By: Thực hiện Update Sold By Offline rồi reconnect'
+sheet: 09_New_TwoWay_Delta
+module: Job
+action: Update Sold By
+priority: P0
+flow_phase: Two-Way Delta Action
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job > Edit
+preconditions: User có quyền Update Sold By; prerequisite local đã cache; device Offline.
+test_data: ''
+steps:
+- desc: Thực hiện Update Sold By khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Xác nhận local result và pending state.
+  action: tap_selector
+  text: Xác nhận local result và pendi
+  delay: 1.0
+- desc: Bật network ổn định.
+  action: tap_selector
+  text: Bật network ổn định.
+  delay: 1.0
+- desc: Không tạo thêm action cùng entity.
+  action: tap_selector
+  text: Không tạo thêm action cùng ent
+  delay: 1.0
+- desc: Chờ sync queue → backend processing → authoritative downlink.
+  action: back
+  delay: 1.0
+- desc: Reopen entity và đối chiếu web/thiết bị online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Mutation được gửi đúng account/branch và đúng business action.
+  assert_text: Job
+- desc: Không mất/duplicate action.
+  assert_text: Job
+- desc: Không snap-back trong lúc ACK đã có nhưng BE chưa complete.
+  assert_text: Job
+- desc: Final local state = authoritative server state.
+  assert_text: Job
+source_tickets: RN-5582
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5582
+risk: Delta Missing Action
+notes: ''

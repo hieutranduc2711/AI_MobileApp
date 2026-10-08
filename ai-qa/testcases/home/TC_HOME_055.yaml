@@ -1,0 +1,28 @@
+id: TC_HOME_055
+title: Messaging Send a Broadcast and back
+feature: home
+priority: High
+description: Send a Broadcast from the Messaging sheet opens its screen; back returns
+  Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_055] Messaging → Send Broadcast → screen
+  → back → Home'
+steps:
+- desc: Chạm vào mục [Send a Broadcast]
+  action: tap_selector
+  text: Send a Broadcast
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the megaphone
+  button in the calendar footer, then scroll the sheet down and tap "Send a Broadcast".
+  (2) If its screen opens, tap the back arrow at the top-left. At the end, the Home
+  screen with its top bar (id: home-bar) should be displayed. If there is no megaphone
+  button, stop and report the test as skipped: messaging not available.'

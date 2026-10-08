@@ -1,0 +1,7 @@
+name: "Critical Path Test Suite"
+description: "Các luồng nghiệp vụ sống còn: Tạo Job, Tạo Estimate, Tạo Khách hàng, Chế độ ngoại tuyến"
+testcases:
+  - "testcases/scheduling/JOB-CREATE-001.yaml"
+  - "testcases/scheduling/ESTIMATE-CREATE-001.yaml"
+  - "testcases/customers/CUSTOMER-CREATE-001.yaml"
+  - "testcases/offline/OFFLINE-SYNC-001.yaml"

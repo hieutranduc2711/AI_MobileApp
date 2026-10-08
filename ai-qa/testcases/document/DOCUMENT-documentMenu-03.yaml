@@ -1,0 +1,41 @@
+id: DOCUMENT-documentMenu-03
+title: Send for e-Sig opens email screen
+feature: document
+priority: High
+description: Send for e-Sig from the row menu opens the email screen.
+preconditions: 'Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document. Menu actions
+  depend on gates: SMS addon for SMS actions, postal-mail permission, Pro plan for
+  e-signature. No case sends, deletes or saves.'
+detox_reference: User taps Send Email Signature and reaches the email screen (e-sign
+  variant)
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Tap the first document in the section.
+  action: tap_selector
+  text: 'Tap the first document in the '
+  delay: 0.8
+- desc: Chạm vào mục [Send for e-Sig]
+  action: tap_selector
+  text: Send for e-Sig
+  delay: 1.0
+expected:
+- assert_text: the document menu
+  desc: the document menu
+- assert_text: the send-email screen with a back arrow
+  desc: the send-email screen with a back arrow
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section. After step 3, the document menu should
+  be displayed. (4) Tap "Send for e-Sig". After step 4, the send-email screen with
+  a back arrow should be displayed. If "Send for e-Sig" is not in the menu, stop and
+  report the test as skipped: Send for e-Sig hidden by permission or addon.'

@@ -1,0 +1,44 @@
+id: EMAIL-emailFormElements-13
+title: All Invoices email add CC
+feature: email
+priority: High
+description: On the email form opened from invoice, the user can add CC.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; job work-order
+  options visible), app on the Home screen (online). The first customer in “Customers”
+  has contacts with email addresses, a job in “Jobs”, at least one invoice and estimate
+  (5 or more of each for the Show All cases) and a document in “Documents”. No email
+  is sent.
+detox_reference: 'INVOICE_SHOW_ALL: can add CC'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [Add CC Email]
+  action: tap_selector
+  text: Add CC Email
+  delay: 1.0
+- desc: Tap the first email in the list.
+  action: tap_selector
+  text: Tap the first email in the lis
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Send by email
+  desc: Hiển thị 'Send by email' trên màn hình
+- assert_text: CC
+  desc: Hiển thị 'CC' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Invoice", tap its first
+  invoice, then the three-dots icon and "Send Invoice by Email". After step 2, the
+  "Send by email" screen should be displayed. (3) Tap the three-dots icon on the email
+  To row and choose "Add CC Email". (4) Tap the first email in the list. After step
+  4, the "CC" field should be displayed. (5) Tap the back arrow at the top-left. If
+  the customer has no invoice, stop and report the test as skipped: no invoice.'

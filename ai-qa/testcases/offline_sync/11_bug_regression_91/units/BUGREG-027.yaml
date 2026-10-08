@@ -1,0 +1,43 @@
+id: BUGREG-027
+title: 'Still show units deleted (Offline): Still show units deleted (Offline)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Still show units deleted (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Manage Units
+  action: tap_selector
+  text: Go to Manage Units
+  delay: 1.0
+- desc: Press on any building
+  action: tap_selector
+  text: Press on any building
+  delay: 1.0
+- desc: Press on any Unit
+  action: tap_selector
+  text: Press on any Unit
+  delay: 1.0
+- desc: Press on Delete Unit
+  action: tap_selector
+  text: Press on Delete Unit
+  delay: 1.0
+- desc: Go back to Job detail
+  action: back
+  delay: 1.0
+- desc: Go to Manage Units once again. Units has deleted still show
+  action: tap_selector
+  text: Go to Manage Units once again.
+  delay: 1.0
+expected:
+- desc: Should be show correct units of building after deleted
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

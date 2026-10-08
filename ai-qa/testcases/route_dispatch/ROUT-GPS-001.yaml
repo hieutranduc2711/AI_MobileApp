@@ -1,0 +1,14 @@
+id: ROUT-GPS-001
+title: Mở ứng dụng dẫn đường ngoài (Google Maps / Waze)
+feature: route_dispatch
+priority: High
+description: Bấm nút điều hướng để mở tọa độ khách hàng trên Google Maps
+preconditions: Job Details
+steps:
+- desc: Bấm biểu tượng chỉ đường Navigation
+  action: tap_selector
+  resource_id: navigation-icon
+  delay: 1.5
+expected:
+- assert_text: Job Details
+  desc: Tọa độ GPS sẵn sàng điều hướng

@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_103446",
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "pass_rate": "0.0%",
+  "results": [
+    {
+      "id": "KONG-AI-001",
+      "status": "BLOCKED",
+      "runner_hint": "LIKELY_PASS",
+      "judge_summary": "Ảnh cuối xác nhận màn hình Kong AI Assistant đang hiển thị, nhưng chưa chứng minh được thao tác mở từ Drawer Menu. Bước chọn Kong AI bị ELEMENT_NOT_FOUND, nên chưa đủ bằng chứng để kết luận PASS cho toàn bộ kịch bản hoặc FAIL do lỗi sản phẩm.",
+      "judge_reasoning": "Đã quan sát ảnh D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png: có hình Kong, tiêu đề 'How can I help?', ô nhập với nội dung 'Beta version. Kong is still becoming wiser. What do you want to know?' và nút Templates. Vì vậy, riêng trạng thái hiển thị Kong được xác nhận. Tuy nhiên, bước 1 chỉ được Runner báo OK, bước 2 không tìm thấy phần tử cần chọn; không có ảnh trước thao tác hoặc chuỗi bằng chứng chứng minh điều hướng từ Drawer sang Kong. Màn hình Kong có thể đã tồn tại trước đó, nhưng đây chỉ là khả năng chưa được xác minh. Expected Conditions chỉ ghi 'Kong', thiếu oracle cụ thể, trong khi tiêu đề yêu cầu mở từ Drawer Menu. Banner 'Your app version is not up to date.' không phải hộp thoại che kín màn hình và chưa có bằng chứng nó gây lỗi selector. Logcat sạch chỉ xác nhận không phát hiện crash, còn LIKELY_PASS không thay thế bằng chứng điều hướng. BLOCKED ở đây là việc xác minh luồng bị chặn bởi bước automation không thực hiện được; cần đối soát selector và bổ sung bằng chứng trước/sau khi chọn Kong để chốt verdict sản phẩm.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_final.png",
+      "time_sec": 8.44
+    }
+  ]
+}

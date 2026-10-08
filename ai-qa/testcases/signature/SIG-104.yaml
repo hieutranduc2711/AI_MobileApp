@@ -1,0 +1,36 @@
+id: SIG-104
+title: Back from technician signature
+feature: signature
+priority: High
+description: Back from the signature screen returns to the job detail.
+preconditions: 'Logged in with the DEFAULT E2E account (role that sees the job work-order
+  options: “Take a Work Order Signature” in the job three-dots menu), app on the Home
+  screen (online) with at least one job on today''s calendar. Cases that tap “Next”/“Save”
+  store a technician (and client) signature on that job.'
+detox_reference: '[SIG-104][XLSX] Invoice signature: tech and customer signatures
+  via invoice menu'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Take a Work Order Signature]
+  action: tap_selector
+  text: Take a Work Order Signature
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Technician's Signature
+  desc: Hiển thị 'Technician's Signature' trên màn hình
+- assert_text: the job detail screen
+  desc: the job detail screen
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (tap "Open Incomplete Job" if offered). (2) In the job''s three-dots
+  menu choose "Take a Work Order Signature". After step 2, "Technician''s Signature"
+  should be displayed. The drawing area and the back arrow at the top-left should
+  be displayed. (3) Tap the back arrow. After step 3, the job detail screen should
+  be displayed. If that option is missing, stop and report the test as skipped: no
+  work order options.'

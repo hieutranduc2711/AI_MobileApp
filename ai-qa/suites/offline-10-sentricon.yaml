@@ -1,0 +1,8 @@
+name: offline-10-sentricon
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [sentricon] (4
+  cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-120.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-121.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-122.yaml
+- testcases/offline_sync/10_dev_checklist_167/sentricon/DEV-UI-123.yaml

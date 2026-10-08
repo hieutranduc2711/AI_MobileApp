@@ -1,0 +1,6 @@
+name: offline-module-note_attachment
+description: Cross-sheet comprehensive offline suite for Module [note_attachment]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/note_attachment/JDELTA-032.yaml
+- testcases/offline_sync/13_jira_current_delta/note_attachment/JDELTA-033.yaml

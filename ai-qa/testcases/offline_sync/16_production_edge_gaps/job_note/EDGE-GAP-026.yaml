@@ -1,0 +1,49 @@
+id: EDGE-GAP-026
+title: 'Emoji & 4-Byte UTF-8 Surrogate Pairs Storage: Ghi chú Job chứa emoji đa dạng
+  (👨‍🔧 🐞 🐜 🏠 🌧️) và Unicode 4-byte → Lưu Offline vào SQLite và đẩy lên '
+sheet: 16_Production_Edge_Gaps
+module: Job / Note
+action: Emoji & 4-Byte UTF-8 Surrogate Pairs Storage
+priority: P1
+flow_phase: Boundary & Unicode Serialization
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Job Notes
+preconditions: Thiết bị offline.
+test_data: 'Text containing: ''Diệt mối tại nhà 🏠👨‍🔧: Đã xử lý 5 tổ mối 🐜 và gián
+  🪳. Thời tiết mưa to 🌧️! 𝓤𝓷𝓲𝓬𝓸𝓭𝓮 𝕋𝕖𝕩𝕥.'''
+steps:
+- desc: Mở Job offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Nhập ghi chú chứa chuỗi dữ liệu emoji và ký tự 4-byte UTF-8 ở trên.
+  action: tap_selector
+  text: Nhập ghi chú chứa chuỗi dữ liệ
+  delay: 1.0
+- desc: Lưu Job.
+  action: tap_selector
+  text: Lưu Job.
+  delay: 1.0
+- desc: Đóng app, mở lại kiểm tra hiển thị khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật mạng online để sync lên Web portal.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: SQLite lưu trữ trọn vẹn chuỗi UTF-8 không biến thành ký tự rác (`???` hoặc
+    `�`).
+  assert_text: Job / Note
+- desc: Màn hình mobile hiển thị chuẩn xác các icon emoji.
+  assert_text: Job / Note
+- desc: Server nhận payload JSON UTF-8 hợp lệ và lưu vào database server (hỗ trợ utf8mb4).
+  assert_text: Job / Note
+- desc: Web portal hiển thị đúng y nguyên nội dung.
+  assert_text: Job / Note
+source_tickets: RN-5477 / Data-Encoding
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Data Corruption / Encoding Error
+notes: Đặc biệt chú ý MySQL/PostgreSQL backend cần cấu hình charset utf8mb4 thay vì
+  utf8 3-byte.

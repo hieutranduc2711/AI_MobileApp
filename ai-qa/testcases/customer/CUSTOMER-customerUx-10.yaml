@@ -1,0 +1,37 @@
+id: CUSTOMER-customerUx-10
+title: Customer action menu shows Edit
+feature: customer
+priority: High
+description: The customer action menu offers Edit Customer when permitted.
+preconditions: Logged in with the DEFAULT E2E account (role that can view and add
+  customers, e.g. Admin) on the Home screen (online). “Customers” has at least one
+  customer. No case saves data (the Detox app relaunch after each case discards the
+  forms).
+detox_reference: 'customer detail: action menu should expose Edit when permitted'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Tap the three-dots icon at the right of the top bar.
+  action: tap_selector
+  text: Tap the three-dots icon at the
+  delay: 0.8
+expected:
+- assert_text: Edit Customer
+  desc: Hiển thị 'Edit Customer' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap the three-dots icon
+  at the right of the top bar. After step 3, "Edit Customer" should be displayed.
+  If there is no customer or no three-dots icon, stop and report the test as skipped:
+  no customer or edit permission.'

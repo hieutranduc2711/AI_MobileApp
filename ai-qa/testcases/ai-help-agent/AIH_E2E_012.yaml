@@ -1,0 +1,45 @@
+id: AIH_E2E_012
+title: Chat send receives an answer
+feature: ai-help-agent
+priority: High
+description: A message sent in a history conversation shows the user message and an
+  AI agent answer.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen, online (the
+  drawer Help rows are disabled offline). AIH_E2E_004, 005, 008, 009, 010 and 012
+  need at least one past AI Help Agent conversation (they report skipped otherwise;
+  a run of AIH_E2E_007 or 011 creates one). AIH_E2E_007, 010, 011 and 012 send real
+  messages to the AI agent.
+detox_reference: '[AIH_E2E_012][DOC+][Chat] Open Conversation input, taps Send, and
+  receives an answer'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [AI Help Agent] trong Drawer Menu
+  action: tap_selector
+  content_desc: AI Help Agent
+  delay: 1.2
+- desc: Chạm vào mục [Ask anything]
+  action: tap_selector
+  text: Ask anything
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: 'Nhập dữ liệu ''E2E: conversation answer (<current time>)'' vào ô [input]'
+  action: type_text
+  value: 'E2E: conversation answer (<current time>)'
+  delay: 0.8
+expected:
+- assert_text: Message
+  desc: Hiển thị 'Message' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "AI Help Agent" under "Help" (scroll the menu if needed). (2) Tap the
+  "Ask anything" card, then the first conversation. After step 2, the "Message" input
+  should be displayed. (3) Type "E2E: conversation answer (<current time>)" in "Message"
+  and tap the send button. At the end, your message and an answer from the AI agent
+  should be displayed. If the AI Help Agent does not open or the history has no conversations,
+  stop and report the test as skipped: no AI agent conversations in history.'

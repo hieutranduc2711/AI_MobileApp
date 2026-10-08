@@ -1,0 +1,5 @@
+name: offline-module-invoice_calculations
+description: Cross-sheet comprehensive offline suite for Module [invoice_calculations]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/invoice_calculations/EDGE-GAP-029.yaml

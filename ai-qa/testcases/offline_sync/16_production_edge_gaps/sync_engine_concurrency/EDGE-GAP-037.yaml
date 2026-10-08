@@ -1,0 +1,34 @@
+id: EDGE-GAP-037
+title: 'Media Concurrency Limiter (Throttled Pool): Upload đồng thời 20 hình ảnh hiện
+  trường khi Reconnect → Giới hạn concurrency tối đa 2 ảnh song song'
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Concurrency
+action: Media Concurrency Limiter (Throttled Pool)
+priority: P2
+flow_phase: Stress/Scale
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Background Transfer Pool
+preconditions: Hàng đợi có 20 ảnh và 5 text mutations (Job status, Invoice).
+test_data: 20 images (3MB each) + 5 critical JSON mutations.
+steps:
+- desc: Kết nối mạng sau ca làm việc dài.
+  action: tap_selector
+  text: Kết nối mạng sau ca làm việc d
+  delay: 1.0
+- desc: Giám sát số lượng kết nối HTTP socket mở đồng thời bằng network analyzer.
+  action: tap_selector
+  text: Giám sát số lượng kết nối HTTP
+  delay: 1.0
+expected:
+- desc: Các mutation text quan trọng (Job status, Payment) được ưu tiên đi trước (High
+    Priority Queue).
+  assert_text: Sync Engine / Concurrency
+- desc: Luồng upload ảnh được phân bổ worker pool tối đa 2-3 kết nối song song.
+  assert_text: Sync Engine / Concurrency
+- desc: Không mở 20 kết nối cùng lúc làm sập socket pool của hệ điều hành và gây timeout
+    các request dữ liệu text.
+  assert_text: Sync Engine / Concurrency
+source_tickets: RN-5477 / Concurrency
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Network Saturation / Socket Exhaustion
+notes: 'Quality of Service (QoS): Text metadata luôn có độ ưu tiên cao hơn media binary.'

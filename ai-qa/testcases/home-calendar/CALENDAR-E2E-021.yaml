@@ -1,0 +1,27 @@
+id: CALENDAR-E2E-021
+title: Switch to Week then Month
+feature: home-calendar
+priority: High
+description: Calendar View switches to Week, then to Month.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-021: switch agenda mode week then month when both visible'
+steps:
+- desc: Chạm vào mục [Week]
+  action: tap_selector
+  text: Week
+  delay: 1.0
+- desc: Chạm vào mục [Month]
+  action: tap_selector
+  text: Month
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the calendar view
+  button at the left of the date bar and tap "Week" (close the sheet if "Week" is
+  missing). (2) Open it again and tap "Month" (close it if missing). After each of
+  steps 1 and 2, the sheet should be closed and the Home top bar (id: home-bar) should
+  be displayed. If "Calendar View" does not open, stop and report the test as skipped:
+  calendar view button not available.'

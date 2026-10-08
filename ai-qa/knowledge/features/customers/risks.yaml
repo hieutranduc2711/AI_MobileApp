@@ -1,0 +1,9 @@
+risks:
+  - id: RISK-CUS-001
+    name: "Search bar overlay trap"
+    details: "Ô Search customer chiếm toàn bộ dải Y = 200 - 350px. Tap vào đây sẽ bung bàn phím ảo che mất danh sách khách"
+    mitigation: "Khi muốn chọn khách đầu tiên, luôn tap vào Y = 440px (540, 440)"
+  - id: RISK-CUS-002
+    name: "Duplicate phone formatting"
+    details: "Số điện thoại bị format khác nhau giữa web và mobile có thể dẫn đến trùng lặp hoặc lỗi regex"
+    mitigation: "Sử dụng số chuẩn hóa 10 chữ số trong test data"

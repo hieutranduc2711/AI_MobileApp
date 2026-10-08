@@ -1,0 +1,19 @@
+name: offline-01-contact
+description: Offline Suite for Sheet [01_online_to_offline] > Module [contact] (15
+  cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00051.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00052.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00053.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00054.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00055.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00056.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00057.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00058.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00059.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00060.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00061.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00062.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00063.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00064.yaml
+- testcases/offline_sync/01_online_to_offline/contact/SYNC-00065.yaml

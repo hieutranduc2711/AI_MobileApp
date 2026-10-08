@@ -1,0 +1,39 @@
+id: AUTH-E2E-006
+title: Password visibility toggle
+feature: auth
+priority: High
+description: The eye icon reveals the typed password and a second tap toggles it back.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'login: should toggle password visibility via eye icon'
+steps:
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'MySecret' vào ô [input]
+  action: type_text
+  value: MySecret
+  delay: 0.8
+- desc: Chạm vào mục [Password]
+  action: tap_selector
+  text: Password
+  delay: 1.0
+- desc: Tap the eye icon again.
+  action: tap_selector
+  text: Tap the eye icon again.
+  delay: 0.8
+expected:
+- assert_text: Password
+  desc: Hiển thị 'Password' trên màn hình
+- assert_text: Password
+  desc: Hiển thị 'Password' trên màn hình
+goal_summary: Open the GorillaDesk app on the Login screen (from Welcome, tap "I already
+  have an account") and clear both fields. (1) Type "MySecret" in "Password". (2)
+  Tap the eye icon at the right of "Password". After step 2, "Password" should show
+  "MySecret" in plain text. (3) Tap the eye icon again. After step 3, the "Password"
+  field should still be displayed.

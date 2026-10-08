@@ -1,0 +1,68 @@
+id: SYNC-02896
+title: 'Edit existing Customer Document: 2 devices conflict on Edit existing Customer
+  Document'
+sheet: 05_Cross_Cutting
+module: Customer Document
+action: Edit existing Customer Document
+priority: P0
+flow_phase: Multi-device Conflict
+direction: CROSS-CUTTING
+app_path: GD Mobile > Customer > Documents > Edit
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Edit existing
+  Customer Document; prerequisite cho Customer Document đã sync khi cần. Có Device
+  A/B cùng initial record.
+test_data: Two devices
+steps:
+- desc: Sync same entity lên A/B.
+  action: tap_selector
+  text: Sync same entity lên A/B.
+  delay: 1.0
+- desc: Cả hai offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: A thực hiện value/action A.
+  action: tap_selector
+  text: Edit existing Customer Document
+  delay: 1.0
+- desc: B thực hiện conflicting value/action B.
+  action: tap_selector
+  text: Edit existing Customer Document
+  delay: 1.0
+- desc: Reconnect B rồi A.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect server/A/B.
+  action: tap_selector
+  text: Inspect server/A/B.
+  delay: 1.0
+- desc: Lặp reconnect order ngược.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Edit existing Customer Document không làm app crash/mất dữ liệu.
+  assert_text: Customer Document
+- desc: Local/UI của Customer Document phản ánh đúng business result.
+  assert_text: Customer Document
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Customer Document
+- desc: Không duplicate logical operation.
+  assert_text: Customer Document
+- desc: No structural corruption/duplicate.
+  assert_text: Customer Document
+- desc: Outcome reproducible.
+  assert_text: Customer Document
+- desc: Không tự giả định winner; capture actual policy.
+  assert_text: Customer Document
+source_tickets: RN-5624, RN-5577, RN-5587, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5624
+
+  https://gorilladesk1.atlassian.net/browse/RN-5577
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Operational conflict
+notes: Carried from V2 OFFV2-01148

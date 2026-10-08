@@ -1,0 +1,23 @@
+id: OFF-NET-009
+title: 'Kiểm tra phục hồi mạng và xung đột dữ liệu #9'
+feature: offline_resilience
+priority: High
+description: 'Kịch bản kiểm thử độ bền bỉ khi mạng chập chờn hoặc rớt kết nối #9'
+preconditions: Ứng dụng GorillaDesk đang hoạt động
+steps:
+- desc: Ngắt mạng
+  action: set_network
+  value: 'false'
+  delay: 0.8
+- desc: Thao tác trên giao diện cục bộ
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Khôi phục mạng
+  action: set_network
+  value: 'true'
+  delay: 1.5
+expected:
+- assert_text: Jobs
+  desc: Ứng dụng phục hồi kết nối bình thường

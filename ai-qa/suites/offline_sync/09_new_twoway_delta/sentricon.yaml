@@ -1,0 +1,13 @@
+name: offline-09-sentricon
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [sentricon] (9
+  cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0052.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0053.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0054.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0055.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0056.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0057.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0058.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0059.yaml
+- testcases/offline_sync/09_new_twoway_delta/sentricon/V4-TW-0060.yaml

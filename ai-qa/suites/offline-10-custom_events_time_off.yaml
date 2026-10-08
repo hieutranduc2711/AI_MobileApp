@@ -1,0 +1,10 @@
+name: offline-10-custom_events_time_off
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [custom_events_time_off]
+  (6 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-031.yaml
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-032.yaml
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-033.yaml
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-034.yaml
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-035.yaml
+- testcases/offline_sync/10_dev_checklist_167/custom_events_time_off/DEV-UI-036.yaml

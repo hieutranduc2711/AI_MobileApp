@@ -1,0 +1,39 @@
+id: TC_01
+title: Service Locations list opens
+feature: location
+priority: High
+description: A customer's Service Locations screen opens from customer detail with
+  its location list.
+preconditions: Logged in with the DEFAULT E2E account (can search and edit customers,
+  sees the customer “Invoice” section) on the Home screen (online). The first customer
+  in “Customers” has at least one service location (TC_05 reports skipped otherwise).
+  TC_03/TC_04 do not create data (Save stays blocked).
+detox_reference: '[TC_01][DOC+][ServiceLocation] User opens service locations and
+  sees list anchors'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Service Locations]
+  action: tap_selector
+  text: Service Locations
+  delay: 1.0
+expected:
+- assert_text: Customers
+  desc: Hiển thị 'Customers' trên màn hình
+- assert_text: Service Locations
+  desc: Hiển thị 'Service Locations' trên màn hình
+- assert_text: Service Locations
+  desc: Hiển thị 'Service Locations' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. After step 1, the "Customers" list with at least one customer
+  should be displayed. (2) Tap the first customer. After step 2, the customer detail
+  screen with "Service Locations" should be displayed. (3) Tap "Service Locations".
+  After step 3, the "Service Locations" screen with its location list (id: location-list)
+  should be displayed.'

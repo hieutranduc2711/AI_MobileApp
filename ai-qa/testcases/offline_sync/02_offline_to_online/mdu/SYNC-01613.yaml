@@ -1,0 +1,50 @@
+id: SYNC-01613
+title: 'Edit Unit: Edit Unit: Offline queue → server 5xx → retry success'
+sheet: 02_Offline_to_Online
+module: MDU
+action: Edit Unit
+priority: P1
+flow_phase: F2O-05 5xx then success
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Location > MDU > Unit > Edit
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Edit Unit.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Mock 500/503.
+  action: tap_selector
+  text: Mock 500/503.
+  delay: 1.0
+- desc: Giữ app qua retry window.
+  action: tap_selector
+  text: Giữ app qua retry window.
+  delay: 1.0
+- desc: Cho server success.
+  action: tap_selector
+  text: Cho server success.
+  delay: 1.0
+- desc: Verify queue/server/local.
+  action: tap_selector
+  text: Verify queue/server/local.
+  delay: 1.0
+expected:
+- desc: 5xx tạm thời không làm mất row.
+  assert_text: MDU
+- desc: Retry metadata/state được giữ.
+  assert_text: MDU
+- desc: Final authoritative state đúng.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5590
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5590'
+risk: Temporary failure
+notes: ''

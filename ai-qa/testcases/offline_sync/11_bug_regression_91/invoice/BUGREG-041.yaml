@@ -1,0 +1,33 @@
+id: BUGREG-041
+title: 'Add invoice note visible client make crash app (Offline): Add invoice note
+  visible client make crash app (Offline)'
+sheet: 11_Bug_Regression_91
+module: Invoice
+action: Add invoice note visible client make crash app (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Open invoice menu & press on Add visible note to client
+  action: tap_selector
+  text: Open invoice menu & press on A
+  delay: 1.0
+- desc: Crash app
+  action: tap_selector
+  text: Crash app
+  delay: 1.0
+expected:
+- desc: Should be not crash app
+  assert_text: Invoice
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

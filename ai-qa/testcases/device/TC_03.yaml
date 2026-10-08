@@ -1,0 +1,39 @@
+id: TC_03
+title: Pick type opens next screen
+feature: device
+priority: High
+description: Choosing a device type opens Areas, the device form or Add Area.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map).
+detox_reference: '[TC_03][XLSX][DeviceTypeSelect] User taps device type and navigates
+  to next screen'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: 'Tap the first device type (id: device-item-button).'
+  action: tap_selector
+  text: 'Tap the first device type (id:'
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Device
+  desc: Hiển thị 'Device' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", and scroll to
+  "Device" (id: devices-container). (2) Tap the plus on "Device" and choose "Add Device".
+  After step 2, the device type list (title "Device") should be displayed. (3) Tap
+  the first device type (id: device-item-button). (4) Tap the back arrow. If "Device"
+  is missing, stop and report the test as skipped: device addon off.'

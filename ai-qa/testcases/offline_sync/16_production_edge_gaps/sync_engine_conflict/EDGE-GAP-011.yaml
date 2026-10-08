@@ -1,0 +1,47 @@
+id: EDGE-GAP-011
+title: 'Device Clock Rollback Resolution: Đồng hồ thiết bị bị lùi về quá khứ (-2 ngày
+  hoặc reset 1970 do cạn pin) → Technician hoàn thành Job '
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Conflict
+action: Device Clock Rollback Resolution
+priority: P0
+flow_phase: Clock Drift & Timestamp Tampering
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Job Execution
+preconditions: Thiết bị bị lệch giờ hệ thống (set thủ công về 2 ngày trước hoặc pin
+  CMOS lỗi về Epoch 1970); app đang Offline.
+test_data: Device System Time = 2026-10-06T08:00:00Z; Actual Real Time = 2026-10-08T08:00:00Z;
+  Job status update = 'Completed'.
+steps:
+- desc: Chỉnh giờ máy điện thoại lùi lại 2 ngày.
+  action: tap_selector
+  text: Chỉnh giờ máy điện thoại lùi l
+  delay: 1.0
+- desc: 'Chuyển sang Offline; mở Job và bấm Complete, ghi chú: ''Xong việc''.'
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật mạng Online để đồng bộ lên máy chủ.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Kiểm tra thời điểm ghi nhận trên Server DB và Web Portal.
+  action: tap_selector
+  text: Kiểm tra thời điểm ghi nhận tr
+  delay: 1.0
+expected:
+- desc: Server sử dụng `server_received_at` hoặc cơ chế Vector Clock/Lamport Clock
+    để xác định thứ tự sự kiện.
+  assert_text: Sync Engine / Conflict
+- desc: Server không từ chối mutation với lỗi 'Invalid Timestamp' một cách mù quáng.
+  assert_text: Invalid Timestamp
+- desc: Trạng thái 'Completed' được chấp nhận; hiển thị đúng trên Web Portal.
+  assert_text: Completed
+- desc: Nếu có tranh chấp LWW (Last-Write-Wins), server phải bảo vệ dữ liệu không
+    bị rollback bởi timestamp ma của client.
+  assert_text: Sync Engine / Conflict
+source_tickets: RN-5477 / Conflict-Resolution
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Silent Overwrite / Stale Data
+notes: Không được phụ thuộc 100% vào `Date.now()` của client để quyết định tính thắng
+  thua trong LWW.

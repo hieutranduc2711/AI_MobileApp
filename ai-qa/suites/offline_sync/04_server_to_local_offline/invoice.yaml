@@ -1,0 +1,10 @@
+name: offline-04-invoice
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [invoice]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02599.yaml
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02600.yaml
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02601.yaml
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02602.yaml
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02603.yaml
+- testcases/offline_sync/04_server_to_local_offline/invoice/SYNC-02604.yaml

@@ -1,0 +1,35 @@
+id: AIH_E2E_011
+title: Home send receives an answer
+feature: ai-help-agent
+priority: High
+description: A message sent from the home input gets an answer from the AI agent.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen, online (the
+  drawer Help rows are disabled offline). AIH_E2E_004, 005, 008, 009, 010 and 012
+  need at least one past AI Help Agent conversation (they report skipped otherwise;
+  a run of AIH_E2E_007 or 011 creates one). AIH_E2E_007, 010, 011 and 012 send real
+  messages to the AI agent.
+detox_reference: '[AIH_E2E_011][DOC+][Home] User types in Home input, taps Send, and
+  receives an answer'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [AI Help Agent] trong Drawer Menu
+  action: tap_selector
+  content_desc: AI Help Agent
+  delay: 1.2
+- desc: 'Chạm vào mục [E2E: new chat answer (<current time>)]'
+  action: tap_selector
+  text: 'E2E: new chat answer (<current time>)'
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "AI Help Agent" under "Help" (scroll the menu if needed). (2) Type "E2E:
+  new chat answer (<current time>)" in the "Message" field at the bottom and tap the
+  send button. At the end, an answer from the AI agent should be displayed in the
+  chat. If the AI Help Agent does not open or has no "Message" field, stop and report
+  the test as skipped: home message input not available.'

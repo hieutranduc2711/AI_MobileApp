@@ -1,0 +1,19 @@
+id: PAY-BILL-035
+title: 'Kịch bản hóa đơn và thanh toán chi tiết #35'
+feature: payment_billing
+priority: High
+description: 'Kiểm thử dòng tiền, thuế, giảm giá hoặc thanh toán từng phần #35'
+preconditions: Có ít nhất 1 hóa đơn chưa thanh toán
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Vào mục Invoices
+  action: tap_selector
+  content_desc: Invoices
+  delay: 1.2
+expected:
+- assert_text: Invoices
+  desc: Danh sách hóa đơn hiển thị chuẩn xác

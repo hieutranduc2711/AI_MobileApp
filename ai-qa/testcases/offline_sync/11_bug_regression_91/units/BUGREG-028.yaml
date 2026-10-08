@@ -1,0 +1,39 @@
+id: BUGREG-028
+title: 'Always show loading in top note, note visible, notes list inside Job unit
+  detail (Offline): Always show loading in top note, note visible, notes list inside
+  Job unit detail (Offline)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Always show loading in top note, note visible, notes list inside Job unit
+  detail (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Assign Units & assign any building with unit
+  action: tap_selector
+  text: Go to Assign Units & assign an
+  delay: 1.0
+- desc: Press on assgined building in Job detail
+  action: tap_selector
+  text: 'Press on assgined building in '
+  delay: 1.0
+- desc: Go to Job unit detail
+  action: tap_selector
+  text: Go to Job unit detail
+  delay: 1.0
+- desc: Loading always show in top note, note visible, notes card
+  action: tap_selector
+  text: Loading always show in top not
+  delay: 1.0
+expected:
+- desc: Should be hide loading & show data if have
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

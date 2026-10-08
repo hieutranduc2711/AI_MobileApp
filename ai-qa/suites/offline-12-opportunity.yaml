@@ -1,0 +1,10 @@
+name: offline-12-opportunity
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [opportunity]
+  (6 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-216.yaml
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-217.yaml
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-218.yaml
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-219.yaml
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-220.yaml
+- testcases/offline_sync/12_perf_rerender_245/opportunity/PERF-221.yaml

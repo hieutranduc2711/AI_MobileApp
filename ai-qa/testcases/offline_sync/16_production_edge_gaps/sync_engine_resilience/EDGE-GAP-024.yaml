@@ -1,0 +1,42 @@
+id: EDGE-GAP-024
+title: 'Extreme High Packet Loss (2G/Edge) Throttling: Mạng 2G chập chờn (Packet loss
+  60%, RTT 4000ms) → Cấu hình Timeout hợp lý, Exponential Backoff + Jit'
+sheet: 16_Production_Edge_Gaps
+module: Sync Engine / Resilience
+action: Extreme High Packet Loss (2G/Edge) Throttling
+priority: P1
+flow_phase: Network Interface Handover
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Sync Engine Retry Loop
+preconditions: Thiết bị kết nối mạng giả lập 2G (tỷ lệ rớt gói 60%, độ trễ 4000ms).
+test_data: 'Network profile: Bandwidth 64kbps, Packet Loss 60%, Latency 4000ms.'
+steps:
+- desc: Tạo 5 mutations offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật mạng 2G giả lập.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Quan sát tần suất gọi retry của Sync Engine trong 10 phút.
+  action: tap_selector
+  text: Quan sát tần suất gọi retry củ
+  delay: 1.0
+- desc: Kiểm tra mức tiêu thụ CPU và nhiệt độ máy.
+  action: tap_selector
+  text: Kiểm tra mức tiêu thụ CPU và n
+  delay: 1.0
+expected:
+- desc: Request timeout được set ở mức an toàn (15s - 30s).
+  assert_text: Sync Engine / Resilience
+- desc: 'Khi fail, thời gian chờ retry tăng dần theo lũy thừa: 5s → 10s → 20s → 40s
+    (kèm jitter ngẫu nhiên).'
+  assert_text: Sync Engine / Resilience
+- desc: Không spam request liên tục làm nghẽn CPU và làm nóng máy, hao pin nhanh.
+  assert_text: Sync Engine / Resilience
+source_tickets: RN-5477 / Network-Throttling
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Battery Drain / UI Hang
+notes: Đảm bảo trải nghiệm thiết bị khi technician đi làm ở vùng hẻo lánh sóng chập
+  chờn.

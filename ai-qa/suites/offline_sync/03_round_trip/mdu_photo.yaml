@@ -1,0 +1,9 @@
+name: offline-03-mdu_photo
+description: Offline Suite for Sheet [03_round_trip] > Module [mdu_photo] (6 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02386.yaml
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02387.yaml
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02388.yaml
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02389.yaml
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02390.yaml
+- testcases/offline_sync/03_round_trip/mdu_photo/SYNC-02391.yaml

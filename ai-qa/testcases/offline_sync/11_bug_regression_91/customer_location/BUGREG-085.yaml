@@ -1,0 +1,48 @@
+id: BUGREG-085
+title: 'Not show location tag, Invoice tag, Tax1, Tax 2, Payment terms when edit customer
+  location offline: Not show location tag, Invoice tag, Tax1, Tax 2, Payment terms
+  when edit customer location offline'
+sheet: 11_Bug_Regression_91
+module: Customer Location
+action: Not show location tag, Invoice tag, Tax1, Tax 2, Payment terms when edit customer
+  location offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off network
+  action: tap_selector
+  text: Turn off network
+  delay: 1.0
+- desc: Go to detail of any customer
+  action: tap_selector
+  text: Go to detail of any customer
+  delay: 1.0
+- desc: Press on Service Locations
+  action: tap_selector
+  text: Press on Service Locations
+  delay: 1.0
+- desc: Add new location with location tag, invoice tag, tax 1, tax 2 & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Go to edit location just created
+  action: tap_selector
+  text: Go to edit location just creat
+  delay: 1.0
+- desc: Not show location tag, invoice tag, tax 1, tax 2, payment term
+  action: tap_selector
+  text: Not show location tag, invoice
+  delay: 1.0
+expected:
+- desc: 'Expected: Show location tag, invoice tag, tax 1, tax 2, Payment term  when
+    edit location in offline'
+  assert_text: Customer Location
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

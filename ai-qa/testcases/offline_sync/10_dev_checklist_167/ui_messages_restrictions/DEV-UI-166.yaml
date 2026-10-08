@@ -1,0 +1,48 @@
+id: DEV-UI-166
+title: 'Open the menu while offline → Calendar/Customer are selectable; unsupported
+  menu items are disabled.: Open the menu while offline → Calendar/Customer are selectable;
+  unsupported menu items are disabled.'
+sheet: 10_Dev_Checklist_167
+module: UI messages & restrictions
+action: Open the menu while offline → Calendar/Customer are selectable; unsupported
+  menu items are disabled.
+priority: High
+flow_phase: Dev Implementation Checklist
+direction: OFFLINE
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Login GD Mobile with the account/branch required by the scenario.
+  action: tap_selector
+  text: Login GD Mobile with the accou
+  delay: 1.0
+- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
+    tests before initial download.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: 'Perform scenario action exactly: Open the menu while offline'
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  action: tap_selector
+  text: 'Observe local UI, sync state, '
+  delay: 1.0
+expected:
+- desc: Calendar/Customer are selectable; unsupported menu items are disabled.
+  assert_text: UI messages & restrictions
+- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
+  assert_text: UI messages & restrictions
+- desc: If the case involves reconnect, final app state must converge with backend
+    authoritative state.
+  assert_text: UI messages & restrictions
+source_tickets: RN-5477 Dev Checklist
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Dev Checklist Coverage
+notes: 'Source: parent-linked ''Checklist (dev side)'' / Checklist (dev)'

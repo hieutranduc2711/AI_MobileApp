@@ -1,0 +1,40 @@
+id: BUGREG-052
+title: 'Still push event create after delete: Still push event create after delete'
+sheet: 11_Bug_Regression_91
+module: Job Document
+action: Still push event create after delete
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Add new document for that job
+  action: tap_selector
+  text: Add new document for that job
+  delay: 1.0
+- desc: Delete document just add.
+  action: tap_selector
+  text: Delete document just add.
+  delay: 1.0
+- desc: Turn on wifi
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Don't push event queue to sync
+  assert_text: Job Document
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

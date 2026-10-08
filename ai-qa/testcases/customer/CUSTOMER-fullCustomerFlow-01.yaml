@@ -1,0 +1,47 @@
+id: CUSTOMER-fullCustomerFlow-01
+title: Additional contacts add opens form
+feature: customer
+priority: High
+description: Additional Contacts opens and its plus shows the New Contact form.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'additional contacts: add button opens contact form'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Additional Contacts]
+  action: tap_selector
+  text: Additional Contacts
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Additional Contacts
+  desc: Hiển thị 'Additional Contacts' trên màn hình
+- assert_text: New Contact
+  desc: Hiển thị 'New Contact' trên màn hình
+- assert_text: First Name
+  desc: Hiển thị 'First Name' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Tap "Additional Contacts".
+  After step 3, the "Additional Contacts" screen with a plus icon at the top-right
+  should be displayed. (4) Tap the plus icon. After step 4, the "New Contact" form
+  with "First Name" should be displayed. If there is no customer or no "Additional
+  Contacts" row, stop and report the test as skipped: no customer or no contact permission.'

@@ -1,0 +1,16 @@
+name: Module Ai Help Agent Suite
+description: Chạy toàn bộ 13 test cases cho phân hệ ai-help-agent
+tests:
+- AIH_E2E_001
+- AIH_E2E_002
+- AIH_E2E_003
+- AIH_E2E_004
+- AIH_E2E_005
+- AIH_E2E_006
+- AIH_E2E_007
+- AIH_E2E_008
+- AIH_E2E_009
+- AIH_E2E_010
+- AIH_E2E_011
+- AIH_E2E_012
+- KONG-AI-001

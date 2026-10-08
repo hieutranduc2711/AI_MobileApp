@@ -1,0 +1,30 @@
+name: offline-03-device_meta
+description: Offline Suite for Sheet [03_round_trip] > Module [device_meta] (27 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02185.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02186.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02187.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02188.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02189.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02190.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02191.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02192.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02193.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02194.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02195.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02196.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02197.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02198.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02199.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02200.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02201.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02202.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02203.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02204.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02205.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02206.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02207.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02208.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02209.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02210.yaml
+- testcases/offline_sync/03_round_trip/device_meta/SYNC-02211.yaml

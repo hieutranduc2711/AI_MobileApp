@@ -1,0 +1,5 @@
+name: offline-16-sync_engine_resilience
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [sync_engine_resilience]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/sync_engine_resilience/EDGE-GAP-024.yaml

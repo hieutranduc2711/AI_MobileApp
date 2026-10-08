@@ -1,0 +1,34 @@
+id: AUTH-E2E-009
+title: Forgot Password valid submit stays responsive
+feature: auth
+priority: High
+description: Submitting a valid email on Forgot Password does not crash and the screen
+  stays usable.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'forgot password: submit valid email should not crash and stays responsive'
+steps:
+- desc: Chạm vào mục [Forgot Your Password]
+  action: tap_selector
+  text: Forgot Your Password
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'qa.e2e+reset@example.com' vào ô [input]
+  action: type_text
+  value: qa.e2e+reset@example.com
+  delay: 0.8
+expected:
+- assert_text: Email
+  desc: Hiển thị 'Email' trên màn hình
+goal_summary: Open the GorillaDesk app on the Login screen (from Welcome, tap "I already
+  have an account"). (1) Tap "Forgot Your Password". After step 1, the "Email" field
+  should be displayed. (2) Type "qa.e2e+reset@example.com" in "Email" and tap "Email
+  Me Instructions". At the end, the app should stay on the "Forgot Password" screen
+  with "Email Me Instructions" displayed.

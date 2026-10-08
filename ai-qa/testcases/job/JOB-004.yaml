@@ -1,0 +1,28 @@
+id: JOB-004
+title: Job menu opens
+feature: job
+priority: High
+description: The job three-dots menu opens.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-004] User opens Job menu and sees job-menu-modal'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+expected:
+- assert_text: the job menu sheet
+  desc: the job menu sheet
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the three-dots
+  icon at the top-right of "Job Details". After step 2, the job menu sheet should
+  be displayed.

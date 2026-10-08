@@ -1,0 +1,31 @@
+id: AUTH-E2E-008
+title: Forgot Password core controls
+feature: auth
+priority: High
+description: The Forgot Password screen shows its title, email field, submit button
+  and back link.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'forgot password: should show core controls'
+steps:
+- desc: Chạm vào mục [Forgot Your Password]
+  action: tap_selector
+  text: Forgot Your Password
+  delay: 1.0
+expected:
+- assert_text: Forgot Password
+  desc: Hiển thị 'Forgot Password' trên màn hình
+- assert_text: Email
+  desc: Hiển thị 'Email' trên màn hình
+- assert_text: Email Me Instructions
+  desc: Hiển thị 'Email Me Instructions' trên màn hình
+- assert_text: Back to Log In
+  desc: Hiển thị 'Back to Log In' trên màn hình
+goal_summary: Open the GorillaDesk app on the Login screen (from Welcome, tap "I already
+  have an account"). (1) Tap "Forgot Your Password". After step 1, the "Forgot Password"
+  title, the "Email" field, "Email Me Instructions" and "Back to Log In" should be
+  displayed.

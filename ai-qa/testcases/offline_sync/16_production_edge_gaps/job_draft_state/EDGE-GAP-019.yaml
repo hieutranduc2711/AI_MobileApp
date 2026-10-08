@@ -1,0 +1,41 @@
+id: EDGE-GAP-019
+title: 'Low Memory Killer (LMK) Form Draft Recovery: LMK kill app khi người dùng đang
+  nhập dở Form Invoice dài chưa bấm Save → Cơ chế Draft State cục bộ '
+sheet: 16_Production_Edge_Gaps
+module: Job / Draft State
+action: Low Memory Killer (LMK) Form Draft Recovery
+priority: P2
+flow_phase: OS Process Kill & Crash Recovery
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Invoice Form
+preconditions: Thiết bị offline; người dùng đang nhập hóa đơn gồm 5 line items, ghi
+  chú dài, chưa ấn nút Save.
+test_data: Unsaved Invoice draft inputs.
+steps:
+- desc: Nhập đầy đủ thông tin hóa đơn khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở 5 app nặng khác để ép hệ điều hành kích hoạt Low Memory Killer (LMK) dọn
+    app GD Mobile trong nền.
+  action: tap_selector
+  text: Mở 5 app nặng khác để ép hệ đi
+  delay: 1.0
+- desc: Mở lại GD Mobile và điều hướng vào đúng Job/Invoice đó.
+  action: tap_selector
+  text: Mở lại GD Mobile và điều hướng
+  delay: 1.0
+expected:
+- desc: App có cơ chế auto-save draft vào local storage theo chu kỳ (ví dụ mỗi 5s
+    hoặc khi blur input).
+  assert_text: Job / Draft State
+- desc: 'Màn hình hiển thị prompt: ''Bạn có một bản nháp chưa lưu. Bạn có muốn khôi
+    phục không?''.'
+  assert_text: Bạn có một bản nháp chưa lưu. Bạn có muốn khôi phục không?
+- desc: 'Khi chọn khôi phục: toàn bộ 5 line items và ghi chú được điền lại đầy đủ.'
+  assert_text: Job / Draft State
+source_tickets: RN-5477 / Form-Draft
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Frustrating Data Loss
+notes: Nâng cao trải nghiệm người dùng hiện trường khi bị cuộc gọi hoặc camera ngắt
+  quãng.

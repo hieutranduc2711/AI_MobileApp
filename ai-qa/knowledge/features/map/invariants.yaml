@@ -1,0 +1,3 @@
+invariants:
+  - id: MAP-INV-001
+    description: 'Ensure data integrity for module map'

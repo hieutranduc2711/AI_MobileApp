@@ -1,0 +1,53 @@
+id: M_MF_03
+title: Unit quantity and unit picker
+feature: material
+priority: High
+description: The unit quantity accepts a number and the unit field opens a picker.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_MF_03][Material][MaterialForm] Unit input is interactive'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Add Material]
+  action: tap_selector
+  text: Add Material
+  delay: 1.0
+- desc: Chạm vào mục [Qty]
+  action: tap_selector
+  text: Qty
+  delay: 1.0
+- desc: Tap the unit field next to it.
+  action: tap_selector
+  text: Tap the unit field next to it.
+  delay: 0.8
+- desc: 'Close the sheet by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close the sheet by tapping the
+  delay: 0.8
+expected:
+- assert_text: Add Material
+  desc: Hiển thị 'Add Material' trên màn hình
+- assert_text: a selection sheet
+  desc: a selection sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Add Material". After step 4, the "Add Material" form should be displayed.
+  (5) Tap the unit quantity field ("Qty"), type "10" and press Enter. (6) Tap the
+  unit field next to it. After step 6, a selection sheet should be displayed. (7)
+  Close the sheet by tapping the handle at its top (id: indicator).'

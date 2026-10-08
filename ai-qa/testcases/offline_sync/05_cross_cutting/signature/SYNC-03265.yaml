@@ -1,0 +1,63 @@
+id: SYNC-03265
+title: 'Capture Estimate Tech Signature: Capture Estimate Tech Signature - Local source
+  file missing trước upload'
+sheet: 05_Cross_Cutting
+module: Signature
+action: Capture Estimate Tech Signature
+priority: P1
+flow_phase: Local File Missing
+direction: CROSS-CUTTING
+app_path: GD Mobile > Estimate > Signature
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Capture Estimate
+  Tech Signature; prerequisite cho Estimate Tech Signature đã sync khi cần.
+test_data: Upload test data
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Capture Estimate Tech Signature.
+  action: tap_selector
+  text: Capture Estimate Tech Signature
+  delay: 1.0
+- desc: Dùng test setup làm local file unavailable.
+  action: tap_selector
+  text: Dùng test setup làm local file
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Observe failure/retry/dead-letter.
+  action: tap_selector
+  text: Observe failure/retry/dead-let
+  delay: 1.0
+- desc: Verify queue sau row này.
+  action: tap_selector
+  text: Verify queue sau row này.
+  delay: 1.0
+expected:
+- desc: Capture Estimate Tech Signature không làm app crash/mất dữ liệu.
+  assert_text: Signature
+- desc: Local/UI của Estimate Tech Signature phản ánh đúng business result.
+  assert_text: Signature
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Signature
+- desc: Không duplicate logical operation.
+  assert_text: Signature
+- desc: Không fake success.
+  assert_text: Signature
+- desc: Failure diagnosable.
+  assert_text: Signature
+- desc: Không block valid rows vô hạn.
+  assert_text: Signature
+source_tickets: RN-5605, RN-5525, RN-5525, RN-5637
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637'
+risk: Missing local asset
+notes: Carried from V2 OFFV2-02925

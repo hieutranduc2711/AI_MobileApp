@@ -1,0 +1,53 @@
+id: TC_CREATE_02
+title: Create invoice without PO number
+feature: invoice
+priority: High
+description: A new invoice with only number, date and location saves and opens its
+  detail.
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  invoice access, e.g. Admin), app on the Home screen (online). The first customer
+  in “Customers” has at least one service location; at least one line item exists
+  in the company line-item list. Both cases create a new invoice on that customer.
+detox_reference: '[TC_02][DOC+] User creates invoice without PO number and succeeds'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Select Location]
+  action: tap_selector
+  text: Select Location
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'INV-002-TEST' vào ô [input]
+  action: type_text
+  value: INV-002-TEST
+  delay: 0.8
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: the invoice detail screen
+  desc: the invoice detail screen
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Tap the plus icon in the top
+  bar and choose "New Invoice". (3) If "Select Location" opens, tap the first location.
+  (4) On "Line Item", tap the first line item, then tap "Save". (5) On the invoice
+  form type "INV-002-TEST" in "Invoice Number", tap the date field and tap "Save"
+  in the "Date" sheet, and tap the location field and pick the first location; leave
+  "PO Number" empty. (6) Tap "Save" at the top-right. After step 6, the invoice detail
+  screen should be displayed.

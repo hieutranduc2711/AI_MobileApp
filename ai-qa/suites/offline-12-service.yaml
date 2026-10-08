@@ -1,0 +1,8 @@
+name: offline-12-service
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [service] (4
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-242.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-243.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-244.yaml
+- testcases/offline_sync/12_perf_rerender_245/service/PERF-245.yaml

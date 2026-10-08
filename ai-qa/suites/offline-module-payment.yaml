@@ -1,0 +1,7 @@
+name: offline-module-payment
+description: Cross-sheet comprehensive offline suite for Module [payment] (4 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/payment/PERF-235.yaml
+- testcases/offline_sync/12_perf_rerender_245/payment/PERF-236.yaml
+- testcases/offline_sync/12_perf_rerender_245/payment/PERF-237.yaml
+- testcases/offline_sync/12_perf_rerender_245/payment/PERF-238.yaml

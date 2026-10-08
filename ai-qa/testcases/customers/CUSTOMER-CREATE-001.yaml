@@ -1,0 +1,21 @@
+id: CUSTOMER-CREATE-001
+title: Tạo khách hàng mới cơ bản từ Customers Hub
+feature: customers
+priority: Critical
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục Customers trong Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.0
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+expected:
+- assert_text: Service Locations

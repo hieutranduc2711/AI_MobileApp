@@ -1,0 +1,35 @@
+id: TC_02
+title: Device types listed
+feature: device
+priority: High
+description: The device type list shows its first type.
+preconditions: Logged in with the DEFAULT E2E account (device addon on, Admin-like
+  role), app on the Home screen (online, camera permission granted). The first customer
+  in “Customers” has an active job first in its “Jobs” section with the “Device” section
+  (at least one area with devices, device types, and devices with coordinates for
+  the map).
+detox_reference: '[TC_02][XLSX][DeviceTypeListUI] User sees device type items in list'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Device]
+  action: tap_selector
+  text: Device
+  delay: 1.0
+expected:
+- assert_text: Device
+  desc: Hiển thị 'Device' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", and scroll to
+  "Device" (id: devices-container). (2) Tap the plus on "Device" and choose "Add Device".
+  After step 2, the device type list (title "Device") should be displayed. (3) Report
+  whether at least one device type is listed. If "Device" is missing, stop and report
+  the test as skipped: device addon off.'

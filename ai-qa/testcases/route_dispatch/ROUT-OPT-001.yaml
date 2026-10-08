@@ -1,0 +1,24 @@
+id: ROUT-OPT-001
+title: Tối ưu hóa hành trình di chuyển trong ngày (Optimize Route)
+feature: route_dispatch
+priority: Critical
+description: Hệ thống tự động sắp xếp lại thứ tự các điểm dừng để giảm quãng đường
+  lái xe
+preconditions: Calendar Home -> Map View
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn Map / Routes
+  action: tap_selector
+  content_desc: Map
+  delay: 1.5
+- desc: Bấm nút Optimize Route
+  action: tap_selector
+  text: Optimize
+  delay: 2.5
+expected:
+- assert_text: Optimized
+  desc: Lộ trình được sắp xếp lại theo đường ngắn nhất

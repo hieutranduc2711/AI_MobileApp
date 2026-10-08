@@ -1,0 +1,47 @@
+id: AUTH-E2E-016
+title: Sign-up Industry list select and close
+feature: auth
+priority: High
+description: On sign-up step 2 the industry list opens, an industry can be picked
+  and the list closes.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'signup: Industry modal can open, scroll/select, and close'
+steps:
+- desc: Chạm vào mục [Get started]
+  action: tap_selector
+  text: Get started
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'e2e.signup.<current time as digits>@example.com' vào ô [input]
+  action: type_text
+  value: e2e.signup.<current time as digits>@example.com
+  delay: 0.8
+- desc: Chạm vào mục [Choose your industry]
+  action: tap_selector
+  text: Choose your industry
+  delay: 1.0
+- desc: Chạm vào mục [Pest Control]
+  action: tap_selector
+  text: Pest Control
+  delay: 1.0
+expected:
+- assert_text: Choose your industry
+  desc: Hiển thị 'Choose your industry' trên màn hình
+- assert_text: Industry
+  desc: Hiển thị 'Industry' trên màn hình
+- assert_text: Industry
+  desc: Hiển thị 'Industry' trên màn hình
+goal_summary: Open the GorillaDesk app on the Welcome screen. (1) Tap "Get started".
+  (2) Type "e2e.signup.<current time as digits>@example.com" in "Email" and "ValidPass123"
+  in "Password" and "Confirm Password", then tap "Next". After step 2, "Choose your
+  industry" should be displayed. (3) Tap "Choose your industry". After step 3, the
+  "Industry" list should be displayed. (4) Tap "Pest Control". After step 4, the "Industry"
+  list should be closed.

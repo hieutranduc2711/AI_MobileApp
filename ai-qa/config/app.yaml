@@ -1,0 +1,15 @@
+app:
+  name: "GorillaDesk Mobile"
+  package: "com.gorilladesk.rn"
+  main_activity: "com.gorilladesk.rn.MainActivity"
+  platform: "Android"
+  framework: "React Native"
+  min_sdk: 26
+  target_sdk: 35
+
+device_defaults:
+  default_serial: "RFCY7018MSF"
+  base_resolution:
+    width: 1080
+    height: 2340
+  orientation: "portrait"

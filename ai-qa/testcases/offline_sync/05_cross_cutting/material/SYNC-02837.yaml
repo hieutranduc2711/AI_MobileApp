@@ -1,0 +1,66 @@
+id: SYNC-02837
+title: 'Create Job Material: Create Job Material rồi edit trước sync'
+sheet: 05_Cross_Cutting
+module: Material
+action: Create Job Material
+priority: P0
+flow_phase: Create→Edit Before Sync
+direction: CROSS-CUTTING
+app_path: GD Mobile > Job > Materials > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Job Material;
+  prerequisite cho Material đã sync khi cần.
+test_data: Create + edit values
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Create Job Material.
+  action: tap_selector
+  text: Create Job Material
+  delay: 1.0
+- desc: Open local record.
+  action: tap_selector
+  text: Open local record.
+  delay: 1.0
+- desc: Edit field trước reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Check final local.
+  action: tap_selector
+  text: Check final local.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Create Job Material không làm app crash/mất dữ liệu.
+  assert_text: Material
+- desc: Local/UI của Material phản ánh đúng business result.
+  assert_text: Material
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Material
+- desc: Không duplicate logical operation.
+  assert_text: Material
+- desc: Create + edit không mất nhau.
+  assert_text: Material
+- desc: Single server record với final intended value hoặc ordered effects.
+  assert_text: Material
+- desc: Local ID mapping đúng.
+  assert_text: Material
+source_tickets: RN-5568, RN-5545, RN-5637, RN-5533
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5568
+
+  https://gorilladesk1.atlassian.net/browse/RN-5545
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533'
+risk: Create/update ordering
+notes: Carried from V2 OFFV2-00881

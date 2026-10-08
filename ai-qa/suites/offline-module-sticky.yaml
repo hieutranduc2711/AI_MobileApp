@@ -1,0 +1,4 @@
+name: offline-module-sticky
+description: Cross-sheet comprehensive offline suite for Module [sticky] (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/sticky/BUGREG-051.yaml

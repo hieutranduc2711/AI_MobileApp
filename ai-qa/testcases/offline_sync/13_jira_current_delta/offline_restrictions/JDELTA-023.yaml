@@ -1,0 +1,37 @@
+id: JDELTA-023
+title: 'Unsupported menu items disabled instead of hidden: Unsupported menu items
+  disabled instead of hidden'
+sheet: 13_Jira_Current_Delta
+module: Offline Restrictions
+action: Unsupported menu items disabled instead of hidden
+priority: P1
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Download supported data and go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Open drawer/menu.
+  action: tap_selector
+  text: Open drawer/menu.
+  delay: 1.0
+- desc: Inspect supported and unsupported items.
+  action: tap_selector
+  text: Inspect supported and unsuppor
+  delay: 1.0
+expected:
+- desc: Calendar/Customer and supported items remain selectable.
+  assert_text: Offline Restrictions
+- desc: Unsupported items are disabled rather than causing network errors; behavior
+    matches current design.
+  assert_text: Offline Restrictions
+source_tickets: RN-5477,RN-5614
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
+
+  https://gorilladesk1.atlassian.net/browse/RN-5614'
+risk: Schema / Comment Regression
+notes: ''

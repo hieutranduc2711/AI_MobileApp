@@ -1,0 +1,52 @@
+id: M_MML_05
+title: Catalog Edit opens usage form
+feature: material
+priority: High
+description: Edit Material on the first catalog material opens the usage form.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_MML_05][Material][ManageMaterialList] Tap edit button navigates
+  to MaterialUsageForm'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Manage Material List]
+  action: tap_selector
+  text: Manage Material List
+  delay: 1.0
+- desc: Chạm vào mục [Edit Material]
+  action: tap_selector
+  text: Edit Material
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage Material List
+  desc: Hiển thị 'Manage Material List' trên màn hình
+- assert_text: Edit Material
+  desc: Hiển thị 'Edit Material' trên màn hình
+- assert_text: Name
+  desc: Hiển thị 'Name' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Manage Material List". After step 4, the "Manage Material List" screen
+  with its list should be displayed. (5) Tap the first material and choose "Edit Material".
+  After step 5, the "Edit Material" form with "Name" should be displayed. (6) Tap
+  the back arrow at the top-left. If the list is empty, stop and report the test as
+  skipped: no catalog materials.'

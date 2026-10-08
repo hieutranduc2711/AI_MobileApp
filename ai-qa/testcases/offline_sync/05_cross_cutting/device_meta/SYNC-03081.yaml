@@ -1,0 +1,60 @@
+id: SYNC-03081
+title: 'Create Activity Level: Double-tap Save khi Create Activity Level'
+sheet: 05_Cross_Cutting
+module: Device Meta
+action: Create Activity Level
+priority: P0
+flow_phase: Double Save
+direction: CROSS-CUTTING
+app_path: GD Mobile > Device Settings > Activity Level
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Create Activity
+  Level; prerequisite cho Activity Level đã sync khi cần.
+test_data: Valid create payload
+steps:
+- desc: Go offline hoặc throttle.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Điền form Create Activity Level.
+  action: tap_selector
+  text: Điền form Create Activity Leve
+  delay: 1.0
+- desc: Tap Save/Confirm 2 lần nhanh.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Inspect local list/outbox.
+  action: tap_selector
+  text: Inspect local list/outbox.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Count server records.
+  action: tap_selector
+  text: Count server records.
+  delay: 1.0
+expected:
+- desc: Create Activity Level không làm app crash/mất dữ liệu.
+  assert_text: Device Meta
+- desc: Local/UI của Activity Level phản ánh đúng business result.
+  assert_text: Device Meta
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Device Meta
+- desc: Không duplicate logical operation.
+  assert_text: Device Meta
+- desc: Chỉ một logical record.
+  assert_text: Device Meta
+- desc: Không duplicate local/server.
+  assert_text: Device Meta
+source_tickets: RN-5606, RN-5607, RN-5637, RN-5533
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5606
+
+  https://gorilladesk1.atlassian.net/browse/RN-5607
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533'
+risk: Duplicate create
+notes: Carried from V2 OFFV2-02133

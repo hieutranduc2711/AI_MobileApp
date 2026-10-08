@@ -1,0 +1,33 @@
+name: Module Advanced Filter Reporting Suite
+description: Chạy toàn bộ 30 test cases cho phân hệ advanced_filter_reporting
+tests:
+- REP-FLT-001
+- REP-FLT-002
+- REP-FLT-003
+- REP-FLT-004
+- REP-FLT-005
+- REP-FLT-006
+- REP-FLT-007
+- REP-FLT-008
+- REP-FLT-009
+- REP-FLT-010
+- REP-FLT-011
+- REP-FLT-012
+- REP-FLT-013
+- REP-FLT-014
+- REP-FLT-015
+- REP-FLT-016
+- REP-FLT-017
+- REP-FLT-018
+- REP-FLT-019
+- REP-FLT-020
+- REP-FLT-021
+- REP-FLT-022
+- REP-FLT-023
+- REP-FLT-024
+- REP-FLT-025
+- REP-FLT-026
+- REP-FLT-027
+- REP-FLT-028
+- REP-FLT-029
+- REP-FLT-030

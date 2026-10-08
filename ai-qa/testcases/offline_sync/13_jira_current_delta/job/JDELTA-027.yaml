@@ -1,0 +1,44 @@
+id: JDELTA-027
+title: 'Delete job with recurring invoice scope dialog: Delete job with recurring
+  invoice scope dialog'
+sheet: 13_Jira_Current_Delta
+module: Job
+action: Delete job with recurring invoice scope dialog
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Use recurring Job with recurring invoice.
+  action: tap_selector
+  text: Use recurring Job with recurri
+  delay: 1.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Delete Job.
+  action: tap_selector
+  text: Delete Job.
+  delay: 1.0
+- desc: Review scope dialog and confirm intended scope.
+  action: tap_selector
+  text: Review scope dialog and confir
+  delay: 1.0
+- desc: Reconnect and compare affected records.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: Scope dialog is correct.
+  assert_text: Job
+- desc: Only intended job/recurring records are affected.
+  assert_text: Job
+- desc: No orphan recurring invoice.
+  assert_text: Job
+source_tickets: RN-5582
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5582
+risk: Schema / Comment Regression
+notes: ''

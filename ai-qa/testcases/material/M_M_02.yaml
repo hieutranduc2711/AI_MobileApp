@@ -1,0 +1,38 @@
+id: M_M_02
+title: Materials plus opens menu
+feature: material
+priority: High
+description: The plus on the Materials section opens the material menu.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_M_02][Material][MaterialMenu] Material category menu button shows
+  menu modal when tapped'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: 'Close the sheet by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close the sheet by tapping the
+  delay: 0.8
+expected:
+- assert_text: the material menu sheet
+  desc: the material menu sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  After step 3, the material menu sheet should be displayed. (4) Close the sheet by
+  tapping the handle at its top (id: indicator).'

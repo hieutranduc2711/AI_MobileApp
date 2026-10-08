@@ -1,0 +1,28 @@
+id: MAP_E2E_002
+title: Toggle Custom Event filter and save
+feature: map
+priority: High
+description: Toggling the Custom Event filter and saving returns to the map controls.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online);
+  location permission granted. MAP_E2E_001–004 change the saved map event-type filter
+  and layer.
+detox_reference: '[MAP_E2E_002][DOC+][Map] User toggles custom event filter and saves
+  updated visibility'
+steps:
+- desc: Tap the filter button at the top of the bottom-left button column.
+  action: tap_selector
+  text: Tap the filter button at the t
+  delay: 0.8
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: the filter popup
+  desc: the filter popup
+goal_summary: 'Open the GorillaDesk app on the Home screen and show the map (if the
+  calendar is shown, tap the map button at the bottom left, next to "Today"). (1)
+  Tap the filter button at the top of the bottom-left button column. (2) In "Event
+  Type" tap "Custom Event", then tap "Save" (id: saveButton). After step 2, the filter
+  popup should be closed and the map filter button should be displayed. If the map
+  cannot be shown, stop and report the test as skipped: map view not available.'

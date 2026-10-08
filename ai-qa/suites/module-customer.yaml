@@ -1,0 +1,28 @@
+name: Module Customer Suite
+description: Chạy toàn bộ 25 test cases cho phân hệ customer
+tests:
+- CUSTOMER-customerEdge-01
+- CUSTOMER-customerUx-09
+- CUSTOMER-customerUx-10
+- CUSTOMER-customerUx-11
+- CUSTOMER-customerUx-12
+- CUSTOMER-customerUx-13
+- CUSTOMER-fullCustomerFlow-01
+- CUSTOMER-fullCustomerFlow-02
+- CUSTOMER-fullCustomerFlow-03
+- CUSTOMER-fullCustomerFlow-04
+- CUSTOMER-fullCustomerFlow-05
+- CUSTOMER-fullCustomerFlow-06
+- CUSTOMER-fullCustomerFlow-07
+- CUSTOMER-fullCustomerFlow-08
+- CUSTOMER-fullCustomerFlow-09
+- CUSTOMER-fullCustomerFlow-10
+- CUSTOMER-fullCustomerFlow-11
+- CUST_E2E_001
+- CUST_E2E_002
+- CUST_E2E_003
+- CUST_E2E_004
+- CUST_E2E_005
+- CUST_E2E_007
+- CUST_E2E_008
+- CUST_E2E_009

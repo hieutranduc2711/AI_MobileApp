@@ -1,0 +1,38 @@
+id: JDELTA-010
+title: 'No successful initial download + Offline: No successful initial download +
+  Offline'
+sheet: 13_Jira_Current_Delta
+module: Bootstrap
+action: No successful initial download + Offline
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Use fresh profile with no successful initial data download.
+  action: tap_selector
+  text: Use fresh profile with no succ
+  delay: 1.0
+- desc: Disconnect before bootstrap completes.
+  action: tap_selector
+  text: Disconnect before bootstrap co
+  delay: 1.0
+- desc: Open Home and a supported list.
+  action: tap_selector
+  text: Open Home and a supported list
+  delay: 1.0
+expected:
+- desc: Home reports offline data unavailable.
+  assert_text: Bootstrap
+- desc: Missing bootstrap data is not misrepresented as a valid business empty list.
+  assert_text: Bootstrap
+- desc: App does not hang/crash.
+  assert_text: Bootstrap
+source_tickets: RN-5531,RN-5648
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5531
+
+  https://gorilladesk1.atlassian.net/browse/RN-5648'
+risk: Schema / Comment Regression
+notes: ''

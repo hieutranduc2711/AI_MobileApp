@@ -1,0 +1,41 @@
+id: TC_EST_01
+title: Open estimate from customer estimates
+feature: estimate
+priority: High
+description: Home customer search leads to a customer's All Estimates list and its
+  first estimate.
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  estimate access, e.g. Admin), app on the Home screen (online). The first customer
+  in “Customers” has at least 5 estimates (so “Show All” appears under “Estimate”),
+  the first estimate on “All Estimates” has no generated invoice (so “Edit Estimate”
+  is offered), the customer has at least one service location, and at least one estimate
+  template exists. TC_EST_06 saves that estimate; TC_EST_07 creates a new estimate.
+detox_reference: '[TC_EST_01][DOC+][EstimateForm] User navigates to estimate details'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Estimate]
+  action: tap_selector
+  text: Estimate
+  delay: 1.0
+- desc: Chạm vào mục [All Estimates]
+  action: tap_selector
+  text: All Estimates
+  delay: 1.0
+expected:
+- assert_text: Customers
+  desc: Hiển thị 'Customers' trên màn hình
+- assert_text: that customer's detail screen
+  desc: that customer's detail screen
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. After step 1, the "Customers" list with at least one customer
+  should be displayed. (2) Tap the first customer. After step 2, that customer's detail
+  screen should be displayed. (3) Scroll to the "Estimate" section and tap its "Show
+  All". (4) On "All Estimates", tap the first estimate.

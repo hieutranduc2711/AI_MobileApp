@@ -1,0 +1,20 @@
+name: Module Opportunity Suite
+description: Chạy toàn bộ 17 test cases cho phân hệ opportunity
+tests:
+- TC_AA
+- TC_AS
+- TC_CAT
+- TC_CF
+- TC_CT
+- TC_DT
+- TC_EA
+- TC_ED
+- TC_FB
+- TC_LM
+- TC_NI
+- TC_PTR
+- TC_SA
+- TC_SEC
+- TC_ST
+- TC_TM
+- TC_VI

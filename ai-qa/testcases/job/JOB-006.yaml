@@ -1,0 +1,37 @@
+id: JOB-006
+title: Delete Job cancel
+feature: job
+priority: High
+description: Delete Job asks for confirmation and Cancel keeps the job.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-006] User opens Delete Job, sees confirmation dialog, and cancels
+  delete'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Job Details]
+  action: tap_selector
+  text: Job Details
+  delay: 1.0
+- desc: Chạm vào mục [Cancel]
+  action: tap_selector
+  text: Cancel
+  delay: 1.0
+expected:
+- assert_text: Delete
+  desc: Hiển thị 'Delete' trên màn hình
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the
+  three-dots icon at the top-right of "Job Details" and choose "Delete Job". After
+  step 2, a "Delete" confirmation should be displayed. (3) Tap "Cancel". After step
+  3, "Job Details" should be displayed. If "Delete Job" is not in the menu, stop and
+  report the test as skipped: delete not permitted.'

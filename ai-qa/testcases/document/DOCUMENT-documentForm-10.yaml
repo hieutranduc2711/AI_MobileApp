@@ -1,0 +1,45 @@
+id: DOCUMENT-documentForm-10
+title: Pick first list box option
+feature: document
+priority: High
+description: A list box field opens its picker and the first option can be chosen.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document; “Edit Document”
+  is offered for the first document (not e-signed) and its template contains the field
+  types used below (section, text, text area, radio, checkbox, list box, signature,
+  image). No case saves the document.
+detox_reference: User opens listbox modal and picks first option
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Chạm vào mục [Edit Document]
+  action: tap_selector
+  text: Edit Document
+  delay: 1.0
+- desc: Scroll to the first list box (drop-down) field and tap it.
+  action: tap_selector
+  text: Scroll to the first list box (
+  delay: 0.8
+- desc: 'In the picker tap the first option; if the picker is still open, swipe it
+    down. '
+  action: tap_selector
+  text: In the picker tap the first op
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section, then tap "Edit Document" in the menu.
+  (4) Scroll to the first list box (drop-down) field and tap it. (5) In the picker
+  tap the first option; if the picker is still open, swipe it down. If the form has
+  no list box field, stop and report the test as skipped: no list box field in this
+  template.'

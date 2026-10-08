@@ -1,0 +1,19 @@
+id: SIG-DOC-014
+title: 'Kiểm thử lưu trữ chứng từ và chữ ký số #14'
+feature: workorder_signatures
+priority: Medium
+description: 'Bảo đảm tính toàn vẹn của chứng từ pháp lý và biên bản bàn giao #14'
+preconditions: Công việc đã hoàn tất
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Vào mục Documents
+  action: tap_selector
+  content_desc: Documents
+  delay: 1.0
+expected:
+- assert_text: Documents
+  desc: Kho chứng từ tải đầy đủ

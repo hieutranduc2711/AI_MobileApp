@@ -1,0 +1,29 @@
+id: JOB-018
+title: Property Estimation section present
+feature: job
+priority: High
+description: The Property Estimation section is present when map estimation is enabled.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-018] Property estimation section is present when map estimation
+  is enabled'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Property Estimation]
+  action: tap_selector
+  text: Property Estimation
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll down
+  and report whether the "Property Estimation" section is shown; its absence is not
+  a failure.

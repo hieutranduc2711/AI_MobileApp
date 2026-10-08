@@ -1,0 +1,6 @@
+name: offline-10-payments_credits_lists
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [payments_credits_lists]
+  (2 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/payments_credits_lists/DEV-UI-063.yaml
+- testcases/offline_sync/10_dev_checklist_167/payments_credits_lists/DEV-UI-064.yaml

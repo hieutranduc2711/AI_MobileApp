@@ -1,0 +1,15 @@
+name: offline-03-customer
+description: Offline Suite for Sheet [03_round_trip] > Module [customer] (12 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/customer/SYNC-02125.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02126.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02127.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02128.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02129.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02130.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02131.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02132.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02133.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02134.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02135.yaml
+- testcases/offline_sync/03_round_trip/customer/SYNC-02136.yaml

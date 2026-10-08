@@ -1,0 +1,36 @@
+id: JOB-233
+title: Check in to the job
+feature: job
+priority: High
+description: Check In opens the check-in dialog and confirming closes it.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-233] User checks in to job (clock in) and status shows active'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Check In]
+  action: tap_selector
+  text: Check In
+  delay: 1.0
+- desc: Confirm it.
+  action: tap_selector
+  text: Confirm it.
+  delay: 0.8
+expected:
+- assert_text: the check-in dialog
+  desc: the check-in dialog
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap "Check
+  In" in the job header. After step 2, the check-in dialog should be displayed. (3)
+  Confirm it. After step 3, the dialog should be closed and "Job Details" should be
+  displayed. If there is no "Check In" button or it shows an out-of-range error, stop
+  and report the test as skipped: check-in not available here.'

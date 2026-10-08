@@ -1,0 +1,4 @@
+name: offline-13-mdu
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [mdu] (1 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/mdu/JDELTA-041.yaml

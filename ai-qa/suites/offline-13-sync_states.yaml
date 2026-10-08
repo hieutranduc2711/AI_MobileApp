@@ -1,0 +1,6 @@
+name: offline-13-sync_states
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [sync_states]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/sync_states/JDELTA-013.yaml
+- testcases/offline_sync/13_jira_current_delta/sync_states/JDELTA-014.yaml

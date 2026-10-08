@@ -1,0 +1,53 @@
+id: TC_EST_07
+title: Create new estimate from template
+feature: estimate
+priority: High
+description: A new estimate is started from All Estimates with the first location
+  and template, then saved.
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  estimate access, e.g. Admin), app on the Home screen (online). The first customer
+  in “Customers” has at least 5 estimates (so “Show All” appears under “Estimate”),
+  the first estimate on “All Estimates” has no generated invoice (so “Edit Estimate”
+  is offered), the customer has at least one service location, and at least one estimate
+  template exists. TC_EST_06 saves that estimate; TC_EST_07 creates a new estimate.
+detox_reference: '[TC_EST_07][DOC+][EstimateType] User create new estimate success'
+steps:
+- desc: Tap the search (magnifier) icon at the top-right.
+  action: tap_selector
+  text: Tap the search (magnifier) ico
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Estimate]
+  action: tap_selector
+  text: Estimate
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Select Location]
+  action: tap_selector
+  text: Select Location
+  delay: 1.0
+- desc: Chạm vào mục [Select Estimate Templates]
+  action: tap_selector
+  text: Select Estimate Templates
+  delay: 1.0
+- desc: Bấm nút Save để lưu dữ liệu
+  action: tap_selector
+  content_desc: Save
+  delay: 2.5
+expected:
+- assert_text: Save
+  desc: Hiển thị 'Save' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right. (2) Tap the first customer. (3) Scroll to the "Estimate"
+  section and tap its "Show All". (4) On "All Estimates", tap the plus icon at the
+  top-right. (5) On "Select Location", tap the first location. (6) On "Select Estimate
+  Templates", tap the first template. After step 6, the "Save" button should be displayed
+  at the top-right. (7) Tap "Save".

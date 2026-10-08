@@ -1,0 +1,38 @@
+id: TC_10
+title: Add invoice item opens Customers list
+feature: onboarding
+priority: High
+description: The add-invoice checklist action opens the Customers list and back returns
+  to Getting Started.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_03, TC_06, TC_12 and TC_13 need a non-trial plan (Detox guard E2E_TRIAL_PLAN;
+  trial plans hide the tabs). The server Getting Started checklist must contain the
+  add-logo, add-customer, add-job, add-invoice and plans-and-pricing items with a
+  Start/Done button.
+detox_reference: '[TC_10][DOC+][AddInvoiceNavigation] User taps add Invoice action
+  and navigates to customer list'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Fast Start] trong Drawer Menu
+  action: tap_selector
+  content_desc: Fast Start
+  delay: 1.2
+- desc: Chạm vào mục [Start]
+  action: tap_selector
+  text: Start
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Customers
+  desc: Hiển thị 'Customers' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Fast Start" under "Help" (scroll the menu if needed). (2) In the checklist,
+  tap the "Start" or "Done" button of the add-invoice item. After step 2, the "Customers"
+  screen should be displayed. (3) Tap the back arrow at the top-left. After steps
+  1 and 3, the "Getting Started" screen with its checklist should be displayed.

@@ -1,0 +1,51 @@
+id: SYNC-03293
+title: 'Disk Full: SQLite write fails no storage'
+sheet: 05_Cross_Cutting
+module: Storage
+action: Disk Full
+priority: P0
+flow_phase: Device Edge
+direction: CROSS-CUTTING
+app_path: Any create/upload
+preconditions: Prepare environment/data as described.
+test_data: SQLite write fails no storage
+steps:
+- desc: Fill storage.
+  action: tap_selector
+  text: Fill storage.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Attempt save/upload.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Observe error.
+  action: tap_selector
+  text: Observe error.
+  delay: 1.0
+- desc: Free space.
+  action: tap_selector
+  text: Free space.
+  delay: 1.0
+- desc: Retry.
+  action: tap_selector
+  text: Retry.
+  delay: 1.0
+expected:
+- desc: No fake success.
+  assert_text: Storage
+- desc: DB consistent.
+  assert_text: Storage
+- desc: Actionable error.
+  assert_text: Storage
+- desc: Recovery possible.
+  assert_text: Storage
+source_tickets: RN-5637, RN-5477
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5477'
+risk: Data loss
+notes: Carried from V2 OFFV2-03222

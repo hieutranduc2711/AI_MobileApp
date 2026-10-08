@@ -1,0 +1,33 @@
+id: TC_05
+title: Pull to refresh Onboarding tab
+feature: onboarding
+priority: High
+description: Pull-to-refresh on the Onboarding tab keeps the getting-started checklist
+  displayed.
+preconditions: Logged in with the DEFAULT E2E account, app on the Home screen (online).
+  TC_03, TC_06, TC_12 and TC_13 need a non-trial plan (Detox guard E2E_TRIAL_PLAN;
+  trial plans hide the tabs). The server Getting Started checklist must contain the
+  add-logo, add-customer, add-job, add-invoice and plans-and-pricing items with a
+  Start/Done button.
+detox_reference: '[TC_05][DOC+][WatchDemoVideo] User refresh page successfully'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Fast Start] trong Drawer Menu
+  action: tap_selector
+  content_desc: Fast Start
+  delay: 1.2
+- desc: Chạm vào mục [Onboarding]
+  action: tap_selector
+  text: Onboarding
+  delay: 1.0
+expected:
+- assert_text: the getting-started checklist section
+  desc: the getting-started checklist section
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Fast Start" under "Help" (scroll the menu if needed). (2) Pull down
+  on the "Onboarding" tab content to refresh it. Before and after step 2, the getting-started
+  checklist section should be displayed.

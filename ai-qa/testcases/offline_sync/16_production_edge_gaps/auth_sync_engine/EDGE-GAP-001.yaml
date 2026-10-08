@@ -1,0 +1,50 @@
+id: EDGE-GAP-001
+title: 'Token Refresh on Reconnect: Access Token hết hạn sau 48h Offline → Có mạng
+  lại → Tự động refresh token ngầm trước khi xả Outbox'
+sheet: 16_Production_Edge_Gaps
+module: Auth / Sync Engine
+action: Token Refresh on Reconnect
+priority: P0
+flow_phase: Auth Expiry & Session Lifecycle
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Background Sync Engine
+preconditions: User đăng nhập GD Mobile; tạo 5 mutations offline (Job, Note); để thiết
+  bị offline > 48h khiến Access Token hết hạn nhưng Refresh Token còn hạn.
+test_data: Expired JWT Access Token (exp < now); Valid Refresh Token; 5 pending SQLite
+  outbox items.
+steps:
+- desc: Đặt thiết bị sang Offline và thực hiện sửa Job, thêm Note.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Chờ (hoặc giả lập chỉnh thời gian) để Access Token hết hạn.
+  action: tap_selector
+  text: Chờ (hoặc giả lập chỉnh thời g
+  delay: 1.0
+- desc: Bật Wi-Fi/4G để thiết bị chuyển sang trạng thái Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Giám sát network traffic qua proxy/Charles hoặc console log.
+  action: tap_selector
+  text: Giám sát network traffic qua p
+  delay: 1.0
+- desc: Quan sát quá trình gọi refresh token và xử lý outbox queue.
+  action: tap_selector
+  text: Quan sát quá trình gọi refresh
+  delay: 1.0
+expected:
+- desc: Sync Engine phát hiện 401 hoặc chủ động gọi endpoint Refresh Token trước khi
+    xả queue.
+  assert_text: Auth / Sync Engine
+- desc: Lấy Access Token mới thành công trong nền (Silent Refresh).
+  assert_text: Auth / Sync Engine
+- desc: Sử dụng token mới để xả toàn bộ 5 outbox mutations thành công.
+  assert_text: Auth / Sync Engine
+- desc: Không gián đoạn UI, không văng ra màn hình Login, không mất dữ liệu.
+  assert_text: Auth / Sync Engine
+source_tickets: RN-5477 / Arch-Security
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Data Loss / Silent Fail
+notes: Nếu không có cơ chế preemptive refresh, request đầu tiên sẽ dính 401 và có
+  nguy cơ kích hoạt logout nhầm.

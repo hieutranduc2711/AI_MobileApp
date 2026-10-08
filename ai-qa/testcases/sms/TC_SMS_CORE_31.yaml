@@ -1,0 +1,33 @@
+id: TC_SMS_CORE_31
+title: Toggle received message checkbox
+feature: sms
+priority: High
+description: The read checkbox on the first received message can be toggled.
+preconditions: Logged in with the DEFAULT E2E account (SMS addon on) on the Home screen
+  (online). SMS has unread and read conversations (enough for “Show More”), the first
+  conversation has sent, received and failed messages, an unknown-number thread exists,
+  SMS templates exist; the first customer in “Customers” has a phone number and a
+  job. TC_SMS_CORE_05/06/34 change read state.
+detox_reference: '[TC_SMS_CORE_31][DOC+][MessageList] User toggles read checkbox on
+  first received message when available'
+steps:
+- desc: Tap the SMS button at the top-right (next to the bell).
+  action: tap_selector
+  text: Tap the SMS button at the top-
+  delay: 0.8
+- desc: Tap the first conversation.
+  action: tap_selector
+  text: Tap the first conversation.
+  delay: 0.8
+- desc: Tap the read checkbox on the latest received message.
+  action: tap_selector
+  text: Tap the read checkbox on the l
+  delay: 0.8
+expected:
+- assert_text: the conversation screen
+  desc: the conversation screen
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the SMS button
+  at the top-right (next to the bell). (2) Tap the first conversation. (3) Tap the
+  read checkbox on the latest received message. After step 3, the conversation screen
+  should be displayed. If there is no conversation or no received-message checkbox,
+  stop and report the test as skipped: no received message.'

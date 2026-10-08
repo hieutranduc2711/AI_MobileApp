@@ -1,0 +1,45 @@
+id: CALENDAR-E2E-001
+title: Create, terminate and delete a job
+feature: home-calendar
+priority: High
+description: A job created from Home appears on the calendar, turns terminated and
+  disappears after delete.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job). CALENDAR-E2E-001 creates
+  a job on the first customer (first location, first service), terminates it and deletes
+  it; the first customer needs a service location and at least one service must exist.
+detox_reference: 'CALENDAR-E2E-001: job lifecycle create → terminate → delete (webview
+  asserts)'
+steps:
+- desc: Note the jobs on today's calendar.
+  action: tap_selector
+  text: Note the jobs on today's calen
+  delay: 0.8
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Terminate]
+  action: tap_selector
+  text: Terminate
+  delay: 1.0
+- desc: Chạm vào mục [Delete Job]
+  action: tap_selector
+  text: Delete Job
+  delay: 1.0
+expected:
+- assert_text: a new job
+  desc: a new job
+- assert_text: that job
+  desc: that job
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Note the jobs on today's
+  calendar. (2) Tap the footer plus, choose "New Job", tap the first customer, the
+  first location if a list opens and the first service, then tap "Save" and return
+  to Home. After step 2, a new job should appear on the calendar. (3) Tap it, tap
+  the job status and choose "Terminate"; type "E2E terminate <current time>" as reason
+  if asked and tap "Confirm"; return to Home. After step 3, that job should show the
+  terminated (red/salmon) color. (4) Tap it; if the three-dots menu offers "Delete
+  Job", delete it (confirm) and return to Home, after which the job should no longer
+  appear.

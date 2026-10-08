@@ -1,0 +1,49 @@
+id: SYNC-00783
+title: 'Edit Custom Event: Edit Custom Event: Offline save → network bật/tắt liên
+  tục'
+sheet: 02_Offline_to_Online
+module: Calendar
+action: Edit Custom Event
+priority: P1
+flow_phase: F2O-03 Flapping reconnect
+direction: OFFLINE → ONLINE
+app_path: GD Mobile > Calendar > Event Detail
+preconditions: Đúng account/branch; prerequisite đã cache; device đang Offline; user
+  có quyền Edit Custom Event.
+test_data: Valid representative entity/action
+steps:
+- desc: Offline thực hiện action.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bật/tắt network 5–10 lần trong 30–60 giây.
+  action: tap_selector
+  text: Bật/tắt network 5–10 lần trong
+  delay: 1.0
+- desc: Không Save lại.
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Cuối cùng giữ Online ổn định.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ queue idle.
+  action: tap_selector
+  text: Chờ queue idle.
+  delay: 1.0
+- desc: Verify server.
+  action: tap_selector
+  text: Verify server.
+  delay: 1.0
+expected:
+- desc: Không reconnect storm tạo duplicate send.
+  assert_text: Calendar
+- desc: Action chỉ có một logical effect.
+  assert_text: Calendar
+- desc: Queue không kẹt sau flapping.
+  assert_text: Calendar
+source_tickets: RN-5573
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
+risk: Reconnect storm
+notes: ''

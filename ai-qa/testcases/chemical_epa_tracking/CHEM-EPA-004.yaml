@@ -1,0 +1,18 @@
+id: CHEM-EPA-004
+title: Cảnh báo khi tốc độ gió vượt quá ngưỡng an toàn EPA (Wind > 10mph)
+feature: chemical_epa_tracking
+priority: Critical
+description: Kiểm tra ứng dụng cảnh báo nguy cơ hóa chất bay tạt (Drift Risk)
+preconditions: Đang nhập thời tiết ngoài trời
+steps:
+- desc: Nhập tốc độ gió lớn
+  action: type_text
+  value: 15 mph
+  delay: 0.5
+- desc: Bấm lưu
+  action: tap_selector
+  content_desc: Done
+  delay: 1.0
+expected:
+- assert_text: High Wind Warning
+  desc: Hiển thị cảnh báo gió to nguy cơ trôi dạt hóa chất

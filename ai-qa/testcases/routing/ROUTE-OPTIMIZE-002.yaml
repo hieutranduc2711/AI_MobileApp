@@ -1,0 +1,16 @@
+id: ROUTE-OPTIMIZE-002
+title: Sắp xếp lại thứ tự công việc và tính toán lại thời gian di chuyển
+feature: routing
+priority: Medium
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục Map / Routing
+  action: tap_selector
+  content_desc: Map
+  delay: 1.5
+expected:
+- assert_text: Map

@@ -1,0 +1,27 @@
+id: SET-FULL-003
+title: Taxes list opens and returns
+feature: settings
+priority: High
+description: Taxes Manage opens the Taxes screen and Android back returns to Settings.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-FULL-002…007 need the “System Settings” section on Settings (company setting
+  editSetting on; typically a super admin per docs/features/settings.md); without
+  it they report skipped (SET-FULL-007 just skips its rows).
+detox_reference: '[SET-FULL-003] [Settings][Main][P0] open Taxes list and recover
+  to Settings'
+steps:
+- desc: Chạm vào mục [Manage]
+  action: tap_selector
+  text: Manage
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Taxes
+  desc: Hiển thị 'Taxes' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Tap "Manage" next to "Taxes". After step 1, the header title
+  (id: header-title) should read "Taxes". (2) Press the Android back button. At the
+  end, the header title should read "Settings". If there is no "Taxes" row, stop and
+  report the test as skipped: not available in this account/plan.'

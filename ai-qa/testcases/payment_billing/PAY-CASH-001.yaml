@@ -1,0 +1,26 @@
+id: PAY-CASH-001
+title: Thu tiền mặt (Cash Payment) tại chỗ
+feature: payment_billing
+priority: Critical
+description: Kỹ thuật viên thu tiền mặt từ khách hàng và xuất biên nhận
+preconditions: Màn hình Invoice Detail
+steps:
+- desc: Mở Invoice Detail
+  action: tap_selector
+  text: Invoices
+  delay: 1.0
+- desc: Bấm nút Collect Payment
+  action: tap_selector
+  text: Collect Payment
+  delay: 1.2
+- desc: 'Chọn phương thức tiền mặt: Cash'
+  action: tap_selector
+  text: Cash
+  delay: 0.8
+- desc: Xác nhận đã nhận đủ tiền
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+expected:
+- assert_text: Paid
+  desc: Hóa đơn chuyển sang trạng thái Paid

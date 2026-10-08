@@ -1,0 +1,20 @@
+id: CRM-RET-030
+title: 'Quản lý lưu vết giữ chân khách hàng và lý do hủy dịch vụ #30'
+feature: customer_crm_retention
+priority: Normal
+description: 'Kiểm thử ghi nhận nguyên nhân dừng hợp đồng và chiến dịch chăm sóc lại
+  khách hàng ca #30'
+preconditions: Hồ sơ khách hàng
+steps:
+- desc: Mở mục Trạng thái Hợp đồng
+  action: tap_selector
+  text: Customer Status
+  delay: 0.8
+- desc: 'Thao tác ghi nhận chăm sóc #30'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Customer Status
+  desc: Lịch sử tương tác chăm sóc lưu an toàn

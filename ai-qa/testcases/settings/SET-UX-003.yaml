@@ -1,0 +1,26 @@
+id: SET-UX-003
+title: Map selection screen shows options
+feature: settings
+priority: High
+description: The map selector opens with its header and the Google option.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-UX-001 needs the “System Settings” section on Settings (company setting editSetting
+  on; typically a super admin per docs/features/settings.md) — Detox has no skip for
+  it; SET-UX-004 skips rows that are missing. SET-UX-005 needs a device with biometrics
+  (the “Log In with …” row), otherwise it reports skipped.
+detox_reference: '[SET-UX-003] [Settings][Main][P1] map selection screen opens and
+  is not touch-blocked'
+steps:
+- desc: Chạm vào mục [Map using]
+  action: tap_selector
+  text: Map using
+  delay: 1.0
+expected:
+- assert_text: System Settings
+  desc: Hiển thị 'System Settings' trên màn hình
+- assert_text: Google
+  desc: Hiển thị 'Google' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Tap the button to the right of "Map using". After step 1,
+  the header title (id: header-title) should read "System Settings" and a "Google"
+  option should be shown.'

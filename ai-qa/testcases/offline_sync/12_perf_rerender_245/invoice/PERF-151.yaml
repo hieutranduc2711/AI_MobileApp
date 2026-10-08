@@ -1,0 +1,54 @@
+id: PERF-151
+title: 'Mở danh sách invoices khi offline: Re-render benchmark for AllInvoices on
+  Mở danh sách invoices khi offline'
+sheet: 12_Perf_ReRender_245
+module: Invoice
+action: Mở danh sách invoices khi offline
+priority: P2
+flow_phase: Component Re-render Baseline
+direction: PERFORMANCE
+app_path: GD Mobile > AllInvoices
+preconditions: Logged in with downloaded local data
+test_data: 'Baseline Re-render: 1'
+steps:
+- desc: Prepare the same downloaded/local data shape required by this action.
+  action: tap_selector
+  text: Prepare the same downloaded/lo
+  delay: 1.0
+- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: 'Open module/component: Invoice / AllInvoices.'
+  action: tap_selector
+  text: 'Open module/component: Invoice'
+  delay: 1.0
+- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  action: tap_selector
+  text: Enable the project render coun
+  delay: 1.0
+- desc: 'Perform action exactly once: Mở danh sách invoices khi offline.'
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Record functional result and component re-render count.
+  action: tap_selector
+  text: Record functional result and c
+  delay: 1.0
+- desc: Repeat once when the result is close to the threshold to rule out measurement
+    noise.
+  action: tap_selector
+  text: Repeat once when the result is
+  delay: 1.0
+expected:
+- desc: Functional behavior must be correct.
+  assert_text: Invoice
+- desc: Primary component should not regress materially beyond recorded dev baseline
+    (1 re-render/update count) without an approved implementation reason.
+  assert_text: Invoice
+- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
+  assert_text: Invoice
+source_tickets: RN-5477 Perf Re-render
+source_urls: ''
+risk: Performance Degradation
+notes: 'Recorded Re-render benchmark: 1'

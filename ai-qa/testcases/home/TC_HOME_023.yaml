@@ -1,0 +1,24 @@
+id: TC_HOME_023
+title: Calendar zoom slider
+feature: home
+priority: High
+description: The footer zoom slider can be adjusted.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_023] adjust calendar zoom slider when
+  visible'
+steps:
+- desc: Drag the zoom slider in the calendar footer to about 80 percent, then to about
+    3
+  action: tap_selector
+  text: Drag the zoom slider in the ca
+  delay: 0.8
+expected:
+- assert_text: 'the top bar (id: home-bar)'
+  desc: 'the top bar (id: home-bar)'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Drag the zoom slider
+  in the calendar footer to about 80 percent, then to about 30 percent. After step
+  1, the top bar (id: home-bar) should be displayed. If there is no zoom slider, stop
+  and report the test as skipped: zoom not available.'

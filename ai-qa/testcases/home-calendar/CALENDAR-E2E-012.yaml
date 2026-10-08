@@ -1,0 +1,27 @@
+id: CALENDAR-E2E-012
+title: Terminated event cannot be dragged
+feature: home-calendar
+priority: High
+description: A Terminated event does not move when dragged.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-012: terminate event is non-draggable (graceful skip)'
+steps:
+- desc: Find a Terminated event on the calendar (red/salmon, text mentioning Terminate).
+  action: tap_selector
+  text: Find a Terminated event on the
+  delay: 0.8
+- desc: Long-press it and drag it about 100 pixels down, then release.
+  action: tap_selector
+  text: Long-press it and drag it abou
+  delay: 0.8
+expected:
+- assert_text: the event
+  desc: the event
+goal_summary: 'Open the GorillaDesk app on the Home screen. The Home top bar (id:
+  home-bar) should be displayed. (1) Find a Terminated event on the calendar (red/salmon,
+  text mentioning Terminate). (2) Long-press it and drag it about 100 pixels down,
+  then release. After step 2, the event should still be at its original time slot.
+  If no Terminated event is visible, stop and report the test as skipped: no terminated
+  event today.'

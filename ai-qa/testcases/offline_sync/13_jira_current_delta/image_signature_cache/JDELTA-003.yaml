@@ -1,0 +1,33 @@
+id: JDELTA-003
+title: 'Image/signature cache write performance: Image/signature cache write performance'
+sheet: 13_Jira_Current_Delta
+module: Image/Signature Cache
+action: Image/signature cache write performance
+priority: P2
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Capture/save representative images and signatures Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Measure write latency for single asset and burst of multiple assets.
+  action: tap_selector
+  text: Measure write latency for sing
+  delay: 1.0
+- desc: Repeat with low free storage.
+  action: tap_selector
+  text: Repeat with low free storage.
+  delay: 1.0
+expected:
+- desc: Write path is responsive and durable.
+  assert_text: Image/Signature Cache
+- desc: Failed writes are surfaced; no silent loss/corruption.
+  assert_text: Image/Signature Cache
+source_tickets: RN-5680
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
+risk: Schema / Comment Regression
+notes: ''

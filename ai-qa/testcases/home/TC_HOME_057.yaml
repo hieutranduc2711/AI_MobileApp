@@ -1,0 +1,21 @@
+id: TC_HOME_057
+title: Per-day job count chip
+feature: home
+priority: High
+description: Tapping today"s per-day job count chip keeps Home usable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_057] Job count: per-day chip tap when
+  visible'
+steps:
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If a job count chip
+  for today is shown above the calendar, tap it and go back to Home. At the end, the
+  Home screen with its top bar (id: home-bar) should be displayed.'

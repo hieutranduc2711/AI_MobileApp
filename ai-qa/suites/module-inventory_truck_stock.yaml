@@ -1,0 +1,33 @@
+name: Module Inventory Truck Stock Suite
+description: Chạy toàn bộ 30 test cases cho phân hệ inventory_truck_stock
+tests:
+- INV-TRK-001
+- INV-TRK-002
+- INV-TRK-003
+- INV-TRK-004
+- INV-TRK-005
+- INV-TRK-006
+- INV-TRK-007
+- INV-TRK-008
+- INV-TRK-009
+- INV-TRK-010
+- INV-TRK-011
+- INV-TRK-012
+- INV-TRK-013
+- INV-TRK-014
+- INV-TRK-015
+- INV-TRK-016
+- INV-TRK-017
+- INV-TRK-018
+- INV-TRK-019
+- INV-TRK-020
+- INV-TRK-021
+- INV-TRK-022
+- INV-TRK-023
+- INV-TRK-024
+- INV-TRK-025
+- INV-TRK-026
+- INV-TRK-027
+- INV-TRK-028
+- INV-TRK-029
+- INV-TRK-030

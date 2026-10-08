@@ -1,0 +1,43 @@
+id: TC_04
+title: Seeded location Manage Area List
+feature: location
+priority: High
+description: Manage Area List opens from the seeded location and back returns to Service
+  Locations.
+preconditions: 'Logged in with the DEFAULT E2E account (can edit customers) on the
+  Home screen (online). Detox beforeAll seeds one location — before TC_03…TC_05 create
+  it once: Home search icon → first customer → “Service Locations” → plus → “Location
+  Name” “E2E Manage <current time>”, “Service Address” 200 Oak St, Houston, TX 77001
+  → “Save”; keep exactly one location whose name starts with “E2E Manage”. TC_05 deletes
+  it: run only where destructive deletes are allowed (Detox guard E2E_ALLOW_LOCATION_DELETE=true).
+  TC_06 needs at least one location on that customer.'
+detox_reference: '[TC_04][DOC+][ServiceLocationManageArea] User opens manage-area
+  from seeded location and returns to list'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Service Locations]
+  action: tap_selector
+  text: Service Locations
+  delay: 1.0
+- desc: Chạm vào mục [E2E Manage]
+  action: tap_selector
+  text: E2E Manage
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Manage Areas
+  desc: Hiển thị 'Manage Areas' trên màn hình
+- assert_text: Service Locations
+  desc: Hiển thị 'Service Locations' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right, then the first customer. (2) Tap "Service Locations". (3)
+  Tap the three-dots icon of the location whose name starts with "E2E Manage", then
+  "Manage Area List". After step 3, the "Manage Areas" screen with its area list (id:
+  area-list) should be displayed. (4) Tap the back arrow at the top-left. After step
+  4, the "Service Locations" screen should be displayed.'

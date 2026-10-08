@@ -1,0 +1,49 @@
+id: BUGREG-079
+title: 'Not show document added after create customer offline: Not show document added
+  after create customer offline'
+sheet: 11_Bug_Regression_91
+module: Customer
+action: Not show document added after create customer offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to screen customer list
+  action: tap_selector
+  text: Go to screen customer list
+  delay: 1.0
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new customer
+  action: tap_selector
+  text: Create new customer
+  delay: 1.0
+- desc: Save customer
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Show customer detail. Press to add new document
+  action: tap_selector
+  text: Show customer detail. Press to
+  delay: 1.0
+- desc: Select location & document & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Customer detail not show document just added
+  action: tap_selector
+  text: Customer detail not show docum
+  delay: 1.0
+expected:
+- desc: 'Expect: Show document added after create customer offline'
+  assert_text: Customer
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

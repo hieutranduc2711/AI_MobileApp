@@ -1,0 +1,64 @@
+id: SYNC-03211
+title: 'Add Estimate Visible Image: Add Estimate Visible Image rồi delete trước sync'
+sheet: 05_Cross_Cutting
+module: Visible Image
+action: Add Estimate Visible Image
+priority: P0
+flow_phase: Create→Delete Before Sync
+direction: CROSS-CUTTING
+app_path: GD Mobile > Estimate > Visible Images > Add
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Add Estimate
+  Visible Image; prerequisite cho Estimate Visible Image đã sync khi cần.
+test_data: Create then delete
+steps:
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Add Estimate Visible Image.
+  action: tap_selector
+  text: Add Estimate Visible Image
+  delay: 1.0
+- desc: Delete local record trước reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Check local list.
+  action: tap_selector
+  text: Check local list.
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect server/outbox.
+  action: tap_selector
+  text: Inspect server/outbox.
+  delay: 1.0
+expected:
+- desc: Add Estimate Visible Image không làm app crash/mất dữ liệu.
+  assert_text: Visible Image
+- desc: Local/UI của Estimate Visible Image phản ánh đúng business result.
+  assert_text: Visible Image
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: Visible Image
+- desc: Không duplicate logical operation.
+  assert_text: Visible Image
+- desc: Không orphan/ghost record ngoài ý muốn.
+  assert_text: Visible Image
+- desc: Create/delete collapse/order an toàn.
+  assert_text: Visible Image
+- desc: No pending forever.
+  assert_text: Visible Image
+source_tickets: RN-5595, RN-5596, RN-5525, RN-5637, RN-5533
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
+
+  https://gorilladesk1.atlassian.net/browse/RN-5596
+
+  https://gorilladesk1.atlassian.net/browse/RN-5525
+
+  https://gorilladesk1.atlassian.net/browse/RN-5637
+
+  https://gorilladesk1.atlassian.net/browse/RN-5533'
+risk: Create/delete ordering
+notes: Carried from V2 OFFV2-02727

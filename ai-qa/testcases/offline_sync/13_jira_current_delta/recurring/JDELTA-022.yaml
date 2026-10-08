@@ -1,0 +1,37 @@
+id: JDELTA-022
+title: 'Invoice recurring action route: Invoice recurring action route'
+sheet: 13_Jira_Current_Delta
+module: Recurring
+action: Invoice recurring action route
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline edit invoice recurring value.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reopen Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect and capture sync result.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Verify web.
+  action: tap_selector
+  text: Verify web.
+  delay: 1.0
+expected:
+- desc: Recurring value stays local and syncs correctly.
+  assert_text: Recurring
+- desc: Correct update_invoice_recurring semantics preserved.
+  assert_text: Recurring
+source_tickets: RN-5575
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5575
+risk: Schema / Comment Regression
+notes: ''

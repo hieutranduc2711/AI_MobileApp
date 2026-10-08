@@ -1,0 +1,29 @@
+id: AUTH-E2E-011
+title: Biometric login without stored credentials
+feature: auth
+priority: High
+description: The biometric login button asks the user to log in first when no credentials
+  are stored.
+preconditions: 'Logged out, app on the Welcome screen (Android, online). AUTH-E2E-010
+  and AUTH-E2E-012 log in with the DEFAULT E2E account: replace <TEST_EMAIL>/<TEST_PASSWORD>
+  at run time (Detox E2E_TEST_EMAIL/E2E_TEST_PASSWORD). AUTH-E2E-011 needs no biometric
+  credentials stored in the app. AUTH-E2E-014 needs the network disabled and no offline
+  data (otherwise it reports skipped). AUTH-E2E-016…019 only where real sign-up attempts
+  are allowed (Detox guard E2E_ALLOW_SIGNUP=true).'
+detox_reference: 'login: biometric button guard should show "Please login your account!"
+  when no stored creds'
+steps:
+- desc: 'Tap the biometric login button (id: biometric-button).'
+  action: tap_selector
+  text: Tap the biometric login button
+  delay: 0.8
+expected:
+- assert_text: Oops
+  desc: Hiển thị 'Oops' trên màn hình
+- assert_text: Please login your account
+  desc: Hiển thị 'Please login your account' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Login screen (from Welcome, tap "I
+  already have an account"). (1) Tap the biometric login button (id: biometric-button).
+  After step 1, an "Oops" dialog (id: dialog-title) with the message "Please login
+  your account" should be displayed. If there is no biometric login button, stop and
+  report the test as skipped: biometric login not available on this device.'

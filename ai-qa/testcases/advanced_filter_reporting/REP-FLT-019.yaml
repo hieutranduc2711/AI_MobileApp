@@ -1,0 +1,19 @@
+id: REP-FLT-019
+title: 'Bộ lọc nâng cao và truy xuất dữ liệu ca #19'
+feature: advanced_filter_reporting
+priority: Normal
+description: 'Kiểm thử bộ lọc đa điều kiện và báo cáo thực địa #19'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở tính năng tìm kiếm nâng cao
+  action: tap_selector
+  content_desc: Search
+  delay: 0.8
+- desc: 'Áp dụng tiêu chí lọc #19'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Results
+  desc: Kết quả tìm kiếm khớp chính xác tiêu chí

@@ -1,0 +1,33 @@
+id: DOCUMENT-documentForm-04
+title: Form renders dynamic fields
+feature: document
+priority: High
+description: The document form renders at least one field from the API.
+preconditions: Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document; “Edit Document”
+  is offered for the first document (not e-signed) and its template contains the field
+  types used below (section, text, text area, radio, checkbox, list box, signature,
+  image). No case saves the document.
+detox_reference: User sees dynamic rendered fields from API response
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Chạm vào mục [Edit Document]
+  action: tap_selector
+  text: Edit Document
+  delay: 1.0
+expected:
+- assert_text: the document form
+  desc: the document form
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section, then tap "Edit Document" in the menu.
+  After step 3, the document form should show at least one input field.

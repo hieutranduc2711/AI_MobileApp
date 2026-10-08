@@ -1,0 +1,24 @@
+id: CHEM-EPA-026
+title: 'Kiểm tra quy chuẩn an toàn hóa chất nâng cao trường hợp #26'
+feature: chemical_epa_tracking
+priority: Normal
+description: 'Xác thực nghiệp vụ kiểm soát dư lượng hóa chất và bảo vệ môi trường
+  ca #26'
+preconditions: Job đang mở ở chế độ Tech Inspection
+steps:
+- desc: Mở tab Quy định An Toàn
+  action: tap_selector
+  text: Safety & Compliance
+  delay: 0.8
+- desc: Chọn mục kiểm tra số 26
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Xác nhận tuân thủ SDS (Safety Data Sheet)
+  action: tap_selector
+  content_desc: Acknowledge SDS
+  delay: 1.0
+expected:
+- assert_text: Compliant
+  desc: Hệ thống ghi nhận tuân thủ an toàn thành công

@@ -1,0 +1,6 @@
+name: offline-13-job_schema
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [job_schema]
+  (2 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/job_schema/JDELTA-016.yaml
+- testcases/offline_sync/13_jira_current_delta/job_schema/JDELTA-017.yaml

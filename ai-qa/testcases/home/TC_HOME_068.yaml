@@ -1,0 +1,27 @@
+id: TC_HOME_068
+title: Recover from open schedule sheet
+feature: home
+priority: High
+description: An open schedule sheet can be dismissed back to Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise.
+detox_reference: '[Home][Home][High] [TC_HOME_068] recover from open schedule modal
+  using Home recovery'
+steps:
+- desc: 'Tap the schedule chip in the top bar (id: button-schedule).'
+  action: tap_selector
+  text: Tap the schedule chip in the t
+  delay: 0.8
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: the schedule sheet
+  desc: the schedule sheet
+- assert_text: the top-left menu icon
+  desc: the top-left menu icon
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the schedule chip
+  in the top bar (id: button-schedule). After step 1, the schedule sheet should be
+  displayed. (2) Close it (handle at its top, id: indicator, or the Android back button).
+  After step 2, the top-left menu icon should be displayed.'

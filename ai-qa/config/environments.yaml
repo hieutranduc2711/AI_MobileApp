@@ -1,0 +1,15 @@
+environments:
+  production:
+    api_base_url: "https://api.gorilladesk.com"
+    sync_interval_seconds: 60
+    auth:
+      account_id: "stripe_sync_1"
+      user: "QA Automation"
+  staging:
+    api_base_url: "https://staging-api.gorilladesk.com"
+    sync_interval_seconds: 30
+
+bug_tracker:
+  provider: "local" # options: "local", "github_issues", "jira", "mantis"
+  output_dir: "reports/bugs"
+  auto_create_issue: false

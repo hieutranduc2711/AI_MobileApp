@@ -1,0 +1,19 @@
+id: TIME-CREW-003
+title: Clock Out kết thúc ca làm việc
+feature: timesheet_crew_management
+priority: Normal
+description: 'Xác thực nghiệp vụ quản lý nhân sự và chấm công KTV #3'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Bấm Clock Out
+  action: tap_selector
+  text: Clock Out
+  delay: 1.2
+expected:
+- assert_text: Clocked Out
+  desc: Tổng giờ công trong ngày được tổng kết

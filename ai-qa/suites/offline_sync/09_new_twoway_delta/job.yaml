@@ -1,0 +1,30 @@
+name: offline-09-job
+description: Offline Suite for Sheet [09_new_twoway_delta] > Module [job] (27 cases)
+testcases:
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0007.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0008.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0009.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0010.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0011.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0012.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0013.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0014.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0015.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0016.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0017.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0018.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0019.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0020.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0021.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0022.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0023.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0024.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0037.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0038.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0039.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0040.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0041.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0042.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0043.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0044.yaml
+- testcases/offline_sync/09_new_twoway_delta/job/V4-TW-0045.yaml

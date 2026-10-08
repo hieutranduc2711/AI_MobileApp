@@ -1,0 +1,26 @@
+id: TC_EMB_PROG
+title: Todo progress bar shown
+feature: todo
+priority: High
+description: A job with todos shows the todo progress bar.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_SAVE adds
+  a todo; TC_EMB_CHK toggles the first todo four times (ends unchanged).
+detox_reference: '[DOC+][TC_EMB_PROG][Embedded] User with at least one todo on the
+  job sees the todo progress bar'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". At the end, the todo progress bar (id: progress-bar-container) with
+  its fill (id: progress-bar) should be displayed. If there is no "Todo List" section
+  or it has no todo, stop and report the test as skipped: no todos on the job.'

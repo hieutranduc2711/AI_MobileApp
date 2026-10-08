@@ -1,0 +1,49 @@
+id: EDGE-GAP-027
+title: 'Special Characters & Escaping Injection Protection: Text chứa ký tự đặc biệt
+  nguy hiểm (`''`, `"`, `\`, `\0`, `<script>`, `'' OR ''1''=''1`) → Không hỏng câu'
+sheet: 16_Production_Edge_Gaps
+module: Customer / Input Validation
+action: Special Characters & Escaping Injection Protection
+priority: P1
+flow_phase: Boundary & Unicode Serialization
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Customer Name / Notes
+preconditions: Thiết bị offline.
+test_data: 'Name: `O''Connor \"Big\" <script>alert(1)</script> '' OR 1=1 -- \n \r
+  \t`'
+steps:
+- desc: Nhập tên khách hàng và địa chỉ với chuỗi payload thử nghiệm trên khi offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Bấm Lưu.
+  action: tap_selector
+  text: Bấm Lưu.
+  delay: 1.0
+- desc: Kiểm tra câu lệnh SQLite insert qua parameterized query.
+  action: tap_selector
+  text: Kiểm tra câu lệnh SQLite inser
+  delay: 1.0
+- desc: Kiểm tra file payload JSON sinh ra trong bảng outbox.
+  action: tap_selector
+  text: Kiểm tra file payload JSON sin
+  delay: 1.0
+- desc: Bật mạng sync lên server.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- desc: SQLite execute với parameterized bindings, không bị lỗi cú pháp SQL Syntax
+    Error.
+  assert_text: Customer / Input Validation
+- desc: JSON serializer escape đúng các ký tự nháy kép và gạch chéo ngược.
+  assert_text: Customer / Input Validation
+- desc: Sync lên server thành công không bị HTTP 400 Bad Request.
+  assert_text: Customer / Input Validation
+- desc: Render lại trên UI mobile và Web an toàn không bị XSS.
+  assert_text: Customer / Input Validation
+source_tickets: RN-5477 / Security-Escaping
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: SQL Syntax Crash / JSON Malformed
+notes: Đảm bảo 100% câu truy vấn SQLite local dùng Prepared Statements, không cộng
+  chuỗi.

@@ -1,0 +1,40 @@
+id: TC_DEL_TODO_CANCEL
+title: Cancel todo delete
+feature: todo
+priority: High
+description: Remove Todo asks for confirmation and Cancel keeps the todo.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_EDIT_LINE
+  edits the first todo; TC_TEMPLATE_APPLY applies the first template to the job; TC_TEMPLATE_RENAME
+  renames the first template.
+detox_reference: '[Todo][TC_DEL_TODO_CANCEL][AddTodo] User taps delete todo and cancels
+  confirm dialog'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+- desc: Chạm vào mục [Edit List]
+  action: tap_selector
+  text: Edit List
+  delay: 1.0
+- desc: Chạm vào mục [Remove Todo]
+  action: tap_selector
+  text: Remove Todo
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap the three-dots button on "Todo List" (id: options-button).
+  (3) Tap "Edit List", then the first todo row. (4) Tap "Remove Todo" (id: delete-todo),
+  then "Cancel" in the confirmation. If there is no "Edit List" or no todo, stop and
+  report the test as skipped: nothing to delete.'

@@ -1,0 +1,5 @@
+name: offline-module-auth_multiuser
+description: Cross-sheet comprehensive offline suite for Module [auth_multiuser] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_multiuser/EDGE-GAP-006.yaml

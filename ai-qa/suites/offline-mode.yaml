@@ -1,0 +1,4 @@
+name: "Offline Mode Suite"
+description: "Kiểm thử chuyên sâu khả năng hoạt động ngoại tuyến và đồng bộ dữ liệu"
+testcases:
+  - "testcases/offline/OFFLINE-SYNC-001.yaml"

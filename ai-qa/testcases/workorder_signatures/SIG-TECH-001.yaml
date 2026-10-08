@@ -1,0 +1,18 @@
+id: SIG-TECH-001
+title: Kỹ thuật viên ký xác nhận hoàn thành (Technician Signature)
+feature: workorder_signatures
+priority: High
+description: Kỹ thuật viên ký tên chịu trách nhiệm về báo cáo kỹ thuật
+preconditions: Job Details -> Technician Signature
+steps:
+- desc: Mở ô Technician Signature
+  action: tap_selector
+  text: Technician Signature
+  delay: 1.0
+- desc: Lưu chữ ký kỹ thuật viên
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Technician
+  desc: Chữ ký kỹ thuật viên được đóng dấu trên phiếu

@@ -1,0 +1,28 @@
+id: SET-UX-002
+title: Drawer Settings item opens Settings
+feature: settings
+priority: High
+description: The drawer Settings item routes to the Settings screen.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-UX-001 needs the “System Settings” section on Settings (company setting editSetting
+  on; typically a super admin per docs/features/settings.md) — Detox has no skip for
+  it; SET-UX-004 skips rows that are missing. SET-UX-005 needs a device with biometrics
+  (the “Log In with …” row), otherwise it reports skipped.
+detox_reference: '[SET-UX-002] [Settings][Main][P1] drawer menu item for Settings
+  is tappable and routes correctly'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Settings] trong Drawer Menu
+  action: tap_selector
+  content_desc: Settings
+  delay: 1.2
+expected:
+- assert_text: Settings
+  desc: Hiển thị 'Settings' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Settings". After step 1, the header title (id: header-title) should
+  read "Settings".'

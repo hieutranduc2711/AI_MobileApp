@@ -1,0 +1,29 @@
+id: TC_HOME_026
+title: Messaging options present
+feature: home
+priority: High
+description: The Messaging sheet lists its options.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_026] open Messaging modal and verify
+  options are actionable'
+steps:
+- desc: Tap the megaphone button in the calendar footer.
+  action: tap_selector
+  text: Tap the megaphone button in th
+  delay: 0.8
+- desc: 'Close it by tapping the handle at its top (id: indicator). If there is no
+    megaph'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: Messaging
+  desc: Hiển thị 'Messaging' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the megaphone
+  button in the calendar footer. After step 1, the "Messaging" sheet should show at
+  least one of "Send Reminders", "Send Confirmations" or "Send a Broadcast". (2) Close
+  it by tapping the handle at its top (id: indicator). If there is no megaphone button,
+  stop and report the test as skipped: messaging not available.'

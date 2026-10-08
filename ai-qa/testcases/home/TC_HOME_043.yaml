@@ -1,0 +1,37 @@
+id: TC_HOME_043
+title: Log out and log back in
+feature: home
+priority: High
+description: Logging out from the menu and back in returns to Home.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_043] logout from drawer then login returns
+  to Home'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Log Out] trong Drawer Menu
+  action: tap_selector
+  content_desc: Log Out
+  delay: 1.2
+- desc: Chạm vào mục [Email or Username]
+  action: tap_selector
+  text: Email or Username
+  delay: 1.0
+- desc: Chạm vào mục [Verification required]
+  action: tap_selector
+  text: Verification required
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Log Out", and confirm if asked. (2) On the Login screen type <TEST_EMAIL>
+  in "Email or Username" and <TEST_PASSWORD> in "Password", then tap "Login". (3)
+  Close any popup without updating. If "Verification required" appears, stop and report
+  the test as skipped: 2FA on this device.'

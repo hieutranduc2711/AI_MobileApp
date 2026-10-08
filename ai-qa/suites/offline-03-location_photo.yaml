@@ -1,0 +1,13 @@
+name: offline-03-location_photo
+description: Offline Suite for Sheet [03_round_trip] > Module [location_photo] (9
+  cases)
+testcases:
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02326.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02327.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02328.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02329.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02330.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02331.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02332.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02333.yaml
+- testcases/offline_sync/03_round_trip/location_photo/SYNC-02334.yaml

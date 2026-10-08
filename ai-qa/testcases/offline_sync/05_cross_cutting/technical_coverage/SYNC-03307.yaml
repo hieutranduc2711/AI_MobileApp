@@ -1,0 +1,41 @@
+id: SYNC-03307
+title: 'Handle PowerSync connection & authentication: RN-5530 regression'
+sheet: 05_Cross_Cutting
+module: Technical Coverage
+action: Handle PowerSync connection & authentication
+priority: P2
+flow_phase: Architecture/Infra
+direction: CROSS-CUTTING
+app_path: Technical behavior related to Handle PowerSync connection & authentication
+preconditions: Target implementation/status available.
+test_data: Handle PowerSync connection & authentication
+steps:
+- desc: Exercise implementation related to Handle PowerSync connection & authentication.
+  action: tap_selector
+  text: Exercise implementation relate
+  delay: 1.0
+- desc: Run representative online path.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Run offline path if applicable.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect/restart.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Compare Offline Mode invariants.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+expected:
+- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
+  assert_text: Technical Coverage
+- desc: If not implemented due status, mark Blocked/N/A.
+  assert_text: Technical Coverage
+source_tickets: RN-5530
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5530
+risk: Architecture coverage
+notes: Carried from V2 OFFV2-03251

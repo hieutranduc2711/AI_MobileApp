@@ -1,0 +1,22 @@
+id: SMS-2WAY-001
+title: Gửi SMS On-My-Way kèm link vị trí KTV đang di chuyển theo thời gian thực
+feature: two_way_communication_sms
+priority: Normal
+description: 'Kiểm thử giao tiếp 2 chiều và thông báo thời gian thực #1'
+preconditions: Màn hình SMS
+steps:
+- desc: Mở Job sắp làm
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+- desc: Bấm nút En Route
+  action: tap_selector
+  text: En Route
+  delay: 0.8
+- desc: Bấm Send On My Way SMS
+  action: tap_selector
+  text: Send SMS
+  delay: 1.0
+expected:
+- assert_text: Tracking Link Included
+  desc: Tin nhắn chứa link bản đồ trực tiếp được gửi

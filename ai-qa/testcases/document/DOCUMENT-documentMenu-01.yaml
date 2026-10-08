@@ -1,0 +1,40 @@
+id: DOCUMENT-documentMenu-01
+title: Edit Document opens form
+feature: document
+priority: High
+description: Edit Document from the row menu opens the document form.
+preconditions: 'Logged in with the DEFAULT E2E account (document addon on, document-card
+  permission, e.g. Admin), app on the Home screen (online). The first customer in
+  “Customers” shows the “Documents” section with at least one document. Menu actions
+  depend on gates: SMS addon for SMS actions, postal-mail permission, Pro plan for
+  e-signature. No case sends, deletes or saves.'
+detox_reference: User taps Edit and reaches the document form
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Tap the first document in the section.
+  action: tap_selector
+  text: 'Tap the first document in the '
+  delay: 0.8
+- desc: Chạm vào mục [Edit Document]
+  action: tap_selector
+  text: Edit Document
+  delay: 1.0
+expected:
+- assert_text: the document menu
+  desc: the document menu
+- assert_text: 'the document form with its fields and a '
+  desc: the document form with its fields and a back arrow
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to the "Documents" section.
+  (3) Tap the first document in the section. After step 3, the document menu should
+  be displayed. (4) Tap "Edit Document". After step 4, the document form with its
+  fields and a back arrow should be displayed. If "Edit Document" is not in the menu,
+  stop and report the test as skipped: Edit Document hidden by permission or addon.'

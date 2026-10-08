@@ -1,0 +1,36 @@
+name: Module Document Suite
+description: Chạy toàn bộ 33 test cases cho phân hệ document
+tests:
+- DOCUMENT-documentEntry-01
+- DOCUMENT-documentEntry-02
+- DOCUMENT-documentEntry-03
+- DOCUMENT-documentEntry-04
+- DOCUMENT-documentEntry-05
+- DOCUMENT-documentEntry-06
+- DOCUMENT-documentEntry-07
+- DOCUMENT-documentForm-01
+- DOCUMENT-documentForm-02
+- DOCUMENT-documentForm-03
+- DOCUMENT-documentForm-04
+- DOCUMENT-documentForm-05
+- DOCUMENT-documentForm-06
+- DOCUMENT-documentForm-07
+- DOCUMENT-documentForm-08
+- DOCUMENT-documentForm-09
+- DOCUMENT-documentForm-10
+- DOCUMENT-documentForm-11
+- DOCUMENT-documentForm-12
+- DOCUMENT-documentMenu-01
+- DOCUMENT-documentMenu-02
+- DOCUMENT-documentMenu-03
+- DOCUMENT-documentMenu-04
+- DOCUMENT-documentMenu-05
+- DOCUMENT-documentMenu-06
+- DOCUMENT-documentSelect-01
+- DOCUMENT-documentSelect-02
+- DOCUMENT-documentSelect-03
+- DOCUMENT-documentSelect-04
+- DOCUMENT-documentSelect-05
+- DOCUMENT-documentSelect-06
+- DOCUMENT-documentSelect-07
+- DOCUMENT-documentSelect-08

@@ -1,0 +1,13 @@
+business_rules:
+  jobs:
+    require_customer: true
+    require_location: true
+    allow_overlapping_schedule: true
+    recurring_locked_if_previous_incomplete: true
+  estimates:
+    require_customer: true
+    require_line_item: true
+    initial_status: "Draft"
+  offline:
+    allow_creation_without_network: true
+    queue_sync_when_network_restored: true

@@ -1,0 +1,7 @@
+invariants:
+  - id: OFFLINE-INV-001
+    description: "App không được crash hoặc hiển thị màn hình trắng khi mất kết nối mạng"
+  - id: OFFLINE-INV-002
+    description: "Job hoặc Estimate tạo ở chế độ Offline phải được lưu vào bộ nhớ cục bộ và hiển thị ngay trên Calendar"
+  - id: OFFLINE-INV-003
+    description: "Sau khi có mạng trở lại, toàn bộ dữ liệu offline phải được đồng bộ lên máy chủ trong vòng 60 giây"

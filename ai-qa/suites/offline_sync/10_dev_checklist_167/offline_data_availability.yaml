@@ -1,0 +1,5 @@
+name: offline-10-offline_data_availability
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [offline_data_availability]
+  (1 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/offline_data_availability/DEV-UI-158.yaml

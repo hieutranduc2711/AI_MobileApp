@@ -1,0 +1,5 @@
+name: "Smoke Test Suite"
+description: "Kiểm tra các luồng cơ bản nhất của GorillaDesk Mobile"
+testcases:
+  - "testcases/scheduling/JOB-CREATE-001.yaml"
+  - "testcases/scheduling/ESTIMATE-CREATE-001.yaml"

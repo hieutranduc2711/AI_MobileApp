@@ -1,0 +1,28 @@
+id: KONG-ADV-001
+title: Hỏi Kong AI về quy trình xuất hóa đơn
+feature: kong_ai_advanced
+priority: Critical
+description: Người dùng đặt câu hỏi nghiệp vụ và nhận câu trả lời thông minh từ trợ
+  lý ảo Kong
+preconditions: Calendar Home
+steps:
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn Kong AI từ Navigation Menu
+  action: tap_selector
+  content_desc: Kong AI
+  delay: 1.5
+- desc: Chạm vào ô nhập câu hỏi
+  action: tap_selector
+  text: Beta version. Kong is still becoming wiser. What do you want to know?
+  delay: 0.5
+- desc: Nhập câu hỏi nghiệp vụ
+  action: type_text
+  value: How do I create recurring jobs?
+  delay: 1.0
+expected:
+- assert_text: How can I help?
+  desc: Kong AI tiếp nhận câu hỏi và đưa ra trợ giúp

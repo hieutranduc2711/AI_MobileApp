@@ -1,0 +1,46 @@
+id: AUTH-E2E-024
+title: Forgot password invalid email formats
+feature: auth
+priority: High
+description: Empty and malformed emails are rejected with inline errors, then a valid
+  email can be submitted.
+preconditions: 'Logged out, app on the Welcome screen (Android, online); no account
+  login needed. AUTH-E2E-026 only where real sign-up attempts are allowed (Detox guard
+  E2E_ALLOW_SIGNUP=true): it calls the email-validation and sign-up tracking APIs.'
+detox_reference: 'forgot password: invalid formats block submit and recover to valid
+  format'
+steps:
+- desc: Chạm vào mục [Forgot Your Password]
+  action: tap_selector
+  text: Forgot Your Password
+  delay: 1.0
+- desc: Chạm vào mục [Email]
+  action: tap_selector
+  text: Email
+  delay: 1.0
+- desc: Chạm vào ô nhập [input]
+  action: tap_selector
+  text: input
+  delay: 0.5
+- desc: Nhập dữ liệu 'invalid-email' vào ô [input]
+  action: type_text
+  value: invalid-email
+  delay: 0.8
+- desc: Chạm vào mục [Email]
+  action: tap_selector
+  text: Email
+  delay: 1.0
+expected:
+- assert_text: Email
+  desc: Hiển thị 'Email' trên màn hình
+- assert_text: Please enter email
+  desc: Hiển thị 'Please enter email' trên màn hình
+- assert_text: Email is not correct.
+  desc: Hiển thị 'Email is not correct.' trên màn hình
+goal_summary: Open the GorillaDesk app on the Login screen (from Welcome, tap "I already
+  have an account"). (1) Tap "Forgot Your Password". After step 1, the "Email" field
+  should be displayed. (2) Leave "Email" empty and press the keyboard return key.
+  After step 2, the error "Please enter email" should be displayed. (3) Type "invalid-email"
+  in "Email" and press the return key. After step 3, the error "Email is not correct."
+  should be displayed. (4) Replace "Email" with "qa.e2e+valid@example.com" and tap
+  "Email Me Instructions". At the end, "Email Me Instructions" should still be displayed.

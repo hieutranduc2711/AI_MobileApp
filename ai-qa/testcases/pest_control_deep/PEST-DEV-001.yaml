@@ -1,0 +1,26 @@
+id: PEST-DEV-001
+title: 'Kiểm tra trạm bẫy chuột Rodent Bait Station #1'
+feature: pest_control_deep
+priority: Critical
+description: Ghi nhận mức độ mồi bẫy chuột (Bait condition 50%) và dấu hiệu xâm nhập
+preconditions: Job Details của công việc Pest Control
+steps:
+- desc: Mở tab Devices trong Job
+  action: tap_selector
+  text: Devices
+  delay: 1.2
+- desc: Chọn trạm bẫy số 1
+  action: tap_selector
+  text: 'Station #1'
+  delay: 1.0
+- desc: Ghi nhận mức hao hụt mồi
+  action: tap_selector
+  text: 50%
+  delay: 0.8
+- desc: Lưu kết quả kiểm tra trạm bẫy
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Devices
+  desc: Trạm bẫy cập nhật trạng thái đã kiểm tra

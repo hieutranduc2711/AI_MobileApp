@@ -1,0 +1,5 @@
+name: offline-module-auth_settings
+description: Cross-sheet comprehensive offline suite for Module [auth_settings] (1
+  cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_settings/EDGE-GAP-003.yaml

@@ -1,0 +1,9 @@
+name: offline-module-connectivity
+description: Cross-sheet comprehensive offline suite for Module [connectivity] (5
+  cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/connectivity/SYNC-03292.yaml
+- testcases/offline_sync/05_cross_cutting/connectivity/SYNC-03291.yaml
+- testcases/offline_sync/13_jira_current_delta/connectivity/JDELTA-004.yaml
+- testcases/offline_sync/13_jira_current_delta/connectivity/JDELTA-005.yaml
+- testcases/offline_sync/13_jira_current_delta/connectivity/JDELTA-006.yaml

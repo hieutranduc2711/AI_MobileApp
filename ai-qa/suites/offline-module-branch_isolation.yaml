@@ -1,0 +1,5 @@
+name: offline-module-branch_isolation
+description: Cross-sheet comprehensive offline suite for Module [branch_isolation]
+  (1 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/branch_isolation/JDELTA-015.yaml

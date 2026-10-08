@@ -1,0 +1,27 @@
+id: CALENDAR-E2E-022
+title: Map round trip twice
+feature: home-calendar
+priority: High
+description: Switching to the map and back twice keeps Home stable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-022: double map round-trip when map available'
+steps:
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+- desc: 'Repeat step 1. After each of steps 1 and 2, the Home top bar (id: home-bar)
+    shou'
+  action: tap_selector
+  text: Repeat step 1. After each of s
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the map button
+  at the bottom left (next to "Today"); if the map shows, tap the calendar view button
+  in the map''s left button column. (2) Repeat step 1. After each of steps 1 and 2,
+  the Home top bar (id: home-bar) should be displayed. If there is no map button,
+  stop and report the test as skipped: map toggle not shown.'

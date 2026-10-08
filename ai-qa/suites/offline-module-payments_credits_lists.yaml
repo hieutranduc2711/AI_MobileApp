@@ -1,0 +1,6 @@
+name: offline-module-payments_credits_lists
+description: Cross-sheet comprehensive offline suite for Module [payments_credits_lists]
+  (2 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/payments_credits_lists/DEV-UI-063.yaml
+- testcases/offline_sync/10_dev_checklist_167/payments_credits_lists/DEV-UI-064.yaml

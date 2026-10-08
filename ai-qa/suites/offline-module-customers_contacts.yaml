@@ -1,0 +1,11 @@
+name: offline-module-customers_contacts
+description: Cross-sheet comprehensive offline suite for Module [customers_contacts]
+  (7 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-037.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-038.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-039.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-040.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-041.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-042.yaml
+- testcases/offline_sync/10_dev_checklist_167/customers_contacts/DEV-UI-043.yaml

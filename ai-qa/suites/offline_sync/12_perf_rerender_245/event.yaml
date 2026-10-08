@@ -1,0 +1,10 @@
+name: offline-12-event
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [event] (7 cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-209.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-210.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-211.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-212.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-213.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-214.yaml
+- testcases/offline_sync/12_perf_rerender_245/event/PERF-215.yaml

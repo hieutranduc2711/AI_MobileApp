@@ -1,0 +1,19 @@
+id: COMM-MST-030
+title: 'Quản lý khách hàng chuỗi thương mại và xuất hóa đơn gộp #30'
+feature: commercial_accounts_master
+priority: Normal
+description: 'Kiểm thử xuất hóa đơn tổng hợp cho chuỗi nhà hàng / khách sạn ca #30'
+preconditions: Màn hình Khách hàng Thương Mại
+steps:
+- desc: Mở hồ sơ Chuỗi tài khoản
+  action: tap_selector
+  text: Master Accounts
+  delay: 0.8
+- desc: 'Thao tác kiểm tra chuỗi #30'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Master Accounts
+  desc: Tài khoản chuỗi thương mại hiển thị đầy đủ

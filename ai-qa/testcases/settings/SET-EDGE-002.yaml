@@ -1,0 +1,30 @@
+id: SET-EDGE-002
+title: Biometric popup can be dismissed
+feature: settings
+priority: High
+description: Tapping the biometric login row opens a popup that Cancel dismisses,
+  leaving Settings displayed.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen (online).
+  SET-EDGE-004 needs the “System Settings” section on Settings (company setting editSetting
+  on; typically a super admin per docs/features/settings.md) — Detox has no skip for
+  it; SET-EDGE-003/005 report skipped without it. SET-EDGE-002 needs a device with
+  biometrics (the “Log In with …” row), otherwise it reports skipped.
+detox_reference: '[SET-EDGE-002] [Settings][Main][P1] biometric toggle opens modal/dialog
+  and can be dismissed'
+steps:
+- desc: Chạm vào mục [Log In with …]
+  action: tap_selector
+  text: Log In with …
+  delay: 1.0
+- desc: Chạm vào mục [Verify]
+  action: tap_selector
+  text: Verify
+  delay: 1.0
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Settings screen (top-left menu on Home,
+  then "Settings"). (1) Tap the "Log In with …" row. (2) In the popup that opens ("Verify"
+  or "Confirmation"), tap "Cancel". At the end, the header title (id: header-title)
+  should read "Settings". If there is no "Log In with …" row, stop and report the
+  test as skipped: biometric option not available on this account/device.'

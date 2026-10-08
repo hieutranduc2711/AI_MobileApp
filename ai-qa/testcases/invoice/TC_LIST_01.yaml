@@ -1,0 +1,28 @@
+id: TC_LIST_01
+title: All Invoices shows rows
+feature: invoice
+priority: High
+description: The customer's All Invoices list opens and shows at least one invoice
+  row.
+preconditions: Logged in with the DEFAULT E2E account (role with customer search and
+  invoice access), app on the Home screen (online). The first customer in “Customers”
+  has at least 5 invoices (so “Show All” appears under “Invoice”) and at least one
+  service location.
+detox_reference: '[TC_01][DOC+] User views all invoices list and sees invoice rows'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+expected:
+- assert_text: All Invoices
+  desc: Hiển thị 'All Invoices' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its "Show All". After step 2, the "All Invoices" list should be displayed
+  with at least one invoice row.

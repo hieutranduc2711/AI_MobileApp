@@ -1,0 +1,16 @@
+name: offline-01-mdu_photo
+description: Offline Suite for Sheet [01_online_to_offline] > Module [mdu_photo] (12
+  cases)
+testcases:
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00513.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00514.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00515.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00516.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00517.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00518.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00519.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00520.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00521.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00522.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00523.yaml
+- testcases/offline_sync/01_online_to_offline/mdu_photo/SYNC-00524.yaml

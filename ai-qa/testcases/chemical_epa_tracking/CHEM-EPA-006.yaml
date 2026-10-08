@@ -1,0 +1,27 @@
+id: CHEM-EPA-006
+title: Ghi nhận loại dịch hại mục tiêu (Target Pests)
+feature: chemical_epa_tracking
+priority: Normal
+description: 'Chọn đối tượng côn trùng: Carpenter Ants, Termites, Bedbugs, Cockroaches,
+  Rodents'
+preconditions: Đang ở phần Pest Details
+steps:
+- desc: Bấm chọn Target Pests
+  action: tap_selector
+  text: Target Pests
+  delay: 0.8
+- desc: Chọn German Cockroach
+  action: tap_selector
+  text: German Cockroach
+  delay: 0.5
+- desc: Chọn Subterranean Termites
+  action: tap_selector
+  text: Subterranean Termites
+  delay: 0.5
+- desc: Xác nhận đối tượng dịch hại
+  action: tap_selector
+  content_desc: Done
+  delay: 0.8
+expected:
+- assert_text: German Cockroach
+  desc: Danh sách dịch hại mục tiêu được ghi nhận

@@ -1,0 +1,41 @@
+id: CUSTOMER-fullCustomerFlow-04
+title: All Job status tabs tappable
+feature: customer
+priority: High
+description: The Active, Complete and Canceled tabs on All Job can be tapped.
+preconditions: Logged in with the DEFAULT E2E account (role with customer, contact-info
+  and invoice access, e.g. Admin) on the Home screen (online). The first customer
+  in “Customers” has at least one additional contact, enough jobs for “Show All” under
+  “Jobs”, invoices/estimates and documents. No case saves data.
+detox_reference: 'all jobs: status tabs are tappable (active/completed/canceled)'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Customers] trong Drawer Menu
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Jobs]
+  action: tap_selector
+  text: Jobs
+  delay: 1.0
+- desc: Chạm vào mục [Complete]
+  action: tap_selector
+  text: Complete
+  delay: 1.0
+expected:
+- assert_text: Active
+  desc: Hiển thị 'Active' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Customers". (2) Tap the first customer. (3) Scroll to the "Jobs" section
+  and tap its "Show All". After step 3, the "Active" tab should be displayed. (4)
+  Tap "Complete", then "Canceled", then "Active". If there is no customer or no "Show
+  All" under "Jobs", stop and report the test as skipped: not enough jobs.'

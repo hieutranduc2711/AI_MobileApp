@@ -1,0 +1,66 @@
+id: SYNC-03099
+title: 'Delete Building: Delete Building pending ở Branch A rồi switch B'
+sheet: 05_Cross_Cutting
+module: MDU
+action: Delete Building
+priority: P0
+flow_phase: Pending Branch Switch
+direction: CROSS-CUTTING
+app_path: GD Mobile > Location > MDU > Building > Delete
+preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền Delete Building;
+  prerequisite cho Building đã sync khi cần.
+test_data: Valid representative data
+steps:
+- desc: Switch Branch A.
+  action: tap_selector
+  text: Switch Branch A.
+  delay: 1.0
+- desc: Go offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Delete Building.
+  action: tap_selector
+  text: Delete Building
+  delay: 1.0
+- desc: Switch Branch B trước sync nếu UI cho phép.
+  action: tap_selector
+  text: Switch Branch B trước sync nếu
+  delay: 1.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Inspect B.
+  action: tap_selector
+  text: Inspect B.
+  delay: 1.0
+- desc: Switch A.
+  action: tap_selector
+  text: Switch A.
+  delay: 1.0
+- desc: Verify.
+  action: tap_selector
+  text: Verify.
+  delay: 1.0
+expected:
+- desc: Delete Building không làm app crash/mất dữ liệu.
+  assert_text: MDU
+- desc: Local/UI của Building phản ánh đúng business result.
+  assert_text: MDU
+- desc: Không ghi/send mutation sai account/branch.
+  assert_text: MDU
+- desc: Không duplicate logical operation.
+  assert_text: MDU
+- desc: A mutation không send với B context.
+  assert_text: MDU
+- desc: B không thấy A optimistic data.
+  assert_text: MDU
+- desc: Converge ở A only.
+  assert_text: MDU
+source_tickets: RN-5592, RN-5590
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
+
+  https://gorilladesk1.atlassian.net/browse/RN-5590'
+risk: Cross-branch
+notes: Carried from V2 OFFV2-02228

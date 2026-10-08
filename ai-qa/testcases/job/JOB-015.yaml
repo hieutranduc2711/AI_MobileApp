@@ -1,0 +1,27 @@
+id: JOB-015
+title: Time tracking control present
+feature: job
+priority: High
+description: The time-tracking control is shown when the work-log addon allows.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-015] Time tracking control is present when work-log addon allows'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: 'Report whether the time-tracking button is shown in the job header; its absence '
+  action: tap_selector
+  text: Report whether the time-tracki
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Report whether
+  the time-tracking button is shown in the job header; its absence is not a failure.

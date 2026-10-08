@@ -1,0 +1,41 @@
+id: BUGREG-026
+title: 'Not show top note of unit after edited (Offline): Not show top note of unit
+  after edited (Offline)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Not show top note of unit after edited (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Manage Units
+  action: tap_selector
+  text: Go to Manage Units
+  delay: 1.0
+- desc: Press on any building
+  action: tap_selector
+  text: Press on any building
+  delay: 1.0
+- desc: Press on any Unit to edit
+  action: tap_selector
+  text: Press on any Unit to edit
+  delay: 1.0
+- desc: Edit top note of unit & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Press to unit once again. Top note not show
+  action: tap_selector
+  text: 'Press to unit once again. Top '
+  delay: 1.0
+expected:
+- desc: Should be show top note of unit after edited
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,34 @@
+id: BUGREG-043
+title: 'Show error "Failed to connect server" when Add terms invoice (Offline): Show
+  error "Failed to connect server" when Add terms invoice (Offline)'
+sheet: 11_Bug_Regression_91
+module: Invoice
+action: Show error "Failed to connect server" when Add terms invoice (Offline)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to job detail
+  action: tap_selector
+  text: Go to job detail
+  delay: 1.0
+- desc: Open invoice menu & Add Terms
+  action: tap_selector
+  text: Open invoice menu & Add Terms
+  delay: 1.0
+- desc: Save. Show error  "Failed to connect server"
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+expected:
+- desc: Historical failure must not reproduce; unsupported actions must be disabled/communicated
+    instead of failing unexpectedly.
+  assert_text: Invoice
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

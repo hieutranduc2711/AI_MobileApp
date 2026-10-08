@@ -1,0 +1,19 @@
+id: PORTAL-REV-024
+title: 'Tương tác cổng thông tin khách hàng kịch bản #24'
+feature: customer_portal_reviews
+priority: Normal
+description: 'Kiểm thử trải nghiệm khách hàng và đánh giá chất lượng #24'
+preconditions: Job hoặc Estimate đã được lưu thành công
+steps:
+- desc: Truy cập thông tin Portal
+  action: tap_selector
+  text: Customer Portal
+  delay: 0.8
+- desc: 'Thao tác nghiệm thu tính năng #24'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Customer Portal
+  desc: Tính năng liên kết khách hàng hoạt động tốt

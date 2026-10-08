@@ -1,0 +1,54 @@
+id: BUGREG-083
+title: 'Client & Tech signature not show after edit Invoice of customer in offline:
+  Client & Tech signature not show after edit Invoice of customer in offline'
+sheet: 11_Bug_Regression_91
+module: Customer/Invoice
+action: Client & Tech signature not show after edit Invoice of customer in offline
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to screen customer list
+  action: tap_selector
+  text: Go to screen customer list
+  delay: 1.0
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Create new customer
+  action: tap_selector
+  text: Create new customer
+  delay: 1.0
+- desc: Add new invoice for customer & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Edit invoice
+  action: tap_selector
+  text: Edit invoice
+  delay: 1.0
+- desc: Add client & Tech signatures & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Invoice detail not show client & tech signatures just save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Edit invoice once again. Client & Tech signature is show
+  action: tap_selector
+  text: Edit invoice once again. Clien
+  delay: 1.0
+expected:
+- desc: 'Expect: Should be show client & tech signature in invoice detail after save
+    offlline'
+  assert_text: Customer/Invoice
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

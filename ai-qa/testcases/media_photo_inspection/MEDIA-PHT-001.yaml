@@ -1,0 +1,30 @@
+id: MEDIA-PHT-001
+title: Chụp và đính kèm ảnh Hiện trạng trước xử lý (Before Photo)
+feature: media_photo_inspection
+priority: Normal
+description: 'Kiểm thử chụp ảnh hiện trường và nghiệm thu công trình #1'
+preconditions: Job đang mở ở màn hình thực địa
+steps:
+- desc: Mở Job Details
+  action: tap_selector
+  text: Job Details
+  delay: 0.8
+- desc: Mở mục Photos / Attachments
+  action: tap_selector
+  text: Photos
+  delay: 0.8
+- desc: Bấm Add Before Photo
+  action: tap_selector
+  content_desc: Add Before Photo
+  delay: 1.0
+- desc: Chọn ảnh từ thư viện
+  action: tap_selector
+  text: Choose from Library
+  delay: 1.2
+- desc: Lưu ảnh đính kèm
+  action: tap_selector
+  content_desc: Save Photo
+  delay: 1.5
+expected:
+- assert_text: Before
+  desc: Ảnh Before hiển thị thumbnail trong Job

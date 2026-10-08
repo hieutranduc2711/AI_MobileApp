@@ -1,0 +1,34 @@
+id: JOB-221
+title: Tap customer phone number
+feature: job
+priority: High
+description: Tapping the phone number opens the phone menu.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-221] User tap phone number calls customer (phone interaction)'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Tap the first phone number in the job info (do not place a call).
+  action: tap_selector
+  text: 'Tap the first phone number in '
+  delay: 0.8
+- desc: 'If a phone menu opens, close the sheet by tapping the handle at its top (id:
+    ind'
+  action: tap_selector
+  text: If a phone menu opens, close t
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Tap the
+  first phone number in the job info (do not place a call). (3) If a phone menu opens,
+  close the sheet by tapping the handle at its top (id: indicator). If no phone number
+  is shown, stop and report the test as skipped: no phone on the customer.'

@@ -1,0 +1,26 @@
+id: REC-CON-001
+title: Tạo hợp đồng dịch vụ định kỳ hàng tháng (Monthly Recurring Job)
+feature: recurring_contracts
+priority: Normal
+description: 'Kiểm tra tính năng hợp đồng định kỳ và lịch lặp lại trường hợp #1'
+preconditions: Đang ở Calendar Home
+steps:
+- desc: Mở New Job
+  action: tap_selector
+  content_desc: New Job
+  delay: 1.0
+- desc: Chọn chế độ Recurring
+  action: tap_selector
+  text: Recurring
+  delay: 0.8
+- desc: Chọn tần suất Monthly
+  action: tap_selector
+  text: Monthly
+  delay: 0.5
+- desc: Lưu lịch định kỳ
+  action: tap_selector
+  content_desc: Save Schedule
+  delay: 1.2
+expected:
+- assert_text: Recurring Series Created
+  desc: Chuỗi lịch định kỳ hàng tháng được khởi tạo

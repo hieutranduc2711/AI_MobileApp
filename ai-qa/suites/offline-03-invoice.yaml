@@ -1,0 +1,33 @@
+name: offline-03-invoice
+description: Offline Suite for Sheet [03_round_trip] > Module [invoice] (30 cases)
+testcases:
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02260.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02261.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02262.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02263.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02264.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02265.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02266.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02267.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02268.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02269.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02270.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02271.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02272.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02273.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02274.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02275.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02276.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02277.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02278.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02279.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02280.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02281.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02282.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02283.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02284.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02285.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02286.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02287.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02288.yaml
+- testcases/offline_sync/03_round_trip/invoice/SYNC-02289.yaml

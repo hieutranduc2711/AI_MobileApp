@@ -1,0 +1,35 @@
+id: TC_MNU_MGR
+title: Manage Template opens Manage Templates
+feature: todo
+priority: High
+description: Manage Template in the todo options opens Manage Templates.
+preconditions: Logged in with the DEFAULT E2E account (non-crew role with todo and
+  template permissions), app on the Home screen (online). The first customer in “Customers”
+  has an active job first in its “Jobs” section whose “Todo List” has at least 5 todos
+  (so “Show All” appears); at least one todo-list template exists. TC_EMB_SAVE adds
+  a todo; TC_EMB_CHK toggles the first todo four times (ends unchanged).
+detox_reference: '[DOC+][TC_MNU_MGR][Menu] User taps Manage Templates from the todo
+  options menu and sees Manage Templates'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Todo List]
+  action: tap_selector
+  text: Todo List
+  delay: 1.0
+- desc: Chạm vào mục [Manage Template]
+  action: tap_selector
+  text: Manage Template
+  delay: 1.0
+expected:
+- assert_text: Manage Templates
+  desc: Hiển thị 'Manage Templates' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, its first job under "Jobs", then scroll to
+  "Todo List". (2) Tap the three-dots button on "Todo List" (id: options-button).
+  (3) Tap "Manage Template". After step 3, the "Manage Templates" screen should be
+  displayed. If "Todo List" or "Manage Template" is missing, stop and report the test
+  as skipped: templates unavailable.'

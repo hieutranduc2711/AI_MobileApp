@@ -1,0 +1,27 @@
+id: JOB-002
+title: Scroll job detail to bottom
+feature: job
+priority: High
+description: Scrolling the job detail to the bottom keeps the screen.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-002] User scrolls job-detail-scrollview and hub remains mounted'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Scroll the job detail to the bottom.
+  action: tap_selector
+  text: Scroll the job detail to the b
+  delay: 0.8
+expected:
+- assert_text: Job Details
+  desc: Hiển thị 'Job Details' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today's calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll the
+  job detail to the bottom. After step 2, "Job Details" should be displayed.

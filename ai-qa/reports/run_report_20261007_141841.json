@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261007_141841",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "pass_rate": "100.0%",
+  "results": [
+    {
+      "id": "CUST-VAL-001",
+      "status": "PASS",
+      "runner_hint": "LIKELY_PASS",
+      "judge_summary": "Ứng dụng từ chối thao tác Save khi Service Address để trống, hiển thị cảnh báo bắt buộc và giữ người dùng ở form New Customer. Bằng chứng giao diện đáp ứng tiêu chí Negative Validation; không quan sát thấy chuyển sang Customer Profile hoặc văng ứng dụng.",
+      "judge_reasoning": "Đã kiểm tra trực tiếp ba keyframe, ảnh chụp cuối và các khung hình trích từ video, bao gồm khung hình sát cuối. Diễn tiến thể hiện từ màn hình Customers sang New Customer, nhập First Name = NegativeQA và Last Name = NoAddressTest, không nhập Service Address. Sau bước Save được Runner ghi nhận, keyframe 3 và khung hình cuối video hiển thị thông báo 'Missed required fields. You have to complete \"Service Address\", \"Custom Fields\" fields'. Đây là bằng chứng phản hồi validation thực tế, không chỉ là nút Save hiện diện hoặc trạng thái thao tác OK. Service Address vẫn trống và được đánh dấu bằng chữ đỏ, nền hồng nhạt, đường viền dưới đỏ cùng chấm đỏ bắt buộc. Ảnh CUST-VAL-001_final.png xác nhận form New Customer vẫn mở, tên đã nhập được giữ nguyên và Service Address tiếp tục hiển thị lỗi sau khi thông báo tạm thời biến mất. Không có bằng chứng chuyển sang Customer Profile hoặc lưu thành công; báo cáo Logcat do Runner cung cấp cũng ghi nhận không có crash/ANR. Lưu ý giới hạn: thông báo đồng thời nêu Custom Fields, nên lần chạy này không cô lập Service Address là điều kiện thiếu duy nhất, nhưng xác nhận rõ trường này được validation nhận diện và cảnh báo đúng. Hồ sơ không có đối soát API/database để kiểm chứng độc lập việc không phát sinh bản ghi phía backend; phán quyết PASS dựa trên oracle giao diện Tier 1 đã quy định, không khẳng định đã kiểm tra persistence. Banner yêu cầu cập nhật phiên bản không phải lỗi validation và không ngăn hoàn thành ca kiểm thử. Kết luận không dựa vào gợi ý LIKELY_PASS của Runner.",
+      "evidence_json": "D:\\artemis\\ai-qa\\runs\\CUST-VAL-001_evidence.json",
+      "prompt_md": "D:\\artemis\\ai-qa\\runs\\CUST-VAL-001_FOR_HERMES.md",
+      "screenshot": "D:\\artemis\\ai-qa\\runs\\CUST-VAL-001_final.png",
+      "time_sec": 17.0
+    }
+  ]
+}

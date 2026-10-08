@@ -1,0 +1,37 @@
+id: M_MF_01
+title: Add Material form opens
+feature: material
+priority: High
+description: Add Material from the Materials menu opens the material form.
+preconditions: Logged in with the DEFAULT E2E account (material addon on, Admin-like
+  role), app on the Home screen (online). The first customer in “Customers” has an
+  active job first in its “Jobs” section whose “Materials” section has at least 5
+  materials (so “Show All” appears); the company material list has at least one material.
+detox_reference: '[M_MF_01][Material][MaterialForm] Form appears when tapping add
+  new material from menu'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Materials]
+  action: tap_selector
+  text: Materials
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Chạm vào mục [Add Material]
+  action: tap_selector
+  text: Add Material
+  delay: 1.0
+expected:
+- assert_text: Add Material
+  desc: Hiển thị 'Add Material' trên màn hình
+goal_summary: Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, the first customer, then its first job under "Jobs". (2) Scroll
+  to the "Materials" section. (3) Tap the plus icon on the "Materials" section header.
+  (4) Choose "Add Material". After step 4, the "Add Material" form should be displayed.

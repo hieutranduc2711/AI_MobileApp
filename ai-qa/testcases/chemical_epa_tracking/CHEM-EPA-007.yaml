@@ -1,0 +1,19 @@
+id: CHEM-EPA-007
+title: Ghi nhận phương pháp áp dụng (Application Method)
+feature: chemical_epa_tracking
+priority: Normal
+description: 'Chọn phương pháp: Crack and Crevice, Broadcast, Spot Treatment, Baiting,
+  Trenching'
+preconditions: Đang chọn Application Method
+steps:
+- desc: Chọn Application Method
+  action: tap_selector
+  text: Method
+  delay: 0.8
+- desc: Chọn Crack and Crevice
+  action: tap_selector
+  text: Crack & Crevice
+  delay: 0.5
+expected:
+- assert_text: Crack & Crevice
+  desc: Phương pháp xử lý được lưu vào báo cáo

@@ -1,0 +1,4 @@
+name: offline-module-bootstrap
+description: Cross-sheet comprehensive offline suite for Module [bootstrap] (1 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/bootstrap/JDELTA-010.yaml

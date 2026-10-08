@@ -1,0 +1,42 @@
+id: EMAIL-emailFormElements-07
+title: Invoice email blank subject validation
+feature: email
+priority: High
+description: On the email form opened from invoice, the user can blank subject validation.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; job work-order
+  options visible), app on the Home screen (online). The first customer in “Customers”
+  has contacts with email addresses, a job in “Jobs”, at least one invoice and estimate
+  (5 or more of each for the Show All cases) and a document in “Documents”. No email
+  is sent.
+detox_reference: 'INVOICE: shows subject validation when subject is blank'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Chạm vào mục [Subject]
+  action: tap_selector
+  text: Subject
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: Send by email
+  desc: Hiển thị 'Send by email' trên màn hình
+- assert_text: Oops
+  desc: Hiển thị 'Oops' trên màn hình
+- assert_text: Subject cannot be blank
+  desc: Hiển thị 'Subject cannot be blank' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search icon
+  at the top-right, then the first customer. (2) Scroll to "Invoice", tap its first
+  invoice, then the three-dots icon and "Send Invoice by Email". After step 2, the
+  "Send by email" screen should be displayed. (3) Clear "Subject" and tap "Send".
+  After step 3, an "Oops" dialog with "Subject cannot be blank" should be displayed.
+  (4) Tap "OK", then go back. If the customer has no invoice, stop and report the
+  test as skipped: no invoice.'

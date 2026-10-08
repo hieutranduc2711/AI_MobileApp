@@ -1,0 +1,47 @@
+id: EDGE-GAP-034
+title: 'Field-Level Concurrent Edit Resolution Policy: Thiết bị A (Offline) sửa ghi
+  chú Job; Thiết bị B (Web Online) sửa giờ hẹn Job → Sync lên: Hợp nhất c'
+sheet: 16_Production_Edge_Gaps
+module: Job / Conflict Resolution
+action: Field-Level Concurrent Edit Resolution Policy
+priority: P0
+flow_phase: Multi-device Conflict
+direction: CROSS-CUTTING
+app_path: GD Mobile & Web Portal
+preconditions: 'Cùng 1 Job #200. Thiết bị mobile offline; Web portal online.'
+test_data: 'Mobile edit: `technician_notes = ''Đã phun thuốc khử khuẩn xung quanh
+  nhà''`.
+
+  Web edit: `scheduled_time = ''02:00 PM - 04:00 PM''`.'
+steps:
+- desc: Mobile offline sửa `technician_notes`.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: 'Cùng lúc đó trên Web, dispatcher sửa `scheduled_time` của Job #200.'
+  action: tap_selector
+  text: Cùng lúc đó trên Web, dispatch
+  delay: 1.0
+- desc: Mobile bật mạng online để đồng bộ lên server.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: 'Kiểm tra bản ghi Job #200 trên server sau khi sync.'
+  action: tap_selector
+  text: 'Kiểm tra bản ghi Job #200 trên'
+  delay: 1.0
+expected:
+- desc: Vì 2 bên sửa 2 trường khác nhau (khác field name), server áp dụng cơ chế hợp
+    nhất cấp trường (Field-level 3-way merge).
+  assert_text: Job / Conflict Resolution
+- desc: 'Job #200 bảo toàn cả 2 thay đổi: `scheduled_time` mới từ Web VÀ `technician_notes`
+    mới từ Mobile.'
+  assert_text: Job / Conflict Resolution
+- desc: Tuyệt đối không để mobile ghi đè nguyên cả object (Full-object overwrite)
+    làm mất giờ hẹn mới mà dispatcher vừa sửa.
+  assert_text: Job / Conflict Resolution
+source_tickets: RN-5477 / Conflict-Merge
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Silent Data Loss of Concurrent Edits
+notes: 'Quy tắc cốt lõi: Mutation payload chỉ gửi Delta / Patch các trường đã thay
+  đổi, không gửi full dump entity.'

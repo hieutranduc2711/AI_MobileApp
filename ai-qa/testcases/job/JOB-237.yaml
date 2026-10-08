@@ -1,0 +1,35 @@
+id: JOB-237
+title: Documents section plus
+feature: job
+priority: High
+description: The Documents section is shown and its plus can be tapped.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role with job edit/delete,
+  invoice/estimate, work-order options), app on the Home screen (online, location
+  permission granted) with at least one job on today's calendar. JOB-231 changes the
+  job status and JOB-233/234 check in/out on the first job — use a disposable job.
+  Customer of that job has a phone number and a service plan.
+detox_reference: '[JOB-237] User views and interacts with Document section (upload
+  document)'
+steps:
+- desc: Chọn công việc (Job) đầu tiên trên lịch
+  action: tap_selector
+  resource_id: highlight-button
+  index: 1
+  delay: 1.5
+- desc: Chạm vào mục [Documents]
+  action: tap_selector
+  text: Documents
+  delay: 1.0
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+expected:
+- assert_text: Documents
+  desc: Hiển thị 'Documents' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Open the first job
+  on today''s calendar (if "Open Incomplete Job" is offered, tap it). (2) Scroll down
+  to the "Documents" section. After step 2, the "Documents" section should be displayed.
+  (3) Tap its plus icon, then go back to the job. If there is no "Documents" section,
+  stop and report the test as skipped: offline or not permitted.'

@@ -1,0 +1,40 @@
+id: JDELTA-038
+title: 'Reopen app Offline resumes active timer: Reopen app Offline resumes active
+  timer'
+sheet: 13_Jira_Current_Delta
+module: Time Tracking
+action: Reopen app Offline resumes active timer
+priority: P0
+flow_phase: Jira Comment & Schema Delta
+direction: CROSS-CUTTING
+app_path: GD Mobile
+preconditions: Configured account
+test_data: ''
+steps:
+- desc: Offline start tracking.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Force close app.
+  action: tap_selector
+  text: Force close app.
+  delay: 1.0
+- desc: Reopen still Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Observe timer.
+  action: tap_selector
+  text: Observe timer.
+  delay: 1.0
+expected:
+- desc: Active timer resumes from persisted start time.
+  assert_text: Time Tracking
+- desc: Elapsed time is coherent.
+  assert_text: Time Tracking
+- desc: No second timer created.
+  assert_text: Time Tracking
+source_tickets: RN-5644
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5644
+risk: Schema / Comment Regression
+notes: ''

@@ -1,0 +1,33 @@
+id: BUGREG-031
+title: 'Show "technician_name cannot be blank" when save Client Signature (Online):
+  Show "technician_name cannot be blank" when save Client Signature (Online)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Show "technician_name cannot be blank" when save Client Signature (Online)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to any job unit detail
+  action: tap_selector
+  text: Go to any job unit detail
+  delay: 1.0
+- desc: Add client signature & Save
+  action: tap_selector
+  content_desc: Save
+  delay: 2.0
+- desc: Show error "technician_name cannot be blank"
+  action: tap_selector
+  text: technician_name cannot be blank
+  delay: 1.0
+expected:
+- desc: Can be save client signature
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

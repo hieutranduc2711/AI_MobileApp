@@ -1,0 +1,22 @@
+id: VAL-CUS-002
+title: Tạo Customer thiếu Service Address
+feature: negative_validation
+priority: Critical
+description: Kiểm tra hệ thống highlight viền đỏ trường Service Address bắt buộc
+preconditions: Đang ở màn hình New Customer
+steps:
+- desc: Nhập First Name
+  action: type_text
+  value: ValidFirst
+  delay: 0.5
+- desc: Nhập Last Name
+  action: type_text
+  value: ValidLast
+  delay: 0.5
+- desc: Bấm Save Customer khi chưa có Address
+  action: tap_selector
+  content_desc: Save
+  delay: 1.5
+expected:
+- assert_text: Service Address
+  desc: Trường Service Address vẫn hiển thị cảnh báo

@@ -1,0 +1,5 @@
+name: offline-13-payment_credit
+description: Offline Suite for Sheet [13_jira_current_delta] > Module [payment_credit]
+  (1 cases)
+testcases:
+- testcases/offline_sync/13_jira_current_delta/payment_credit/JDELTA-040.yaml

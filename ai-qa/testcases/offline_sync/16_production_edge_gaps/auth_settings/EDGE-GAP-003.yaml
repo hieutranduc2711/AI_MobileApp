@@ -1,0 +1,49 @@
+id: EDGE-GAP-003
+title: 'Manual Logout Guard with Pending Outbox: User chủ động nhấn ''Log Out'' trong
+  Settings khi Outbox còn dữ liệu chưa sync → Hiển thị cảnh báo chặ'
+sheet: 16_Production_Edge_Gaps
+module: Auth / Settings
+action: Manual Logout Guard with Pending Outbox
+priority: P1
+flow_phase: Auth Expiry & Session Lifecycle
+direction: ONLINE → OFFLINE
+app_path: GD Mobile > Settings > Account > Log Out
+preconditions: Thiết bị đang Offline hoặc Online nhưng có 3 items chưa đồng bộ hoàn
+  tất (đang retry hoặc pending).
+test_data: Pending outbox count = 3 (1 Job, 1 Invoice, 1 Photo).
+steps:
+- desc: Thực hiện tạo Job và Invoice khi Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Vào Settings > Account > Bấm nút 'Log Out'.
+  action: tap_selector
+  text: Log Out
+  delay: 1.0
+- desc: Kiểm tra Dialog cảnh báo hiển thị.
+  action: tap_selector
+  text: 'Kiểm tra Dialog cảnh báo hiển '
+  delay: 1.0
+- desc: Bấm 'Cancel' (Hủy bỏ) và kiểm tra dữ liệu.
+  action: tap_selector
+  text: Cancel
+  delay: 1.0
+- desc: Thử bấm lại Log Out và chọn 'Confirm Logout' (Chấp nhận xóa).
+  action: tap_selector
+  text: Confirm Logout
+  delay: 1.0
+expected:
+- desc: 'App bật Alert cảnh báo nổi bật: ''Cảnh báo: Bạn còn 3 mục chưa được đồng
+    bộ lên máy chủ. Nếu đăng xuất, dữ liệu này sẽ bị mất vĩnh viễn!''.'
+  assert_text: 'Cảnh báo: Bạn còn 3 mục chưa được đồng bộ lên máy chủ. Nếu đăng xuất,
+    dữ liệu này sẽ bị mất vĩnh viễn!'
+- desc: Mặc định focus vào nút 'Hủy bỏ' (Cancel).
+  assert_text: Hủy bỏ
+- desc: 'Khi bấm Cancel: giữ nguyên đăng nhập, toàn bộ dữ liệu outbox còn nguyên.'
+  assert_text: Auth / Settings
+- desc: 'Khi chọn xác nhận đăng xuất: mới tiến hành dọn dẹp an toàn.'
+  assert_text: Auth / Settings
+source_tickets: RN-5477 / UX-Guard
+source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
+risk: Accidental Data Loss
+notes: Cần kiểm tra cả trường hợp bấm Logout khi đang ở chế độ Offline hoàn toàn.

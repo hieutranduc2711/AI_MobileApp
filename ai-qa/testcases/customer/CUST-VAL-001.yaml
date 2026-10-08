@@ -1,0 +1,41 @@
+id: CUST-VAL-001
+tier: 1
+type: NEGATIVE_VALIDATION
+title: Negative Test - Block Save Customer When Service Address is Missing
+feature: customer
+priority: High
+description: Kiểm tra hệ thống bắt buộc nhập Service Address, chặn lưu và giữ người dùng ở lại form New Customer khi cố tình bỏ trống Service Address.
+steps:
+  - desc: Bấm nút Thêm mới (+) trên màn hình Customers
+    action: tap_selector
+    resource_id: highlight-button
+    index: -1
+    delay: 1.0
+  - desc: Chạm vào ô First Name
+    action: tap_selector
+    text: First Name
+    delay: 0.5
+  - desc: Nhập First Name
+    action: type_text
+    value: "NegativeQA"
+    delay: 0.5
+  - desc: Chạm vào ô Last Name
+    action: tap_selector
+    text: Last Name
+    delay: 0.5
+  - desc: Nhập Last Name
+    action: type_text
+    value: "NoAddressTest"
+    delay: 0.5
+  - desc: Ẩn bàn phím ảo
+    action: hide_keyboard
+    delay: 0.5
+  - desc: Cố tình bấm nút Save khi chưa chọn Service Address
+    action: tap_selector
+    text: Save
+    delay: 2.0
+expected:
+  - assert_text: "New Customer"
+    desc: "Hệ thống phải chặn lưu và giữ nguyên người dùng ở form New Customer"
+  - assert_text: "Service Address"
+    desc: "Trường Service Address vẫn hiện diện (được đánh dấu đỏ bắt buộc)"

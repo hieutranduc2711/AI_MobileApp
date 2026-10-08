@@ -1,0 +1,38 @@
+id: TC_DETAIL_02
+title: Invoice action menu shows actions
+feature: invoice
+priority: High
+description: The invoice action menu opens with Send Invoice by Email and Add Payment.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role; techs do not
+  get payment actions), app on the Home screen (online). The first customer in “Customers”
+  has at least one invoice under “Invoice”, and the first one is not paid (so “Send
+  Invoice by Email” and “Add Payment” are offered and the status can be changed).
+  TC_DETAIL_03 / TC_DETAIL_07 change that invoice's status to Sent / Void — use a
+  disposable invoice.
+detox_reference: '[TC_02][Invoice] User opens action menu and sees all available actions'
+steps:
+- desc: Chọn khách hàng đầu tiên trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  delay: 1.5
+- desc: Chạm vào mục [Invoice]
+  action: tap_selector
+  text: Invoice
+  delay: 1.0
+- desc: Tap the three-dots icon at the top-right.
+  action: tap_selector
+  text: Tap the three-dots icon at the
+  delay: 0.8
+- desc: 'Close the menu by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: 'Close the menu by tapping the '
+  delay: 0.8
+expected:
+- assert_text: the action menu
+  desc: the action menu
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the search (magnifier)
+  icon at the top-right and tap the first customer. (2) Scroll to the "Invoice" section
+  and tap its first invoice. (3) Tap the three-dots icon at the top-right. After step
+  3, the action menu should be open and should show "Send Invoice by Email" and "Add
+  Payment". (4) Close the menu by tapping the handle at its top (id: indicator).'

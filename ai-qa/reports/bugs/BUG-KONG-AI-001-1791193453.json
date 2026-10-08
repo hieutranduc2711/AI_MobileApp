@@ -1,0 +1,9 @@
+{
+  "bug_id": "BUG-KONG-AI-001-1791193453",
+  "testcase_id": "KONG-AI-001",
+  "title": "UI Assert Fail in KONG-AI-001",
+  "timestamp": "2026-10-05 16:44:13",
+  "details": "Expected text 'Kong' not found",
+  "screenshot": "D:\\artemis\\ai-qa\\runs\\KONG-AI-001_1791193452.png",
+  "logcat": null
+}

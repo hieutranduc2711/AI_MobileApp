@@ -1,0 +1,19 @@
+id: PERM-ROLE-032
+title: 'Phân quyền bảo mật và an toàn vai trò người dùng #32'
+feature: role_based_permissions
+priority: Normal
+description: 'Kiểm thử ma trận phân quyền KTV và Quản lý ca #32'
+preconditions: Đang đăng nhập
+steps:
+- desc: Kiểm tra quyền hạn chức năng
+  action: tap_selector
+  text: Settings
+  delay: 0.8
+- desc: 'Truy cập phân quyền #32'
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.5
+expected:
+- assert_text: Settings
+  desc: Cơ chế bảo mật kiểm tra thành công

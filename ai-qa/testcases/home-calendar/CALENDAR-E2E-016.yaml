@@ -1,0 +1,20 @@
+id: CALENDAR-E2E-016
+title: Dismiss loop keeps Home
+feature: home-calendar
+priority: High
+description: Repeated sheet dismissal leaves Home stable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-016: rapid modal dismiss loop leaves shell stable'
+steps:
+- desc: 'If any sheet is open, close it by tapping the handle at its top (id: indicator) '
+  action: tap_selector
+  text: If any sheet is open, close it
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If any sheet is open,
+  close it by tapping the handle at its top (id: indicator) (repeat up to 6 times).
+  At the end, the Home top bar (id: home-bar) should be displayed.'

@@ -1,0 +1,20 @@
+id: CALENDAR-E2E-004
+title: Home shell renders
+feature: home-calendar
+priority: High
+description: The Home top bar is rendered.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-004: shell renders home bar'
+steps:
+- desc: Mở màn hình Calendar Home
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. At the end, the Home top
+  bar (id: home-bar) should be displayed.'

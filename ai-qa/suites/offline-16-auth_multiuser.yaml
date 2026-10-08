@@ -1,0 +1,5 @@
+name: offline-16-auth_multiuser
+description: Offline Suite for Sheet [16_production_edge_gaps] > Module [auth_multiuser]
+  (1 cases)
+testcases:
+- testcases/offline_sync/16_production_edge_gaps/auth_multiuser/EDGE-GAP-006.yaml

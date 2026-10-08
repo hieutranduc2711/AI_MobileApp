@@ -1,0 +1,37 @@
+id: BUGREG-023
+title: 'Loading always show & block UI in Assign Units & Manage Units screen (Online):
+  Loading always show & block UI in Assign Units & Manage Units screen (Online)'
+sheet: 11_Bug_Regression_91
+module: Units
+action: Loading always show & block UI in Assign Units & Manage Units screen (Online)
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Go to Job detail
+  action: tap_selector
+  text: Go to Job detail
+  delay: 1.0
+- desc: Press on Unit menu
+  action: tap_selector
+  text: Press on Unit menu
+  delay: 1.0
+- desc: Go to Assign Units or Manage Units screen
+  action: tap_selector
+  text: Go to Assign Units or Manage U
+  delay: 1.0
+- desc: Loading always show & block UI. Not show buidling list, inspite of has buildings
+  action: tap_selector
+  text: Loading always show & block UI
+  delay: 1.0
+expected:
+- desc: Should be show building list & hide loading after loaded
+  assert_text: Units
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,26 @@
+id: CALENDAR-E2E-009
+title: Footer Today and Refresh
+feature: home-calendar
+priority: High
+description: Footer Today and Refresh keep Home stable.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role) on the Home
+  screen (online), calendar in Day mode on today with several jobs of different statuses
+  (including a Terminated and a Canceled one, a recurring job).
+detox_reference: 'CALENDAR-E2E-009: footer Today and Refresh keep shell stable'
+steps:
+- desc: Chạm vào mục [Today]
+  action: tap_selector
+  text: Today
+  delay: 1.0
+- desc: 'If the refresh button (circular arrows) is shown, tap it. After each of steps
+    1 '
+  action: tap_selector
+  text: If the refresh button (circula
+  delay: 0.8
+expected:
+- assert_text: GorillaDesk
+  desc: Giao diện GorillaDesk hiển thị đúng
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If "Today" is shown
+  in the calendar footer, tap it. (2) If the refresh button (circular arrows) is shown,
+  tap it. After each of steps 1 and 2 (when performed), the Home top bar (id: home-bar)
+  should be displayed.'

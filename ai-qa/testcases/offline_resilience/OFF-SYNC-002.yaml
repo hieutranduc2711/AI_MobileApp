@@ -1,0 +1,33 @@
+id: OFF-SYNC-002
+title: Tạo khách hàng ngoại tuyến và tự động đồng bộ khi có mạng
+feature: offline_resilience
+priority: Critical
+description: Ngắt mạng -> Tạo khách hàng lưu vào SQLite -> Bật lại mạng -> Xác nhận
+  đẩy lên Cloud
+preconditions: Calendar Home
+steps:
+- desc: Ngắt toàn bộ kết nối mạng (Wifi + Data)
+  action: set_network
+  value: 'false'
+  delay: 1.0
+- desc: Mở Drawer Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Vào mục Customers ngoại tuyến
+  action: tap_selector
+  content_desc: Customers
+  delay: 1.2
+- desc: Bấm nút Thêm mới (+)
+  action: tap_selector
+  resource_id: highlight-button
+  index: -1
+  delay: 1.0
+- desc: Khôi phục kết nối mạng trực tuyến
+  action: set_network
+  value: 'true'
+  delay: 2.0
+expected:
+- assert_text: Customers
+  desc: Dữ liệu được lưu trong hàng đợi đồng bộ và tải lên thành công

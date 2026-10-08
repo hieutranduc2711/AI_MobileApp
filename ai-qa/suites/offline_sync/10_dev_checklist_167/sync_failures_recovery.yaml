@@ -1,0 +1,7 @@
+name: offline-10-sync_failures_recovery
+description: Offline Suite for Sheet [10_dev_checklist_167] > Module [sync_failures_recovery]
+  (3 cases)
+testcases:
+- testcases/offline_sync/10_dev_checklist_167/sync_failures_recovery/DEV-UI-159.yaml
+- testcases/offline_sync/10_dev_checklist_167/sync_failures_recovery/DEV-UI-160.yaml
+- testcases/offline_sync/10_dev_checklist_167/sync_failures_recovery/DEV-UI-161.yaml

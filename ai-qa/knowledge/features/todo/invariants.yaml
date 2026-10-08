@@ -1,0 +1,3 @@
+invariants:
+  - id: TODO-INV-001
+    description: 'Ensure data integrity for module todo'

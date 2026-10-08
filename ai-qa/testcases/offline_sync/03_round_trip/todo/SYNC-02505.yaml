@@ -1,0 +1,60 @@
+id: SYNC-02505
+title: 'Reorder Todo: Online → Offline Reorder Todo → restart → Online'
+sheet: 03_Round_Trip
+module: Todo
+action: Reorder Todo
+priority: P1
+flow_phase: RT-03 Round trip with app restart
+direction: ROUND TRIP
+app_path: GD Mobile > Job > Todo > Reorder
+preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Reorder Todo
+  accessible.
+test_data: Valid entity
+steps:
+- desc: Load entity Online.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Go Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Thực hiện Reorder Todo.
+  action: tap_selector
+  text: Reorder Todo
+  delay: 1.0
+- desc: Force close app khi vẫn Offline.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Mở lại app Offline và verify local result.
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Reconnect.
+  action: set_network
+  value: 'true'
+  delay: 2.0
+- desc: Chờ sync completion.
+  action: tap_selector
+  text: Chờ sync completion.
+  delay: 1.0
+- desc: Verify server/local.
+  action: tap_selector
+  text: Verify server/local.
+  delay: 1.0
+expected:
+- desc: Local mutation sống qua restart.
+  assert_text: Todo
+- desc: Reconnect không tạo lại/nhân đôi mutation.
+  assert_text: Todo
+- desc: Final authoritative state đúng.
+  assert_text: Todo
+source_tickets: RN-5569, RN-5540, RN-5587
+source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
+
+  https://gorilladesk1.atlassian.net/browse/RN-5540
+
+  https://gorilladesk1.atlassian.net/browse/RN-5587'
+risk: Round-trip durability
+notes: ''

@@ -1,0 +1,29 @@
+id: UX-01
+title: Dashboard root UI opens
+feature: dashboard
+priority: High
+description: Dashboard opens from the side menu with its scrollable board list.
+preconditions: Logged in with the DEFAULT E2E account (non-technician role with dashboard
+  access, so all boards show), app on the Home screen (online).
+detox_reference: 'UX-01: can open dashboard from drawer and see root UI'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [Dashboard] trong Drawer Menu
+  action: tap_selector
+  content_desc: Dashboard
+  delay: 1.2
+expected:
+- assert_text: Dashboard
+  desc: Hiển thị 'Dashboard' trên màn hình
+- assert_text: Stats
+  desc: Hiển thị 'Stats' trên màn hình
+- assert_text: Jobs
+  desc: Hiển thị 'Jobs' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "Dashboard". After step 1, the "Dashboard" screen with the "Stats" or
+  "Jobs" board should be displayed. If "Dashboard" is not in the menu, stop and report
+  the test as skipped: dashboard not available for this account.'

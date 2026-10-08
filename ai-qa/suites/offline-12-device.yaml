@@ -1,0 +1,33 @@
+name: offline-12-device
+description: Offline Suite for Sheet [12_perf_rerender_245] > Module [device] (29
+  cases)
+testcases:
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-083.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-084.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-085.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-086.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-087.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-088.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-089.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-090.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-091.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-092.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-093.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-094.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-095.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-096.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-097.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-098.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-099.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-100.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-101.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-102.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-103.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-104.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-105.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-106.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-107.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-108.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-109.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-110.yaml
+- testcases/offline_sync/12_perf_rerender_245/device/PERF-111.yaml

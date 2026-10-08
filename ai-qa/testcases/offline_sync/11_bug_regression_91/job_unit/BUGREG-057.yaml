@@ -1,0 +1,41 @@
+id: BUGREG-057
+title: 'Still display unit not assign to job: Still display unit not assign to job'
+sheet: 11_Bug_Regression_91
+module: Job Unit
+action: Still display unit not assign to job
+priority: High
+flow_phase: Historical Bug Regression
+direction: REGRESSION
+app_path: GD Mobile
+preconditions: Logged in GD Mobile
+test_data: ''
+steps:
+- desc: Turn off wifi
+  action: set_network
+  value: 'false'
+  delay: 2.0
+- desc: Go to detail of a job
+  action: tap_selector
+  text: Go to detail of a job
+  delay: 1.0
+- desc: Add new building & 2 units for this building
+  action: tap_selector
+  text: Add new building & 2 units for
+  delay: 1.0
+- desc: Only assign 1 unit of that to job
+  action: tap_selector
+  text: 'Only assign 1 unit of that to '
+  delay: 1.0
+- desc: Back screen Job detail
+  action: back
+  delay: 1.0
+expected:
+- desc: 'Expect: Only display number unit was assigned'
+  assert_text: Job Unit
+- desc: 'Acctual: Display all unit include unit wasn''t assigned'
+  assert_text: Job Unit
+source_tickets: Historical Bug Report
+source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
+risk: Bug Regression
+notes: 'Regression source: parent-linked Bug reports tab. Passed by dev does not mean
+  QA accepted.'

@@ -1,0 +1,18 @@
+execution_policy:
+  mode: "hybrid" # "fast_burst" (ADB direct 1-shot) | "agent_deep" (ARTEMIS Pro) | "hybrid"
+  max_step_timeout_ms: 15000
+  total_test_timeout_sec: 120
+  retry_count: 1
+  auto_scale_resolution: true
+
+delays:
+  modal_sheet_ms: 450
+  list_transition_ms: 650
+  form_rerender_ms: 850
+  server_api_sync_ms: 1800
+
+evaluators:
+  check_logcat_crash: true
+  check_console_error: true
+  save_screenshot_on_failure: true
+  save_screenshot_on_pass: true

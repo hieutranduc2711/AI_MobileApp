@@ -1,0 +1,9 @@
+name: offline-module-sync_queue
+description: Cross-sheet comprehensive offline suite for Module [sync_queue] (6 cases)
+testcases:
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03288.yaml
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03289.yaml
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03290.yaml
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03297.yaml
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03298.yaml
+- testcases/offline_sync/05_cross_cutting/sync_queue/SYNC-03287.yaml

@@ -1,0 +1,23 @@
+id: TC_HOME_027
+title: Scroll week strip
+feature: home
+priority: High
+description: The calendar header week strip scrolls horizontally.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_027] scroll calendar header week strip
+  horizontally'
+steps:
+- desc: Scroll the week strip under the date bar to the right, then to the left.
+  action: tap_selector
+  text: Scroll the week strip under th
+  delay: 0.8
+expected:
+- assert_text: 'the top bar (id: home-bar) and the date '
+  desc: 'the top bar (id: home-bar) and the date bar'
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Scroll the week strip
+  under the date bar to the right, then to the left. After step 1, the top bar (id:
+  home-bar) and the date bar should be displayed. If there is no week strip, stop
+  and report the test as skipped: week strip not shown.'

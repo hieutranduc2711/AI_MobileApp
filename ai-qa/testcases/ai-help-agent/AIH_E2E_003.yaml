@@ -1,0 +1,40 @@
+id: AIH_E2E_003
+title: Topic back returns to popular questions
+feature: ai-help-agent
+priority: High
+description: Back from a topic returns to the Most popular questions home page.
+preconditions: Logged in with the DEFAULT E2E account on the Home screen, online (the
+  drawer Help rows are disabled offline). AIH_E2E_004, 005, 008, 009, 010 and 012
+  need at least one past AI Help Agent conversation (they report skipped otherwise;
+  a run of AIH_E2E_007 or 011 creates one). AIH_E2E_007, 010, 011 and 012 send real
+  messages to the AI agent.
+detox_reference: '[AIH_E2E_003][DOC+][Topic] User taps Topic back and sees Most popular
+  questions'
+steps:
+- desc: Mở Drawer Navigation Menu
+  action: tap_selector
+  resource_id: highlight-button
+  index: 0
+  delay: 0.8
+- desc: Chọn mục [AI Help Agent] trong Drawer Menu
+  action: tap_selector
+  content_desc: AI Help Agent
+  delay: 1.2
+- desc: Chạm vào mục [Most popular questions]
+  action: tap_selector
+  text: Most popular questions
+  delay: 1.0
+- desc: Bấm nút Back quay về màn hình trước
+  action: back
+  delay: 0.8
+expected:
+- assert_text: the topic title
+  desc: the topic title
+- assert_text: Most popular questions
+  desc: Hiển thị 'Most popular questions' trên màn hình
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) Tap the top-left menu
+  icon, then "AI Help Agent" under "Help" (scroll the menu if needed). (2) Tap the
+  first question under "Most popular questions". After step 2, the topic title should
+  be displayed. (3) Tap "Back". After step 3, "Most popular questions" should be displayed.
+  If the AI Help Agent does not open or lists no popular questions, stop and report
+  the test as skipped: AI Help Agent or popular questions not available.'

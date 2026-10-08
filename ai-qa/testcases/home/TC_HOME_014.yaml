@@ -1,0 +1,34 @@
+id: TC_HOME_014
+title: Date sheet opens and closes
+feature: home
+priority: High
+description: Tapping the date opens the date sheet, which closes via its handle.
+preconditions: Logged in with the DEFAULT E2E account (Admin-like role, schedule with
+  jobs today, messaging and add permissions), app on the Home screen (online), calendar
+  in Day mode unless a case says otherwise. TC_HOME_047 may move a recurring job and
+  all its recurrences; TC_HOME_043 needs <TEST_EMAIL>/<TEST_PASSWORD>.
+detox_reference: '[Home][Home][High] [TC_HOME_014] open Date picker modal from date
+  bar and dismiss'
+steps:
+- desc: Chạm vào mục [Calendar View]
+  action: tap_selector
+  text: Calendar View
+  delay: 1.0
+- desc: Tap the date text in the middle of the date bar.
+  action: tap_selector
+  text: Tap the date text in the middl
+  delay: 0.8
+- desc: 'Close it by tapping the handle at its top (id: indicator).'
+  action: tap_selector
+  text: Close it by tapping the handle
+  delay: 0.8
+expected:
+- assert_text: the date sheet
+  desc: the date sheet
+- assert_text: the sheet
+  desc: the sheet
+goal_summary: 'Open the GorillaDesk app on the Home screen. (1) If the date bar is
+  not shown, tap the calendar view button at the left of the date bar and, in "Calendar
+  View", tap "Day". (2) Tap the date text in the middle of the date bar. After step
+  2, the date sheet should be displayed. (3) Close it by tapping the handle at its
+  top (id: indicator). After step 3, the sheet should be closed.'

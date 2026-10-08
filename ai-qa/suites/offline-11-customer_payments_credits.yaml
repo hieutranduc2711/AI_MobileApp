@@ -1,0 +1,5 @@
+name: offline-11-customer_payments_credits
+description: Offline Suite for Sheet [11_bug_regression_91] > Module [customer_payments_credits]
+  (1 cases)
+testcases:
+- testcases/offline_sync/11_bug_regression_91/customer_payments_credits/BUGREG-089.yaml

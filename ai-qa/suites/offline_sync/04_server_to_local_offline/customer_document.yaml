@@ -1,0 +1,10 @@
+name: offline-04-customer_document
+description: Offline Suite for Sheet [04_server_to_local_offline] > Module [customer_document]
+  (6 cases)
+testcases:
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02563.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02564.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02565.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02566.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02567.yaml
+- testcases/offline_sync/04_server_to_local_offline/customer_document/SYNC-02568.yaml
