@@ -5,11 +5,23 @@ import base64
 import sqlite3
 
 class HtmlReporter:
-    def __init__(self, output_dir=r"d:\artemis\ai-qa\reports\html"):
+    def __init__(self, output_dir=None):
+        if output_dir is None:
+            output_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "reports", "html")
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
         self.hermes_db = r"C:\Users\Admin\AppData\Local\hermes\state.db"
-        self.target_session_id = "20260814_112006_7efd52" # Mantis AI conversation
+        self.target_session_id = "20261007_371042_offmod" # Default to Offline Mode
+        try:
+            if os.path.exists(self.hermes_db):
+                conn = sqlite3.connect(self.hermes_db)
+                c = conn.cursor()
+                row = c.execute("SELECT id FROM sessions WHERE title = 'Offline Mode' ORDER BY last_activity_at DESC LIMIT 1").fetchone()
+                if row:
+                    self.target_session_id = row[0]
+                conn.close()
+        except Exception:
+            pass
 
     def generate_report(self, evidence_data, judge_result):
         tc_id = evidence_data.get("test_id", "TEST_CASE")

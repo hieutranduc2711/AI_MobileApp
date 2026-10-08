@@ -4,7 +4,7 @@ import sys
 import json
 import re
 
-AI_QA_ROOT = r"d:\artemis\ai-qa"
+AI_QA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class HermesJudge:
     def __init__(self, executable="hermes.exe"):
