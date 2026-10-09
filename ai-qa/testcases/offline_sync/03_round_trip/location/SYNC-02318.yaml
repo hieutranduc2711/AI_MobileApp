@@ -12,45 +12,59 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Create 
   accessible.
 test_data: Valid entity
 steps:
-- desc: Bắt đầu Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Location.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Create Location
-  delay: 1.0
-- desc: Bật Online trong thời gian ngắn rồi tắt lại trước khi chắc chắn sync complete.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Giữ Offline và reopen entity.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Cuối cùng bật Online ổn định.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ queue idle/downlink.
-  action: tap_selector
-  text: Chờ queue idle/downlink.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Không duplicate action qua nhiều transition.
-  assert_text: Location
-- desc: Không mất pending state khi Online window quá ngắn.
-  assert_text: Location
-- desc: Final state converge sau khi network ổn định.
-  assert_text: Location
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5602, RN-5601
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5602
 

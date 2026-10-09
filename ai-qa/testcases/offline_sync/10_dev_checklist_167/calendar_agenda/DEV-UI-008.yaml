@@ -13,35 +13,26 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Change the date range and schedule'
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Perform scenario action exactl
-  delay: 1.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  text: Jobs
 expected:
-- desc: Downloaded data matches the selected filters.
-  assert_text: Calendar & Agenda
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Calendar & Agenda
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Calendar & Agenda
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

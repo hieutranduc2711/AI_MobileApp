@@ -12,37 +12,52 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Create Cust
   data cần thiết đã sync; mở đúng GD Mobile > Customers > Add.
 test_data: Valid action
 steps:
-- desc: Thực hiện action hoàn toàn khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chờ backend xử lý xong và authoritative state sync về local.
-  action: back
-  delay: 1.0
-- desc: Refresh/reopen để xác nhận giá trị mới.
-  action: tap_selector
-  text: Refresh/reopen để xác nhận giá
-  delay: 1.0
-- desc: Tắt toàn bộ network.
-  action: tap_selector
-  text: Tắt toàn bộ network.
-  delay: 1.0
-- desc: Force close/reopen app khi vẫn Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Mở lại entity/list.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Mở lại entity/list.
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Latest authoritative state đã được persist local trước khi mất mạng.
-  assert_text: Customer
-- desc: Sau restart Offline vẫn thấy đúng state mới.
-  assert_text: Customer
-- desc: Không quay lại stale value cũ.
-  assert_text: Customer
-- desc: Không cần remote API để đọc state đã cache.
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
   assert_text: Customer
 source_tickets: RN-5598, RN-5594
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5598

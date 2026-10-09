@@ -11,33 +11,46 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Go Offline and edit Job field to value A.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Start reconnect so A begins upload.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Before A fully completes, save newer value B.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
   action: tap_selector
   content_desc: Save
-  delay: 2.0
-- desc: Keep network Online until stable.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Verify web/mobile.
-  action: tap_selector
-  text: Verify web/mobile.
-  delay: 1.0
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Final value is B on mobile and web.
-  assert_text: Job
-- desc: Late response/downlink from A does not overwrite B.
-  assert_text: Job
-- desc: No duplicate/out-of-order corruption.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5582,RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5582
 

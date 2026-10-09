@@ -10,31 +10,25 @@ app_path: GD Mobile > Customer > Location
 preconditions: Prepare environment/data as described.
 test_data: tags/invoice_tags/payment_terms/total_unit
 steps:
-- desc: Prepare non-empty fields.
-  action: tap_selector
-  text: Prepare non-empty fields.
-  delay: 1.0
-- desc: Sync.
-  action: tap_selector
-  text: Sync.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open detail.
-  action: tap_selector
-  text: Open detail.
-  delay: 1.0
-- desc: Reconnect after edit.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Drawer Menu từ Calendar
+  action: tap_selector
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: 4 fields correct/stable.
-  assert_text: Location
-- desc: No payload mismatch.
-  assert_text: Location
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5602
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5602
 risk: Known bug

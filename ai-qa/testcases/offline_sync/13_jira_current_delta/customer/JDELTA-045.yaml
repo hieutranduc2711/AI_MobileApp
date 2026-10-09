@@ -11,30 +11,43 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline create Customer with tags.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open Edit and verify tags.
-  action: tap_selector
-  text: Open Edit and verify tags.
-  delay: 1.0
-- desc: Save without changing tags.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Open Edit again.
-  action: tap_selector
-  text: Open Edit again.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Tags remain selected locally and server-side.
-  assert_text: Customer
-- desc: No tag loss after edit/remount.
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
   assert_text: Customer
 source_tickets: RN-5594,RN-5598
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5594

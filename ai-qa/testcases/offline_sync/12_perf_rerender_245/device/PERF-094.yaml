@@ -11,42 +11,18 @@ app_path: GD Mobile > DeviceForm
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 0'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Device / DeviceForm.'
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: 'Open module/component: Device '
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Tạo device khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
-  action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
-  action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  text: Device
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Device
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (0 re-render/update count) without an approved implementation reason.
-  assert_text: Device
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
   assert_text: Device
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''

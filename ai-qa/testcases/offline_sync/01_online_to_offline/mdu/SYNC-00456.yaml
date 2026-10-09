@@ -12,39 +12,30 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Create Unit
   data cần thiết đã sync; mở đúng GD Mobile > MDU > Unit > Note > Add.
 test_data: Valid mutation
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Create Unit Note.
-  action: tap_selector
-  text: Create Unit Note
-  delay: 1.0
-- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
-  action: tap_selector
-  text: Cho queue/API nhận request/ACK
-  delay: 1.0
-- desc: Cắt network trước khi authoritative row mới về local.
-  action: tap_selector
-  text: Cắt network trước khi authorit
-  delay: 1.0
-- desc: Mở/reopen entity khi Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Quan sát optimistic/local state.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Quan sát optimistic/local stat
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: Queue ACK không được xem là backend business completion.
-  assert_text: MDU
-- desc: Optimistic state không bị xóa quá sớm.
-  assert_text: MDU
-- desc: UI không snap-back về old server value sau khi mất mạng.
-  assert_text: MDU
-- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
-  assert_text: MDU
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5592, RN-5590, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

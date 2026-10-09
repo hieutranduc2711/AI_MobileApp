@@ -11,33 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare building with multiple units.
-  action: tap_selector
-  text: Prepare building with multiple
-  delay: 1.0
-- desc: Go Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Assign only subset to Job.
-  action: tap_selector
-  text: Assign only subset to Job.
-  delay: 1.0
-- desc: Save and reopen Job.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
 expected:
-- desc: Only selected units/buildings appear assigned.
-  assert_text: MDU
-- desc: Unselected units do not leak into Job.
-  assert_text: MDU
-- desc: Server relation matches local.
-  assert_text: MDU
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5592
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5592
 risk: Schema / Comment Regression

@@ -1,6 +1,5 @@
 id: SYNC-00011
-title: 'Edit Custom Event: Load dữ liệu online → mất mạng → vẫn thực hiện Edit Custom
-  Event'
+title: 'Edit Custom Event: Load dữ liệu online → mất mạng → vẫn thực hiện Edit Custom Event'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Edit Custom Event
@@ -8,53 +7,66 @@ priority: P1
 flow_phase: O2F-01 Ready local cache
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Event Detail
-preconditions: Đăng nhập đúng account/branch; user có quyền Edit Custom Event; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Event Detail.
-test_data: Valid representative entity
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+- desc: Giữ mạng online để tạo fixture riêng cho testcase
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Ghi nhận giá trị hiện tại của entity.
-  action: tap_selector
-  text: 'Ghi nhận giá trị hiện tại của '
-  delay: 1.0
-- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+  delay: 1.5
+- desc: Đưa app về Calendar Home và xác nhận màn hình lịch
+  action: macro
+  value: ensure_calendar_home
+- desc: Tạo fixture bằng menu xuất hiện sau khi chọn một time range trên calendar
+  action: macro
+  value: calendar_create_item
+  args:
+    kind: custom_event
+    marker: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE
+    start_time: 1PM
+    day_offset: 1
+    duration_minutes: 30
+    verify_live_refresh: false
+- desc: Reload chỉ để nạp fixture trước thao tác đang test; không reload sau mutation
+  action: macro
+  value: restart_app_and_wait
+  args:
+    marker: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE
+- desc: Ngắt mạng sau khi fixture đã được nạp vào cache local
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Không reload app.
-  action: tap_selector
-  text: Không reload app.
-  delay: 1.0
-- desc: Thực hiện Edit Custom Event.
-  action: tap_selector
-  text: Edit Custom Event
-  delay: 1.0
-- desc: Navigate ra màn hình khác rồi quay lại.
-  action: back
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra kết quả.
+  delay: 1.5
+- desc: Mở fixture detail → Edit, append marker suffix, chưa Save
+  action: macro
+  value: calendar_prepare_edit
+  args:
+    marker: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE
+    kind: custom_event
+    suffix: _EDITED
+- desc: Save offline và assert live Calendar refresh
+  action: macro
+  value: calendar_commit_edit
+  args:
+    marker: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE
+    suffix: _EDITED
+    verify_live_refresh: true
+- desc: Khôi phục mạng sau assertion
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
-  assert_text: Calendar
-- desc: Edit Custom Event vẫn thực hiện được theo offline scope.
-  assert_text: Calendar
-- desc: Không cần manual Offline toggle.
-  assert_text: Calendar
-- desc: Kết quả được giữ local/pending, không rollback vì mất network.
-  assert_text: Calendar
-- desc: Không đọc nhầm data account/branch khác.
-  assert_text: Calendar
+- desc: Sau Save marker được đổi đúng thành giá trị đã edit.
+  action: assert_text
+  value: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE_EDITED
+- desc: Calendar hiển thị updated item ngay khi app còn foreground.
+  action: assert_text
+  value: AIQA_SYNC-00011_{{DYNAMIC_NONCE}}_CE_EDITED
 source_tickets: RN-5573
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
-risk: Transition/readiness
-notes: ''
+risk: Offline edit durability / real-time refresh
+notes: 'Fixture được tạo online bằng flow đã quan sát, rồi app chỉ reload trước thao tác edit để nạp fixture; không reload
+  sau mutation đang test. Edit Custom Event/Time Off đã xác nhận bằng detail → pencil/Edit → form → Save; marker được append
+  để không phụ thuộc thay thế text cũ. Pixel 5 từng không render mutation ngay sau Save; expected live refresh cố ý để bắt
+  lỗi, không dùng restart để tạo false pass.'

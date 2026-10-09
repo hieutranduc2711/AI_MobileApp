@@ -11,33 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare devices using Area A and replacement Area B.
-  action: tap_selector
-  text: Prepare devices using Area A a
-  delay: 1.0
-- desc: Go Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Delete A selecting B where required.
-  action: tap_selector
-  text: Delete A selecting B where req
-  delay: 1.0
-- desc: Reopen device list.
-  action: tap_selector
-  text: Reopen device list.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
 expected:
-- desc: Deleted area disappears.
-  assert_text: Device Meta
-- desc: Affected devices retain intended replacement area.
-  assert_text: Device Meta
-- desc: No null/wrong relation.
-  assert_text: Device Meta
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5607
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5607
 risk: Schema / Comment Regression

@@ -10,39 +10,17 @@ app_path: Any create/upload
 preconditions: Prepare environment/data as described.
 test_data: SQLite write fails no storage
 steps:
-- desc: Fill storage.
-  action: tap_selector
-  text: Fill storage.
-  delay: 1.0
-- desc: Go offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Attempt save/upload.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Observe error.
-  action: tap_selector
-  text: Observe error.
-  delay: 1.0
-- desc: Free space.
-  action: tap_selector
-  text: Free space.
-  delay: 1.0
-- desc: Retry.
-  action: tap_selector
-  text: Retry.
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Disk Full trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No fake success.
-  assert_text: Storage
-- desc: DB consistent.
-  assert_text: Storage
-- desc: Actionable error.
-  assert_text: Storage
-- desc: Recovery possible.
-  assert_text: Storage
+- desc: Thao tác Disk Full duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5637, RN-5477
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
 

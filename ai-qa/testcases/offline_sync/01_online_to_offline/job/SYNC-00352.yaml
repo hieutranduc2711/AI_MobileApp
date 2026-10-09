@@ -12,39 +12,35 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Change Job 
   data cần thiết đã sync; mở đúng GD Mobile > Job > Status.
 test_data: Valid action; proxy/network can cut immediately
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Change Job status và nhấn Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay sau khi request bắt đầu, cắt network trước khi client nhận kết quả.
-  action: tap_selector
-  text: 'Ngay sau khi request bắt đầu, '
-  delay: 1.0
-- desc: Giữ app foreground.
-  action: tap_selector
-  text: Giữ app foreground.
-  delay: 1.0
-- desc: Quan sát UI/local state/pending state.
-  action: tap_selector
-  text: Quan sát UI/local state/pendin
-  delay: 1.0
-- desc: Navigate ra/vào lại entity khi vẫn Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job đầu tiên từ màn hình Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Sent' trong danh sách
+  action: tap_selector
+  text: Sent
+  content_desc: Sent
 expected:
-- desc: App không được mất action chỉ vì không biết request đã tới server hay chưa.
-  assert_text: Job
-- desc: Không tạo duplicate local record/effect.
-  assert_text: Job
-- desc: State phải ở local optimistic/pending hoặc trạng thái an toàn tương đương.
-  assert_text: Job
-- desc: Không hiện fully synced khi chưa có xác nhận authoritative.
-  assert_text: Job
+- desc: Trạng thái Job được cập nhật thành 'Sent' trong local cache
+  assert_text: Sent
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: RN-5571, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5571
 

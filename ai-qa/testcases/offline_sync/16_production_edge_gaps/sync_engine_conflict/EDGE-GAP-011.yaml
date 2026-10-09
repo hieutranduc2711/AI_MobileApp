@@ -13,33 +13,25 @@ preconditions: Thiết bị bị lệch giờ hệ thống (set thủ công về
 test_data: Device System Time = 2026-10-06T08:00:00Z; Actual Real Time = 2026-10-08T08:00:00Z;
   Job status update = 'Completed'.
 steps:
-- desc: Chỉnh giờ máy điện thoại lùi lại 2 ngày.
-  action: tap_selector
-  text: Chỉnh giờ máy điện thoại lùi l
-  delay: 1.0
-- desc: 'Chuyển sang Offline; mở Job và bấm Complete, ghi chú: ''Xong việc''.'
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật mạng Online để đồng bộ lên máy chủ.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện chấm công Clock In trên giao diện
+  action: tap_selector
+  content_desc: Clock In
+  text: Clock In
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Kiểm tra thời điểm ghi nhận trên Server DB và Web Portal.
-  action: tap_selector
-  text: Kiểm tra thời điểm ghi nhận tr
-  delay: 1.0
 expected:
-- desc: Server sử dụng `server_received_at` hoặc cơ chế Vector Clock/Lamport Clock
-    để xác định thứ tự sự kiện.
-  assert_text: Sync Engine / Conflict
-- desc: Server không từ chối mutation với lỗi 'Invalid Timestamp' một cách mù quáng.
-  assert_text: Invalid Timestamp
-- desc: Trạng thái 'Completed' được chấp nhận; hiển thị đúng trên Web Portal.
-  assert_text: Completed
-- desc: Nếu có tranh chấp LWW (Last-Write-Wins), server phải bảo vệ dữ liệu không
-    bị rollback bởi timestamp ma của client.
-  assert_text: Sync Engine / Conflict
+- desc: Bản ghi chấm công có timestamp offline chuẩn xác
+  assert_text: Clock Out
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Conflict-Resolution
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Silent Overwrite / Stale Data

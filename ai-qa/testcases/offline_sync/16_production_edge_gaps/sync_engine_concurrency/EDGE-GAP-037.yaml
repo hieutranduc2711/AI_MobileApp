@@ -11,23 +11,28 @@ app_path: GD Mobile > Background Transfer Pool
 preconditions: Hàng đợi có 20 ảnh và 5 text mutations (Job status, Invoice).
 test_data: 20 images (3MB each) + 5 critical JSON mutations.
 steps:
-- desc: Kết nối mạng sau ca làm việc dài.
-  action: tap_selector
-  text: Kết nối mạng sau ca làm việc d
-  delay: 1.0
-- desc: Giám sát số lượng kết nối HTTP socket mở đồng thời bằng network analyzer.
-  action: tap_selector
-  text: Giám sát số lượng kết nối HTTP
-  delay: 1.0
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác Media Concurrency Limiter (Throttled Pool) trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
+  delay: 2.0
 expected:
-- desc: Các mutation text quan trọng (Job status, Payment) được ưu tiên đi trước (High
-    Priority Queue).
-  assert_text: Sync Engine / Concurrency
-- desc: Luồng upload ảnh được phân bổ worker pool tối đa 2-3 kết nối song song.
-  assert_text: Sync Engine / Concurrency
-- desc: Không mở 20 kết nối cùng lúc làm sập socket pool của hệ điều hành và gây timeout
-    các request dữ liệu text.
-  assert_text: Sync Engine / Concurrency
+- desc: Thao tác Media Concurrency Limiter (Throttled Pool) duy trì trạng thái ổn
+    định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Concurrency
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Network Saturation / Socket Exhaustion

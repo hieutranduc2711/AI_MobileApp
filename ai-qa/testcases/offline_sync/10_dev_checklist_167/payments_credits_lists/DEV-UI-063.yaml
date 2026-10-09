@@ -14,37 +14,25 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: View downloaded payments by customer/location,
-    including pagination'
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Perform scenario action exactl
-  delay: 1.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Verify date format/order match the web and pages contain no duplicate or missing
-    rows.
-  assert_text: Payments & credits — lists
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Payments & credits — lists
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Payments & credits — lists
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

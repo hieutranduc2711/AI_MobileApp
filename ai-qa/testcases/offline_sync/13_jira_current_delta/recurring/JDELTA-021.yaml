@@ -10,24 +10,21 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline create/save WO visible note.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Toggle recurring.
-  action: tap_selector
-  text: Toggle recurring.
-  delay: 1.0
-- desc: Reconnect and capture sync actions.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: WO note create and recurring update both survive.
-  assert_text: Recurring
-- desc: Recurring update uses correct business route/action; second action is not
-    coalesced away.
-  assert_text: Recurring
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5597
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5597
 risk: Schema / Comment Regression

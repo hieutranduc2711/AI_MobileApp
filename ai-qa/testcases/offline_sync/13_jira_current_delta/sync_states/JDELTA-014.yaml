@@ -11,30 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Force one successful and one rejected queue_id.
-  action: tap_selector
-  text: Force one successful and one r
-  delay: 1.0
-- desc: Verify queue_id/status/error representation.
-  action: tap_selector
-  text: Verify queue_id/status/error r
-  delay: 1.0
-- desc: Verify app consumes status changes.
-  action: tap_selector
-  text: Verify app consumes status cha
-  delay: 1.0
-- desc: Verify records are not cleared before completion; validate backend cleanup
-    policy window.
-  action: back
-  delay: 1.0
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Thực hiện thao tác SYNC_STATES error/status and cleanup lifecycle trên giao
+    diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Success/error are distinguishable by queue_id.
-  assert_text: SYNC_STATES
-- desc: Client never clears prematurely.
-  assert_text: SYNC_STATES
-- desc: Cleanup follows backend policy (comment says 3–7 days) without affecting final
-    local data.
-  assert_text: SYNC_STATES
+- desc: Thao tác SYNC_STATES error/status and cleanup lifecycle duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477,RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
 

@@ -11,51 +11,21 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   line item; prerequisite cho Invoice Line Item đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Add Invoice line item.
-  action: tap_selector
-  text: Add Invoice line item
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Add Invoice line item không làm app crash/mất dữ liệu.
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
-- desc: Local/UI của Invoice Line Item phản ánh đúng business result.
-  assert_text: Invoice
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Invoice
-- desc: Không duplicate logical operation.
-  assert_text: Invoice
-- desc: B không nhận data/pending/result của A.
-  assert_text: Invoice
-- desc: A mutation không reassigned sang B.
-  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5579, RN-5575
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
 

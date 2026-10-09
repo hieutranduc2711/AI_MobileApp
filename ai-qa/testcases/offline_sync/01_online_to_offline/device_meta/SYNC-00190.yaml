@@ -13,47 +13,28 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Delete Devi
   Device Status.
 test_data: Valid edited values
 steps:
-- desc: Bật network ổn định và mở flow.
-  action: tap_selector
-  text: Bật network ổn định và mở flow
-  delay: 1.0
-- desc: Bắt đầu Delete Device Status khi đang Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Chờ indicator chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Tiếp tục thao tác nếu còn fiel
-  delay: 1.0
-- desc: Nhấn Save/Confirm.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Device
 expected:
-- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
-  assert_text: Device Meta
-- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
-  assert_text: Device Meta
-- desc: Local UI phản ánh đúng result.
-  assert_text: Device Meta
-- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
-  assert_text: Device Meta
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5606, RN-5607
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5606
 

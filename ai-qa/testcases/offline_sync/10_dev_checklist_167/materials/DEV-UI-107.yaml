@@ -13,34 +13,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Update a material''s sticky option'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Perform scenario action exactl
-  delay: 1.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Reopen the screen and verify the saved setting.
-  assert_text: Materials
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Materials
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
   assert_text: Materials
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit

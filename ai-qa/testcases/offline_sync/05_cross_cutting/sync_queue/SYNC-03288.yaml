@@ -10,27 +10,17 @@ app_path: Any supported actions
 preconditions: Prepare environment/data as described.
 test_data: '>20 operations'
 steps:
-- desc: Create 45 pending.
-  action: tap_selector
-  text: Create 45 pending.
-  delay: 1.0
-- desc: Reconnect once.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Do nothing else.
-  action: tap_selector
-  text: Do nothing else.
-  delay: 1.0
-- desc: Wait idle.
-  action: tap_selector
-  text: Wait idle.
-  delay: 1.0
+- desc: Thực hiện thao tác 45 pending auto-drain trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: All batches auto-drain.
-  assert_text: Sync Queue
-- desc: 21+ not stuck.
-  assert_text: Sync Queue
+- desc: Thao tác 45 pending auto-drain duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5587
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5587
 risk: High

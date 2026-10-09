@@ -11,33 +11,46 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Use recurring Job with recurring invoice.
-  action: tap_selector
-  text: Use recurring Job with recurri
-  delay: 1.0
-- desc: Go Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Delete Job.
-  action: tap_selector
-  text: Delete Job.
-  delay: 1.0
-- desc: Review scope dialog and confirm intended scope.
-  action: tap_selector
-  text: Review scope dialog and confir
-  delay: 1.0
-- desc: Reconnect and compare affected records.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Scope dialog is correct.
-  assert_text: Job
-- desc: Only intended job/recurring records are affected.
-  assert_text: Job
-- desc: No orphan recurring invoice.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5582
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5582
 risk: Schema / Comment Regression

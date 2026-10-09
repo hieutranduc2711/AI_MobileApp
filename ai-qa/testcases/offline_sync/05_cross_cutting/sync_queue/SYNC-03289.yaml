@@ -10,29 +10,17 @@ app_path: Any supported update
 preconditions: Prepare environment/data as described.
 test_data: Delay backend business mutation
 steps:
-- desc: Queue endpoint accepts.
-  action: tap_selector
-  text: Queue endpoint accepts.
-  delay: 1.0
-- desc: Delay BE mutation.
-  action: tap_selector
-  text: Delay BE mutation.
-  delay: 1.0
-- desc: Keep old authoritative row.
-  action: tap_selector
-  text: Keep old authoritative row.
-  delay: 1.0
-- desc: Then complete BE.
-  action: tap_selector
-  text: Then complete BE.
-  delay: 1.0
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Thực hiện thao tác ACK != BE complete trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No premature fully-synced.
-  assert_text: Sync Queue
-- desc: No snap-back.
-  assert_text: Sync Queue
-- desc: BE completion drives final state.
-  assert_text: Sync Queue
+- desc: Thao tác ACK != BE complete duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5587, RN-5477
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5587
 

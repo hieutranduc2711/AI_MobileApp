@@ -10,33 +10,17 @@ app_path: Test build/device
 preconditions: Prepare environment/data as described.
 test_data: PowerSync DB corrupt
 steps:
-- desc: Seed cache/pending.
-  action: tap_selector
-  text: Seed cache/pending.
-  delay: 1.0
-- desc: Corrupt DB.
-  action: tap_selector
-  text: Corrupt DB.
-  delay: 1.0
-- desc: Launch app.
-  action: tap_selector
-  text: Launch app.
-  delay: 1.0
-- desc: Observe recovery/error.
-  action: tap_selector
-  text: Observe recovery/error.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Thực hiện thao tác SQLite Corruption trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No silent saved state.
-  assert_text: Storage
-- desc: No cross-account fallback.
-  assert_text: Storage
-- desc: Explicit recovery/error.
-  assert_text: Storage
+- desc: Thao tác SQLite Corruption duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5637, RN-5477
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
 

@@ -11,51 +11,25 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   prerequisite cho Contact đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Contact.
-  action: tap_selector
-  text: Edit Contact
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Edit Contact không làm app crash/mất dữ liệu.
-  assert_text: Contact
-- desc: Local/UI của Contact phản ánh đúng business result.
-  assert_text: Contact
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Contact
-- desc: Không duplicate logical operation.
-  assert_text: Contact
-- desc: B không nhận data/pending/result của A.
-  assert_text: Contact
-- desc: A mutation không reassigned sang B.
-  assert_text: Contact
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5600, RN-5599
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5600
 

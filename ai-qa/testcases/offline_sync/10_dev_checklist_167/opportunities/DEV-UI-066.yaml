@@ -13,35 +13,44 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Create a customer opportunity while offline'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: The new opportunity appears on screen.
-  assert_text: Opportunities
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Opportunities
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Opportunities
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

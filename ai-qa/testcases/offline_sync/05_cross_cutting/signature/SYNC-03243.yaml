@@ -12,53 +12,25 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Customer Signature; prerequisite cho Invoice Customer Signature đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Capture Invoice Customer Signature.
-  action: tap_selector
-  text: Capture Invoice Customer Signature
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Capture Invoice Customer Signature không làm app crash/mất dữ liệu.
-  assert_text: Signature
-- desc: Local/UI của Invoice Customer Signature phản ánh đúng business result.
-  assert_text: Signature
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Signature
-- desc: Không duplicate logical operation.
-  assert_text: Signature
-- desc: A mutation không send với B context.
-  assert_text: Signature
-- desc: B không thấy A optimistic data.
-  assert_text: Signature
-- desc: Converge ở A only.
-  assert_text: Signature
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5605, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

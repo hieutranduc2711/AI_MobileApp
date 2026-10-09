@@ -11,27 +11,24 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to All notes
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Go to All notes
-  delay: 1.0
-- desc: Delete any note or comment in list
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
   action: tap_selector
-  text: 'Delete any note or comment in '
-  delay: 1.0
-- desc: Back to job detail
-  action: back
-  delay: 1.0
-- desc: Note list still show note has deleted, list not update.
-  action: tap_selector
-  text: 'Note list still show note has '
-  delay: 1.0
-- desc: Back to home calendar & go to job detail again. Note list updated
-  action: back
-  delay: 1.0
+  text: Notes
 expected:
-- desc: Should be update note list after delete a note or comment
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
   assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

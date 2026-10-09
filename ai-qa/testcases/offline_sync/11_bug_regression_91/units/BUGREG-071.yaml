@@ -13,34 +13,22 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Create building & 2 units of building
-  action: tap_selector
-  text: Create building & 2 units of b
-  delay: 1.0
-- desc: Assign buidling to job
-  action: tap_selector
-  text: Assign buidling to job
-  delay: 1.0
-- desc: Back to online
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Go to job unit detail of unit 2
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: 'Go to job unit detail of unit '
-  delay: 1.0
-- desc: Press on "Pull from 1st unit" or "Pull from previous unit" in Material Field
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
   action: tap_selector
-  text: Pull from 1st unit
-  delay: 1.0
-- desc: Show error "Failed to connect server"
-  action: tap_selector
-  text: Failed to connect server
-  delay: 1.0
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Should be disable 2 buttons "Pull from 1st unit" or "Pull from previous unit"
-    in offline
-  assert_text: Pull from 1st unit
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

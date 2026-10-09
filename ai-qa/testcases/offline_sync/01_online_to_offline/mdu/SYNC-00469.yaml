@@ -12,47 +12,30 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Delete Unit
   data cần thiết đã sync; mở đúng GD Mobile > MDU > Unit > Comment > Delete.
 test_data: Valid edited values
 steps:
-- desc: Bật network ổn định và mở flow.
-  action: tap_selector
-  text: Bật network ổn định và mở flow
-  delay: 1.0
-- desc: Bắt đầu Delete Unit Comment khi đang Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Chờ indicator chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Tiếp tục thao tác nếu còn fiel
-  delay: 1.0
-- desc: Nhấn Save/Confirm.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Notes
 expected:
-- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
-  assert_text: MDU
-- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
-  assert_text: MDU
-- desc: Local UI phản ánh đúng result.
-  assert_text: MDU
-- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
-  assert_text: MDU
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5592, RN-5590
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

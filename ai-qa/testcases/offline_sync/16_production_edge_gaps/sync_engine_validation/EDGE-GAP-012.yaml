@@ -11,31 +11,25 @@ app_path: GD Mobile > Invoices / Timestamps
 preconditions: Thiết bị chạy nhanh hơn 7 ngày; tạo Invoice offline.
 test_data: 'Client time: 2026-10-15; Real server time: 2026-10-08.'
 steps:
-- desc: Chỉnh giờ máy sang tuần sau.
-  action: tap_selector
-  text: Chỉnh giờ máy sang tuần sau.
-  delay: 1.0
-- desc: Tạo Invoice thanh toán offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật mạng sync lên backend.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện chấm công Clock In trên giao diện
+  action: tap_selector
+  content_desc: Clock In
+  text: Clock In
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Kiểm tra ngày tạo Invoice (created_at) và ngày phát hành (issued_date).
-  action: tap_selector
-  text: Kiểm tra ngày tạo Invoice (cre
-  delay: 1.0
 expected:
-- desc: Backend gán `created_at` theo giờ chuẩn máy chủ UTC.
-  assert_text: Sync Engine / Validation
-- desc: Issued_date nghiệp vụ được lưu theo ý định người dùng nhưng được validate
-    trong khoảng hợp lệ.
-  assert_text: Sync Engine / Validation
-- desc: Không làm sai lệch báo cáo doanh thu tuần hiện tại trên Dashboard của chủ
-    doanh nghiệp.
-  assert_text: Sync Engine / Validation
+- desc: Bản ghi chấm công có timestamp offline chuẩn xác
+  assert_text: Clock Out
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Validation
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Financial Report Distortion

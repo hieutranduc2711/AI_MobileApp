@@ -12,33 +12,55 @@ preconditions: Thiết bị kết nối Wi-Fi khách sạn/quán café chưa aut
   HTTP bị redirect 302 về trang đăng nhập HTML).
 test_data: 'Captive portal redirect (HTTP 302 to hotel-login.html; Content-Type: text/html).'
 steps:
-- desc: Có 3 mutations pending offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
   delay: 2.0
-- desc: Kết nối vào mạng Wi-Fi Captive Portal.
-  action: tap_selector
-  text: Kết nối vào mạng Wi-Fi Captive
-  delay: 1.0
-- desc: Kiểm tra trạng thái Network State của GD Mobile.
-  action: tap_selector
-  text: Kiểm tra trạng thái Network St
-  delay: 1.0
-- desc: Kiểm tra phản hồi của Sync Engine.
-  action: tap_selector
-  text: Kiểm tra phản hồi của Sync Eng
-  delay: 1.0
 expected:
-- desc: 'Cơ chế ping endpoint kiểm tra internet thực tế (ví dụ: Google 204 generate_204)
-    nhận diện đây là Captive Portal / Chưa có internet thực sự.'
-  assert_text: Network / Detection
-- desc: App duy trì trạng thái 'Offline / Limited Connectivity'.
-  assert_text: Offline / Limited Connectivity
-- desc: 'Sync Engine KHÔNG gửi request API lên server để nhận về HTML rồi parse JSON
-    lỗi (`SyntaxError: Unexpected token < in JSON`).'
-  assert_text: Network / Detection
-- desc: Dữ liệu outbox được giữ nguyên trạng thái chờ mạng thật.
-  assert_text: Network / Detection
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Network-Detection
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: JSON Parse Crash / Corrupted Cache

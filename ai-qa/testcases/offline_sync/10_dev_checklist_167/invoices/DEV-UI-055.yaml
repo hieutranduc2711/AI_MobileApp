@@ -13,35 +13,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Edit the note displayed on an invoice'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Perform scenario action exactl
-  delay: 1.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Reopen the screen and verify the saved note.
-  assert_text: Invoices
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Invoices
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Invoices
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
+  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

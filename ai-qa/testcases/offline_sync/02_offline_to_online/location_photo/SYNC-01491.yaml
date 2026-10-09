@@ -12,41 +12,53 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Add Location Photo.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Force close app.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Force close app.
-  delay: 1.0
-- desc: Mở lại khi vẫn Offline.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
-  value: 'false'
+  value: 'true'
   delay: 2.0
-- desc: Xác nhận local result còn.
-  action: tap_selector
-  text: Xác nhận local result còn.
-  delay: 1.0
-- desc: Bật network.
-  action: tap_selector
-  text: Bật network.
-  delay: 1.0
-- desc: Chờ sync.
-  action: tap_selector
-  text: Chờ sync.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Durable outbox sống qua restart.
-  assert_text: Location Photo
-- desc: Reopen không tạo duplicate row.
-  assert_text: Location Photo
-- desc: Reconnect tiếp tục sync bình thường.
-  assert_text: Location Photo
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5585, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
 

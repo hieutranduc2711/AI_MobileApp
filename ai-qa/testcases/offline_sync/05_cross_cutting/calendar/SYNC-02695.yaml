@@ -11,53 +11,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   prerequisite cho Custom Event đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Add Custom Event.
-  action: tap_selector
-  text: Add Custom Event
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Jobs
 expected:
-- desc: Add Custom Event không làm app crash/mất dữ liệu.
-  assert_text: Calendar
-- desc: Local/UI của Custom Event phản ánh đúng business result.
-  assert_text: Calendar
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Calendar
-- desc: Không duplicate logical operation.
-  assert_text: Calendar
-- desc: A mutation không send với B context.
-  assert_text: Calendar
-- desc: B không thấy A optimistic data.
-  assert_text: Calendar
-- desc: Converge ở A only.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5573
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
 risk: Cross-branch

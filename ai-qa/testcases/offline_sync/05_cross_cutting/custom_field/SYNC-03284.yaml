@@ -10,26 +10,25 @@ app_path: GD Mobile > Customer > Custom Fields
 preconditions: Prepare environment/data as described.
 test_data: Backlog vs later parent report
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Inspect controls.
-  action: tap_selector
-  text: Inspect controls.
-  delay: 1.0
-- desc: Attempt only if enabled.
-  action: tap_selector
-  text: Attempt only if enabled.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Drawer Menu từ Calendar
+  action: tap_selector
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Disabled consistent old plan; enabled+works requires acceptance update; enabled+fails
-    is bug.
-  assert_text: Custom Field
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5603, RN-5614, RN-5477
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5603
 

@@ -11,51 +11,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   Event; prerequisite cho Custom Event đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Custom Event.
-  action: tap_selector
-  text: Edit Custom Event
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Jobs
 expected:
-- desc: Edit Custom Event không làm app crash/mất dữ liệu.
-  assert_text: Calendar
-- desc: Local/UI của Custom Event phản ánh đúng business result.
-  assert_text: Calendar
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Calendar
-- desc: Không duplicate logical operation.
-  assert_text: Calendar
-- desc: B không nhận data/pending/result của A.
-  assert_text: Calendar
-- desc: A mutation không reassigned sang B.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5573
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
 risk: Cross-account

@@ -11,32 +11,46 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare Job with schedule.
-  action: tap_selector
-  text: Prepare Job with schedule.
-  delay: 1.0
-- desc: Sync to mobile.
-  action: tap_selector
-  text: Sync to mobile.
-  delay: 1.0
-- desc: Offline edit schedule.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect Job detail and reopen edit form.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Inspect Job detail and reopen '
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: schedule_ids/schedule association remains correct after local save and live
-    sync.
-  assert_text: Job Schema
-- desc: No old schedule display.
-  assert_text: Job Schema
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5518,RN-5538
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5518
 

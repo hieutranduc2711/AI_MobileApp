@@ -11,36 +11,44 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off network
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Turn off network
-  delay: 1.0
-- desc: Go to detail of any customer
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
   action: tap_selector
-  text: Go to detail of any customer
-  delay: 1.0
-- desc: Press on Service Locations
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
   action: tap_selector
-  text: Press on Service Locations
-  delay: 1.0
-- desc: Press on any Customer location
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
   action: tap_selector
-  text: Press on any Customer location
-  delay: 1.0
-- desc: Delete building & unit of location
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
   action: tap_selector
-  text: Delete building & unit of loca
-  delay: 1.0
-- desc: Back to Service Locations list view
-  action: back
-  delay: 1.0
-- desc: Still show total units of location include unit has deleted
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
   action: tap_selector
-  text: Still show total units of loca
-  delay: 1.0
+  content_desc: Save
 expected:
-- desc: 'Expected: Show correct total unit of location'
-  assert_text: Customer Location
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

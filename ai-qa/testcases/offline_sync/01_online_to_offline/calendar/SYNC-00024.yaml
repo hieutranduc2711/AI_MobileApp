@@ -1,6 +1,5 @@
 id: SYNC-00024
-title: 'Move Custom Event: Move Custom Event: server/queue ACK → mất mạng trước authoritative
-  downlink'
+title: 'Move Custom Event: Move Custom Event: server/queue ACK → mất mạng trước authoritative downlink'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Move Custom Event
@@ -8,48 +7,36 @@ priority: P0
 flow_phase: O2F-04 Drop after ACK before downlink
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Custom Event
-preconditions: Đăng nhập đúng account/branch; user có quyền Move Custom Event; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Custom Event.
-test_data: Valid mutation
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00024_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Move Custom Event.
-  action: tap_selector
-  text: Move Custom Event
-  delay: 1.0
-- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
-  action: tap_selector
-  text: Cho queue/API nhận request/ACK
-  delay: 1.0
-- desc: Cắt network trước khi authoritative row mới về local.
-  action: tap_selector
-  text: Cắt network trước khi authorit
-  delay: 1.0
-- desc: Mở/reopen entity khi Offline.
+- desc: Bảo đảm mạng online trước khi kiểm tra điều kiện hạ tầng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Quan sát optimistic/local state.
-  action: tap_selector
-  text: Quan sát optimistic/local stat
-  delay: 1.0
+  value: 'true'
+  delay: 1.5
+- desc: Xác nhận Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: 'Fail closed: yêu cầu bộ cắt mạng có barrier đồng bộ đúng phase'
+  action: macro
+  value: require_transport_fault_injection
+  args:
+    barrier: move_server_ack_before_downlink
+- desc: Khôi phục mạng nếu testcase bị dừng ở phase bị block
+  action: set_network
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Queue ACK không được xem là backend business completion.
-  assert_text: Calendar
-- desc: Optimistic state không bị xóa quá sớm.
-  assert_text: Calendar
-- desc: UI không snap-back về old server value sau khi mất mạng.
-  assert_text: Calendar
-- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
-  assert_text: Calendar
+- desc: Phải BLOCKED tới khi có barrier đồng bộ request lifecycle.
+  action: assert_text
+  value: network fault injector
 source_tickets: RN-5572, RN-5587, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Early patch removal/snap-back
-notes: ''
+risk: BLOCKED — deterministic network fault injector chưa có
+notes: 'Không dùng weak_network làm bằng chứng cắt đúng trong-flight/after-ACK.'

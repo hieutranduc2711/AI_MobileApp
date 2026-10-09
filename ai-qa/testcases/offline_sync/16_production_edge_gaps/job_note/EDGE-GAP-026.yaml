@@ -12,36 +12,30 @@ preconditions: Thiết bị offline.
 test_data: 'Text containing: ''Diệt mối tại nhà 🏠👨‍🔧: Đã xử lý 5 tổ mối 🐜 và gián
   🪳. Thời tiết mưa to 🌧️! 𝓤𝓷𝓲𝓬𝓸𝓭𝓮 𝕋𝕖𝕩𝕥.'''
 steps:
-- desc: Mở Job offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Nhập ghi chú chứa chuỗi dữ liệu emoji và ký tự 4-byte UTF-8 ở trên.
-  action: tap_selector
-  text: Nhập ghi chú chứa chuỗi dữ liệ
-  delay: 1.0
-- desc: Lưu Job.
-  action: tap_selector
-  text: Lưu Job.
-  delay: 1.0
-- desc: Đóng app, mở lại kiểm tra hiển thị khi offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Bật mạng online để sync lên Web portal.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: SQLite lưu trữ trọn vẹn chuỗi UTF-8 không biến thành ký tự rác (`???` hoặc
-    `�`).
-  assert_text: Job / Note
-- desc: Màn hình mobile hiển thị chuẩn xác các icon emoji.
-  assert_text: Job / Note
-- desc: Server nhận payload JSON UTF-8 hợp lệ và lưu vào database server (hỗ trợ utf8mb4).
-  assert_text: Job / Note
-- desc: Web portal hiển thị đúng y nguyên nội dung.
-  assert_text: Job / Note
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5477 / Data-Encoding
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Data Corruption / Encoding Error

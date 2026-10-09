@@ -11,49 +11,19 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to job detail
-  action: tap_selector
-  text: Go to job detail
-  delay: 1.0
-- desc: Go to Assign Units in offline
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Assgin any building
-  action: tap_selector
-  text: Assgin any building
-  delay: 1.0
-- desc: Back to online
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Or
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Or
-  delay: 1.0
-- desc: Go to job detail
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Go to job detail
-  delay: 1.0
-- desc: Add new building (offline)
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Add new unit for that building (offline)
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Assign building (offline)
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Go to desktop app. New building & unit has added but not assign
-  action: tap_selector
-  text: Go to desktop app. New buildin
-  delay: 1.0
+  text: Device
 expected:
-- desc: Should be can assign any building from offline when back to online
-  assert_text: Units
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

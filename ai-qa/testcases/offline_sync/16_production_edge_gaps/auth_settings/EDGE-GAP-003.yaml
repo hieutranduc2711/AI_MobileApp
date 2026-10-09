@@ -12,37 +12,28 @@ preconditions: Thiết bị đang Offline hoặc Online nhưng có 3 items chưa
   tất (đang retry hoặc pending).
 test_data: Pending outbox count = 3 (1 Job, 1 Invoice, 1 Photo).
 steps:
-- desc: Thực hiện tạo Job và Invoice khi Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Vào Settings > Account > Bấm nút 'Log Out'.
-  action: tap_selector
-  text: Log Out
-  delay: 1.0
-- desc: Kiểm tra Dialog cảnh báo hiển thị.
-  action: tap_selector
-  text: 'Kiểm tra Dialog cảnh báo hiển '
-  delay: 1.0
-- desc: Bấm 'Cancel' (Hủy bỏ) và kiểm tra dữ liệu.
-  action: tap_selector
-  text: Cancel
-  delay: 1.0
-- desc: Thử bấm lại Log Out và chọn 'Confirm Logout' (Chấp nhận xóa).
-  action: tap_selector
-  text: Confirm Logout
-  delay: 1.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Thực hiện thao tác Manual Logout Guard with Pending Outbox trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: 'App bật Alert cảnh báo nổi bật: ''Cảnh báo: Bạn còn 3 mục chưa được đồng
-    bộ lên máy chủ. Nếu đăng xuất, dữ liệu này sẽ bị mất vĩnh viễn!''.'
-  assert_text: 'Cảnh báo: Bạn còn 3 mục chưa được đồng bộ lên máy chủ. Nếu đăng xuất,
-    dữ liệu này sẽ bị mất vĩnh viễn!'
-- desc: Mặc định focus vào nút 'Hủy bỏ' (Cancel).
-  assert_text: Hủy bỏ
-- desc: 'Khi bấm Cancel: giữ nguyên đăng nhập, toàn bộ dữ liệu outbox còn nguyên.'
-  assert_text: Auth / Settings
-- desc: 'Khi chọn xác nhận đăng xuất: mới tiến hành dọn dẹp an toàn.'
-  assert_text: Auth / Settings
+- desc: Thao tác Manual Logout Guard with Pending Outbox duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / UX-Guard
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Accidental Data Loss

@@ -10,29 +10,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off wifi
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create new customer in offline
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Add draft invoice & change status to sent
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Add draft invoice & change sta
-  delay: 1.0
-- desc: Reload screen customer detail or back to screen customer then back to customer
-    detail
-  action: back
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
+  action: tap_selector
+  text: Invoice
 expected:
-- desc: 'Expect: Must display invoice status sent of customer.'
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
-- desc: 'Actual: Invoice status sent not display.'
-  assert_text: Invoice
-- desc: ( Same action with customer real everything work )
-  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

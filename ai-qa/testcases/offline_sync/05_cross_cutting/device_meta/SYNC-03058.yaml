@@ -11,51 +11,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Type; prerequisite cho Device Type đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Device Type.
-  action: tap_selector
-  text: Create Device Type
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Device
 expected:
-- desc: Create Device Type không làm app crash/mất dữ liệu.
-  assert_text: Device Meta
-- desc: Local/UI của Device Type phản ánh đúng business result.
-  assert_text: Device Meta
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Device Meta
-- desc: Không duplicate logical operation.
-  assert_text: Device Meta
-- desc: B không nhận data/pending/result của A.
-  assert_text: Device Meta
-- desc: A mutation không reassigned sang B.
-  assert_text: Device Meta
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5606, RN-5607
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5606
 

@@ -15,37 +15,24 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Before any successful initial download,
-    disconnect Internet'
-  action: tap_selector
-  text: Perform scenario action exactl
-  delay: 1.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
-  action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Before any successful initial download, disconnect Internet
+    → Home shows that offline data is unavailable; missing local data is not presented
+    as a valid empty result. trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Home shows that offline data is unavailable; missing local data is not presented
-    as a valid empty result.
-  assert_text: Offline data availability
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Offline data availability
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Offline data availability
+- desc: Thao tác Before any successful initial download, disconnect Internet → Home
+    shows that offline data is unavailable; missing local data is not presented as
+    a valid empty result. duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

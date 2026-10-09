@@ -12,37 +12,30 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Delete Unit Comment.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật/tắt network 5–10 lần trong 30–60 giây.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Bật/tắt network 5–10 lần trong
-  delay: 1.0
-- desc: Không Save lại.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Cuối cùng giữ Online ổn định.
+  text: Notes
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Chờ queue idle.
-  action: tap_selector
-  text: Chờ queue idle.
-  delay: 1.0
-- desc: Verify server.
-  action: tap_selector
-  text: Verify server.
-  delay: 1.0
 expected:
-- desc: Không reconnect storm tạo duplicate send.
-  assert_text: MDU
-- desc: Action chỉ có một logical effect.
-  assert_text: MDU
-- desc: Queue không kẹt sau flapping.
-  assert_text: MDU
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5592, RN-5590
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

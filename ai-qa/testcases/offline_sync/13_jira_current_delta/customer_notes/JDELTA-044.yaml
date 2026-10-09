@@ -11,35 +11,25 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare customer note and related job note with different location IDs.
-  action: tap_selector
-  text: Prepare customer note and rela
-  delay: 1.0
-- desc: Download data.
-  action: tap_selector
-  text: Download data.
-  delay: 1.0
-- desc: Go Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open customer note feed.
+  value: 'true'
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Open customer note feed.
-  delay: 1.0
-- desc: Reopen/customer location filters.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Reopen/customer location filte
-  delay: 1.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Customer-scope feed preserves records expected by customer scope.
-  assert_text: Customer Notes
-- desc: Location filtering does not incorrectly hide unrelated-but-valid customer/job
-    notes.
-  assert_text: Customer Notes
-- desc: Result should be confirmed with product because dev checklist marks NEEDS
-    REVIEW.
-  assert_text: Customer Notes
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5536,RN-5594
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5536
 

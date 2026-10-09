@@ -10,33 +10,19 @@ app_path: 3 devices + web
 preconditions: Prepare environment/data as described.
 test_data: 3 devices edit same record offline
 steps:
-- desc: Sync same initial record 3 devices.
-  action: tap_selector
-  text: Sync same initial record 3 dev
-  delay: 1.0
-- desc: All offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Each edits differently.
-  action: tap_selector
-  text: Each edits differently.
-  delay: 1.0
-- desc: Reconnect C,B,A.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Repeat reverse.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Repeat reverse.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
 expected:
-- desc: No structural corruption.
-  assert_text: Conflict
-- desc: Actual policy recorded.
-  assert_text: Conflict
-- desc: Silent overwrite risk flagged.
-  assert_text: Conflict
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5587
 

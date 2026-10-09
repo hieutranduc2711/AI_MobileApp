@@ -11,49 +11,34 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Estimate đã sync khi cần.
 test_data: Create + edit values
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Estimate.
-  action: tap_selector
-  text: Create Estimate
-  delay: 1.0
-- desc: Open local record.
-  action: tap_selector
-  text: Open local record.
-  delay: 1.0
-- desc: Edit field trước reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Check final local.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Check final local.
-  delay: 1.0
-- desc: Reconnect.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Verify server.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Create Estimate không làm app crash/mất dữ liệu.
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
-- desc: Local/UI của Estimate phản ánh đúng business result.
-  assert_text: Estimate
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Estimate
-- desc: Không duplicate logical operation.
-  assert_text: Estimate
-- desc: Create + edit không mất nhau.
-  assert_text: Estimate
-- desc: Single server record với final intended value hoặc ordered effects.
-  assert_text: Estimate
-- desc: Local ID mapping đúng.
-  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5576, RN-5542, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5576
 

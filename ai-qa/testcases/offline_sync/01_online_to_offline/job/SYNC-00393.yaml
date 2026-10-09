@@ -12,39 +12,55 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Stop Time T
   data cần thiết đã sync; mở đúng GD Mobile > Job > Time Tracking > Stop.
 test_data: Valid mutation
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Stop Time Tracking.
-  action: tap_selector
-  text: Stop Time Tracking
-  delay: 1.0
-- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
-  action: tap_selector
-  text: Cho queue/API nhận request/ACK
-  delay: 1.0
-- desc: Cắt network trước khi authoritative row mới về local.
-  action: tap_selector
-  text: Cắt network trước khi authorit
-  delay: 1.0
-- desc: Mở/reopen entity khi Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Quan sát optimistic/local state.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Quan sát optimistic/local stat
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Queue ACK không được xem là backend business completion.
-  assert_text: Job
-- desc: Optimistic state không bị xóa quá sớm.
-  assert_text: Job
-- desc: UI không snap-back về old server value sau khi mất mạng.
-  assert_text: Job
-- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5644, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5644
 

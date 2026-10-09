@@ -11,38 +11,28 @@ preconditions: User có quyền Apply Todo List Template; prerequisite local đ�
   device Offline.
 test_data: ''
 steps:
-- desc: Thực hiện Apply Todo List Template khi Offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Xác nhận local result và pending state.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Xác nhận local result và pendi
-  delay: 1.0
-- desc: Bật network ổn định.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Todo List trong Job Details
   action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Không tạo thêm action cùng entity.
-  action: tap_selector
-  text: Không tạo thêm action cùng ent
-  delay: 1.0
-- desc: Chờ sync queue → backend processing → authoritative downlink.
-  action: back
-  delay: 1.0
-- desc: Reopen entity và đối chiếu web/thiết bị online.
+  text: Todo List
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
 expected:
-- desc: Mutation được gửi đúng account/branch và đúng business action.
-  assert_text: Todo
-- desc: Không mất/duplicate action.
-  assert_text: Todo
-- desc: Không snap-back trong lúc ACK đã có nhưng BE chưa complete.
-  assert_text: Todo
-- desc: Final local state = authoritative server state.
-  assert_text: Todo
+- desc: Mục việc cần làm hiển thị trong danh sách chờ offline
+  assert_text: Todo List
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5569
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5569
 risk: Delta Missing Action

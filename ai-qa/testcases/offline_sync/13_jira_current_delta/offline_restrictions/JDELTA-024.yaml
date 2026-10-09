@@ -11,19 +11,22 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Go Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Attempt switch branch.
-  action: tap_selector
-  text: Attempt switch branch.
-  delay: 1.0
+  value: 'true'
+- desc: Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên
+  action: lock_screen
+  value: '3.0'
+- desc: Thực hiện thao tác Branch switch while Offline is blocked with connection
+    message trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Branch is not switched using stale/incomplete scope.
-  assert_text: Offline Restrictions
-- desc: User receives check-connection message.
-  assert_text: Offline Restrictions
+- desc: Thao tác Branch switch while Offline is blocked with connection message duy
+    trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5563
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5563
 risk: Schema / Comment Regression

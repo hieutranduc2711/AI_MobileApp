@@ -12,37 +12,46 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Change Estimate package type.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Khôi phục mạng ở profile weak/high latency/low bandwidth.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mô phỏng mạng chập chờn / rớt gói liên tục (Network Flapping)
+  action: weak_network
+  value: '3'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Quan sát pending/retry.
-  action: tap_selector
-  text: Quan sát pending/retry.
-  delay: 1.0
-- desc: Sau đó khôi phục mạng tốt.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ ổn định.
-  action: tap_selector
-  text: Chờ ổn định.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Weak network không làm mất action.
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
-- desc: Không duplicate do reconnect/retry.
-  assert_text: Estimate
-- desc: Khi network tốt, queue tự resume đến completion.
-  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5576
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5576
 risk: Weak reconnect

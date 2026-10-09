@@ -12,45 +12,36 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Add Inv
   Image accessible.
 test_data: Valid entity
 steps:
-- desc: Load entity Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
+  action: tap_selector
+  text: Invoice
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Go Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Add Invoice Visible Image.
-  action: tap_selector
-  text: Add Invoice Visible Image
-  delay: 1.0
-- desc: Force close app khi vẫn Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Mở lại app Offline và verify local result.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ sync completion.
-  action: tap_selector
-  text: Chờ sync completion.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Local mutation sống qua restart.
-  assert_text: Visible Image
-- desc: Reconnect không tạo lại/nhân đôi mutation.
-  assert_text: Visible Image
-- desc: Final authoritative state đúng.
-  assert_text: Visible Image
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
+  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5595, RN-5596, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
 

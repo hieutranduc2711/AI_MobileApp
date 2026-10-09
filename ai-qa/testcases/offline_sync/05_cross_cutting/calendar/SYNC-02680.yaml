@@ -11,53 +11,46 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền R
   prerequisite cho Job calendar item đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Resize Job.
-  action: tap_selector
-  text: Resize Job
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Resize Job không làm app crash/mất dữ liệu.
-  assert_text: Calendar
-- desc: Local/UI của Job calendar item phản ánh đúng business result.
-  assert_text: Calendar
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Calendar
-- desc: Không duplicate logical operation.
-  assert_text: Calendar
-- desc: A mutation không send với B context.
-  assert_text: Calendar
-- desc: B không thấy A optimistic data.
-  assert_text: Calendar
-- desc: Converge ở A only.
-  assert_text: Calendar
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 

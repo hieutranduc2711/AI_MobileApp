@@ -7,52 +7,58 @@ priority: P0
 flow_phase: O2F-02 Drop before Save
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Add Event
-preconditions: Đăng nhập đúng account/branch; user có quyền Add Custom Event; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Add Event.
-test_data: Valid edited values
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00002_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định và mở flow.
-  action: tap_selector
-  text: Bật network ổn định và mở flow
-  delay: 1.0
-- desc: Bắt đầu Add Custom Event khi đang Online.
+- desc: Bật Wi-Fi và mobile data để nạp Calendar trước khi đổi trạng thái mạng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Chờ indicator chuyển Offline.
+  delay: 1.5
+- desc: Mở Calendar Home và xác nhận Today/Jobs/Total
+  action: macro
+  value: ensure_calendar_home
+- desc: Chọn time range trên lưới Calendar, chọn đúng loại form và nhập trường bắt buộc
+  action: macro
+  value: calendar_prepare_create_item
+  args:
+    kind: custom_event
+    marker: AIQA_SYNC-00002_{{DYNAMIC_NONCE}}_CE
+    start_time: 1PM
+    day_offset: 1
+    duration_minutes: 30
+- desc: Kiểm tra form giữ đúng start time của time range đã chọn (Pixel 5 từng hiện default 12:30 PM thay vì 1:00 PM)
+  action: assert_text
+  value: 1:00 PM
+- desc: Ngắt Wi-Fi và mobile data khi form đã điền xong, ngay trước Save
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
-  action: tap_selector
-  text: Tiếp tục thao tác nếu còn fiel
-  delay: 1.0
-- desc: Nhấn Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
+  delay: 1.5
+- desc: Save một lần và đợi item xuất hiện trên Calendar ngay, không restart app
+  action: macro
+  value: calendar_commit_create_item
+  args:
+    marker: AIQA_SYNC-00002_{{DYNAMIC_NONCE}}_CE
+    verify_live_refresh: true
+    expected_start_time: "1:00 PM"
+- desc: Khôi phục kết nối mạng sau khi đã chụp/assert trạng thái offline
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
-  assert_text: Calendar
-- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
-  assert_text: Calendar
-- desc: Local UI phản ánh đúng result.
-  assert_text: Calendar
-- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
-  assert_text: Calendar
+- desc: 'Form lưu hợp lệ: Custom Event dùng Event Name; Time Off dùng Reason For Time Off.'
+  action: assert_text
+  value: AIQA_SYNC-00002_{{DYNAMIC_NONCE}}_CE
+- desc: Calendar render item với marker ngay sau Save mà không restart app.
+  action: assert_text
+  value: AIQA_SYNC-00002_{{DYNAMIC_NONCE}}_CE
+- desc: Start time khớp time range đã chọn (expected 1:00 PM).
+  action: assert_text
+  value: 1:00 PM
 source_tickets: RN-5573
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
-risk: Data loss at transition
-notes: ''
+risk: Calendar range prefill / local persistence / real-time refresh
+notes: 'Bằng chứng Pixel 5: contextual menu có New Job, Add Time Off, Add Custom Event; Time Off cần Reason For Time Off;
+  Custom Event cần Event Name. Pixel 5 từng không render item mới ngay sau Save cho tới khi force-stop/relaunch. Test cố ý
+  assert live refresh trước mọi restart để không che bug. O2F-02 giữ form đã điền khi online, rồi ngắt mạng ngay trước Save.'

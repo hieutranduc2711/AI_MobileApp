@@ -11,43 +11,46 @@ app_path: GD Mobile > TimeWindow
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 1'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Job / TimeWindow.'
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Open module/component: Job / T'
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Chọn time window khi tạo job offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
   action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
   action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Job
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (1 re-render/update count) without an approved implementation reason.
-  assert_text: Job
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

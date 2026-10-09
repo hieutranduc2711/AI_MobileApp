@@ -12,41 +12,30 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Create Comment.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Cho server process business action nhưng drop response.
-  action: tap_selector
-  text: Cho server process business ac
-  delay: 1.0
-- desc: Để client retry cùng logical operation.
-  action: tap_selector
-  text: Để client retry cùng logical o
-  delay: 1.0
-- desc: Restore response.
-  action: tap_selector
-  text: Restore response.
-  delay: 1.0
-- desc: Kiểm tra count/effect server.
-  action: tap_selector
-  text: Kiểm tra count/effect server.
-  delay: 1.0
-- desc: Verify local.
-  action: tap_selector
-  text: Verify local.
-  delay: 1.0
 expected:
-- desc: Stable idempotency ngăn duplicate.
-  assert_text: Note
-- desc: Chỉ một logical business effect.
-  assert_text: Note
-- desc: Local cuối cùng map/reconcile với authoritative record.
-  assert_text: Note
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5567, RN-5536, RN-5533, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
 

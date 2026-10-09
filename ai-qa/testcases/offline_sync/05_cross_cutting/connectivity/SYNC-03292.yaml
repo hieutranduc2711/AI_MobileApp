@@ -10,31 +10,49 @@ app_path: Any mutation
 preconditions: Prepare environment/data as described.
 test_data: Uplink works/downlink blocked
 steps:
-- desc: Create pending.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên
+  action: lock_screen
+  value: '3.0'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Create pending.
-  delay: 1.0
-- desc: Allow uplink.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Allow uplink.
-  delay: 1.0
-- desc: Block downlink.
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
   action: tap_selector
-  text: Block downlink.
-  delay: 1.0
-- desc: Observe state.
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
   action: tap_selector
-  text: Observe state.
-  delay: 1.0
-- desc: Restore downlink.
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
   action: tap_selector
-  text: Restore downlink.
-  delay: 1.0
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Not fully synced from ACK only.
-  assert_text: Connectivity
-- desc: Optimistic preserved until authoritative confirmation.
-  assert_text: Connectivity
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5637, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
 

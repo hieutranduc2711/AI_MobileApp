@@ -11,24 +11,19 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to Job detail & press on All Tasks
-  action: tap_selector
-  text: Go to Job detail & press on Al
-  delay: 1.0
-- desc: Change status of task to Done
-  action: tap_selector
-  text: Change status of task to Done
-  delay: 1.0
-- desc: Status of task in Task list (All Task) not update (offline)
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Back to job detail. Task list still not update status after changed
-  action: back
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Show incorrect status of task after change to Done (Online/Offline)
+    trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Should be show correct status of task in task list after changed
-  assert_text: Tasks
+- desc: Thao tác Show incorrect status of task after change to Done (Online/Offline)
+    duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

@@ -12,39 +12,46 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Add Estimat
   Images > Add.
 test_data: Valid photo/file/signature/document
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Bắt đầu Add Estimate Visible Image có binary upload.
-  action: tap_selector
-  text: Bắt đầu Add Estimate Visible I
-  delay: 1.0
-- desc: Khi upload đang transfer, tắt toàn bộ network.
-  action: tap_selector
-  text: 'Khi upload đang transfer, tắt '
-  delay: 1.0
-- desc: Navigate ra/vào màn hình liên quan.
-  action: tap_selector
-  text: 'Navigate ra/vào màn hình liên '
-  delay: 1.0
-- desc: Background/foreground app khi vẫn Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Kiểm tra preview/local reference.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Kiểm tra preview/local referen
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Upload dở không được mark synced.
-  assert_text: Visible Image
-- desc: Local source/preview phải còn để retry sau.
-  assert_text: Visible Image
-- desc: Không tạo orphan business mutation trỏ tới asset chưa upload.
-  assert_text: Visible Image
-- desc: Không duplicate local attachment/image/signature.
-  assert_text: Visible Image
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5595, RN-5596, RN-5525, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
 

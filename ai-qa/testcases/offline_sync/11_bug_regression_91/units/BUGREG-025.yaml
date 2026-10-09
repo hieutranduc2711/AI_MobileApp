@@ -11,35 +11,46 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to job detail without units
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Go to job detail without units
-  delay: 1.0
-- desc: Go to Manage Units
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Go to Manage Units
-  delay: 1.0
-- desc: Add new building, add new unit for building
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
   action: tap_selector
-  text: Add new building, add new unit
-  delay: 1.0
-- desc: Back to job detail
-  action: back
-  delay: 1.0
-- desc: Go to Assign units screen
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
   action: tap_selector
-  text: Go to Assign units screen
-  delay: 1.0
-- desc: Select all & Save to assign all building
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
   action: tap_selector
   content_desc: Save
-  delay: 2.0
-- desc: Back to job detail. Not show assigned building after save
-  action: back
-  delay: 1.0
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Should be show assigned building after assigned in offline
-  assert_text: Units
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

@@ -1,6 +1,5 @@
 id: SYNC-00045
-title: 'Resize Job: Hoàn tất Resize Job online → authoritative state về local → chuyển
-  Offline'
+title: 'Resize Job: Hoàn tất Resize Job online → authoritative state về local → chuyển Offline'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Resize Job
@@ -8,45 +7,29 @@ priority: P1
 flow_phase: O2F-05 Authoritative cached
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Job
-preconditions: Đăng nhập đúng account/branch; user có quyền Resize Job; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Job.
-test_data: Valid action
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm 
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00045_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Thực hiện action hoàn toàn khi Online.
+- desc: Giữ mạng online; không bắt đầu mutation khi Job resize path chưa được xác minh
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chờ backend xử lý xong và authoritative state sync về local.
-  action: back
-  delay: 1.0
-- desc: Refresh/reopen để xác nhận giá trị mới.
-  action: tap_selector
-  text: Refresh/reopen để xác nhận giá
-  delay: 1.0
-- desc: Tắt toàn bộ network.
-  action: tap_selector
-  text: Tắt toàn bộ network.
-  delay: 1.0
-- desc: Force close/reopen app khi vẫn Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Mở lại entity/list.
-  action: tap_selector
-  text: Mở lại entity/list.
-  delay: 1.0
+  delay: 1.5
+- desc: Đưa app về Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: 'Fail closed: không đoán edit entry/edge handle của Job'
+  action: macro
+  value: require_verified_job_resize_path
 expected:
-- desc: Latest authoritative state đã được persist local trước khi mất mạng.
-  assert_text: Calendar
-- desc: Sau restart Offline vẫn thấy đúng state mới.
-  assert_text: Calendar
-- desc: Không quay lại stale value cũ.
-  assert_text: Calendar
-- desc: Không cần remote API để đọc state đã cache.
-  assert_text: Calendar
+- desc: Không được PASS; giữ BLOCKED cho tới khi có đường resize Job đã được quan sát và xác nhận duration thay đổi.
+  action: assert_text
+  value: Job resize path verified
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Online→local cache durability
-notes: ''
+risk: BLOCKED — Job detail edit route and successful lower-edge resize have not been verified
+notes: 'Pixel 5: Job Details không expose pencil/Edit trong menu đã quan sát; thử kéo mép card trước đó không chứng minh duration
+  đổi. Cần xác nhận đúng UI path trước khi biến thành step executable.'

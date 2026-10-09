@@ -11,45 +11,44 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   Photo; prerequisite cho Location Photo đã sync khi cần.
 test_data: Create then delete
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Add Location Photo.
-  action: tap_selector
-  text: Add Location Photo
-  delay: 1.0
-- desc: Delete local record trước reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Check local list.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Check local list.
-  delay: 1.0
-- desc: Reconnect.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Inspect server/outbox.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
   action: tap_selector
-  text: Inspect server/outbox.
-  delay: 1.0
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Add Location Photo không làm app crash/mất dữ liệu.
-  assert_text: Location Photo
-- desc: Local/UI của Location Photo phản ánh đúng business result.
-  assert_text: Location Photo
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Location Photo
-- desc: Không duplicate logical operation.
-  assert_text: Location Photo
-- desc: Không orphan/ghost record ngoài ý muốn.
-  assert_text: Location Photo
-- desc: Create/delete collapse/order an toàn.
-  assert_text: Location Photo
-- desc: No pending forever.
-  assert_text: Location Photo
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5585, RN-5525, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
 

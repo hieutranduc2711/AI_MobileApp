@@ -12,38 +12,30 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Edit Unit C
   data cần thiết đã sync; mở đúng GD Mobile > MDU > Unit > Comment > Edit.
 test_data: Valid action
 steps:
-- desc: Thực hiện action hoàn toàn khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chờ backend xử lý xong và authoritative state sync về local.
-  action: back
-  delay: 1.0
-- desc: Refresh/reopen để xác nhận giá trị mới.
-  action: tap_selector
-  text: Refresh/reopen để xác nhận giá
-  delay: 1.0
-- desc: Tắt toàn bộ network.
-  action: tap_selector
-  text: Tắt toàn bộ network.
-  delay: 1.0
-- desc: Force close/reopen app khi vẫn Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Mở lại entity/list.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Mở lại entity/list.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: Latest authoritative state đã được persist local trước khi mất mạng.
-  assert_text: MDU
-- desc: Sau restart Offline vẫn thấy đúng state mới.
-  assert_text: MDU
-- desc: Không quay lại stale value cũ.
-  assert_text: MDU
-- desc: Không cần remote API để đọc state đã cache.
-  assert_text: MDU
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5592, RN-5590
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

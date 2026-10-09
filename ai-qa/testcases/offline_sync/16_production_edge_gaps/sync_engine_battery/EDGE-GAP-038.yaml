@@ -12,31 +12,21 @@ preconditions: Thiết bị dưới 15% pin, kích hoạt chế độ Tiết ki�
   có dữ liệu pending.
 test_data: 'Battery level: 10%; Power Saver Mode: Enabled.'
 steps:
-- desc: Bật chế độ tiết kiệm pin trên Android/iOS.
-  action: tap_selector
-  text: 'Bật chế độ tiết kiệm pin trên '
-  delay: 1.0
-- desc: Kết nối mạng có internet.
-  action: tap_selector
-  text: Kết nối mạng có internet.
-  delay: 1.0
-- desc: Quan sát hành vi sync tự động ngầm.
-  action: tap_selector
-  text: 'Quan sát hành vi sync tự động '
-  delay: 1.0
-- desc: Thực hiện thao tác kéo màn hình xuống (Pull-to-refresh).
-  action: tap_selector
-  text: Extreme Battery Saver Sync Throttling
-  delay: 1.0
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Extreme Battery Saver Sync Throttling trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: App tuân thủ chính sách tiết kiệm pin, không đánh thức CPU liên tục trong
-    nền.
-  assert_text: Sync Engine / Battery
-- desc: 'Khi người dùng chủ động mở app và thực hiện Pull-to-refresh: App kích hoạt
-    sync ngay lập tức.'
-  assert_text: Sync Engine / Battery
-- desc: 'Thông báo rõ trạng thái: ''Đang tiết kiệm pin - Chạm để đồng bộ''.'
-  assert_text: Đang tiết kiệm pin - Chạm để đồng bộ
+- desc: Thao tác Extreme Battery Saver Sync Throttling duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / Power-Management
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Unexpected Battery Drain

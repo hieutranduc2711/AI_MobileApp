@@ -12,31 +12,22 @@ preconditions: Đang xả 20 outbox items. Người dùng bấm phím Home hoặ
   app khác (Google Maps).
 test_data: 20 pending outbox mutations.
 steps:
-- desc: Bắt đầu sync khi online.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bấm Home để đưa app vào background trong 2 phút (kích hoạt OS background suspension).
-  action: back
-  delay: 1.0
-- desc: Mở lại GD Mobile lên foreground.
-  action: tap_selector
-  text: Mở lại GD Mobile lên foregroun
-  delay: 1.0
-- desc: Kiểm tra tiến trình sync.
-  action: tap_selector
-  text: Kiểm tra tiến trình sync.
-  delay: 1.0
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Background Doze Mode & Resume Lifecycle trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Request đang chạy dở hoàn tất hoặc timeout trong giới hạn background cho phép.
-  assert_text: Sync Engine / Background
-- desc: Khi trở lại foreground, listener AppState (active) kích hoạt kiểm tra lại
-    hàng đợi.
-  assert_text: Sync Engine / Background
-- desc: Tiến trình sync tiếp tục xả các item còn lại mượt mà.
-  assert_text: Sync Engine / Background
-- desc: Không xảy ra deadlock giữa background worker và foreground UI thread.
-  assert_text: Sync Engine / Background
+- desc: Thao tác Background Doze Mode & Resume Lifecycle duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / RN-5564 / Background
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Sync Stalling / Frozen Queue

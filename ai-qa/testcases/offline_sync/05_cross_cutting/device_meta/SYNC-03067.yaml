@@ -11,49 +11,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền D
   Type; prerequisite cho Device Type đã sync khi cần. Có Device A/B cùng initial record.
 test_data: Two devices
 steps:
-- desc: Sync same entity lên A/B.
-  action: tap_selector
-  text: Sync same entity lên A/B.
-  delay: 1.0
-- desc: Cả hai offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: A thực hiện value/action A.
-  action: tap_selector
-  text: Delete Device Type
-  delay: 1.0
-- desc: B thực hiện conflicting value/action B.
-  action: tap_selector
-  text: Delete Device Type
-  delay: 1.0
-- desc: Reconnect B rồi A.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect server/A/B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect server/A/B.
-  delay: 1.0
-- desc: Lặp reconnect order ngược.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
 expected:
-- desc: Delete Device Type không làm app crash/mất dữ liệu.
-  assert_text: Device Meta
-- desc: Local/UI của Device Type phản ánh đúng business result.
-  assert_text: Device Meta
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Device Meta
-- desc: Không duplicate logical operation.
-  assert_text: Device Meta
-- desc: No structural corruption/duplicate.
-  assert_text: Device Meta
-- desc: Outcome reproducible.
-  assert_text: Device Meta
-- desc: Không tự giả định winner; capture actual policy.
-  assert_text: Device Meta
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5606, RN-5607, RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5606
 

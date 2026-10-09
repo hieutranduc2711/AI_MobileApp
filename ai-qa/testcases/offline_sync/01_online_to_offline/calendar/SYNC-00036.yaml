@@ -1,6 +1,5 @@
 id: SYNC-00036
-title: 'Resize Custom Event: Load dữ liệu online → mất mạng → vẫn thực hiện Resize
-  Custom Event'
+title: 'Resize Custom Event: Load dữ liệu online → mất mạng → vẫn thực hiện Resize Custom Event'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Resize Custom Event
@@ -8,55 +7,69 @@ priority: P1
 flow_phase: O2F-01 Ready local cache
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Custom Event
-preconditions: Đăng nhập đúng account/branch; user có quyền Resize Custom Event; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Custom Event.
-test_data: Valid representative entity
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm 
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+- desc: Giữ mạng online để tạo fixture riêng cho testcase
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Ghi nhận giá trị hiện tại của entity.
-  action: tap_selector
-  text: 'Ghi nhận giá trị hiện tại của '
-  delay: 1.0
-- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+  delay: 1.5
+- desc: Đưa app về Calendar Home và xác nhận màn hình lịch
+  action: macro
+  value: ensure_calendar_home
+- desc: Tạo fixture bằng menu xuất hiện sau khi chọn một time range trên calendar
+  action: macro
+  value: calendar_create_item
+  args:
+    kind: custom_event
+    marker: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE
+    start_time: 1PM
+    day_offset: 1
+    duration_minutes: 30
+    verify_live_refresh: false
+- desc: Reload chỉ để nạp fixture trước thao tác đang test; không reload sau mutation
+  action: macro
+  value: restart_app_and_wait
+  args:
+    marker: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE
+- desc: Ngắt mạng sau khi fixture đã được nạp vào cache
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Không reload app.
-  action: tap_selector
-  text: Không reload app.
-  delay: 1.0
-- desc: Thực hiện Resize Custom Event.
-  action: tap_selector
-  text: Resize Custom Event
-  delay: 1.0
-- desc: Navigate ra màn hình khác rồi quay lại.
-  action: back
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra kết quả.
+  delay: 1.5
+- desc: Mở detail → Edit → Time Length; đổi duration thêm 5 phút, chưa Save form
+  action: macro
+  value: calendar_prepare_resize
+  args:
+    marker: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE
+    kind: custom_event
+    current_minutes: 45
+    duration_minutes: 50
+- desc: Save offline và assert live Calendar refresh
+  action: macro
+  value: calendar_commit_resize
+  args:
+    marker: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE
+    duration_minutes: 50
+    verify_live_refresh: true
+- desc: Khôi phục mạng sau assertion
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
-  assert_text: Calendar
-- desc: Resize Custom Event vẫn thực hiện được theo offline scope.
-  assert_text: Calendar
-- desc: Không cần manual Offline toggle.
-  assert_text: Calendar
-- desc: Kết quả được giữ local/pending, không rollback vì mất network.
-  assert_text: Calendar
-- desc: Không đọc nhầm data account/branch khác.
-  assert_text: Calendar
+- desc: Duration đổi từ 45 lên 50 phút, thời điểm bắt đầu không đổi.
+  action: assert_text
+  value: 50 minutes
+- desc: Calendar render duration mới ngay sau Save, không restart app.
+  action: assert_text
+  value: AIQA_SYNC-00036_{{DYNAMIC_NONCE}}_CE
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Transition/readiness
-notes: ''
+risk: Time Length edit / local cache / real-time render
+notes: 'Pixel 5 xác nhận edit detail có field duration mở sheet “Time Length”; wheel chọn được trực tiếp giá trị phút tăng
+  5 (45 → 50 cho Custom Event, 30 → 35 cho Time Off). Đây là route resize được xác minh và dùng cho testcase; không dùng tọa
+  độ mép card chưa đủ ổn định. Fixture app reload chỉ xảy ra trước mutation. Không reload sau Save vì Pixel 5 từng không refresh
+  card real-time.'

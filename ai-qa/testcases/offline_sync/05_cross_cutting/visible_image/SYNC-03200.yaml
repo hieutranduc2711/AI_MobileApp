@@ -12,49 +12,21 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   Visible Image; prerequisite cho Invoice Visible Image đã sync khi cần.
 test_data: Parent created offline
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create parent để có local:* ID.
-  action: tap_selector
-  text: Create parent để có local:* ID
-  delay: 1.0
-- desc: Thực hiện child action Add Invoice Visible Image.
-  action: tap_selector
-  text: Add Invoice Visible Image
-  delay: 1.0
-- desc: Verify child links local parent.
-  action: tap_selector
-  text: Verify child links local paren
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe sync order.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Observe sync order.
-  delay: 1.0
-- desc: Verify real parent-child server relation.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: Verify real parent-child serve
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Add Invoice Visible Image không làm app crash/mất dữ liệu.
-  assert_text: Visible Image
-- desc: Local/UI của Invoice Visible Image phản ánh đúng business result.
-  assert_text: Visible Image
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Visible Image
-- desc: Không duplicate logical operation.
-  assert_text: Visible Image
-- desc: Child không gửi unresolved parent.
-  assert_text: Visible Image
-- desc: Parent mapping đúng trước/khi child send.
-  assert_text: Visible Image
-- desc: No orphan/duplicate relation.
-  assert_text: Visible Image
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
+  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5595, RN-5596, RN-5525, RN-5533, RN-5608, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
 

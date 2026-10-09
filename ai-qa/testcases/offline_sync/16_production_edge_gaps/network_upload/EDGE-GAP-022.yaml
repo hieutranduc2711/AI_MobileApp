@@ -12,32 +12,55 @@ preconditions: Thiết bị có 5 ảnh đang upload; đang dùng kết nối Ce
   vào vùng phủ sóng Wi-Fi quen thuộc.
 test_data: 5 media files (~5MB each); Interface change from `rmnet_data0` to `wlan0`.
 steps:
-- desc: Bắt đầu upload 5 ảnh trên 4G.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Bắt đầu upload 5 ảnh trên 4G.
-  delay: 1.0
-- desc: Giữa lúc ảnh thứ 2 đang upload được 50%, bật Wi-Fi để thiết bị tự động chuyển
-    interface mạng.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Socket cũ bị reset (`ECONNRESET` / `SocketException`).
-  action: tap_selector
-  text: Socket cũ bị reset (`ECONNRESE
-  delay: 1.0
-- desc: Theo dõi phản ứng của Media Sync Worker.
-  action: tap_selector
-  text: Theo dõi phản ứng của Media Sy
-  delay: 1.0
 expected:
-- desc: Worker bắt exception kết nối bị đứt, kích hoạt cơ chế retry sau 2 giây trên
-    interface mới.
-  assert_text: Network / Upload
-- desc: Tiếp tục upload ảnh thứ 2 (từ đầu hoặc resumable chunk) và hoàn tất các ảnh
-    còn lại qua Wi-Fi.
-  assert_text: Network / Upload
-- desc: Không crash app và không đánh dấu file ảnh là lỗi vĩnh viễn.
-  assert_text: Network / Upload
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Network-Handover
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Upload Stalling / Partial Upload

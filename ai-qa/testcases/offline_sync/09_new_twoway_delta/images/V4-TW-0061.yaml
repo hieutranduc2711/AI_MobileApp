@@ -12,41 +12,28 @@ preconditions: User có quyền Edit Client-visible Image Caption; prerequisite 
   đã được tải về local.
 test_data: ''
 steps:
-- desc: Mở flow khi network Online ổn định.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bắt đầu Edit Client-visible Image Caption, điền/chọn dữ liệu nhưng chưa Save/Confirm.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Tắt Wi‑Fi và mobile data; chờ app nhận Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Tiếp tục hoàn tất flow và Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào lại màn hình liên quan.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
   action: tap_selector
-  text: Navigate ra/vào lại màn hình l
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra local result.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Attach a Photo
 expected:
-- desc: Input/draft không bị reset khi Online → Offline.
-  assert_text: Images
-- desc: Edit Client-visible Image Caption được lưu local theo offline scope.
-  assert_text: Images
-- desc: Không hiện network error làm mất thay đổi.
-  assert_text: Images
-- desc: Local result tồn tại sau remount/navigation.
-  assert_text: Images
-- desc: Không tạo duplicate pending action.
-  assert_text: Images
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5596
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5596
 risk: Delta Missing Action

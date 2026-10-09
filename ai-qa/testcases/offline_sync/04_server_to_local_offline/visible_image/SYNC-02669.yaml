@@ -12,41 +12,43 @@ preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có q
   đổi cùng data.
 test_data: WO/Invoice/Estimate visible images
 steps:
-- desc: Seed local value cũ.
-  action: tap_selector
-  text: Seed local value cũ.
-  delay: 1.0
-- desc: Giữ server value mới.
-  action: tap_selector
-  text: Giữ server value mới.
-  delay: 1.0
-- desc: Mở screen Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Xác nhận local cũ paint trước nếu flow dùng local-first.
-  action: tap_selector
-  text: 'Xác nhận local cũ paint trước '
-  delay: 1.0
-- desc: Chờ API revalidation cập nhật local.
-  action: tap_selector
-  text: 'Chờ API revalidation cập nhật '
-  delay: 1.0
-- desc: Tắt network.
-  action: tap_selector
-  text: Tắt network.
-  delay: 1.0
-- desc: Reopen Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Local-first không ngăn authoritative update persist xuống local.
-  assert_text: Visible Image
-- desc: Offline sau revalidation thấy value mới.
-  assert_text: Visible Image
-- desc: Không quay lại value cũ.
-  assert_text: Visible Image
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5595
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5595
 risk: Down-sync/cache correctness

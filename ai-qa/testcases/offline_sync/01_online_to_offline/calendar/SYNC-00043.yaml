@@ -7,46 +7,34 @@ priority: P0
 flow_phase: O2F-03 Drop in-flight
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Job
-preconditions: Đăng nhập đúng account/branch; user có quyền Resize Job; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Job.
-test_data: Valid action; proxy/network can cut immediately
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm 
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00043_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Resize Job và nhấn Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay sau khi request bắt đầu, cắt network trước khi client nhận kết quả.
-  action: tap_selector
-  text: 'Ngay sau khi request bắt đầu, '
-  delay: 1.0
-- desc: Giữ app foreground.
-  action: tap_selector
-  text: Giữ app foreground.
-  delay: 1.0
-- desc: Quan sát UI/local state/pending state.
-  action: tap_selector
-  text: Quan sát UI/local state/pendin
-  delay: 1.0
-- desc: Navigate ra/vào lại entity khi vẫn Offline.
+- desc: Giữ mạng online; không bắt đầu mutation khi Job resize path chưa được xác minh
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
+- desc: Đưa app về Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: 'Fail closed: không đoán edit entry/edge handle của Job'
+  action: macro
+  value: require_verified_job_resize_path
+- desc: Phase network fault cũng cần injector đồng bộ request lifecycle
+  action: macro
+  value: require_transport_fault_injection
+  args:
+    barrier: in_flight
 expected:
-- desc: App không được mất action chỉ vì không biết request đã tới server hay chưa.
-  assert_text: Calendar
-- desc: Không tạo duplicate local record/effect.
-  assert_text: Calendar
-- desc: State phải ở local optimistic/pending hoặc trạng thái an toàn tương đương.
-  assert_text: Calendar
-- desc: Không hiện fully synced khi chưa có xác nhận authoritative.
-  assert_text: Calendar
+- desc: Không được PASS; giữ BLOCKED cho tới khi có đường resize Job đã được quan sát và xác nhận duration thay đổi.
+  action: assert_text
+  value: Job resize path verified
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Unknown request outcome/idempotency
-notes: ''
+risk: BLOCKED — Job detail edit route and successful lower-edge resize have not been verified
+notes: 'Pixel 5: Job Details không expose pencil/Edit trong menu đã quan sát; thử kéo mép card trước đó không chứng minh duration
+  đổi. Cần xác nhận đúng UI path trước khi biến thành step executable.'

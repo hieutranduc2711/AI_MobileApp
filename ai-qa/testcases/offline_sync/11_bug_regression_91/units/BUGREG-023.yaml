@@ -11,25 +11,22 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to Job detail
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên
+  action: lock_screen
+  value: '3.0'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Go to Job detail
-  delay: 1.0
-- desc: Press on Unit menu
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Press on Unit menu
-  delay: 1.0
-- desc: Go to Assign Units or Manage Units screen
-  action: tap_selector
-  text: Go to Assign Units or Manage U
-  delay: 1.0
-- desc: Loading always show & block UI. Not show buidling list, inspite of has buildings
-  action: tap_selector
-  text: Loading always show & block UI
-  delay: 1.0
+  text: Device
 expected:
-- desc: Should be show building list & hide loading after loaded
-  assert_text: Units
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

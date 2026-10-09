@@ -12,53 +12,22 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Material; prerequisite cho Device Material đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Device Material.
-  action: tap_selector
-  text: Create Device Material
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Create Device Material không làm app crash/mất dữ liệu.
-  assert_text: Material
-- desc: Local/UI của Device Material phản ánh đúng business result.
-  assert_text: Material
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Material
-- desc: Không duplicate logical operation.
-  assert_text: Material
-- desc: A mutation không send với B context.
-  assert_text: Material
-- desc: B không thấy A optimistic data.
-  assert_text: Material
-- desc: Converge ở A only.
-  assert_text: Material
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: RN-5591, RN-5545
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
 

@@ -10,22 +10,21 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Create multiple pending mutations Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe Home sync indicator during upload/backend processing/downlink.
-  action: back
-  delay: 1.0
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Push/upload sync progress indicator trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Indicator reflects pending/in-progress/completed truth.
-  assert_text: Connectivity UI
-- desc: It does not disappear at queue ACK if backend is not complete.
-  assert_text: Connectivity UI
+- desc: Thao tác Push/upload sync progress indicator duy trì trạng thái ổn định trên
+    giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5558,RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5558
 

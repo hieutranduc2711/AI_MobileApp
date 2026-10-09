@@ -11,23 +11,22 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare material options/configs Online.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Compare API-backed online values with local PowerSync values.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Go Offline and add/edit material.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
+  action: tap_selector
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Material config/options match business meaning and identifiers.
-  assert_text: Material Schema
-- desc: Offline selection does not save mismatched material data.
-  assert_text: Material Schema
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: RN-5545,RN-5568
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5545
 

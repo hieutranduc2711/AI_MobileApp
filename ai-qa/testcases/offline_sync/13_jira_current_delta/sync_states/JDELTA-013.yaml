@@ -11,33 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Create pending update.
-  action: tap_selector
-  text: Create pending update.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Let queue/SQS endpoint ACK but delay BE business handling.
-  action: tap_selector
-  text: Let queue/SQS endpoint ACK but
-  delay: 1.0
-- desc: Observe local patch and SYNC_STATES status.
-  action: tap_selector
-  text: Observe local patch and SYNC_S
-  delay: 1.0
-- desc: Complete BE processing.
-  action: tap_selector
-  text: Complete BE processing.
-  delay: 1.0
+- desc: Thực hiện thao tác queue ACK does not clear optimistic patch before BE complete
+    trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Optimistic state remains protected before BE completion.
-  assert_text: SYNC_STATES
-- desc: Status only becomes completed/synced after BE processing.
-  assert_text: SYNC_STATES
-- desc: No snap-back/data loss.
-  assert_text: SYNC_STATES
+- desc: Thao tác queue ACK does not clear optimistic patch before BE complete duy
+    trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477,RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
 

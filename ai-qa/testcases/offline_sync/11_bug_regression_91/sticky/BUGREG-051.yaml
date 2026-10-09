@@ -11,33 +11,22 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: turn off wifi
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Go to job detail
-  action: tap_selector
-  text: Go to job detail
-  delay: 1.0
-- desc: Add new material
-  action: tap_selector
-  text: Add new material
-  delay: 1.0
-- desc: Sticky a material
-  action: tap_selector
-  text: Sticky a material
-  delay: 1.0
-- desc: Turn on wifi
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Don't see new item update sticky
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Don't see new item update stic
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
+  action: tap_selector
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Must display item updated sticky. ( Web already updated )
-  assert_text: Sticky
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

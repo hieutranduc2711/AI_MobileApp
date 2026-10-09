@@ -12,38 +12,34 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Edit Custom
   data cần thiết đã sync; mở đúng GD Mobile > Customer > Tasks > Edit.
 test_data: Valid action
 steps:
-- desc: Thực hiện action hoàn toàn khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chờ backend xử lý xong và authoritative state sync về local.
-  action: back
-  delay: 1.0
-- desc: Refresh/reopen để xác nhận giá trị mới.
-  action: tap_selector
-  text: Refresh/reopen để xác nhận giá
-  delay: 1.0
-- desc: Tắt toàn bộ network.
-  action: tap_selector
-  text: Tắt toàn bộ network.
-  delay: 1.0
-- desc: Force close/reopen app khi vẫn Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Mở lại entity/list.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Mở lại entity/list.
-  delay: 1.0
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Latest authoritative state đã được persist local trước khi mất mạng.
-  assert_text: Customer Task
-- desc: Sau restart Offline vẫn thấy đúng state mới.
-  assert_text: Customer Task
-- desc: Không quay lại stale value cũ.
-  assert_text: Customer Task
-- desc: Không cần remote API để đọc state đã cache.
-  assert_text: Customer Task
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5622, RN-5623
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5622
 

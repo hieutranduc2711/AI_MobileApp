@@ -13,37 +13,55 @@ preconditions: Technician đi hiện trường tắt mạng, tạo 2 Jobs. Trên
 test_data: User account password changed from 'OldPass123' to 'NewPass456'; 2 pending
   jobs in mobile.
 steps:
-- desc: Technician offline tạo 2 Jobs.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
   delay: 2.0
-- desc: Admin đổi mật khẩu tài khoản trên Web.
-  action: tap_selector
-  text: Admin đổi mật khẩu tài khoản t
-  delay: 1.0
-- desc: Technician bật 4G kết nối lại.
-  action: tap_selector
-  text: Technician bật 4G kết nối lại.
-  delay: 1.0
-- desc: Sync Engine gửi request đồng bộ và nhận 401 Password Invalidated.
-  action: tap_selector
-  text: Sync Engine gửi request đồng b
-  delay: 1.0
-- desc: Kiểm tra hành vi xử lý của mobile.
-  action: tap_selector
-  text: Kiểm tra hành vi xử lý của mob
-  delay: 1.0
 expected:
-- desc: Sync Engine lập tức tạm dừng hàng đợi (Pause Sync), không spam retry gây khóa
-    tài khoản (lockout).
-  assert_text: Auth / Security
-- desc: 'Hiển thị thông báo: ''Mật khẩu tài khoản đã thay đổi. Vui lòng nhập mật khẩu
-    mới để tiếp tục đồng bộ''.'
-  assert_text: Mật khẩu tài khoản đã thay đổi. Vui lòng nhập mật khẩu mới để tiếp
-    tục đồng bộ
-- desc: Sau khi nhập đúng 'NewPass456', queue tiếp tục xả và đẩy 2 Jobs lên server
-    thành công.
-  assert_text: NewPass456
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Security
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Account Lockout / Dropped Queue

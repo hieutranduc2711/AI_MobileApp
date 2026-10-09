@@ -20,6 +20,7 @@ if AI_QA_ROOT not in sys.path:
 from adapters.adb import ADBClient
 from adapters.artemis import ArtemisAdapter
 from adapters.bug_tracker import BugTrackerAdapter
+from core.canonical_macros import execute_canonical_macro, CanonicalMacros
 from evaluators.crash_detector import CrashDetector
 from evaluators.hermes_judge import HermesJudge
 from orchestrator.loader import TestLoader
@@ -198,6 +199,7 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
     steps = tc_data.get("steps", [])
     t0 = time.perf_counter()
     executed_steps_log = []
+    abort_after_step_failure = False
 
     # TH1: Test case có sẵn các bước thao tác (Dynamic Selector Execution)
     if steps:
@@ -206,6 +208,19 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
             act = s.get("action")
             val = s.get("value")
             delay = s.get("delay", 0.5)
+
+            # A failed prerequisite/action must not cascade into later mutations.
+            # Allow only explicit network restoration as a safety cleanup.
+            if abort_after_step_failure and not (act == "set_network" and str(val).lower() == "true"):
+                print(f"  • {desc}... [SKIPPED_AFTER_FAILURE]")
+                executed_steps_log.append({
+                    "step": idx_step + 1,
+                    "desc": desc,
+                    "action": act,
+                    "duration_sec": 0,
+                    "status": "SKIPPED_AFTER_FAILURE"
+                })
+                continue
 
             print(f"  • {desc}...", end="", flush=True)
             step_t0 = time.perf_counter()
@@ -243,6 +258,34 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
                 adb.swipe(coords[0], coords[1], coords[2], coords[3])
             elif act == "back":
                 adb.back()
+            elif act == "macro":
+                macro_name = val or s.get("name") or s.get("macro")
+                args = s.get("args", {})
+                try:
+                    execute_canonical_macro(adb, macro_name, **args)
+                    print(f" [Macro: {macro_name} OK]", end="")
+                except Exception as e:
+                    print(f" ⚠️ [Macro Error: {e}]", end="")
+                    step_status = "MACRO_ERROR"
+            elif act == "background_app":
+                dur = float(val) if val else 3.0
+                adb.background_app(duration_sec=dur)
+                print(f" [Background: {dur}s OK]", end="")
+            elif act in ("lock_screen", "lock_device"):
+                dur = float(val) if val else 3.0
+                adb.lock_screen(duration_sec=dur)
+                print(f" [Lock Screen: {dur}s OK]", end="")
+            elif act == "weak_network":
+                flaps = int(val) if val else 3
+                adb.simulate_weak_network(flaps=flaps)
+                print(f" [Weak Network Flapping: {flaps}x OK]", end="")
+            elif act == "assert_offline":
+                cm = CanonicalMacros(adb)
+                if cm.verify_offline_indicator():
+                    print(" [Assert Offline: OK]", end="")
+                else:
+                    print(" ⚠️ [Assert Offline: Banner not detected]", end="")
+                    step_status = "OFFLINE_INDICATOR_NOT_FOUND"
             elif act == "assert_text":
                 if not adb.has_text(val):
                     print(f" ⚠️ [Hint: Text '{val}' not found]", end="")
@@ -260,6 +303,8 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
                 "status": step_status
             })
             print(f" [{step_status}]")
+            if step_status in {"MACRO_ERROR", "ELEMENT_NOT_FOUND", "TEXT_NOT_FOUND"}:
+                abort_after_step_failure = True
 
     # TH2: Test case định nghĩa bằng ARTEMIS Goal
     elif tc_goal:
@@ -305,14 +350,18 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
     runner_hint = "LIKELY_PASS"
     expected_list = tc_data.get("expected", [])
     for exp in expected_list:
-        if isinstance(exp, dict) and "assert_text" in exp:
-            req_text = exp["assert_text"]
-            if not adb.has_text(req_text, tree=ui_tree):
-                runner_hint = f"HEURISTIC_WARNING: Missing expected text '{req_text}'"
-                break
-        elif isinstance(exp, dict) and "assert_no_text" in exp:
-            forbidden_text = exp["assert_no_text"]
-            if adb.has_text(forbidden_text, tree=ui_tree):
+        if isinstance(exp, dict):
+            req_text = exp.get("assert_text")
+            if req_text is None and exp.get("action") == "assert_text":
+                req_text = exp.get("value")
+            if req_text is not None:
+                if not adb.has_text(req_text, tree=ui_tree):
+                    runner_hint = f"HEURISTIC_WARNING: Missing expected text '{req_text}'"
+                    break
+            forbidden_text = exp.get("assert_no_text")
+            if forbidden_text is None and exp.get("action") == "assert_no_text":
+                forbidden_text = exp.get("value")
+            if forbidden_text is not None and adb.has_text(forbidden_text, tree=ui_tree):
                 runner_hint = f"HEURISTIC_WARNING: Forbidden text '{forbidden_text}' still visible"
                 break
 
@@ -321,6 +370,12 @@ def run_testcase(tc_data, adb, artemis_adapter, crash_detector, bug_tracker, her
 
     if crash_info.get("has_crash"):
         runner_hint = "HEURISTIC_FAIL: Crash detected in Logcat"
+    elif any(step.get("status") in {"MACRO_ERROR", "ELEMENT_NOT_FOUND", "TEXT_NOT_FOUND"} for step in executed_steps_log):
+        failed_step = next(step for step in executed_steps_log if step.get("status") in {"MACRO_ERROR", "ELEMENT_NOT_FOUND", "TEXT_NOT_FOUND"})
+        runner_hint = (
+            f"HEURISTIC_FAIL: Step {failed_step.get('step')} ({failed_step.get('action')}) "
+            f"returned {failed_step.get('status')}"
+        )
 
     # 5. XUẤT EVIDENCE BUNDLE CHO HERMES
     ev_json, ev_prompt = generate_hermes_evidence_bundle(

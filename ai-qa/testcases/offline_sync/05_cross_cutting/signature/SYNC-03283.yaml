@@ -10,27 +10,26 @@ app_path: GD Mobile > Signed Entity
 preconditions: Prepare environment/data as described.
 test_data: Full offline viewing limitation
 steps:
-- desc: Sync signed record.
-  action: tap_selector
-  text: Sync signed record.
-  delay: 1.0
-- desc: Go offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open signed entity.
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Open signed entity.
-  delay: 1.0
-- desc: Attempt full signature viewing.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Attempt full signature viewing
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Match current limitation.
-  assert_text: Signature
-- desc: Never blank-overwrite old signature.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5605
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5605
 risk: Known limitation

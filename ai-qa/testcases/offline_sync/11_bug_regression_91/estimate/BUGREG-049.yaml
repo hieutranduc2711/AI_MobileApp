@@ -11,49 +11,34 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to job detail
-  action: tap_selector
-  text: Go to job detail
-  delay: 1.0
-- desc: Add new estimate
-  action: tap_selector
-  text: Add new estimate
-  delay: 1.0
-- desc: Select any estimate template package
-  action: tap_selector
-  text: Select any estimate template p
-  delay: 1.0
-- desc: Add terms for estimate with select a terms template
-  action: tap_selector
-  text: Add terms for estimate with se
-  delay: 1.0
-- desc: Add note visible for estimate
-  action: tap_selector
-  text: Add note visible for estimate
-  delay: 1.0
-- desc: Save estimate & back to online
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Estimate in job detail not update number
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Estimate in job detail not upd
-  delay: 1.0
-- desc: Go to desktop app. Estimate has added with terms & note visible
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Go to desktop app. Estimate ha
-  delay: 1.0
-- desc: Edit estimate & Remove Estimate
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
   action: tap_selector
-  text: Edit estimate & Remove Estimat
-  delay: 1.0
-- desc: Show error "Estimate delete Failed..."
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
   action: tap_selector
-  text: Estimate delete Failed...
-  delay: 1.0
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Can edit/delete estimate in online when back from offline
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

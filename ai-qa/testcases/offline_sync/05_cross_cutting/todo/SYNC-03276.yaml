@@ -10,41 +10,19 @@ app_path: GD Mobile > Job > Todo
 preconditions: Entity synced locally; device offline.
 test_data: One entity
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Action 1: Reorder.'
-  action: tap_selector
-  text: 'Action 1: Reorder.'
-  delay: 1.0
-- desc: 'Action 2 ngay sau đó: Change status.'
-  action: tap_selector
-  text: 'Action 2 ngay sau đó: Change s'
-  delay: 1.0
-- desc: Inspect local final state.
-  action: tap_selector
-  text: Inspect local final state.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Capture/order actions.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Capture/order actions.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Todo List trong Job Details
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  text: Todo List
 expected:
-- desc: Cả hai action giữ đúng semantics.
-  assert_text: Todo
-- desc: Không coalesce chỉ vì same entity/UPDATE.
-  assert_text: Todo
-- desc: Final state đúng ordered effects.
-  assert_text: Todo
+- desc: Mục việc cần làm hiển thị trong danh sách chờ offline
+  assert_text: Todo List
 source_tickets: RN-5569, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
 

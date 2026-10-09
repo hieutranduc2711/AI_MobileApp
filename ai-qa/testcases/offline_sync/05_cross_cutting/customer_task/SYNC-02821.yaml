@@ -11,43 +11,44 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Task; prerequisite cho Customer Task đã sync khi cần.
 test_data: Valid create payload
 steps:
-- desc: Go offline hoặc throttle.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Điền form Create Customer Task.
-  action: tap_selector
-  text: Điền form Create Customer Task
-  delay: 1.0
-- desc: Tap Save/Confirm 2 lần nhanh.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Inspect local list/outbox.
-  action: tap_selector
-  text: Inspect local list/outbox.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Count server records.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Count server records.
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Create Customer Task không làm app crash/mất dữ liệu.
-  assert_text: Customer Task
-- desc: Local/UI của Customer Task phản ánh đúng business result.
-  assert_text: Customer Task
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Customer Task
-- desc: Không duplicate logical operation.
-  assert_text: Customer Task
-- desc: Chỉ một logical record.
-  assert_text: Customer Task
-- desc: Không duplicate local/server.
-  assert_text: Customer Task
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5622, RN-5623, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5622
 

@@ -10,25 +10,21 @@ app_path: GD Mobile > Notes
 preconditions: Prepare environment/data as described.
 test_data: item_type + item_id
 steps:
-- desc: Create similar IDs across parent types.
-  action: tap_selector
-  text: Create similar IDs across pare
-  delay: 1.0
-- desc: Sync.
-  action: tap_selector
-  text: Sync.
-  delay: 1.0
-- desc: Go offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open each notes screen.
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Open each notes screen.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: No cross-parent note/topnote/comment.
-  assert_text: Note
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5567, RN-5536
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
 

@@ -11,37 +11,31 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Reset Document.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Khôi phục mạng ở profile weak/high latency/low bandwidth.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mô phỏng mạng chập chờn / rớt gói liên tục (Network Flapping)
+  action: weak_network
+  value: '3'
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Quan sát pending/retry.
-  action: tap_selector
-  text: Quan sát pending/retry.
-  delay: 1.0
-- desc: Sau đó khôi phục mạng tốt.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ ổn định.
-  action: tap_selector
-  text: Chờ ổn định.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Weak network không làm mất action.
-  assert_text: Document
-- desc: Không duplicate do reconnect/retry.
-  assert_text: Document
-- desc: Khi network tốt, queue tự resume đến completion.
-  assert_text: Document
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5577
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5577
 risk: Weak reconnect

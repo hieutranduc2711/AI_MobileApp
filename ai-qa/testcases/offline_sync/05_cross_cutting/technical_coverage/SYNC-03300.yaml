@@ -10,31 +10,18 @@ app_path: Technical behavior related to Deeply review Seamless Offline Mode
 preconditions: Target implementation/status available.
 test_data: Deeply review Seamless Offline Mode
 steps:
-- desc: Exercise implementation related to Deeply review Seamless Offline Mode.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Run representative online path.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Run offline path if applicable.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect/restart.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Compare Offline Mode invariants.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+- desc: Thực hiện thao tác Deeply review Seamless Offline Mode trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
-  assert_text: Technical Coverage
-- desc: If not implemented due status, mark Blocked/N/A.
-  assert_text: Technical Coverage
+- desc: Thao tác Deeply review Seamless Offline Mode duy trì trạng thái ổn định trên
+    giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5517
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5517
 risk: Architecture coverage

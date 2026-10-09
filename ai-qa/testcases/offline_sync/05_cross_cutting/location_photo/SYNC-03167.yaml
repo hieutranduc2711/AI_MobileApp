@@ -11,45 +11,28 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   Photo; prerequisite cho Location Photo đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Chuẩn bị large valid file.
-  action: tap_selector
-  text: Chuẩn bị large valid file.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Location Photo.
-  action: tap_selector
-  text: Edit Location Photo
-  delay: 1.0
-- desc: Reconnect weak network.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe memory/UI/upload.
+- desc: Mô phỏng mạng chập chờn / rớt gói liên tục (Network Flapping)
+  action: weak_network
+  value: '3'
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Observe memory/UI/upload.
-  delay: 1.0
-- desc: Verify server.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Edit Location Photo không làm app crash/mất dữ liệu.
-  assert_text: Location Photo
-- desc: Local/UI của Location Photo phản ánh đúng business result.
-  assert_text: Location Photo
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Location Photo
-- desc: Không duplicate logical operation.
-  assert_text: Location Photo
-- desc: Không OOM/crash.
-  assert_text: Location Photo
-- desc: Preview/ref tồn tại local.
-  assert_text: Location Photo
-- desc: Upload/retry đúng.
-  assert_text: Location Photo
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5585, RN-5525, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
 

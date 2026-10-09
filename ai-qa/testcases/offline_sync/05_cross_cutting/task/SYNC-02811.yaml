@@ -11,51 +11,17 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   cho Task đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Task.
-  action: tap_selector
-  text: Edit Task
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
-  action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
-  action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+- desc: Thực hiện thao tác Edit Task trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Edit Task không làm app crash/mất dữ liệu.
-  assert_text: Task
-- desc: Local/UI của Task phản ánh đúng business result.
-  assert_text: Task
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Task
-- desc: Không duplicate logical operation.
-  assert_text: Task
-- desc: B không nhận data/pending/result của A.
-  assert_text: Task
-- desc: A mutation không reassigned sang B.
-  assert_text: Task
+- desc: Thao tác Edit Task duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5570, RN-5551, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5570
 

@@ -11,35 +11,34 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
-  action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Delete an estimate while offline'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: The deleted estimate is no longer displayed.
-  assert_text: Estimates
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Estimates
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Estimates
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

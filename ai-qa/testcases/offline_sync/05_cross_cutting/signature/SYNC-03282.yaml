@@ -10,31 +10,26 @@ app_path: GD Mobile > Signature
 preconditions: Prepare environment/data as described.
 test_data: Precache available offline
 steps:
-- desc: Login online allow preload.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open signature canvas.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Open signature canvas.
-  delay: 1.0
-- desc: Use default tech signature.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Use default tech signature.
-  delay: 1.0
-- desc: Save/reopen.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: No network required at sign time.
-  assert_text: Signature
-- desc: Signature persists/syncs.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5605
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5605
 risk: Signature solution

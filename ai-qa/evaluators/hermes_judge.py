@@ -7,8 +7,9 @@ import re
 AI_QA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 class HermesJudge:
-    def __init__(self, executable="hermes.exe"):
+    def __init__(self, executable="hermes.exe", session_id="20261007_371042_offmod"):
         self.executable = executable
+        self.session_id = session_id
 
     def evaluate(self, tc_id, prompt_md_path, timeout_sec=120):
         """
@@ -28,10 +29,14 @@ class HermesJudge:
 
         strict_prompt = prompt_content + "\n\nQUAN TRỌNG: Hãy trả về CHỈ DUY NHẤT một khối JSON hợp lệ theo đúng schema trên, không kèm lời mở đầu hay kết luận ngoài JSON."
 
-        print(f"  🤖 Đang chuyển giao hồ sơ sang Agent Hermes để thẩm định độc lập...")
+        print(f"  🤖 Đang chuyển giao hồ sơ sang Agent Hermes (Session: {self.session_id}) để thẩm định độc lập...")
         try:
+            cmd = [self.executable]
+            if self.session_id:
+                cmd.extend(["-r", self.session_id])
+            cmd.extend(["-z", strict_prompt])
             res = subprocess.run(
-                [self.executable, "-z", strict_prompt],
+                cmd,
                 capture_output=True,
                 text=True,
                 encoding="utf-8",

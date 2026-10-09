@@ -11,28 +11,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Edit invoice
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Edit invoice
-  delay: 1.0
-- desc: Change repeat data of invoice
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: Change repeat data of invoice
-  delay: 1.0
-- desc: Save invoice
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Back to job detail
-  action: back
-  delay: 1.0
-- desc: Invoice show incorrect repeat value changed
-  action: tap_selector
-  text: 'Invoice show incorrect repeat '
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Should be show correct repeat value after edited
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

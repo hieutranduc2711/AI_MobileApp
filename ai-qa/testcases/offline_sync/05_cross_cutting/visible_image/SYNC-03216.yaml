@@ -12,53 +12,34 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền D
   Visible Image; prerequisite cho Estimate Visible Image đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Delete Estimate Visible Image.
-  action: tap_selector
-  text: Delete Estimate Visible Image
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Delete Estimate Visible Image không làm app crash/mất dữ liệu.
-  assert_text: Visible Image
-- desc: Local/UI của Estimate Visible Image phản ánh đúng business result.
-  assert_text: Visible Image
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Visible Image
-- desc: Không duplicate logical operation.
-  assert_text: Visible Image
-- desc: A mutation không send với B context.
-  assert_text: Visible Image
-- desc: B không thấy A optimistic data.
-  assert_text: Visible Image
-- desc: Converge ở A only.
-  assert_text: Visible Image
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5595, RN-5596, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
 

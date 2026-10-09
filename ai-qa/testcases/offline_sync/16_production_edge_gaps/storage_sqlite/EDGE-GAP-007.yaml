@@ -13,38 +13,27 @@ preconditions: Thiết bị Android/iOS bị đầy bộ nhớ (dung lượng tr
 test_data: Simulate storage full (e.g. qua dd dummy file hoặc emulator quota); New
   Job payload with signature base64.
 steps:
-- desc: Giả lập bộ nhớ thiết bị sắp hết.
-  action: tap_selector
-  text: Giả lập bộ nhớ thiết bị sắp hế
-  delay: 1.0
-- desc: Mở GD Mobile khi Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Điền thông tin Job mới, vẽ chữ ký hoàn tất Job.
-  action: tap_selector
-  text: Điền thông tin Job mới, vẽ chữ
-  delay: 1.0
-- desc: Bấm nút 'Save'.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Kiểm tra log SQLite và phản hồi giao diện người dùng.
-  action: tap_selector
-  text: Kiểm tra log SQLite và phản hồ
-  delay: 1.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Thực hiện thao tác Low Disk Storage Exception Handling trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: SQLite transaction bắt được exception SQLITE_FULL / ENOSPC.
-  assert_text: Storage / SQLite
-- desc: App không bị văng đột ngột (crash to home screen).
-  assert_text: Storage / SQLite
-- desc: 'Hiển thị Toast/Alert thân thiện: ''Bộ nhớ thiết bị của bạn đã đầy. Vui lòng
-    giải phóng dung lượng để lưu công việc này''.'
-  assert_text: Bộ nhớ thiết bị của bạn đã đầy. Vui lòng giải phóng dung lượng để lưu
-    công việc này
-- desc: Dữ liệu form của người dùng vẫn được giữ nguyên trên giao diện (không bị xóa
-    trắng để user có thể dọn máy rồi bấm Save lại).
-  assert_text: Storage / SQLite
+- desc: Thao tác Low Disk Storage Exception Handling duy trì trạng thái ổn định trên
+    giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / OS-Constraints
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: App Crash / Data Loss

@@ -10,29 +10,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline add multiple images consecutively.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Edit one caption and remove one pending image.
-  action: tap_selector
-  text: Edit one caption and remove on
-  delay: 1.0
-- desc: Reopen screen Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
 expected:
-- desc: All remaining images/captions map correctly.
-  assert_text: Visible Images
-- desc: Removed item does not return.
-  assert_text: Visible Images
-- desc: No duplicate ordering issues.
-  assert_text: Visible Images
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5596,RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5596
 

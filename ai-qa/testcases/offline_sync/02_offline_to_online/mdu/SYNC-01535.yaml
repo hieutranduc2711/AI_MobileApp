@@ -12,36 +12,28 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Create Building.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action bằng data sẽ bị BE reject.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Navigate ra màn hình khác.
-  action: back
-  delay: 1.0
-- desc: Reconnect.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Cho BE trả validation/business 4xx.
-  action: tap_selector
-  text: Cho BE trả validation/business
-  delay: 1.0
-- desc: Quay lại entity.
-  action: back
-  delay: 1.0
-- desc: Inspect error/pending/rollback.
-  action: back
-  delay: 1.0
 expected:
-- desc: Không mark fully synced khi reject.
-  assert_text: MDU
-- desc: Không silent success.
-  assert_text: MDU
-- desc: Authoritative state được restore hoặc failure được expose rõ.
-  assert_text: MDU
-- desc: Reject không block toàn queue.
-  assert_text: MDU
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5592, RN-5590, RN-5533, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

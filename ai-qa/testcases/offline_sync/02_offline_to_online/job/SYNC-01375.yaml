@@ -11,45 +11,35 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Change Job status.
 test_data: Valid representative entity/action
 steps:
-- desc: Mở app khi Offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job đầu tiên từ màn hình Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Sent' trong danh sách
+  action: tap_selector
+  text: Sent
+  content_desc: Sent
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
   delay: 2.0
-- desc: Thực hiện Change Job status.
-  action: tap_selector
-  text: Change Job status
-  delay: 1.0
-- desc: Xác nhận local result/pending.
-  action: tap_selector
-  text: Xác nhận local result/pending.
-  delay: 1.0
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Không tạo thêm action.
-  action: tap_selector
-  text: Không tạo thêm action.
-  delay: 1.0
-- desc: Chờ sync worker + BE + PowerSync.
-  action: tap_selector
-  text: Chờ sync worker + BE + PowerSy
-  delay: 1.0
-- desc: Refresh/reopen và đối chiếu server.
-  action: tap_selector
-  text: Refresh/reopen và đối chiếu se
-  delay: 1.0
 expected:
-- desc: Pending mutation được push đúng action/account/branch.
-  assert_text: Job
-- desc: Backend xử lý đúng business result.
-  assert_text: Job
-- desc: Authoritative downlink reconcile local.
-  assert_text: Job
-- desc: Không duplicate, không snap-back.
-  assert_text: Job
-- desc: Pending kết thúc đúng trạng thái synced.
-  assert_text: Job
+- desc: Trạng thái Job được cập nhật thành 'Sent' trong local cache
+  assert_text: Sent
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5571, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5571
 

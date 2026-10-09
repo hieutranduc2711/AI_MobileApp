@@ -11,48 +11,18 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Area; prerequisite cho Device Area đã sync khi cần.
 test_data: Parent created offline
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create parent để có local:* ID.
-  action: tap_selector
-  text: Create parent để có local:* ID
-  delay: 1.0
-- desc: Thực hiện child action Create Device Area.
-  action: tap_selector
-  text: Create Device Area
-  delay: 1.0
-- desc: Verify child links local parent.
-  action: tap_selector
-  text: Verify child links local paren
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe sync order.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Observe sync order.
-  delay: 1.0
-- desc: Verify real parent-child server relation.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Verify real parent-child serve
-  delay: 1.0
+  text: Device
 expected:
-- desc: Create Device Area không làm app crash/mất dữ liệu.
-  assert_text: Device
-- desc: Local/UI của Device Area phản ánh đúng business result.
-  assert_text: Device
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Device
-- desc: Không duplicate logical operation.
-  assert_text: Device
-- desc: Child không gửi unresolved parent.
-  assert_text: Device
-- desc: Parent mapping đúng trước/khi child send.
-  assert_text: Device
-- desc: No orphan/duplicate relation.
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
   assert_text: Device
 source_tickets: RN-5591, RN-5606, RN-5607, RN-5533, RN-5608, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591

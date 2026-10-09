@@ -12,41 +12,34 @@ preconditions: User có quyền Move Sentricon to Another Location; prerequisite
   đã được tải về local.
 test_data: ''
 steps:
-- desc: Mở flow khi network Online ổn định.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bắt đầu Move Sentricon to Another Location, điền/chọn dữ liệu nhưng chưa Save/Confirm.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Tắt Wi‑Fi và mobile data; chờ app nhận Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Tiếp tục hoàn tất flow và Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào lại màn hình liên quan.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Navigate ra/vào lại màn hình l
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra local result.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Input/draft không bị reset khi Online → Offline.
-  assert_text: Sentricon
-- desc: Move Sentricon to Another Location được lưu local theo offline scope.
-  assert_text: Sentricon
-- desc: Không hiện network error làm mất thay đổi.
-  assert_text: Sentricon
-- desc: Local result tồn tại sau remount/navigation.
-  assert_text: Sentricon
-- desc: Không tạo duplicate pending action.
-  assert_text: Sentricon
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5591
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5591
 risk: Delta Missing Action

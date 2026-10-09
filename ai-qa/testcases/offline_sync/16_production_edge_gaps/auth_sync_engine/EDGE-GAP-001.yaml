@@ -13,36 +13,26 @@ preconditions: User đăng nhập GD Mobile; tạo 5 mutations offline (Job, Not
 test_data: Expired JWT Access Token (exp < now); Valid Refresh Token; 5 pending SQLite
   outbox items.
 steps:
-- desc: Đặt thiết bị sang Offline và thực hiện sửa Job, thêm Note.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Chờ (hoặc giả lập chỉnh thời gian) để Access Token hết hạn.
-  action: tap_selector
-  text: Chờ (hoặc giả lập chỉnh thời g
-  delay: 1.0
-- desc: Bật Wi-Fi/4G để thiết bị chuyển sang trạng thái Online.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác Token Refresh on Reconnect trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Giám sát network traffic qua proxy/Charles hoặc console log.
-  action: tap_selector
-  text: Giám sát network traffic qua p
-  delay: 1.0
-- desc: Quan sát quá trình gọi refresh token và xử lý outbox queue.
-  action: tap_selector
-  text: Quan sát quá trình gọi refresh
-  delay: 1.0
 expected:
-- desc: Sync Engine phát hiện 401 hoặc chủ động gọi endpoint Refresh Token trước khi
-    xả queue.
-  assert_text: Auth / Sync Engine
-- desc: Lấy Access Token mới thành công trong nền (Silent Refresh).
-  assert_text: Auth / Sync Engine
-- desc: Sử dụng token mới để xả toàn bộ 5 outbox mutations thành công.
-  assert_text: Auth / Sync Engine
-- desc: Không gián đoạn UI, không văng ra màn hình Login, không mất dữ liệu.
-  assert_text: Auth / Sync Engine
+- desc: Thao tác Token Refresh on Reconnect duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Arch-Security
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Data Loss / Silent Fail

@@ -13,48 +13,29 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to job detail & edit exist invoice
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: 'Go to job detail & edit exist '
-  delay: 1.0
-- desc: Add Client & Tech Signature & save invoice
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Back to job detail
-  action: back
-  delay: 1.0
-- desc: Open invoice menu & show correct checked state of Tech a Signature
-  action: tap_selector
-  text: Open invoice menu & show corre
-  delay: 1.0
-- desc: Press on Edit Invoice. Client & tech signature empty.
-  action: tap_selector
-  text: 'Press on Edit Invoice. Client '
-  delay: 1.0
-- desc: Back to Home calendar
-  action: back
-  delay: 1.0
-- desc: Go to job detail & open Invoice menu once again
-  action: tap_selector
-  text: Go to job detail & open Invoic
-  delay: 1.0
-- desc: Show incorrect checked state of Tech a Signature
-  action: tap_selector
-  text: Show incorrect checked state o
-  delay: 1.0
-- desc: Press to Edit invoice on menu
-  action: tap_selector
-  text: Press to Edit invoice on menu
-  delay: 1.0
-- desc: Invoice show empty Client & Tech signature
-  action: tap_selector
-  text: Invoice show empty Client & Te
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Customer Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: customer
 expected:
-- desc: Should be show Client & Tech singature when edit Invoice in offline & Show
-    correct checked state of Tech a Signature
-  assert_text: Invoice
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

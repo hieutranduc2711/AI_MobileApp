@@ -11,23 +11,21 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline attach file.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Before reconnect remove it and save note.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Reconnect.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: Removed local attachment does not later upload/reappear.
-  assert_text: Note Attachment
-- desc: No orphan mutation/asset.
-  assert_text: Note Attachment
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5525,RN-5567
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5525
 

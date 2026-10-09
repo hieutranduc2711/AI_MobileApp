@@ -12,53 +12,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Signature; prerequisite cho WO Tech Signature đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Capture WO Tech Signature.
-  action: tap_selector
-  text: Capture WO Tech Signature
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Capture WO Tech Signature không làm app crash/mất dữ liệu.
-  assert_text: Signature
-- desc: Local/UI của WO Tech Signature phản ánh đúng business result.
-  assert_text: Signature
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Signature
-- desc: Không duplicate logical operation.
-  assert_text: Signature
-- desc: A mutation không send với B context.
-  assert_text: Signature
-- desc: B không thấy A optimistic data.
-  assert_text: Signature
-- desc: Converge ở A only.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5605, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

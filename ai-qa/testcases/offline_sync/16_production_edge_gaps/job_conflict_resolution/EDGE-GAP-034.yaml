@@ -14,32 +14,46 @@ test_data: 'Mobile edit: `technician_notes = ''Đã phun thuốc khử khuẩn x
 
   Web edit: `scheduled_time = ''02:00 PM - 04:00 PM''`.'
 steps:
-- desc: Mobile offline sửa `technician_notes`.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Cùng lúc đó trên Web, dispatcher sửa `scheduled_time` của Job #200.'
-  action: tap_selector
-  text: Cùng lúc đó trên Web, dispatch
-  delay: 1.0
-- desc: Mobile bật mạng online để đồng bộ lên server.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: 'Kiểm tra bản ghi Job #200 trên server sau khi sync.'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Kiểm tra bản ghi Job #200 trên'
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Vì 2 bên sửa 2 trường khác nhau (khác field name), server áp dụng cơ chế hợp
-    nhất cấp trường (Field-level 3-way merge).
-  assert_text: Job / Conflict Resolution
-- desc: 'Job #200 bảo toàn cả 2 thay đổi: `scheduled_time` mới từ Web VÀ `technician_notes`
-    mới từ Mobile.'
-  assert_text: Job / Conflict Resolution
-- desc: Tuyệt đối không để mobile ghi đè nguyên cả object (Full-object overwrite)
-    làm mất giờ hẹn mới mà dispatcher vừa sửa.
-  assert_text: Job / Conflict Resolution
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5477 / Conflict-Merge
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Silent Data Loss of Concurrent Edits

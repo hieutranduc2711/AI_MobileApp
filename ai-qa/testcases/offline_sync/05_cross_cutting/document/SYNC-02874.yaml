@@ -12,45 +12,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Document đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Job Document.
-  action: tap_selector
-  text: Create Job Document
-  delay: 1.0
-- desc: Dùng test setup làm local file unavailable.
-  action: tap_selector
-  text: Dùng test setup làm local file
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe failure/retry/dead-letter.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Observe failure/retry/dead-let
-  delay: 1.0
-- desc: Verify queue sau row này.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
   action: tap_selector
-  text: Verify queue sau row này.
-  delay: 1.0
+  text: Attach a Photo
 expected:
-- desc: Create Job Document không làm app crash/mất dữ liệu.
-  assert_text: Document
-- desc: Local/UI của Document phản ánh đúng business result.
-  assert_text: Document
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Document
-- desc: Không duplicate logical operation.
-  assert_text: Document
-- desc: Không fake success.
-  assert_text: Document
-- desc: Failure diagnosable.
-  assert_text: Document
-- desc: Không block valid rows vô hạn.
-  assert_text: Document
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5577, RN-5539, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5577
 

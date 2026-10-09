@@ -12,36 +12,34 @@ preconditions: Thiết bị offline.
 test_data: 'Name: `O''Connor \"Big\" <script>alert(1)</script> '' OR 1=1 -- \n \r
   \t`'
 steps:
-- desc: Nhập tên khách hàng và địa chỉ với chuỗi payload thử nghiệm trên khi offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Bấm Lưu.
-  action: tap_selector
-  text: Bấm Lưu.
-  delay: 1.0
-- desc: Kiểm tra câu lệnh SQLite insert qua parameterized query.
-  action: tap_selector
-  text: Kiểm tra câu lệnh SQLite inser
-  delay: 1.0
-- desc: Kiểm tra file payload JSON sinh ra trong bảng outbox.
-  action: tap_selector
-  text: Kiểm tra file payload JSON sin
-  delay: 1.0
-- desc: Bật mạng sync lên server.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
+  action: tap_selector
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: SQLite execute với parameterized bindings, không bị lỗi cú pháp SQL Syntax
-    Error.
-  assert_text: Customer / Input Validation
-- desc: JSON serializer escape đúng các ký tự nháy kép và gạch chéo ngược.
-  assert_text: Customer / Input Validation
-- desc: Sync lên server thành công không bị HTTP 400 Bad Request.
-  assert_text: Customer / Input Validation
-- desc: Render lại trên UI mobile và Web an toàn không bị XSS.
-  assert_text: Customer / Input Validation
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5477 / Security-Escaping
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: SQL Syntax Crash / JSON Malformed

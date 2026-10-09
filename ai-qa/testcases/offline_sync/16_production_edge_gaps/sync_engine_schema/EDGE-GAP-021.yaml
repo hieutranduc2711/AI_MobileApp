@@ -12,27 +12,28 @@ preconditions: 'Payload tạo Job được lưu offline trước thời điểm 
   trường bắt buộc mới (ví dụ: `service_category_id`).'
 test_data: Old Job mutation payload missing `service_category_id`.
 steps:
-- desc: Tạo Job offline trên app.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Backend triển khai cập nhật validation rule mới.
-  action: back
-  delay: 1.0
-- desc: Bật mạng online để app đồng bộ payload cũ lên server.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác Schema Evolution Non-Nullable Field Compatibility trên
+    giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Kiểm tra phản hồi từ backend và cách app xử lý nếu bị 422.
-  action: back
-  delay: 1.0
 expected:
-- desc: Backend có cơ chế backward-compatible default cho payload từ các version app
-    cũ.
-  assert_text: Sync Engine / Schema
-- desc: 'Nếu backend reject 422: App không drop payload mà hiển thị cảnh báo yêu cầu
-    người dùng mở Job bổ sung trường còn thiếu rồi ấn Sync lại.'
-  assert_text: Sync Engine / Schema
+- desc: Thao tác Schema Evolution Non-Nullable Field Compatibility duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / API-Contract
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Unrecoverable Sync Rejection

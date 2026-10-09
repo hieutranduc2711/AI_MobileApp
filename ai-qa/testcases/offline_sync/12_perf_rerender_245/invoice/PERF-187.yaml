@@ -11,43 +11,34 @@ app_path: GD Mobile > EstimateDetail
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 0'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Invoice / EstimateDetail.'
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Open module/component: Invoice'
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Mở chi tiết estimate khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
   action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
   action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Invoice
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (0 re-render/update count) without an approved implementation reason.
-  assert_text: Invoice
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
-  assert_text: Invoice
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

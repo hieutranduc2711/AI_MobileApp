@@ -12,31 +12,35 @@ preconditions: Thiết bị offline.
 test_data: 'Job #100: Status transitions: Pending -> In Progress -> Completed within
   120 seconds.'
 steps:
-- desc: 'Mở Job #100 khi offline, bấm ''Start Job'' (In Progress).'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Sau 30s bấm 'Finish Job' (Completed).
-  action: tap_selector
-  text: Finish Job
-  delay: 1.0
-- desc: Kiểm tra các dòng bản ghi trong bảng outbox queue của SQLite.
-  action: tap_selector
-  text: Kiểm tra các dòng bản ghi tron
-  delay: 1.0
-- desc: Bật mạng online để đồng bộ.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job đầu tiên từ màn hình Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Completed' trong danh sách
+  action: tap_selector
+  text: Completed
+  content_desc: Completed
 expected:
-- desc: 'Hoặc outbox thông minh gộp (squash) thành 1 mutation cuối cùng cập nhật `status:
-    ''Completed''` kèm thời gian bắt đầu và kết thúc.'
+- desc: Trạng thái Job được cập nhật thành 'Completed' trong local cache
   assert_text: Completed
-- desc: Hoặc outbox đẩy 2 mutation theo đúng thứ tự thời gian nghiêm ngặt (FIFO).
-  assert_text: Job / Status
-- desc: 'Kết quả cuối cùng trên server là Job #100 ở trạng thái Completed với đầy
-    đủ lịch sử hoạt động chính xác.'
-  assert_text: Job / Status
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: RN-5477 / Coalesce-Mutations
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Out-of-order Status / Stale Override

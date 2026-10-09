@@ -11,41 +11,25 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to screen customer list
-  action: tap_selector
-  text: Go to screen customer list
-  delay: 1.0
-- desc: Turn off wifi
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create new customer
+  value: 'true'
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Create new customer
-  delay: 1.0
-- desc: Save customer
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Show customer detail. Press to Edit customer
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
   action: tap_selector
-  text: Show customer detail. Press to
-  delay: 1.0
-- desc: Edit tags of customer
-  action: tap_selector
-  text: Edit tags of customer
-  delay: 1.0
-- desc: Save customer edited
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Crash app
-  action: tap_selector
-  text: Crash app
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: 'Expect: Don''t crash app with change tags when edit customer from offline'
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
   assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

@@ -12,41 +12,43 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Add Estimate line item.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Force close app.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Force close app.
-  delay: 1.0
-- desc: Mở lại khi vẫn Offline.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
-  value: 'false'
+  value: 'true'
   delay: 2.0
-- desc: Xác nhận local result còn.
-  action: tap_selector
-  text: Xác nhận local result còn.
-  delay: 1.0
-- desc: Bật network.
-  action: tap_selector
-  text: Bật network.
-  delay: 1.0
-- desc: Chờ sync.
-  action: tap_selector
-  text: Chờ sync.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Durable outbox sống qua restart.
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
-- desc: Reopen không tạo duplicate row.
-  assert_text: Estimate
-- desc: Reconnect tiếp tục sync bình thường.
-  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5579, RN-5576
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
 

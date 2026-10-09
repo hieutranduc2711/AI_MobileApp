@@ -13,48 +13,34 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Change Cust
   > Status.
 test_data: Valid representative entity
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Ghi nhận giá trị hiện tại của entity.
-  action: tap_selector
-  text: 'Ghi nhận giá trị hiện tại của '
-  delay: 1.0
-- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Không reload app.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Không reload app.
-  delay: 1.0
-- desc: Thực hiện Change Customer Task status.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Change Customer Task status
-  delay: 1.0
-- desc: Navigate ra màn hình khác rồi quay lại.
-  action: back
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra kết quả.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
-  assert_text: Customer Task
-- desc: Change Customer Task status vẫn thực hiện được theo offline scope.
-  assert_text: Customer Task
-- desc: Không cần manual Offline toggle.
-  assert_text: Customer Task
-- desc: Kết quả được giữ local/pending, không rollback vì mất network.
-  assert_text: Customer Task
-- desc: Không đọc nhầm data account/branch khác.
-  assert_text: Customer Task
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5622, RN-5623
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5622
 

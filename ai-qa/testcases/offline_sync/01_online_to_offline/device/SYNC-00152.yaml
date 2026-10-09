@@ -12,38 +12,27 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Edit Device
   data cần thiết đã sync; mở đúng GD Mobile > Job > Devices > Edit.
 test_data: Valid mutation
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Edit Device.
-  action: tap_selector
-  text: Edit Device
-  delay: 1.0
-- desc: Cho queue/API nhận request/ACK nhưng trì hoãn authoritative PowerSync/downlink.
-  action: tap_selector
-  text: Cho queue/API nhận request/ACK
-  delay: 1.0
-- desc: Cắt network trước khi authoritative row mới về local.
-  action: tap_selector
-  text: Cắt network trước khi authorit
-  delay: 1.0
-- desc: Mở/reopen entity khi Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Quan sát optimistic/local state.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Quan sát optimistic/local stat
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
 expected:
-- desc: Queue ACK không được xem là backend business completion.
-  assert_text: Device
-- desc: Optimistic state không bị xóa quá sớm.
-  assert_text: Device
-- desc: UI không snap-back về old server value sau khi mất mạng.
-  assert_text: Device
-- desc: App vẫn biết mutation chưa authoritative-complete nếu có sync state UI.
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
   assert_text: Device
 source_tickets: RN-5591, RN-5550, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591

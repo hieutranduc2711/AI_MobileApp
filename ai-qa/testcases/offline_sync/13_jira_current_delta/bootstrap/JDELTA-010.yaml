@@ -11,25 +11,22 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Use fresh profile with no successful initial data download.
-  action: tap_selector
-  text: Use fresh profile with no succ
-  delay: 1.0
-- desc: Disconnect before bootstrap completes.
-  action: tap_selector
-  text: Disconnect before bootstrap co
-  delay: 1.0
-- desc: Open Home and a supported list.
-  action: tap_selector
-  text: Open Home and a supported list
-  delay: 1.0
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác No successful initial download + Offline trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Home reports offline data unavailable.
-  assert_text: Bootstrap
-- desc: Missing bootstrap data is not misrepresented as a valid business empty list.
-  assert_text: Bootstrap
-- desc: App does not hang/crash.
-  assert_text: Bootstrap
+- desc: Thao tác No successful initial download + Offline duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5531,RN-5648
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5531
 

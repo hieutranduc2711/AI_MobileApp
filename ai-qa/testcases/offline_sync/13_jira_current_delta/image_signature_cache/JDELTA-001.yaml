@@ -11,36 +11,26 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare representative work-order, invoice, estimate, document and unit signatures/images.
-  action: tap_selector
-  text: Prepare representative work-or
-  delay: 1.0
-- desc: Run the target cache implementation without base64 and without fast-image
-    package.
-  action: tap_selector
-  text: Run the target cache implement
-  delay: 1.0
-- desc: Download/cache assets Online, then switch Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reopen app and reopen each cached image/signature.
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Reopen app and reopen each cac
-  delay: 1.0
-- desc: Inspect file/cache persistence, memory and storage behavior.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Inspect file/cache persistence
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Offline render works from the new cache solution.
-  assert_text: Image/Signature Cache
-- desc: No base64/fast-image dependency is required.
-  assert_text: Image/Signature Cache
-- desc: No missing/blank signature after remount.
-  assert_text: Image/Signature Cache
-- desc: No cross-account cached asset leak.
-  assert_text: Image/Signature Cache
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5680
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
 risk: Schema / Comment Regression

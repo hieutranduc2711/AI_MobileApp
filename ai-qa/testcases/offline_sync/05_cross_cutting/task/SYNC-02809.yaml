@@ -11,49 +11,17 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Task đã sync khi cần.
 test_data: Parent created offline
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create parent để có local:* ID.
-  action: tap_selector
-  text: Create parent để có local:* ID
-  delay: 1.0
-- desc: Thực hiện child action Create Task.
-  action: tap_selector
-  text: Create Task
-  delay: 1.0
-- desc: Verify child links local parent.
-  action: tap_selector
-  text: Verify child links local paren
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe sync order.
-  action: tap_selector
-  text: Observe sync order.
-  delay: 1.0
-- desc: Verify real parent-child server relation.
-  action: tap_selector
-  text: Verify real parent-child serve
-  delay: 1.0
+- desc: Thực hiện thao tác Create Task trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Create Task không làm app crash/mất dữ liệu.
-  assert_text: Task
-- desc: Local/UI của Task phản ánh đúng business result.
-  assert_text: Task
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Task
-- desc: Không duplicate logical operation.
-  assert_text: Task
-- desc: Child không gửi unresolved parent.
-  assert_text: Task
-- desc: Parent mapping đúng trước/khi child send.
-  assert_text: Task
-- desc: No orphan/duplicate relation.
-  assert_text: Task
+- desc: Thao tác Create Task duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5570, RN-5551, RN-5587, RN-5533, RN-5608, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5570
 

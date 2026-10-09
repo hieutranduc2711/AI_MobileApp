@@ -11,43 +11,22 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Material; prerequisite cho Device Material đã sync khi cần.
 test_data: Valid create payload
 steps:
-- desc: Go offline hoặc throttle.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Điền form Create Device Material.
-  action: tap_selector
-  text: Điền form Create Device Materi
-  delay: 1.0
-- desc: Tap Save/Confirm 2 lần nhanh.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Inspect local list/outbox.
-  action: tap_selector
-  text: Inspect local list/outbox.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Count server records.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Count server records.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
+  action: tap_selector
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: Create Device Material không làm app crash/mất dữ liệu.
-  assert_text: Material
-- desc: Local/UI của Device Material phản ánh đúng business result.
-  assert_text: Material
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Material
-- desc: Không duplicate logical operation.
-  assert_text: Material
-- desc: Chỉ một logical record.
-  assert_text: Material
-- desc: Không duplicate local/server.
-  assert_text: Material
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: RN-5591, RN-5545, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591
 

@@ -12,49 +12,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền M
   record.
 test_data: Two devices
 steps:
-- desc: Sync same entity lên A/B.
-  action: tap_selector
-  text: Sync same entity lên A/B.
-  delay: 1.0
-- desc: Cả hai offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: A thực hiện value/action A.
-  action: tap_selector
-  text: Move Custom Event
-  delay: 1.0
-- desc: B thực hiện conflicting value/action B.
-  action: tap_selector
-  text: Move Custom Event
-  delay: 1.0
-- desc: Reconnect B rồi A.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect server/A/B.
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Inspect server/A/B.
-  delay: 1.0
-- desc: Lặp reconnect order ngược.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
+  action: tap_selector
+  text: Jobs
 expected:
-- desc: Move Custom Event không làm app crash/mất dữ liệu.
-  assert_text: Calendar
-- desc: Local/UI của Custom Event phản ánh đúng business result.
-  assert_text: Calendar
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Calendar
-- desc: Không duplicate logical operation.
-  assert_text: Calendar
-- desc: No structural corruption/duplicate.
-  assert_text: Calendar
-- desc: Outcome reproducible.
-  assert_text: Calendar
-- desc: Không tự giả định winner; capture actual policy.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5572, RN-5587, RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 

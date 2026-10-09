@@ -12,31 +12,35 @@ preconditions: Thiết bị offline; mở modal lấy chữ ký khách hàng.
 test_data: Complex customer signature drawing (high-density strokes > 500KB raw vector
   points).
 steps:
-- desc: Mở modal ký tên.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Mở modal ký tên.
-  delay: 1.0
-- desc: Vẽ chữ ký cực kỳ dày đặc và phức tạp trong 30 giây.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Vẽ chữ ký cực kỳ dày đặc và ph
-  delay: 1.0
-- desc: Bấm Save Signature.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Kiểm tra thời gian ghi vào SQLite và thời gian load lại qua hook `useEntity`.
-  action: tap_selector
-  text: Kiểm tra thời gian ghi vào SQL
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: File chữ ký được ghi ra disk dạng file PNG/SVG cục bộ và chỉ lưu path/URI
-    vào SQLite (hoặc blob tối ưu).
-  assert_text: Signature / SQLite
-- desc: Quá trình lưu diễn ra < 300ms.
-  assert_text: Signature / SQLite
-- desc: Truy vấn `useEntity` của Job không bị giật lag khung hình khi render lại màn
-    hình chi tiết.
-  assert_text: Signature / SQLite
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5477 / RN-5605 / RN-5680
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: UI Freeze / Slow Query

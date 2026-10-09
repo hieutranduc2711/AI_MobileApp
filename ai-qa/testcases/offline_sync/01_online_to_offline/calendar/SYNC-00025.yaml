@@ -1,6 +1,5 @@
 id: SYNC-00025
-title: 'Move Custom Event: Hoàn tất Move Custom Event online → authoritative state
-  về local → chuyển Offline'
+title: 'Move Custom Event: Hoàn tất Move Custom Event online → authoritative state về local → chuyển Offline'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Move Custom Event
@@ -8,45 +7,71 @@ priority: P1
 flow_phase: O2F-05 Authoritative cached
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Custom Event
-preconditions: Đăng nhập đúng account/branch; user có quyền Move Custom Event; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Custom Event.
-test_data: Valid action
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Thực hiện action hoàn toàn khi Online.
+- desc: Giữ mạng online để tạo fixture riêng cho testcase
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chờ backend xử lý xong và authoritative state sync về local.
-  action: back
-  delay: 1.0
-- desc: Refresh/reopen để xác nhận giá trị mới.
-  action: tap_selector
-  text: Refresh/reopen để xác nhận giá
-  delay: 1.0
-- desc: Tắt toàn bộ network.
-  action: tap_selector
-  text: Tắt toàn bộ network.
-  delay: 1.0
-- desc: Force close/reopen app khi vẫn Offline.
+  delay: 1.5
+- desc: Đưa app về Calendar Home và xác nhận màn hình lịch
+  action: macro
+  value: ensure_calendar_home
+- desc: Tạo fixture bằng menu xuất hiện sau khi chọn một time range trên calendar
+  action: macro
+  value: calendar_create_item
+  args:
+    kind: custom_event
+    marker: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
+    start_time: 1PM
+    day_offset: 1
+    duration_minutes: 30
+    verify_live_refresh: false
+- desc: Reload chỉ để nạp fixture trước thao tác đang test; không reload sau mutation
+  action: macro
+  value: restart_app_and_wait
+  args:
+    marker: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
+- desc: Move item online bằng long-press/drag một nấc 15 phút
+  action: macro
+  value: calendar_begin_move
+  args:
+    marker: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
+    delta_minutes: 15
+    recurrence_scope: none
+- desc: Sau khi UI đã render vị trí mới online, chuyển offline
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Mở lại entity/list.
-  action: tap_selector
-  text: Mở lại entity/list.
-  delay: 1.0
+  delay: 1.5
+- desc: Background/foreground để kiểm tra local calendar cache, không force-stop
+  action: background_app
+  value: '2'
+  delay: 0.5
+- desc: Xác nhận item vẫn còn sau khi offline
+  action: macro
+  value: assert_visible
+  args:
+    text: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
+    timeout: 8
+- desc: Khôi phục mạng sau assertion
+  action: set_network
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Latest authoritative state đã được persist local trước khi mất mạng.
-  assert_text: Calendar
-- desc: Sau restart Offline vẫn thấy đúng state mới.
-  assert_text: Calendar
-- desc: Không quay lại stale value cũ.
-  assert_text: Calendar
-- desc: Không cần remote API để đọc state đã cache.
-  assert_text: Calendar
+- desc: Calendar card đổi vị trí đúng một nấc 15 phút và giữ nguyên marker.
+  action: assert_text
+  value: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
+- desc: Thay đổi được render trên Calendar ngay, không cần reload app.
+  action: assert_text
+  value: AIQA_SYNC-00025_{{DYNAMIC_NONCE}}_CE
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Online→local cache durability
-notes: ''
+risk: Calendar drag commit / offline persistence / real-time render
+notes: 'Move Custom Event/Time Off được thao tác bằng long-press/drag trực tiếp trên card; Time Off drag đã được xác nhận
+  đổi 15 phút trên Pixel 5. Với Custom Event/Time Off không xuất hiện popup Save/Confirm sau drag; O2F-02 được đổi title để
+  mô tả mất mạng ngay trước gesture, không giả vờ có bước xác nhận. Fixture setup được reload trước mutation; tuyệt đối không
+  reload sau move để không che lỗi live refresh.'

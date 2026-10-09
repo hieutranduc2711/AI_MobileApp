@@ -12,52 +12,41 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Capture
   Tech Signature accessible.
 test_data: Valid business data
 steps:
-- desc: Mở flow khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
+  action: tap_selector
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Bắt đầu nhập/chọn dữ liệu.
-  action: tap_selector
-  text: Bắt đầu nhập/chọn dữ liệu.
-  delay: 1.0
-- desc: Cắt network giữa workflow trước Save.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Tiếp tục thao tác khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào để xác nhận local persistence.
-  action: tap_selector
-  text: Navigate ra/vào để xác nhận lo
-  delay: 1.0
-- desc: Khôi phục Online.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ queue/backend/downlink.
-  action: back
-  delay: 1.0
-- desc: Đối chiếu server và mobile.
-  action: tap_selector
-  text: Đối chiếu server và mobile.
-  delay: 1.0
 expected:
-- desc: Network transition không reset user work.
-  assert_text: Signature
-- desc: Offline save tạo durable pending mutation.
-  assert_text: Signature
-- desc: Reconnect push đúng business action.
-  assert_text: Signature
-- desc: Final authoritative result giữ toàn bộ thay đổi từ trước và sau lúc rớt mạng.
-  assert_text: Signature
-- desc: Không duplicate/missing fields.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5605, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

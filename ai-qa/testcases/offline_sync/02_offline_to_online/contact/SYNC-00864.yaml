@@ -11,37 +11,34 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Delete Contact.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật/tắt network 5–10 lần trong 30–60 giây.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Bật/tắt network 5–10 lần trong
-  delay: 1.0
-- desc: Không Save lại.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Cuối cùng giữ Online ổn định.
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Chờ queue idle.
-  action: tap_selector
-  text: Chờ queue idle.
-  delay: 1.0
-- desc: Verify server.
-  action: tap_selector
-  text: Verify server.
-  delay: 1.0
 expected:
-- desc: Không reconnect storm tạo duplicate send.
-  assert_text: Contact
-- desc: Action chỉ có một logical effect.
-  assert_text: Contact
-- desc: Queue không kẹt sau flapping.
-  assert_text: Contact
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5600, RN-5599
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5600
 

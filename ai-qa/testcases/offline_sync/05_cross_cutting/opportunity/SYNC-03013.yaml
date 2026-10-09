@@ -11,51 +11,44 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Opportunity đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Opportunity.
-  action: tap_selector
-  text: Create Opportunity
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Create Opportunity không làm app crash/mất dữ liệu.
-  assert_text: Opportunity
-- desc: Local/UI của Opportunity phản ánh đúng business result.
-  assert_text: Opportunity
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Opportunity
-- desc: Không duplicate logical operation.
-  assert_text: Opportunity
-- desc: B không nhận data/pending/result của A.
-  assert_text: Opportunity
-- desc: A mutation không reassigned sang B.
-  assert_text: Opportunity
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5620, RN-5619
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5620
 

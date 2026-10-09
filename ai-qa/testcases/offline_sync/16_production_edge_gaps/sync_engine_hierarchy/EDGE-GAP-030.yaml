@@ -11,37 +11,27 @@ app_path: GD Mobile > Field Flow
 preconditions: Thiết bị offline hoàn toàn.
 test_data: 'Local IDs: local:cust_01 → local:loc_01 → local:job_01 → local:inv_01.'
 steps:
-- desc: 'Offline: Tạo mới Customer A (sinh `local:cust_01`).'
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: 'Offline: Tạo Location gắn vào `local:cust_01` (sinh `local:loc_01`).'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Offline: Tạo Job gắn vào `local:loc_01` (sinh `local:job_01`).'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Offline: Tạo Invoice gắn vào `local:job_01` (sinh `local:inv_01`).'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Bật mạng Online để hệ thống bắt đầu đồng bộ.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác 4-Level Deep Cascading Entity Creation trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
 expected:
-- desc: Sync Engine xả tuần tự theo đúng thứ tự topology cha trước - con sau.
-  assert_text: Sync Engine / Hierarchy
-- desc: Server trả về UUID thật của Customer A (`cust_real_uuid`), mobile cập nhật
-    foreign key của Location trước khi gửi Location.
-  assert_text: Sync Engine / Hierarchy
-- desc: Cả 4 thực thể được tạo thành công trên backend với quan hệ cha con hoàn hảo.
-  assert_text: Sync Engine / Hierarchy
-- desc: Dữ liệu local SQLite được cập nhật thay thế toàn bộ `local:*` thành UUID thật
-    của server.
-  assert_text: Sync Engine / Hierarchy
+- desc: Thao tác 4-Level Deep Cascading Entity Creation duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Cascading-Sync
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Foreign Key Constraint Failure

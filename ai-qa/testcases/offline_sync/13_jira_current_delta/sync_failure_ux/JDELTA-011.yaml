@@ -11,33 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Create photo pending Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect and force transient upload failure.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe alert/state.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Observe alert/state.
-  delay: 1.0
-- desc: Recover network and tap/trigger retry.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
   action: tap_selector
-  text: Recover network and tap/trigge
-  delay: 1.0
-- desc: Open photo on app/web.
-  action: tap_selector
-  text: Open photo on app/web.
-  delay: 1.0
+  text: Attach a Photo
 expected:
-- desc: Retry alert appears.
-  assert_text: Sync Failure UX
-- desc: Photo remains locally recoverable.
-  assert_text: Sync Failure UX
-- desc: Retry succeeds without duplicate.
-  assert_text: Sync Failure UX
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5525,RN-5648
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5525
 

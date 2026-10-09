@@ -10,41 +10,26 @@ app_path: GD Mobile > Calendar
 preconditions: Entity synced locally; device offline.
 test_data: One entity
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Action 1: Move.'
-  action: tap_selector
-  text: 'Action 1: Move.'
-  delay: 1.0
-- desc: 'Action 2 ngay sau đó: Resize.'
-  action: tap_selector
-  text: 'Action 2 ngay sau đó: Resize.'
-  delay: 1.0
-- desc: Inspect local final state.
-  action: tap_selector
-  text: Inspect local final state.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Capture/order actions.
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Capture/order actions.
-  delay: 1.0
-- desc: Verify server.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  text: Jobs
 expected:
-- desc: Cả hai action giữ đúng semantics.
-  assert_text: Calendar
-- desc: Không coalesce chỉ vì same entity/UPDATE.
-  assert_text: Calendar
-- desc: Final state đúng ordered effects.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 

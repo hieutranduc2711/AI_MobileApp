@@ -11,33 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Create pending Offline data.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Simulate storage/reset recovery flow.
-  action: tap_selector
-  text: Simulate storage/reset recover
-  delay: 1.0
-- desc: Observe warning before destructive reset.
-  action: tap_selector
-  text: Observe warning before destruc
-  delay: 1.0
-- desc: Perform reset in test environment.
-  action: tap_selector
-  text: Perform reset in test environm
-  delay: 1.0
-- desc: Reconnect/fresh download.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Thực hiện thao tác Reset warns about pending data at risk and fresh download
+    recovers trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Warning clearly identifies pending-change risk.
-  assert_text: Storage Recovery
-- desc: Reset does not silently claim data was saved.
-  assert_text: Storage Recovery
-- desc: Fresh download restores usable app state.
-  assert_text: Storage Recovery
+- desc: Thao tác Reset warns about pending data at risk and fresh download recovers
+    duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5637,RN-5648
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5637
 

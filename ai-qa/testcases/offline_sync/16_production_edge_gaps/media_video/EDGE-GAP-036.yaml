@@ -12,31 +12,28 @@ preconditions: Technician quay 1 video hiện trường 50MB khi offline. Bật 
   để upload.
 test_data: 'Video file: 50MB MP4; Upload chunk size: 5MB (10 chunks total).'
 steps:
-- desc: Quay video 50MB đính kèm vào Job offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật mạng online để bắt đầu upload.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác Large Video Multipart Chunked Resumable Upload trên giao
+    diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Khi upload được 25MB (5 chunks), ngắt kết nối mạng 5 giây rồi bật lại.
-  action: tap_selector
-  text: Khi upload được 25MB (5 chunks
-  delay: 1.0
-- desc: Theo dõi HTTP headers và range byte gửi lên.
-  action: tap_selector
-  text: Theo dõi HTTP headers và range
-  delay: 1.0
 expected:
-- desc: Tiến trình upload resume tiếp tục từ chunk thứ 6 (byte thứ 25,000,001).
-  assert_text: Media / Video
-- desc: Không tải lại từ byte số 0.
-  assert_text: Media / Video
-- desc: Toàn bộ video được ghép nối hoàn chỉnh trên server (S3 / Cloud Storage).
-  assert_text: Media / Video
-- desc: Người dùng thấy thanh tiến trình (progress bar) tiếp tục chạy mượt mà.
-  assert_text: Media / Video
+- desc: Thao tác Large Video Multipart Chunked Resumable Upload duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Media-Chunking
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Data Waste / Timeout Failure

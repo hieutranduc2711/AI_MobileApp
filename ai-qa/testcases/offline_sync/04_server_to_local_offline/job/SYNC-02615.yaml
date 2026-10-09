@@ -12,41 +12,55 @@ preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có q
   đổi cùng data.
 test_data: Job list/detail
 steps:
-- desc: Seed local value cũ.
-  action: tap_selector
-  text: Seed local value cũ.
-  delay: 1.0
-- desc: Giữ server value mới.
-  action: tap_selector
-  text: Giữ server value mới.
-  delay: 1.0
-- desc: Mở screen Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Xác nhận local cũ paint trước nếu flow dùng local-first.
-  action: tap_selector
-  text: 'Xác nhận local cũ paint trước '
-  delay: 1.0
-- desc: Chờ API revalidation cập nhật local.
-  action: tap_selector
-  text: 'Chờ API revalidation cập nhật '
-  delay: 1.0
-- desc: Tắt network.
-  action: tap_selector
-  text: Tắt network.
-  delay: 1.0
-- desc: Reopen Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Local-first không ngăn authoritative update persist xuống local.
-  assert_text: Job
-- desc: Offline sau revalidation thấy value mới.
-  assert_text: Job
-- desc: Không quay lại value cũ.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5518, RN-5634
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5518
 

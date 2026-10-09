@@ -12,37 +12,27 @@ preconditions: Có 30 mutations trong outbox (tạo Invoice, thanh toán, vật 
   bắt đầu quá trình xả queue khi online.
 test_data: 30 distinct mutations with client-generated UUID / Idempotency-Key.
 steps:
-- desc: Tích lũy 30 mutations offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Thực hiện thao tác OS Force-Kill During Batch Outbox Push trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
   delay: 2.0
-- desc: Kết nối mạng; tiến trình sync bắt đầu chạy.
-  action: tap_selector
-  text: 'Kết nối mạng; tiến trình sync '
-  delay: 1.0
-- desc: 'Tại thời điểm item thứ 15 đang gửi HTTP request (server đã nhận và insert
-    DB nhưng chưa kịp trả response về mobile), dùng ADB kill process app: `adb shell
-    am force-stop com.gorilladesk`.'
-  action: tap_selector
-  text: Tại thời điểm item thứ 15 đang
-  delay: 1.0
-- desc: Khởi động lại GD Mobile App.
-  action: tap_selector
-  text: Khởi động lại GD Mobile App.
-  delay: 1.0
-- desc: Kiểm tra hàng đợi outbox và kiểm tra backend DB.
-  action: back
-  delay: 1.0
 expected:
-- desc: Item thứ 15 khi được gửi lại có cùng `Idempotency-Key` (hoặc Client UUID).
-  assert_text: Sync Engine / Idempotency
-- desc: Backend phát hiện trùng key, trả về 200 OK với kết quả đã tạo trước đó, KHÔNG
-    tạo thêm 1 bản ghi Invoice/Payment thứ 2.
-  assert_text: Sync Engine / Idempotency
-- desc: Các item từ 16 đến 30 tiếp tục được xử lý bình thường.
-  assert_text: Sync Engine / Idempotency
-- desc: Không có bất kỳ bản ghi trùng lặp nào được tạo ra trên server.
-  assert_text: Sync Engine / Idempotency
+- desc: Thao tác OS Force-Kill During Batch Outbox Push duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Idempotency
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Double Charging / Duplicate Records

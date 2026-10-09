@@ -11,27 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline start timer.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect while still running.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Wait for sync.
-  action: tap_selector
-  text: Wait for sync.
-  delay: 1.0
-- desc: Inspect app/web worklogs.
-  action: tap_selector
-  text: Inspect app/web worklogs.
-  delay: 1.0
+- desc: Thực hiện thao tác Reconnect while timer running does not create second timer
+    trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: One active timer/worklog only.
-  assert_text: Time Tracking
-- desc: Start time/status remains correct after reconcile.
-  assert_text: Time Tracking
+- desc: Thao tác Reconnect while timer running does not create second timer duy trì
+    trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5644
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5644
 risk: Schema / Comment Regression

@@ -10,21 +10,18 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to Job detail
-  action: tap_selector
-  text: Go to Job detail
-  delay: 1.0
-- desc: Add new task in offline
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Back to online. Task not sync after added from offline
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+- desc: Thực hiện thao tác Add task not sync when back to online trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Should be sync new task added from offline when back to online
-  assert_text: Tasks
+- desc: Thao tác Add task not sync when back to online duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

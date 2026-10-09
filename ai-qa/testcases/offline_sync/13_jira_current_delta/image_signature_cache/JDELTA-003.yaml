@@ -10,23 +10,26 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Capture/save representative images and signatures Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Measure write latency for single asset and burst of multiple assets.
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Measure write latency for sing
-  delay: 1.0
-- desc: Repeat with low free storage.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Repeat with low free storage.
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Write path is responsive and durable.
-  assert_text: Image/Signature Cache
-- desc: Failed writes are surfaced; no silent loss/corruption.
-  assert_text: Image/Signature Cache
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5680
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
 risk: Schema / Comment Regression

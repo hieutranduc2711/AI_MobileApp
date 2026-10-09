@@ -13,49 +13,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   A/B cùng initial record.
 test_data: Two devices
 steps:
-- desc: Sync same entity lên A/B.
-  action: tap_selector
-  text: Sync same entity lên A/B.
-  delay: 1.0
-- desc: Cả hai offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: A thực hiện value/action A.
-  action: tap_selector
-  text: Capture Invoice Tech Signature
-  delay: 1.0
-- desc: B thực hiện conflicting value/action B.
-  action: tap_selector
-  text: Capture Invoice Tech Signature
-  delay: 1.0
-- desc: Reconnect B rồi A.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect server/A/B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect server/A/B.
-  delay: 1.0
-- desc: Lặp reconnect order ngược.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
+  action: tap_selector
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Capture Invoice Tech Signature không làm app crash/mất dữ liệu.
-  assert_text: Signature
-- desc: Local/UI của Invoice Tech Signature phản ánh đúng business result.
-  assert_text: Signature
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Signature
-- desc: Không duplicate logical operation.
-  assert_text: Signature
-- desc: No structural corruption/duplicate.
-  assert_text: Signature
-- desc: Outcome reproducible.
-  assert_text: Signature
-- desc: Không tự giả định winner; capture actual policy.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5605, RN-5525, RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

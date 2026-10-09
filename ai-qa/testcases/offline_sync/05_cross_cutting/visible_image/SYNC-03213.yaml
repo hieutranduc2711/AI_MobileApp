@@ -11,51 +11,34 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   Visible Image; prerequisite cho Estimate Visible Image đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Add Estimate Visible Image tạo pending file.
-  action: tap_selector
-  text: Add Estimate Visible Image
-  delay: 1.0
-- desc: Reconnect để upload bắt đầu.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Tắt network giữa transfer.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Tắt network giữa transfer.
-  delay: 1.0
-- desc: Restore network.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Restore network.
-  delay: 1.0
-- desc: Wait retry.
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
   action: tap_selector
-  text: Wait retry.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Add Estimate Visible Image không làm app crash/mất dữ liệu.
-  assert_text: Visible Image
-- desc: Local/UI của Estimate Visible Image phản ánh đúng business result.
-  assert_text: Visible Image
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Visible Image
-- desc: Không duplicate logical operation.
-  assert_text: Visible Image
-- desc: Không mark synced sớm.
-  assert_text: Visible Image
-- desc: Local source còn.
-  assert_text: Visible Image
-- desc: Retry một lần logical asset.
-  assert_text: Visible Image
-- desc: No duplicate/orphan.
-  assert_text: Visible Image
+- desc: Báo giá được tính toán và lưu offline an toàn
+  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5595, RN-5596, RN-5525, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5595
 

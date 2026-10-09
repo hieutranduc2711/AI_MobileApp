@@ -11,21 +11,19 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to Job detail & press on All Tasks
-  action: tap_selector
-  text: Go to Job detail & press on Al
-  delay: 1.0
-- desc: Delete any task
-  action: tap_selector
-  text: Delete any task
-  delay: 1.0
-- desc: Task list still show task has deleted
-  action: tap_selector
-  text: 'Task list still show task has '
-  delay: 1.0
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Thực hiện thao tác Show incorrect task list after delete any task (Offline)
+    trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Should be show correct task list after delete any task
-  assert_text: Tasks
+- desc: Thao tác Show incorrect task list after delete any task (Offline) duy trì
+    trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

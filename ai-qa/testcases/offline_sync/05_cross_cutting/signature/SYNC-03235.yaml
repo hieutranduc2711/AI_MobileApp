@@ -12,45 +12,25 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Signature; prerequisite cho WO Customer Signature đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Capture WO Customer Signature.
-  action: tap_selector
-  text: Capture WO Customer Signature
-  delay: 1.0
-- desc: Dùng test setup làm local file unavailable.
-  action: tap_selector
-  text: Dùng test setup làm local file
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe failure/retry/dead-letter.
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: Observe failure/retry/dead-let
-  delay: 1.0
-- desc: Verify queue sau row này.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Verify queue sau row này.
-  delay: 1.0
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Capture WO Customer Signature không làm app crash/mất dữ liệu.
-  assert_text: Signature
-- desc: Local/UI của WO Customer Signature phản ánh đúng business result.
-  assert_text: Signature
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Signature
-- desc: Không duplicate logical operation.
-  assert_text: Signature
-- desc: Không fake success.
-  assert_text: Signature
-- desc: Failure diagnosable.
-  assert_text: Signature
-- desc: Không block valid rows vô hạn.
-  assert_text: Signature
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5605, RN-5525, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

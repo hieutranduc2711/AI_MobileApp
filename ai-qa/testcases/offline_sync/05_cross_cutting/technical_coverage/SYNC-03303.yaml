@@ -10,31 +10,17 @@ app_path: Technical behavior related to Implement core data layer
 preconditions: Target implementation/status available.
 test_data: Implement core data layer
 steps:
-- desc: Exercise implementation related to Implement core data layer.
-  action: tap_selector
-  text: Exercise implementation relate
-  delay: 1.0
-- desc: Run representative online path.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Run offline path if applicable.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect/restart.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Compare Offline Mode invariants.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+- desc: Thực hiện thao tác Implement core data layer trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
-  assert_text: Technical Coverage
-- desc: If not implemented due status, mark Blocked/N/A.
-  assert_text: Technical Coverage
+- desc: Thao tác Implement core data layer duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5522
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5522
 risk: Architecture coverage

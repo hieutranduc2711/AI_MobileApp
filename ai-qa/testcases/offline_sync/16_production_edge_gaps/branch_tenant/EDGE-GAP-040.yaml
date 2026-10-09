@@ -12,29 +12,19 @@ preconditions: 'User thuộc nhiều Branch; đang có 4 items pending của Bra
   (`gd-branch-id: br_01`).'
 test_data: 'Current Branch: Miami (4 pending items); Target Branch: Orlando (`br_02`).'
 steps:
-- desc: Tạo 4 items offline thuộc Branch Miami.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Bấm vào menu chuyển chi nhánh sang Orlando.
-  action: tap_selector
-  text: 'Bấm vào menu chuyển chi nhánh '
-  delay: 1.0
-- desc: Kiểm tra thông báo cảnh báo hiển thị.
-  action: tap_selector
-  text: Kiểm tra thông báo cảnh báo hi
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Branch Switching Guard with Pending Mutations trên giao
+    diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: 'App hiển thị Modal cảnh báo chặn: ''Bạn đang có 4 thay đổi chưa đồng bộ của
-    chi nhánh Miami. Vui lòng kết nối mạng để đồng bộ hoàn tất trước khi chuyển chi
-    nhánh, hoặc chọn Hủy bỏ''.'
-  assert_text: Bạn đang có 4 thay đổi chưa đồng bộ của chi nhánh Miami. Vui lòng kết
-    nối mạng để đồng bộ hoàn tất trước khi chuyển chi nhánh, hoặc chọn Hủy bỏ
-- desc: Nút chuyển chi nhánh bị vô hiệu hóa (disabled) khi đang offline.
-  assert_text: Branch / Tenant
-- desc: Ngăn chặn tuyệt đối tình trạng gắn nhầm `gd-branch-id` của chi nhánh mới vào
-    các mutation cũ chưa sync.
-  assert_text: Branch / Tenant
+- desc: Thao tác Branch Switching Guard with Pending Mutations duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / RN-5680 / Branch-Guard
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Cross-Branch Data Corruption

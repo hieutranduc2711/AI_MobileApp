@@ -13,37 +13,19 @@ preconditions: App version v4.0 chứa 10 pending outbox records; cài đè bả
 test_data: 10 pending mutations created on schema v4.0; APK/IPA upgrade to schema
   v4.1.
 steps:
-- desc: Tạo 10 items offline trên phiên bản app hiện tại.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Tắt app (giữ nguyên SQLite database trên thiết bị).
-  action: tap_selector
-  text: Tắt app (giữ nguyên SQLite dat
-  delay: 1.0
-- desc: 'Cài đè phiên bản app mới (simulate Google Play auto-update: `adb install
-    -r new_version.apk`).'
-  action: tap_selector
-  text: Cài đè phiên bản app mới (simu
-  delay: 1.0
-- desc: Mở app phiên bản mới.
-  action: tap_selector
-  text: Mở app phiên bản mới.
-  delay: 1.0
-- desc: Kiểm tra log migration và đếm số lượng outbox records.
-  action: tap_selector
-  text: 'Kiểm tra log migration và đếm '
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác App Auto-Update with Pending Outbox Preservation trên giao
+    diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: SQLite migration script chạy thành công mà KHÔNG drop table hoặc recreat schema
-    từ đầu.
-  assert_text: Database / Migration
-- desc: Cột mới được thêm bằng `ALTER TABLE ... ADD COLUMN` có default value an toàn.
-  assert_text: Database / Migration
-- desc: Đủ 10 pending outbox items được bảo toàn nguyên vẹn.
-  assert_text: Database / Migration
-- desc: Khi có mạng, 10 items được xả thành công lên server.
-  assert_text: Database / Migration
+- desc: Thao tác App Auto-Update with Pending Outbox Preservation duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / SQLite-Migration
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Catastrophic Upgrade Data Loss

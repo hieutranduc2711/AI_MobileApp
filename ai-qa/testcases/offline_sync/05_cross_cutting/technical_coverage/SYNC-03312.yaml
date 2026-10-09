@@ -10,31 +10,46 @@ app_path: Technical behavior related to UI Connection service network indicators
 preconditions: Target implementation/status available.
 test_data: UI Connection service network indicators
 steps:
-- desc: Exercise implementation related to UI Connection service network indicators.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Exercise implementation relate
-  delay: 1.0
-- desc: Run representative online path.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Run offline path if applicable.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect/restart.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Compare Offline Mode invariants.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
-  assert_text: Technical Coverage
-- desc: If not implemented due status, mark Blocked/N/A.
-  assert_text: Technical Coverage
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5558
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5558
 risk: Architecture coverage

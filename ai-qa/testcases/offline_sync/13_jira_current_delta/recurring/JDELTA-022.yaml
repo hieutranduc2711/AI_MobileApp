@@ -10,27 +10,21 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline edit invoice recurring value.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reopen Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect and capture sync result.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Verify web.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Verify web.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
+  action: tap_selector
+  text: Invoice
 expected:
-- desc: Recurring value stays local and syncs correctly.
-  assert_text: Recurring
-- desc: Correct update_invoice_recurring semantics preserved.
-  assert_text: Recurring
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
+  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5575
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5575
 risk: Schema / Comment Regression

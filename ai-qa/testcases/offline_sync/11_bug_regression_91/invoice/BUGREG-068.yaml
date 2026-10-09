@@ -11,36 +11,24 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to job detail & edit exist invoice
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: 'Go to job detail & edit exist '
-  delay: 1.0
-- desc: Add Image visible to client & save invoice
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Back to job detail
-  action: back
-  delay: 1.0
-- desc: Open invoice menu & show correct checked state of Attach Images in Invoice
-    Menu
-  action: tap_selector
-  text: Open invoice menu & show corre
-  delay: 1.0
-- desc: Close menu & Back to Home calendar
-  action: back
-  delay: 1.0
-- desc: Go to job detail & open Invoice once again
-  action: tap_selector
-  text: Go to job detail & open Invoic
-  delay: 1.0
-- desc: Show incorrect checked state of Attach Images in Invoice Menu
-  action: tap_selector
-  text: Show incorrect checked state o
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Show correct checked state of Attach Images in Invoice Menu in offline
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

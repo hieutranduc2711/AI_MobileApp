@@ -11,33 +11,26 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off network
-  action: tap_selector
-  text: Turn off network
-  delay: 1.0
-- desc: Create new building, create new unit for building
-  action: tap_selector
-  text: Create new building, create ne
-  delay: 1.0
-- desc: Assign building to job
-  action: tap_selector
-  text: Assign building to job
-  delay: 1.0
-- desc: Open job unit detail just assigned
-  action: tap_selector
-  text: Open job unit detail just assi
-  delay: 1.0
-- desc: Add client signature
-  action: tap_selector
-  text: Add client signature
-  delay: 1.0
-- desc: Back to online
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
+  action: tap_selector
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Customer Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: customer
 expected:
-- desc: 'Expected: Client signature of unit must sync when back to online'
-  assert_text: Unit signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

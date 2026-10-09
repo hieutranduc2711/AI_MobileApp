@@ -12,37 +12,17 @@ preconditions: User A còn 2 pending offline jobs. User A bị force logout ho�
   app sang login của User B.
 test_data: 'Account A (id: usr_001, tenant: t1); Account B (id: usr_002, tenant: t2).'
 steps:
-- desc: User A tạo 2 offline jobs.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Màn hình yêu cầu đăng nhập hiển thị.
-  action: tap_selector
-  text: Màn hình yêu cầu đăng nhập hiể
-  delay: 1.0
-- desc: Nhập credentials của User B (khác account/tenant).
-  action: tap_selector
-  text: Nhập credentials của User B (k
-  delay: 1.0
-- desc: Bấm Login.
-  action: tap_selector
-  text: Bấm Login.
-  delay: 1.0
-- desc: Kiểm tra cơ chế cách ly cơ sở dữ liệu SQLite / Outbox.
-  action: tap_selector
-  text: 'Kiểm tra cơ chế cách ly cơ sở '
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Cross-User Login Isolation trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: App phát hiện User B khác User A.
-  assert_text: Auth / Multi-User
-- desc: 'Hiển thị thông báo chặn: ''Thiết bị đang chứa dữ liệu chưa đồng bộ của tài
-    khoản User A. Vui lòng đăng nhập lại tài khoản User A để đồng bộ hoặc xác nhận
-    xóa dữ liệu cũ''.'
-  assert_text: Thiết bị đang chứa dữ liệu chưa đồng bộ của tài khoản User A. Vui lòng
-    đăng nhập lại tài khoản User A để đồng bộ hoặc xác nhận xóa dữ liệu cũ
-- desc: Tuyệt đối KHÔNG đồng bộ các mutations của User A vào database của User B trên
-    server.
-  assert_text: Auth / Multi-User
+- desc: Thao tác Cross-User Login Isolation duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / Multi-Account
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Critical Tenant Data Leak

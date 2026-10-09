@@ -1,0 +1,9 @@
+name: pilot-6-representative
+description: Pilot verification suite containing the 6 most representative offline sync testcases across all lifecycle types
+testcases:
+  - testcases/offline_sync/01_online_to_offline/calendar/SYNC-00001.yaml
+  - testcases/offline_sync/02_offline_to_online/job/SYNC-01375.yaml
+  - testcases/offline_sync/02_offline_to_online/signature/SYNC-01870.yaml
+  - testcases/offline_sync/02_offline_to_online/calendar/SYNC-00764.yaml
+  - testcases/offline_sync/01_online_to_offline/customer_document/SYNC-00091.yaml
+  - testcases/offline_sync/16_production_edge_gaps/auth_security/EDGE-GAP-004.yaml

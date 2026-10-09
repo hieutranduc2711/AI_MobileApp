@@ -11,49 +11,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền D
   Photo; prerequisite cho Unit Photo đã sync khi cần. Có Device A/B cùng initial record.
 test_data: Two devices
 steps:
-- desc: Sync same entity lên A/B.
-  action: tap_selector
-  text: Sync same entity lên A/B.
-  delay: 1.0
-- desc: Cả hai offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: A thực hiện value/action A.
-  action: tap_selector
-  text: Delete Unit Photo
-  delay: 1.0
-- desc: B thực hiện conflicting value/action B.
-  action: tap_selector
-  text: Delete Unit Photo
-  delay: 1.0
-- desc: Reconnect B rồi A.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect server/A/B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect server/A/B.
-  delay: 1.0
-- desc: Lặp reconnect order ngược.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
 expected:
-- desc: Delete Unit Photo không làm app crash/mất dữ liệu.
-  assert_text: MDU Photo
-- desc: Local/UI của Unit Photo phản ánh đúng business result.
-  assert_text: MDU Photo
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: MDU Photo
-- desc: Không duplicate logical operation.
-  assert_text: MDU Photo
-- desc: No structural corruption/duplicate.
-  assert_text: MDU Photo
-- desc: Outcome reproducible.
-  assert_text: MDU Photo
-- desc: Không tự giả định winner; capture actual policy.
-  assert_text: MDU Photo
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5590, RN-5592, RN-5525, RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5590
 

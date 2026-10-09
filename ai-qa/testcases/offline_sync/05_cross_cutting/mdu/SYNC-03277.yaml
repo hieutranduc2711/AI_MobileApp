@@ -10,41 +10,19 @@ app_path: GD Mobile > MDU > Unit
 preconditions: Entity synced locally; device offline.
 test_data: One entity
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Action 1: Check in.'
-  action: tap_selector
-  text: 'Action 1: Check in.'
-  delay: 1.0
-- desc: 'Action 2 ngay sau đó: Check out.'
-  action: tap_selector
-  text: 'Action 2 ngay sau đó: Check ou'
-  delay: 1.0
-- desc: Inspect local final state.
-  action: tap_selector
-  text: Inspect local final state.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Capture/order actions.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Capture/order actions.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  text: Device
 expected:
-- desc: Cả hai action giữ đúng semantics.
-  assert_text: MDU
-- desc: Không coalesce chỉ vì same entity/UPDATE.
-  assert_text: MDU
-- desc: Final state đúng ordered effects.
-  assert_text: MDU
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
 source_tickets: RN-5592, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

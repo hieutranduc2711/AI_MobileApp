@@ -1,5 +1,5 @@
 id: SYNC-00032
-title: 'Move Time Off: Bắt đầu Move Time Off online → mất mạng ngay trước Save/Confirm'
+title: 'Move Time Off: mở item online → mất mạng ngay trước direct calendar drag (không có Save/Confirm)'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Move Time Off
@@ -7,54 +7,69 @@ priority: P0
 flow_phase: O2F-02 Drop before Save
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Time Off
-preconditions: Đăng nhập đúng account/branch; user có quyền Move Time Off; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Time Off.
-test_data: Valid edited values
+preconditions: Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm
+  Update/banner.
+test_data: 'Unique per-run marker: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO; dùng ngày mai theo ngày của thiết bị; dữ liệu test
+  không dùng banner.'
 steps:
-- desc: Bật network ổn định và mở flow.
-  action: tap_selector
-  text: Bật network ổn định và mở flow
-  delay: 1.0
-- desc: Bắt đầu Move Time Off khi đang Online.
+- desc: Giữ mạng online để tạo fixture riêng cho testcase
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Điền/chọn dữ liệu cần thiết nhưng chưa Save/Confirm.
+  delay: 1.5
+- desc: Đưa app về Calendar Home và xác nhận màn hình lịch
+  action: macro
+  value: ensure_calendar_home
+- desc: Tạo fixture bằng menu xuất hiện sau khi chọn một time range trên calendar
+  action: macro
+  value: calendar_create_item
+  args:
+    kind: time_off
+    marker: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
+    start_time: 1PM
+    day_offset: 1
+    duration_minutes: 30
+    verify_live_refresh: false
+- desc: Reload chỉ để nạp fixture trước thao tác đang test; không reload sau mutation
+  action: macro
+  value: restart_app_and_wait
+  args:
+    marker: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
+- desc: Mở item detail khi online để xác nhận đúng fixture trước khi chuyển offline
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay trước Save/Confirm, tắt toàn bộ network.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Chờ indicator chuyển Offline.
+  text: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
+- desc: Xác nhận đang ở detail của Time Off trước khi quay lại Calendar
+  action: assert_text
+  value: Time Off
+- desc: Ngắt mạng trước gesture trực tiếp trên Calendar; Custom Event/Time Off không có popup Save/Confirm khi drag
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Tiếp tục thao tác nếu còn field chưa hoàn thành.
-  action: tap_selector
-  text: Tiếp tục thao tác nếu còn fiel
-  delay: 1.0
-- desc: Nhấn Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Navigate ra/vào lại entity trong khi vẫn Offline.
+  delay: 1.5
+- desc: Quay lại Calendar, không Save detail
+  action: back
+- desc: Drag item xuống đúng một nấc 15 phút; xác nhận position đổi ngay
+  action: macro
+  value: calendar_begin_move
+  args:
+    marker: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
+    delta_minutes: 15
+    recurrence_scope: none
+- desc: Khôi phục mạng sau assertion
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Draft/input không bị reset chỉ vì network đổi Online → Offline.
-  assert_text: Calendar
-- desc: Save chuyển sang offline-safe flow/outbox nếu action được offline support.
-  assert_text: Calendar
-- desc: Local UI phản ánh đúng result.
-  assert_text: Calendar
-- desc: Không network error làm mất dữ liệu người dùng vừa nhập.
-  assert_text: Calendar
+- desc: Calendar card đổi vị trí đúng một nấc 15 phút và giữ nguyên marker.
+  action: assert_text
+  value: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
+- desc: Thay đổi được render trên Calendar ngay, không cần reload app.
+  action: assert_text
+  value: AIQA_SYNC-00032_{{DYNAMIC_NONCE}}_TO
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Data loss at transition
-notes: ''
+risk: Calendar drag commit / offline persistence / real-time render
+notes: 'Move Custom Event/Time Off được thao tác bằng long-press/drag trực tiếp trên card; Time Off drag đã được xác nhận
+  đổi 15 phút trên Pixel 5. Với Custom Event/Time Off không xuất hiện popup Save/Confirm sau drag; O2F-02 được đổi title để
+  mô tả mất mạng ngay trước gesture, không giả vờ có bước xác nhận. Fixture setup được reload trước mutation; tuyệt đối không
+  reload sau move để không che lỗi live refresh.'

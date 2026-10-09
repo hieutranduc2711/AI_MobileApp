@@ -12,33 +12,55 @@ preconditions: Thiết bị offline hoàn toàn.
 test_data: New local task `local:task_99` created then deleted within same offline
   session.
 steps:
-- desc: 'Offline: Bấm Add Task, nhập ''Kiểm tra bẫy chuột'', bấm Save (sinh outbox
-    `CREATE local:task_99`).'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Ngay sau đó nhận ra nhầm lẫn, bấm Delete task đó (sinh lệnh `DELETE local:task_99`).
-  action: tap_selector
-  text: 'Ngay sau đó nhận ra nhầm lẫn, '
-  delay: 1.0
-- desc: Kiểm tra bảng outbox queue trong SQLite.
-  action: tap_selector
-  text: Kiểm tra bảng outbox queue tro
-  delay: 1.0
-- desc: Bật mạng online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Outbox Engine nhận diện 2 lệnh tạo và xóa cùng 1 local entity chưa từng tồn
-    tại trên server.
-  assert_text: Job / Task
-- desc: Tự động triệt tiêu (annihilate) cả 2 bản ghi khỏi outbox queue tại local.
-  assert_text: Job / Task
-- desc: Khi có mạng, không gửi bất kỳ HTTP request vô nghĩa nào lên server.
-  assert_text: Job / Task
-- desc: Không làm tốn băng thông và không gây lỗi 404 trên server.
-  assert_text: Job / Task
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5477 / Outbox-Optimization
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Unnecessary Traffic / Server 404

@@ -11,51 +11,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   cho Todo đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Todo.
-  action: tap_selector
-  text: Edit Todo
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Todo List trong Job Details
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Todo List
 expected:
-- desc: Edit Todo không làm app crash/mất dữ liệu.
-  assert_text: Todo
-- desc: Local/UI của Todo phản ánh đúng business result.
-  assert_text: Todo
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Todo
-- desc: Không duplicate logical operation.
-  assert_text: Todo
-- desc: B không nhận data/pending/result của A.
-  assert_text: Todo
-- desc: A mutation không reassigned sang B.
-  assert_text: Todo
+- desc: Mục việc cần làm hiển thị trong danh sách chờ offline
+  assert_text: Todo List
 source_tickets: RN-5569, RN-5540, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5569
 

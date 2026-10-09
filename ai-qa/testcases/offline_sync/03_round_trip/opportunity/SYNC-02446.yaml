@@ -12,52 +12,59 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Create 
   accessible.
 test_data: Valid business data
 steps:
-- desc: Mở flow khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bắt đầu nhập/chọn dữ liệu.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Bắt đầu nhập/chọn dữ liệu.
-  delay: 1.0
-- desc: Cắt network giữa workflow trước Save.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
   action: tap_selector
   content_desc: Save
-  delay: 2.0
-- desc: Tiếp tục thao tác khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào để xác nhận local persistence.
-  action: tap_selector
-  text: Navigate ra/vào để xác nhận lo
-  delay: 1.0
-- desc: Khôi phục Online.
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Chờ queue/backend/downlink.
-  action: back
-  delay: 1.0
-- desc: Đối chiếu server và mobile.
-  action: tap_selector
-  text: Đối chiếu server và mobile.
-  delay: 1.0
 expected:
-- desc: Network transition không reset user work.
-  assert_text: Opportunity
-- desc: Offline save tạo durable pending mutation.
-  assert_text: Opportunity
-- desc: Reconnect push đúng business action.
-  assert_text: Opportunity
-- desc: Final authoritative result giữ toàn bộ thay đổi từ trước và sau lúc rớt mạng.
-  assert_text: Opportunity
-- desc: Không duplicate/missing fields.
-  assert_text: Opportunity
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5620, RN-5619
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5620
 

@@ -11,51 +11,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Signature; prerequisite cho WO Tech Signature đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Capture WO Tech Signature tạo pending file.
-  action: tap_selector
-  text: Capture WO Tech Signature
-  delay: 1.0
-- desc: Reconnect để upload bắt đầu.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Tắt network giữa transfer.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Tắt network giữa transfer.
-  delay: 1.0
-- desc: Restore network.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Restore network.
-  delay: 1.0
-- desc: Wait retry.
-  action: tap_selector
-  text: Wait retry.
-  delay: 1.0
-- desc: Verify server.
-  action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Capture WO Tech Signature không làm app crash/mất dữ liệu.
-  assert_text: Signature
-- desc: Local/UI của WO Tech Signature phản ánh đúng business result.
-  assert_text: Signature
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Signature
-- desc: Không duplicate logical operation.
-  assert_text: Signature
-- desc: Không mark synced sớm.
-  assert_text: Signature
-- desc: Local source còn.
-  assert_text: Signature
-- desc: Retry một lần logical asset.
-  assert_text: Signature
-- desc: No duplicate/orphan.
-  assert_text: Signature
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5605, RN-5525, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5605
 

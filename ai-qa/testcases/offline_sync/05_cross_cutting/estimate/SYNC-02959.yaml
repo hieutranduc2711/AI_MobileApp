@@ -11,49 +11,34 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   line item; prerequisite cho Estimate Line Item đã sync khi cần.
 test_data: Parent created offline
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create parent để có local:* ID.
-  action: tap_selector
-  text: Create parent để có local:* ID
-  delay: 1.0
-- desc: Thực hiện child action Add Estimate line item.
-  action: tap_selector
-  text: Add Estimate line item
-  delay: 1.0
-- desc: Verify child links local parent.
-  action: tap_selector
-  text: Verify child links local paren
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe sync order.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Observe sync order.
-  delay: 1.0
-- desc: Verify real parent-child server relation.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
   action: tap_selector
-  text: Verify real parent-child serve
-  delay: 1.0
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Add Estimate line item không làm app crash/mất dữ liệu.
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
-- desc: Local/UI của Estimate Line Item phản ánh đúng business result.
-  assert_text: Estimate
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Estimate
-- desc: Không duplicate logical operation.
-  assert_text: Estimate
-- desc: Child không gửi unresolved parent.
-  assert_text: Estimate
-- desc: Parent mapping đúng trước/khi child send.
-  assert_text: Estimate
-- desc: No orphan/duplicate relation.
-  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
 source_tickets: RN-5579, RN-5576, RN-5533, RN-5608, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
 

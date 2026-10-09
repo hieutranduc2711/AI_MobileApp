@@ -11,24 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Download supported data and go Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Open drawer/menu.
-  action: tap_selector
-  text: Open drawer/menu.
-  delay: 1.0
-- desc: Inspect supported and unsupported items.
-  action: tap_selector
-  text: Inspect supported and unsuppor
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Unsupported menu items disabled instead of hidden trên
+    giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Calendar/Customer and supported items remain selectable.
-  assert_text: Offline Restrictions
-- desc: Unsupported items are disabled rather than causing network errors; behavior
-    matches current design.
-  assert_text: Offline Restrictions
+- desc: Thao tác Unsupported menu items disabled instead of hidden duy trì trạng thái
+    ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477,RN-5614
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
 

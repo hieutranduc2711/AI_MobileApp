@@ -15,37 +15,19 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Login GD Mobile with the account/branch required by the scenario.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Login GD Mobile with the accou
-  delay: 1.0
-- desc: Prepare/download prerequisite data while Online unless the scenario explicitly
-    tests before initial download.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: 'Perform scenario action exactly: Force a transient photo upload failure after
-    reconnecting'
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Follow every reconnect/reopen/navigation condition stated in the scenario.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Observe local UI, sync state, and web/second-device state where applicable.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
   action: tap_selector
-  text: 'Observe local UI, sync state, '
-  delay: 1.0
+  text: Attach a Photo
 expected:
-- desc: A retry alert appears; retry after the network recovers and verify the photo
-    opens in the app and on the web.
-  assert_text: Sync failures & recovery
-- desc: No crash, stale duplicate row, cross-account/branch leak, or silent data loss.
-  assert_text: Sync failures & recovery
-- desc: If the case involves reconnect, final app state must converge with backend
-    authoritative state.
-  assert_text: Sync failures & recovery
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5477 Dev Checklist
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Dev Checklist Coverage

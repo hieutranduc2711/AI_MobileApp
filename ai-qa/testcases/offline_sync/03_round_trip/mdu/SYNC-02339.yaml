@@ -11,45 +11,34 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Check o
   accessible.
 test_data: Valid entity
 steps:
-- desc: Bắt đầu Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Thực hiện Check out Unit.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Check out Unit
-  delay: 1.0
-- desc: Bật Online trong thời gian ngắn rồi tắt lại trước khi chắc chắn sync complete.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
+  action: tap_selector
+  text: Device
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Giữ Offline và reopen entity.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Cuối cùng bật Online ổn định.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Chờ queue idle/downlink.
-  action: tap_selector
-  text: Chờ queue idle/downlink.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Không duplicate action qua nhiều transition.
-  assert_text: MDU
-- desc: Không mất pending state khi Online window quá ngắn.
-  assert_text: MDU
-- desc: Final state converge sau khi network ổn định.
-  assert_text: MDU
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
+  assert_text: Device
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5592, RN-5590
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

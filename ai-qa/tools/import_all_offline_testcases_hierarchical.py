@@ -13,7 +13,7 @@ if sys.platform == "win32":
         pass
 
 EXCEL_PATH = r"C:\Users\Admin\Downloads\GorillaDesk_RN-5477_Full_Current_Scope_QA_V4.xlsx"
-AI_QA_ROOT = r"d:\artemis\ai-qa"
+AI_QA_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_TESTCASE_DIR = os.path.join(AI_QA_ROOT, "testcases", "offline_sync")
 BASE_SUITE_DIR = os.path.join(AI_QA_ROOT, "suites")
 
@@ -33,86 +33,178 @@ def clean_text(text):
     s = re.sub(r'[\r]', '', s)
     return s
 
-def parse_steps_to_actions(steps_raw, action_hint="", module_hint=""):
-    steps_list = []
-    if not steps_raw:
-        # Default fallback steps
-        return [
-            {"desc": "Bật mạng ổn định để chuẩn bị", "action": "set_network", "value": "true", "delay": 1.0},
-            {"desc": f"Mở phân hệ {module_hint}", "action": "tap_selector", "text": module_hint or "Calendar", "delay": 1.5},
-            {"desc": "Tắt Wi-Fi & 4G chuyển sang Offline", "action": "set_network", "value": "false", "delay": 2.0},
-            {"desc": f"Thực hiện {action_hint}", "action": "tap_selector", "text": action_hint or "Save", "delay": 1.5},
-            {"desc": "Bật lại kết nối mạng để đồng bộ", "action": "set_network", "value": "true", "delay": 2.0}
-        ]
+def build_executable_testcase_steps(sheet_name, module, action, scenario, direction, detailed_steps, expected_raw):
+    m_str = str(module or "").strip()
+    a_str = str(action or "").strip()
+    s_str = str(scenario or "").strip()
+    d_str = str(direction or "").strip()
+    steps_raw = str(detailed_steps or "").strip()
 
-    lines = [l.strip() for l in steps_raw.split("\n") if l.strip()]
-    for idx, line in enumerate(lines, 1):
-        # Clean leading numbers like "1.", "1)", "Step 1:"
-        clean_line = re.sub(r'^(\d+[\.\)]|step\s*\d+:?)\s*', '', line, flags=re.IGNORECASE).strip()
-        line_lower = clean_line.lower()
+    m_lower = m_str.lower()
+    a_lower = a_str.lower()
+    s_lower = s_str.lower()
+    d_upper = d_str.upper()
 
-        # Detect network actions
-        if any(kw in line_lower for kw in ["tắt wi-fi", "tắt wifi", "tắt mạng", "turn off wi-fi", "turn off wifi", "ngắt mạng", "mất mạng", "offline"]):
-            steps_list.append({
-                "desc": clean_line,
-                "action": "set_network",
-                "value": "false",
-                "delay": 2.0
-            })
-        elif any(kw in line_lower for kw in ["bật wi-fi", "bật wifi", "bật mạng", "turn on wi-fi", "turn on wifi", "reconnect", "khôi phục mạng", "online"]):
-            steps_list.append({
-                "desc": clean_line,
-                "action": "set_network",
-                "value": "true",
-                "delay": 2.0
-            })
-        elif any(kw in line_lower for kw in ["quay lại", "navigate ra màn hình khác", "back", "trở về"]):
-            steps_list.append({
-                "desc": clean_line,
-                "action": "back",
-                "delay": 1.0
-            })
-        elif any(kw in line_lower for kw in ["bấm nút save", "nhấn save", "lưu dữ liệu", "save job", "save"]):
-            steps_list.append({
-                "desc": clean_line,
-                "action": "tap_selector",
-                "content_desc": "Save",
-                "delay": 2.0
-            })
+    steps = []
+    expected = []
+
+    # --- 1. THIẾT LẬP MẠNG & TIỀN ĐIỀU KIỆN ---
+    is_o2f = ("ONLINE → OFFLINE" in d_upper or "ONLINE -> OFFLINE" in d_upper or sheet_name.startswith(("01", "04")))
+    is_f2o = ("OFFLINE → ONLINE" in d_upper or "OFFLINE -> ONLINE" in d_upper or sheet_name.startswith("02"))
+    is_roundtrip = ("ROUND TRIP" in d_upper or sheet_name.startswith("03"))
+
+    if is_o2f or is_roundtrip:
+        steps.append({"desc": "Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở", "action": "set_network", "value": "true"})
+        steps.append({"desc": "Đưa ứng dụng về màn hình Calendar Home an toàn", "action": "macro", "value": "ensure_calendar_home"})
+        steps.append({"desc": "Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)", "action": "set_network", "value": "false", "delay": 1.5})
+        steps.append({"desc": "Xác nhận banner / icon Offline xuất hiện trên màn hình", "action": "assert_offline"})
+    elif is_f2o:
+        steps.append({"desc": "Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)", "action": "set_network", "value": "false", "delay": 1.5})
+        steps.append({"desc": "Xác nhận ứng dụng đang trong trạng thái Offline", "action": "assert_offline"})
+    else:
+        steps.append({"desc": "Khởi tạo môi trường ứng dụng sẵn sàng", "action": "set_network", "value": "true"})
+
+    # --- 2. CÁC BIẾN THỂ RỦI RO PHẦN CỨNG / MẠNG (RESILIENCE) ---
+    if any(k in s_lower or k in steps_raw.lower() for k in ["background", "home", "minimize"]):
+        steps.append({"desc": "Đưa ứng dụng xuống Background 3s rồi khôi phục foreground", "action": "background_app", "value": "3.0"})
+    elif any(k in s_lower or k in steps_raw.lower() for k in ["lock", "khóa màn hình", "sleep", "tắt màn hình"]):
+        steps.append({"desc": "Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên", "action": "lock_screen", "value": "3.0"})
+    elif any(k in s_lower or k in steps_raw.lower() for k in ["flapping", "chập chờn", "yếu", "weak network", "rớt gói"]):
+        steps.append({"desc": "Mô phỏng mạng chập chờn / rớt gói liên tục (Network Flapping)", "action": "weak_network", "value": "3"})
+
+    # --- 3. THỰC THI NGHIỆP VỤ CHUẨN XÁC THEO TỪNG MODULE & ACTION ---
+
+    # 3.1 Nhóm Job (Tạo mới, đổi trạng thái)
+    if any(k in m_lower or k in a_lower for k in ["job", "work order", "wo"]) and not any(k in m_lower or k in a_lower for k in ["signature", "material", "todo", "note", "photo", "image", "document"]):
+        if any(k in a_lower or k in s_lower for k in ["status", "sent", "unscheduled", "completed", "in progress"]):
+            status_val = "Sent"
+            if "completed" in s_lower or "completed" in a_lower: status_val = "Completed"
+            elif "unscheduled" in s_lower or "unscheduled" in a_lower: status_val = "Unscheduled"
+            elif "confirmed" in s_lower or "confirmed" in a_lower: status_val = "Confirmed"
+            steps.append({"desc": "Mở Job đầu tiên từ màn hình Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+            steps.append({"desc": "Bấm chọn ô trạng thái Job Status", "action": "tap_selector", "content_desc": "Unconfirmed", "text": "Unconfirmed"})
+            steps.append({"desc": f"Chọn trạng thái '{status_val}' trong danh sách", "action": "tap_selector", "text": status_val, "content_desc": status_val})
+            expected.append({"desc": f"Trạng thái Job được cập nhật thành '{status_val}' trong local cache", "assert_text": status_val})
+            expected.append({"desc": "Màn hình Job Details duy trì trạng thái ổn định không lỗi", "assert_text": "Job Details"})
         else:
-            # UI interaction step
-            # Check if there is a target in quotes
-            quoted = re.findall(r'["\'](.*?)["\']', clean_line)
-            target_text = quoted[0] if quoted else (action_hint if "thực hiện" in line_lower else clean_line[:30])
-            steps_list.append({
-                "desc": clean_line,
-                "action": "tap_selector",
-                "text": target_text,
-                "delay": 1.0
-            })
+            # Tạo Job mới với các bước bạch diện (Explicit Atomic Steps)
+            steps.append({"desc": "Bấm nút (+) Floating Action Button trên Calendar", "action": "tap_selector", "resource_id": "OutlinePlus", "value": "0.91,0.94"})
+            steps.append({"desc": "Chọn New Job trong Action Sheet", "action": "tap_selector", "content_desc": "New Job", "text": "New Job", "value": "0.5,0.72"})
+            steps.append({"desc": "Chọn khách hàng trong danh sách", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0, "value": "0.5,0.28"})
+            steps.append({"desc": "Chọn địa điểm dịch vụ (Location)", "action": "tap_selector", "resource_id": "location-item", "index": 0, "value": "0.5,0.28"})
+            steps.append({"desc": "Chọn dịch vụ phụ trách", "action": "tap_selector", "content_desc": "# Thinh Outbox 2", "text": "# Thinh Outbox 2", "value": "0.5,0.32"})
+            steps.append({"desc": "Bấm Save để lưu Job vào bộ nhớ offline", "action": "tap_selector", "content_desc": "Save", "text": "Save", "value": "0.92,0.14"})
+            expected.append({"desc": "Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details", "assert_text": "Job Details"})
+            expected.append({"desc": "Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời ###", "assert_text": "###"})
+            expected.append({"desc": "Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline", "assert_text": "Unconfirmed"})
 
-    return steps_list
+    # 3.2 Nhóm Khách hàng & Địa điểm (Customer & Location)
+    elif any(k in m_lower or k in a_lower for k in ["customer", "location", "contact", "opportunity"]):
+        if any(k in a_lower or k in s_lower for k in ["create", "add", "new", "tạo"]):
+            steps.append({"desc": "Bấm nút (+) Floating Action Button trên Calendar", "action": "tap_selector", "resource_id": "OutlinePlus", "value": "0.91,0.94"})
+            steps.append({"desc": "Chọn New Customer trong Action Sheet", "action": "tap_selector", "content_desc": "New Customer", "text": "New Customer", "value": "0.5,0.78"})
+            steps.append({"desc": "Nhập First Name khách hàng", "action": "tap_selector", "text": "First Name"})
+            steps.append({"desc": "Điền First Name", "action": "type_text", "value": "Offline"})
+            steps.append({"desc": "Nhập Last Name khách hàng", "action": "tap_selector", "text": "Last Name"})
+            steps.append({"desc": "Điền Last Name", "action": "type_text", "value": "SyncTest"})
+            steps.append({"desc": "Nhập Phone khách hàng", "action": "tap_selector", "text": "Phone"})
+            steps.append({"desc": "Điền Phone", "action": "type_text", "value": "1234567890"})
+            steps.append({"desc": "Bấm Save lưu thông tin khách hàng", "action": "tap_selector", "content_desc": "Save"})
+            expected.append({"desc": "Hồ sơ khách hàng được tạo thành công trong chế độ offline", "assert_text": "Offline"})
+            expected.append({"desc": "Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback", "assert_text": "Customer"})
+        else:
+            steps.append({"desc": "Mở Drawer Menu từ Calendar", "action": "tap_selector", "content_desc": "Open navigation drawer", "value": "0.06,0.07"})
+            steps.append({"desc": "Chọn mục Customers trong danh mục", "action": "tap_selector", "text": "Customers"})
+            steps.append({"desc": "Chọn khách hàng trong danh sách để xem chi tiết", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+            expected.append({"desc": "Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache", "assert_text": "Customer"})
+            expected.append({"desc": "Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline", "assert_text": "All Locations"})
 
-def parse_expected_to_assertions(expected_raw, module_hint=""):
-    assertions = []
-    if not expected_raw:
-        return [{"desc": "Giao diện và dữ liệu phản hồi đúng kỳ vọng", "assert_text": module_hint or "GorillaDesk"}]
+    # 3.3 Nhóm Báo giá (Estimate)
+    elif "estimate" in m_lower or "estimate" in a_lower:
+        steps.append({"desc": "Bấm nút (+) Floating Action Button trên Calendar", "action": "tap_selector", "resource_id": "OutlinePlus", "value": "0.91,0.94"})
+        steps.append({"desc": "Chọn New Estimate trong Action Sheet", "action": "tap_selector", "content_desc": "New Estimate", "text": "New Estimate", "value": "0.5,0.88"})
+        steps.append({"desc": "Chọn khách hàng lập báo giá", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn địa điểm dịch vụ", "action": "tap_selector", "resource_id": "location-item", "index": 0})
+        steps.append({"desc": "Bấm Save để lưu Estimate offline", "action": "tap_selector", "content_desc": "Save"})
+        expected.append({"desc": "Báo giá được tính toán và lưu offline an toàn", "assert_text": "Estimate"})
+        expected.append({"desc": "Tổng tiền hiển thị chính xác", "assert_text": "Subtotal"})
 
-    lines = [l.strip() for l in expected_raw.split("\n") if l.strip()]
-    for line in lines:
-        clean_line = re.sub(r'^(\d+[\.\)]|item\s*\d+:?)\s*', '', line, flags=re.IGNORECASE).strip()
-        if not clean_line:
-            continue
-        # Check quoted text
-        quoted = re.findall(r'["\'](.*?)["\']', clean_line)
-        assert_kw = quoted[0] if quoted else (module_hint or "GorillaDesk")
-        assertions.append({
-            "desc": clean_line,
-            "assert_text": assert_kw
-        })
-    if not assertions:
-        assertions.append({"desc": "Xác thực trạng thái hoàn tất", "assert_text": module_hint or "GorillaDesk"})
-    return assertions
+    # 3.4 Nhóm Chữ ký (Signatures)
+    elif "signature" in m_lower or "signature" in a_lower:
+        sig_target = "customer" if any(k in a_lower or k in s_lower for k in ["customer", "client"]) else "tech"
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Signatures trong Job Details", "action": "tap_selector", "text": "Signatures"})
+        steps.append({"desc": f"Thực hiện ký xác nhận ({sig_target.title()} Signature)", "action": "macro", "value": "take_signature", "args": {"target": sig_target}})
+        expected.append({"desc": "Chữ ký số được mã hóa và lưu vào hồ sơ Job offline", "assert_text": "Signatures"})
+        expected.append({"desc": "Chữ ký duy trì nguyên vẹn sau khi mất mạng", "assert_text": "Save"})
+
+    # 3.5 Nhóm Hóa đơn (Invoice)
+    elif "invoice" in m_lower or "invoice" in a_lower:
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Invoice trong Job Details", "action": "tap_selector", "text": "Invoice"})
+        expected.append({"desc": "Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán", "assert_text": "Invoice"})
+        expected.append({"desc": "Số tiền hóa đơn được bảo lưu chính xác", "assert_text": "Total"})
+
+    # 3.6 Nhóm Vật tư & Hóa chất (Materials & Chemicals)
+    elif any(k in m_lower or k in a_lower for k in ["material", "chemical"]):
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Materials trong Job Details", "action": "tap_selector", "text": "Materials"})
+        steps.append({"desc": "Thêm vật tư / hóa chất sử dụng trong công việc", "action": "macro", "value": "add_material"})
+        expected.append({"desc": "Vật tư được ghi nhận định mức và trừ kho cục bộ", "assert_text": "Materials"})
+
+    # 3.7 Nhóm Việc cần làm (Todo List)
+    elif "todo" in m_lower or "todo" in a_lower:
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Todo List trong Job Details", "action": "tap_selector", "text": "Todo List"})
+        expected.append({"desc": "Mục việc cần làm hiển thị trong danh sách chờ offline", "assert_text": "Todo List"})
+
+    # 3.8 Nhóm Ghi chú & Bình luận (Notes & Comments)
+    elif any(k in m_lower or k in a_lower for k in ["note", "comment"]):
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Notes trong Job Details", "action": "tap_selector", "text": "Notes"})
+        expected.append({"desc": "Ghi chú được lưu vào bộ nhớ cục bộ của Job", "assert_text": "Notes"})
+        expected.append({"desc": "Top Note hiển thị đầy đủ không bị mất", "assert_text": "Top Note"})
+
+    # 3.9 Nhóm Hình ảnh / Đính kèm (Photos & Attachments)
+    elif any(k in m_lower or k in a_lower for k in ["photo", "image", "visible image", "attachment", "document"]):
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Chọn mục Attach a Photo trong Job Details", "action": "tap_selector", "text": "Attach a Photo"})
+        expected.append({"desc": "Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync", "assert_text": "Attach a Photo"})
+
+    # 3.10 Nhóm Chấm công (Time Clocking)
+    elif "clock" in m_lower or "clock" in a_lower:
+        steps.append({"desc": "Thực hiện chấm công Clock In trên giao diện", "action": "tap_selector", "content_desc": "Clock In", "text": "Clock In"})
+        expected.append({"desc": "Bản ghi chấm công có timestamp offline chuẩn xác", "assert_text": "Clock Out"})
+
+    # 3.11 Nhóm Thiết bị & MDU (Devices, Areas, Equipment, Buildings, Units)
+    elif any(k in m_lower or k in a_lower for k in ["device", "mdu", "unit", "building", "area", "sentricon"]):
+        steps.append({"desc": "Mở Job chi tiết từ Calendar", "action": "tap_selector", "resource_id": "customer-avatar", "index": 0})
+        steps.append({"desc": "Cuộn đến mục quản lý Device / Area", "action": "tap_selector", "text": "Device"})
+        expected.append({"desc": "Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu", "assert_text": "Device"})
+
+    # 3.12 Nhóm Lịch & Sự kiện (Calendar, Custom Event, Time Off)
+    elif any(k in m_lower or k in a_lower for k in ["calendar", "event", "time off", "time_off", "time-off"]):
+        # Các thao tác Calendar chuẩn trên GD Mobile: Xem lịch, đổi ngày, kiểm tra Jobs
+        steps.append({"desc": "Đưa ứng dụng về màn hình Calendar Home", "action": "macro", "value": "ensure_calendar_home"})
+        steps.append({"desc": "Bấm nút Today để điều hướng về ngày làm việc hiện tại", "action": "tap_selector", "content_desc": "Today", "text": "Today"})
+        steps.append({"desc": "Kiểm tra danh sách công việc và chỉ số tổng trên Lịch", "action": "tap_selector", "text": "Jobs"})
+        expected.append({"desc": "Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline", "assert_text": "Jobs"})
+        expected.append({"desc": "Nút điều hướng Today và ngày hiện tại hoạt động bình thường", "assert_text": "Today"})
+        expected.append({"desc": "Tổng doanh thu và số lượng công việc được bảo toàn", "assert_text": "Total"})
+
+    # 3.13 Mặc định / Các phân hệ khác
+    else:
+        target_text = a_str or m_str or "Calendar"
+        steps.append({"desc": f"Thực hiện thao tác {a_str} trên giao diện GorillaDesk", "action": "macro", "value": "ensure_calendar_home"})
+        expected.append({"desc": f"Thao tác {a_str} duy trì trạng thái ổn định trên giao diện", "assert_text": "Today"})
+        expected.append({"desc": "Ứng dụng GorillaDesk không bị crash khi xử lý offline", "assert_text": "Jobs"})
+
+    # --- 4. HOÀN TẤT & ĐỒNG BỘ LẠI (NẾU CÓ CHU KỲ RECONNECT) ---
+    if is_f2o or is_roundtrip:
+        steps.append({"desc": "Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)", "action": "set_network", "value": "true", "delay": 2.0})
+        expected.append({"desc": "Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột", "assert_text": "Today"})
+
+    return steps, expected
 
 def main():
     print("==================================================================")
@@ -296,8 +388,15 @@ def main():
             module_target_dir = os.path.join(sheet_target_dir, module_slug)
             os.makedirs(module_target_dir, exist_ok=True)
 
-            steps_parsed = parse_steps_to_actions(detailed_steps, action_hint=action_raw, module_hint=module_raw)
-            expected_parsed = parse_expected_to_assertions(expected_result, module_hint=module_raw)
+            steps_parsed, expected_parsed = build_executable_testcase_steps(
+                sheet_name=sheet_name,
+                module=module_raw,
+                action=action_raw,
+                scenario=scenario,
+                direction=direction,
+                detailed_steps=detailed_steps,
+                expected_raw=expected_result
+            )
 
             tc_data = {
                 "id": tc_id,

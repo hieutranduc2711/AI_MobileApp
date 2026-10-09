@@ -13,34 +13,46 @@ preconditions: Technician nhận lịch Job lúc 9:00 AM EST; offline và di chu
 test_data: 'Original Job Start: 2026-10-08T09:00:00-04:00 (EST); New Device Timezone:
   America/Chicago (-05:00).'
 steps:
-- desc: Tải lịch khi online ở múi giờ EST.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Chuyển sang Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Đổi timezone của hệ điều hành sang CST.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: 'Đổi timezone của hệ điều hành '
-  delay: 1.0
-- desc: Mở tab Agenda / Calendar kiểm tra giờ hiển thị của Job.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: 'Mở tab Agenda / Calendar kiểm '
-  delay: 1.0
-- desc: Bật mạng online lại và kiểm tra sync.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Job vẫn giữ đúng giờ hẹn với khách hàng theo quy định của chi nhánh (Branch
-    Timezone) hoặc hiển thị rõ ràng múi giờ gốc.
-  assert_text: Calendar / Jobs
-- desc: Không bị cộng/trừ sai 1 tiếng dẫn đến technician đến sớm hoặc muộn giờ hẹn.
-  assert_text: Calendar / Jobs
-- desc: Khi sync lại, start_time UTC trên server không bị dịch chuyển lệch giờ.
-  assert_text: Calendar / Jobs
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5477 / Calendar
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Missed Appointment / Wrong Schedule

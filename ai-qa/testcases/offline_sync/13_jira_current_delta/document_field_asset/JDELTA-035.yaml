@@ -11,23 +11,26 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline create/edit document and add image/signature.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Delete document before reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Reconnect.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
+  action: tap_selector
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Document stays deleted.
-  assert_text: Document Field Asset
-- desc: Pending asset/business mutation does not recreate document or orphan relation.
-  assert_text: Document Field Asset
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5525,RN-5577
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5525
 

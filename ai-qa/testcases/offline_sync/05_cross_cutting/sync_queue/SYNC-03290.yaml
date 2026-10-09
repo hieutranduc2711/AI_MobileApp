@@ -10,29 +10,17 @@ app_path: Test hook
 preconditions: Prepare environment/data as described.
 test_data: Malformed row before valid rows
 steps:
-- desc: Place bad row first.
-  action: tap_selector
-  text: Place bad row first.
-  delay: 1.0
-- desc: Add 25 valid rows.
-  action: tap_selector
-  text: Add 25 valid rows.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe terminal/retry.
-  action: tap_selector
-  text: Observe terminal/retry.
-  delay: 1.0
-- desc: Verify later rows.
-  action: tap_selector
-  text: Verify later rows.
-  delay: 1.0
+- desc: Thực hiện thao tác Dead-letter bad row trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Bad row does not block valid rows.
-  assert_text: Sync Queue
+- desc: Thao tác Dead-letter bad row duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5587, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5587
 

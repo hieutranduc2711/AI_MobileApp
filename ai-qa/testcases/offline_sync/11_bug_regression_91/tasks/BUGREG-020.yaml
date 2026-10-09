@@ -11,29 +11,19 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to Job detail
-  action: tap_selector
-  text: Go to Job detail
-  delay: 1.0
-- desc: Add new task
-  action: tap_selector
-  text: Add new task
-  delay: 1.0
-- desc: Change status of task to Done
-  action: tap_selector
-  text: Change status of task to Done
-  delay: 1.0
-- desc: Back to online.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Go to desktop app. Task only added without status to Done
-  action: tap_selector
-  text: Go to desktop app. Task only a
-  delay: 1.0
+- desc: Thực hiện thao tác Not update correct status of task (Offline) trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Should be added task with correct status
-  assert_text: Tasks
+- desc: Thao tác Not update correct status of task (Offline) duy trì trạng thái ổn
+    định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

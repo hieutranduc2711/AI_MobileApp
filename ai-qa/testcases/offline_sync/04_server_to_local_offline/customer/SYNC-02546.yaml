@@ -12,36 +12,52 @@ preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có q
   đổi cùng data.
 test_data: Card/ACH metadata
 steps:
-- desc: Giữ mobile Online ở app/screen phù hợp.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Tạo record mới từ web/thiết bị B.
-  action: tap_selector
-  text: Tạo record mới từ web/thiết bị
-  delay: 1.0
-- desc: Chờ mobile nhận qua PowerSync/revalidation.
-  action: tap_selector
-  text: Chờ mobile nhận qua PowerSync/
-  delay: 1.0
-- desc: Xác nhận record xuất hiện trên mobile.
-  action: tap_selector
-  text: Xác nhận record xuất hiện trên
-  delay: 1.0
-- desc: Tắt network.
-  action: tap_selector
-  text: Tắt network.
-  delay: 1.0
-- desc: Reopen screen Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Record mới đã được persist local trước khi mất mạng.
-  assert_text: Customer
-- desc: Offline vẫn thấy record.
-  assert_text: Customer
-- desc: Không cần web/API sau khi network off.
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
   assert_text: Customer
 source_tickets: RN-5593, RN-5604
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5593

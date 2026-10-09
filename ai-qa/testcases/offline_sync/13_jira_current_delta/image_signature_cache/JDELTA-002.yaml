@@ -10,22 +10,29 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Seed small, medium and large cached image/signature sets.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Seed small, medium and large c
-  delay: 1.0
-- desc: Measure cold reopen and warm reopen read latency.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
   action: tap_selector
-  text: Measure cold reopen and warm r
-  delay: 1.0
-- desc: Repeat after app restart and after background/foreground.
-  action: back
-  delay: 1.0
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Tech Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: tech
 expected:
-- desc: Read latency remains within an agreed performance budget.
-  assert_text: Image/Signature Cache
-- desc: No UI freeze/OOM while rendering cached assets.
-  assert_text: Image/Signature Cache
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: RN-5680
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5680
 risk: Schema / Comment Regression

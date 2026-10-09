@@ -11,21 +11,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to All Notes
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Go to All Notes
-  delay: 1.0
-- desc: Press on menu of note
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
   action: tap_selector
-  text: Press on menu of note
-  delay: 1.0
-- desc: Not show Add comment in menu
-  action: tap_selector
-  text: Not show Add comment in menu
-  delay: 1.0
+  text: Notes
 expected:
-- desc: Should be show Add comment in menu of note & sync offline comment
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
   assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

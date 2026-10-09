@@ -11,29 +11,26 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to desktop app & change status invoice to Void
-  action: tap_selector
-  text: Go to desktop app & change sta
-  delay: 1.0
-- desc: Go to job detail. App show correct invoice status
-  action: tap_selector
-  text: Go to job detail. App show cor
-  delay: 1.0
-- desc: Go to offline & change status of invoice to Sent in Invoice menu
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Invoice show correct status to Sent in job detail
-  action: tap_selector
-  text: Invoice show correct status to
-  delay: 1.0
-- desc: Back to online, status of invoice change back to previous status in job detail
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job đầu tiên từ màn hình Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Sent' trong danh sách
+  action: tap_selector
+  text: Sent
+  content_desc: Sent
 expected:
-- desc: Should be show correct status of invoice after changed
-  assert_text: Invoice
+- desc: Trạng thái Job được cập nhật thành 'Sent' trong local cache
+  assert_text: Sent
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

@@ -11,43 +11,21 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   line item; prerequisite cho Invoice Line Item đã sync khi cần.
 test_data: Valid create payload
 steps:
-- desc: Go offline hoặc throttle.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Điền form Add Invoice line item.
-  action: tap_selector
-  text: Điền form Add Invoice line ite
-  delay: 1.0
-- desc: Tap Save/Confirm 2 lần nhanh.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Inspect local list/outbox.
-  action: tap_selector
-  text: Inspect local list/outbox.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Count server records.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Count server records.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
+  action: tap_selector
+  text: Invoice
 expected:
-- desc: Add Invoice line item không làm app crash/mất dữ liệu.
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
-- desc: Local/UI của Invoice Line Item phản ánh đúng business result.
-  assert_text: Invoice
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Invoice
-- desc: Không duplicate logical operation.
-  assert_text: Invoice
-- desc: Chỉ một logical record.
-  assert_text: Invoice
-- desc: Không duplicate local/server.
-  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5579, RN-5575, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5579
 

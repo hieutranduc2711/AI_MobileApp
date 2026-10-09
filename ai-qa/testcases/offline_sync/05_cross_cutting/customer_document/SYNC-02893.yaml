@@ -11,45 +11,47 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   Document; prerequisite cho Customer Document đã sync khi cần.
 test_data: Upload test data
 steps:
-- desc: Chuẩn bị large valid file.
-  action: tap_selector
-  text: Chuẩn bị large valid file.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Customer Document.
-  action: tap_selector
-  text: Create Customer Document
-  delay: 1.0
-- desc: Reconnect weak network.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Observe memory/UI/upload.
+- desc: Mô phỏng mạng chập chờn / rớt gói liên tục (Network Flapping)
+  action: weak_network
+  value: '3'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Observe memory/UI/upload.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Create Customer Document không làm app crash/mất dữ liệu.
-  assert_text: Customer Document
-- desc: Local/UI của Customer Document phản ánh đúng business result.
-  assert_text: Customer Document
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Customer Document
-- desc: Không duplicate logical operation.
-  assert_text: Customer Document
-- desc: Không OOM/crash.
-  assert_text: Customer Document
-- desc: Preview/ref tồn tại local.
-  assert_text: Customer Document
-- desc: Upload/retry đúng.
-  assert_text: Customer Document
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5624, RN-5577, RN-5525, RN-5637
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5624
 

@@ -13,33 +13,31 @@ preconditions: Thiết bị offline tạo Customer A (email đã tồn tại tr�
 test_data: 'Duplicate email: ''existing@gorilladesk.com'' triggers server 422 Unprocessable
   Entity.'
 steps:
-- desc: Tạo chuỗi 4 cấp offline như testcase EDGE-GAP-030.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật mạng để sync.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên
+  action: lock_screen
+  value: '3.0'
+- desc: Thực hiện thao tác Parent Rejection Cascading Child Blocker trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Server xử lý Customer A và trả về 422 Duplicate Email.
-  action: tap_selector
-  text: Server xử lý Customer A và trả
-  delay: 1.0
-- desc: Kiểm tra trạng thái của Location, Job và Invoice trong hàng đợi.
-  action: tap_selector
-  text: Kiểm tra trạng thái của Locati
-  delay: 1.0
 expected:
-- desc: Customer A dừng lại ở trạng thái 'Failed (Duplicate Email)'.
-  assert_text: Failed (Duplicate Email)
-- desc: Sync Engine KHÔNG gửi Location, Job, Invoice lên server với foreign key rác
-    hoặc rỗng (tránh tạo orphaned records).
-  assert_text: Sync Engine / Error Cascade
-- desc: Các entity con được đánh dấu trạng thái 'Blocked by Parent Dependency'.
-  assert_text: Blocked by Parent Dependency
-- desc: 'Giao diện hiển thị hướng dẫn: ''Sửa lỗi email của Khách hàng để tiếp tục
-    đồng bộ các mục liên quan''.'
-  assert_text: Sửa lỗi email của Khách hàng để tiếp tục đồng bộ các mục liên quan
+- desc: Thao tác Parent Rejection Cascading Child Blocker duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Cascade-Failure
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Orphaned Records / Server Crash

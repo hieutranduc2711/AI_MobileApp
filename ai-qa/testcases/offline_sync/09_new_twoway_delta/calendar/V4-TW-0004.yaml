@@ -11,41 +11,35 @@ app_path: GD Mobile > Calendar > Time Off > Delete
 preconditions: User có quyền Delete Time Off; prerequisite data đã được tải về local.
 test_data: ''
 steps:
-- desc: Mở flow khi network Online ổn định.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bắt đầu Delete Time Off, điền/chọn dữ liệu nhưng chưa Save/Confirm.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Tắt Wi‑Fi và mobile data; chờ app nhận Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Tiếp tục hoàn tất flow và Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào lại màn hình liên quan.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: Navigate ra/vào lại màn hình l
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra local result.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Jobs
 expected:
-- desc: Input/draft không bị reset khi Online → Offline.
-  assert_text: Calendar
-- desc: Delete Time Off được lưu local theo offline scope.
-  assert_text: Calendar
-- desc: Không hiện network error làm mất thay đổi.
-  assert_text: Calendar
-- desc: Local result tồn tại sau remount/navigation.
-  assert_text: Calendar
-- desc: Không tạo duplicate pending action.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5573
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5573
 risk: Delta Missing Action

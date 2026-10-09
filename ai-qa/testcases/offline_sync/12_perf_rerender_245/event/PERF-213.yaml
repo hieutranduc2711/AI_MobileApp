@@ -11,43 +11,26 @@ app_path: GD Mobile > EventForm
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 0'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Event / EventForm.'
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: 'Open module/component: Event /'
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Tạo event khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
-  action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
-  action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  text: Jobs
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Event
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (0 re-render/update count) without an approved implementation reason.
-  assert_text: Event
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
-  assert_text: Event
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

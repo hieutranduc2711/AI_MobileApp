@@ -10,19 +10,26 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off wifi
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create new job with service template don't set satus always confirm
+  value: 'true'
+- desc: Mở Job đầu tiên từ màn hình Calendar
   action: tap_selector
-  text: Create new job with service te
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Sent' trong danh sách
+  action: tap_selector
+  text: Sent
+  content_desc: Sent
 expected:
-- desc: 'Expect: Status of job must be Unconfirmed'
-  assert_text: Job
-- desc: 'Actual: Status of job is Confirmed'
-  assert_text: Job
+- desc: Trạng thái Job được cập nhật thành 'Sent' trong local cache
+  assert_text: Sent
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

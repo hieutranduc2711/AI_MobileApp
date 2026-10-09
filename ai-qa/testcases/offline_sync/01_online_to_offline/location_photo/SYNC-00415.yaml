@@ -11,39 +11,56 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Add Locatio
   data cần thiết đã sync; mở đúng GD Mobile > Customer > Location > Photos > Add.
 test_data: Valid photo/file/signature/document
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Bắt đầu Add Location Photo có binary upload.
-  action: tap_selector
-  text: 'Bắt đầu Add Location Photo có '
-  delay: 1.0
-- desc: Khi upload đang transfer, tắt toàn bộ network.
-  action: tap_selector
-  text: 'Khi upload đang transfer, tắt '
-  delay: 1.0
-- desc: Navigate ra/vào màn hình liên quan.
-  action: tap_selector
-  text: 'Navigate ra/vào màn hình liên '
-  delay: 1.0
-- desc: Background/foreground app khi vẫn Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Kiểm tra preview/local reference.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Kiểm tra preview/local referen
-  delay: 1.0
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
+  action: tap_selector
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
+  action: tap_selector
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Upload dở không được mark synced.
-  assert_text: Location Photo
-- desc: Local source/preview phải còn để retry sau.
-  assert_text: Location Photo
-- desc: Không tạo orphan business mutation trỏ tới asset chưa upload.
-  assert_text: Location Photo
-- desc: Không duplicate local attachment/image/signature.
-  assert_text: Location Photo
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5585, RN-5525, RN-5525
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5585
 

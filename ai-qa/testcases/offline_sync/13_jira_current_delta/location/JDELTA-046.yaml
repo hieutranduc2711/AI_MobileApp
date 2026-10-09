@@ -11,21 +11,25 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline create/edit Service Location with all listed fields.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reopen form Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect and reopen.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Drawer Menu từ Calendar
+  action: tap_selector
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: All fields remain correct in local form and authoritative server data.
-  assert_text: Location
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5602
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5602
 risk: Schema / Comment Regression

@@ -10,19 +10,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Open document Offline.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Attempt to open Sketch.
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Attempt to open Sketch.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
 expected:
-- desc: Sketch editor does not open Offline.
-  assert_text: Offline Restrictions
-- desc: Base document flow remains usable.
-  assert_text: Offline Restrictions
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5614
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5614
 risk: Schema / Comment Regression

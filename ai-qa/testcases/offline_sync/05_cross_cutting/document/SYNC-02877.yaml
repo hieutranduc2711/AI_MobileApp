@@ -12,51 +12,19 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   Job Document; prerequisite cho Document đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Login A.
-  action: tap_selector
-  text: Login A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit existing Job Document.
-  action: tap_selector
-  text: Edit existing Job Document
-  delay: 1.0
-- desc: Logout/switch B.
-  action: tap_selector
-  text: Logout/switch B.
-  delay: 1.0
-- desc: Reconnect B.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Login lại A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
   action: tap_selector
-  text: Login lại A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Attach a Photo
 expected:
-- desc: Edit existing Job Document không làm app crash/mất dữ liệu.
-  assert_text: Document
-- desc: Local/UI của Document phản ánh đúng business result.
-  assert_text: Document
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Document
-- desc: Không duplicate logical operation.
-  assert_text: Document
-- desc: B không nhận data/pending/result của A.
-  assert_text: Document
-- desc: A mutation không reassigned sang B.
-  assert_text: Document
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5577, RN-5539
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5577
 

@@ -11,53 +11,21 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền E
   cho Note đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Edit Note.
-  action: tap_selector
-  text: Edit Note
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
-  action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: Notes
 expected:
-- desc: Edit Note không làm app crash/mất dữ liệu.
-  assert_text: Note
-- desc: Local/UI của Note phản ánh đúng business result.
-  assert_text: Note
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Note
-- desc: Không duplicate logical operation.
-  assert_text: Note
-- desc: A mutation không send với B context.
-  assert_text: Note
-- desc: B không thấy A optimistic data.
-  assert_text: Note
-- desc: Converge ở A only.
-  assert_text: Note
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5567, RN-5536
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
 

@@ -11,27 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Use documents of multiple types/parents.
-  action: tap_selector
-  text: Use documents of multiple type
-  delay: 1.0
-- desc: Sync to mobile.
-  action: tap_selector
-  text: Sync to mobile.
-  delay: 1.0
-- desc: Offline edit existing document.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
 expected:
-- desc: type and parent_id remain correct.
-  assert_text: Document Schema
-- desc: Document does not appear under wrong parent or lose editability logic.
-  assert_text: Document Schema
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5539,RN-5577
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5539
 

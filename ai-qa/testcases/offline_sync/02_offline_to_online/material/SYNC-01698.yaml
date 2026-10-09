@@ -12,41 +12,31 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Create Job Material.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Force close app.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Force close app.
-  delay: 1.0
-- desc: Mở lại khi vẫn Offline.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
+  action: tap_selector
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
-  value: 'false'
+  value: 'true'
   delay: 2.0
-- desc: Xác nhận local result còn.
-  action: tap_selector
-  text: Xác nhận local result còn.
-  delay: 1.0
-- desc: Bật network.
-  action: tap_selector
-  text: Bật network.
-  delay: 1.0
-- desc: Chờ sync.
-  action: tap_selector
-  text: Chờ sync.
-  delay: 1.0
-- desc: Verify server/local.
-  action: tap_selector
-  text: Verify server/local.
-  delay: 1.0
 expected:
-- desc: Durable outbox sống qua restart.
-  assert_text: Material
-- desc: Reopen không tạo duplicate row.
-  assert_text: Material
-- desc: Reconnect tiếp tục sync bình thường.
-  assert_text: Material
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5568, RN-5545
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5568
 

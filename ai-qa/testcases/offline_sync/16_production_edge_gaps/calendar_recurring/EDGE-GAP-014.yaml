@@ -12,28 +12,26 @@ preconditions: Thiết bị offline qua mốc 2:00 AM ngày chuyển đổi DST 
   lên 3:00 AM hoặc mùa thu lùi về 1:00 AM).
 test_data: DST transition boundary date/time.
 steps:
-- desc: Đặt thiết bị offline vào đêm chuyển đổi DST.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Xem các lịch hẹn recurring của ngày hôm sau.
-  action: tap_selector
-  text: Xem các lịch hẹn recurring của
-  delay: 1.0
-- desc: Tạo 1 recurring job mới trong khoảng thời gian này.
-  action: tap_selector
-  text: 'Tạo 1 recurring job mới trong '
-  delay: 1.0
-- desc: Bật mạng online để đồng bộ.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
+  action: tap_selector
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
+  action: tap_selector
+  text: Jobs
 expected:
-- desc: Công việc lặp lại không bị tạo đúp thành 2 ca làm việc.
-  assert_text: Calendar / Recurring
-- desc: Thời gian bắt đầu công việc vẫn đúng vào giờ làm việc bình thường của cơ sở
-    kinh doanh.
-  assert_text: Calendar / Recurring
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5477 / Recurring
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Duplicate Recurring Event

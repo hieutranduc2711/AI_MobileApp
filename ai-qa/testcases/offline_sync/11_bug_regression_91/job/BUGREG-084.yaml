@@ -10,38 +10,46 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off network
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
+  action: set_network
+  value: 'true'
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Turn off network
-  delay: 1.0
-- desc: Add job from calendar
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Add job from calendar
-  delay: 1.0
-- desc: Create new job
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
   action: tap_selector
-  text: Create new job
-  delay: 1.0
-- desc: At new job screen press location field
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
   action: tap_selector
-  text: At new job screen press locati
-  delay: 1.0
-- desc: Location modal not load location data, modal empty
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
   action: tap_selector
-  text: Location modal not load locati
-  delay: 1.0
-- desc: dismiss location modal then open it again
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
   action: tap_selector
-  text: dismiss location modal then op
-  delay: 1.0
-- desc: show full location data
-  action: tap_selector
-  text: show full location data
-  delay: 1.0
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: 'Expected: show location data in location slection modal at first time open
-    it'
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

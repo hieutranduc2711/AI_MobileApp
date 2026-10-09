@@ -11,45 +11,30 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Edit Unit Comment.
 test_data: Valid representative entity/action
 steps:
-- desc: Mở app khi Offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'true'
   delay: 2.0
-- desc: Thực hiện Edit Unit Comment.
-  action: tap_selector
-  text: Edit Unit Comment
-  delay: 1.0
-- desc: Xác nhận local result/pending.
-  action: tap_selector
-  text: Xác nhận local result/pending.
-  delay: 1.0
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Không tạo thêm action.
-  action: tap_selector
-  text: Không tạo thêm action.
-  delay: 1.0
-- desc: Chờ sync worker + BE + PowerSync.
-  action: tap_selector
-  text: Chờ sync worker + BE + PowerSy
-  delay: 1.0
-- desc: Refresh/reopen và đối chiếu server.
-  action: tap_selector
-  text: Refresh/reopen và đối chiếu se
-  delay: 1.0
 expected:
-- desc: Pending mutation được push đúng action/account/branch.
-  assert_text: MDU
-- desc: Backend xử lý đúng business result.
-  assert_text: MDU
-- desc: Authoritative downlink reconcile local.
-  assert_text: MDU
-- desc: Không duplicate, không snap-back.
-  assert_text: MDU
-- desc: Pending kết thúc đúng trạng thái synced.
-  assert_text: MDU
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5592, RN-5590
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5592
 

@@ -11,43 +11,25 @@ app_path: GD Mobile > StatusField
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 1'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Opportunity / StatusField.'
+  value: 'true'
+- desc: Mở Drawer Menu từ Calendar
   action: tap_selector
-  text: 'Open module/component: Opportu'
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Chọn pipeline status khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
   action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
-  action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Opportunity
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (1 re-render/update count) without an approved implementation reason.
-  assert_text: Opportunity
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
-  assert_text: Opportunity
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
+  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

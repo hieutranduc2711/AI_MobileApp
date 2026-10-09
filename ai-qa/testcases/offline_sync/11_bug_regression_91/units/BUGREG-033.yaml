@@ -11,33 +11,26 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Go to any job unit detail
-  action: tap_selector
-  text: Go to any job unit detail
-  delay: 1.0
-- desc: Press on Attach a Photo
-  action: tap_selector
-  text: Press on Attach a Photo
-  delay: 1.0
-- desc: Snap a New Photo & Save
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Press on Client signature, edit & save
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Back to online
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Go to desktop app. Not sync attach photo & client signature
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Go to desktop app. Not sync at
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Signatures trong Job Details
+  action: tap_selector
+  text: Signatures
+- desc: Thực hiện ký xác nhận (Customer Signature)
+  action: macro
+  value: take_signature
+  args:
+    target: customer
 expected:
-- desc: Should be sync attach photo & client signature when back to online
-  assert_text: Units
+- desc: Chữ ký số được mã hóa và lưu vào hồ sơ Job offline
+  assert_text: Signatures
+- desc: Chữ ký duy trì nguyên vẹn sau khi mất mạng
+  assert_text: Save
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

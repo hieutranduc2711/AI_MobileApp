@@ -1,5 +1,5 @@
 id: SYNC-00026
-title: 'Move Job: Load dữ liệu online → mất mạng → vẫn thực hiện Move Job'
+title: 'Move Job (one-time): Load cache online → offline → move đúng occurrence'
 sheet: 01_Online_to_Offline
 module: Calendar
 action: Move Job
@@ -7,55 +7,59 @@ priority: P1
 flow_phase: O2F-01 Ready local cache
 direction: ONLINE → OFFLINE
 app_path: GD Mobile > Calendar > Job
-preconditions: Đăng nhập đúng account/branch; user có quyền Move Job; prerequisite/local
-  data cần thiết đã sync; mở đúng GD Mobile > Calendar > Job.
-test_data: Valid representative entity
+preconditions: 'Đăng nhập test account có quyền Calendar và đúng branch; mạng hoạt động trước khi bắt đầu. Không bấm Update/banner.
+  Cần fixture Job one-time của Today, duy nhất theo customer #### test Customer; không phải recurring và không có card trùng.'
+test_data: 'One-time Job fixture for Today: customer #### test Customer, service #001 test template, start 12:30 PM; chỉ một card khớp.'
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+- desc: Đảm bảo mạng online trước khi tìm Job fixture
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Ghi nhận giá trị hiện tại của entity.
-  action: tap_selector
-  text: 'Ghi nhận giá trị hiện tại của '
-  delay: 1.0
-- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+  delay: 1.5
+- desc: Về Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Xác nhận fixture Job duy nhất có mặt; không tạo thêm Job ngẫu nhiên
+  action: macro
+  value: assert_visible
+  args:
+    text: '#### test Customer'
+    timeout: 8
+- desc: Xác nhận Job one-time đang ở 12:30 PM trước khi move
+  action: assert_text
+  value: '12:30 PM'
+- desc: Ngắt mạng sau Calendar/Job đã load, trước gesture move
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Không reload app.
-  action: tap_selector
-  text: Không reload app.
-  delay: 1.0
-- desc: Thực hiện Move Job.
-  action: tap_selector
-  text: Move Job
-  delay: 1.0
-- desc: Navigate ra màn hình khác rồi quay lại.
-  action: back
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra kết quả.
+  delay: 1.5
+- desc: Long-press/drag Job one-time của Today; app phải mở popup scope đã được quan sát
+  action: macro
+  value: calendar_begin_move
+  args:
+    marker: '#### test Customer'
+    delta_minutes: 15
+    recurrence_scope: only
+- desc: Chọn Move this job only; không có occurrence tương lai nào được move
+  action: assert_text
+  value: Move this job only
+- desc: Xác nhận Move only đã đổi đúng giờ của Job hôm nay
+  action: macro
+  value: calendar_confirm_move
+  args:
+    recurrence_scope: only
+    expected_time: '12:45'
+- desc: Khôi phục mạng sau assertion
   action: set_network
-  value: 'false'
-  delay: 2.0
+  value: 'true'
+  delay: 1.5
 expected:
-- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
-  assert_text: Calendar
-- desc: Move Job vẫn thực hiện được theo offline scope.
-  assert_text: Calendar
-- desc: Không cần manual Offline toggle.
-  assert_text: Calendar
-- desc: Kết quả được giữ local/pending, không rollback vì mất network.
-  assert_text: Calendar
-- desc: Không đọc nhầm data account/branch khác.
-  assert_text: Calendar
+- desc: One-time Job của Today đổi đúng từ 12:30 PM sang 12:45 PM sau khi chọn Move only.
+  action: assert_text
+  value: 12:45 PM
 source_tickets: RN-5572, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5572
 
   https://gorilladesk1.atlassian.net/browse/RN-5587'
-risk: Transition/readiness
-notes: ''
+risk: Move scope correctness / local cache
+notes: 'Anh Hiếu xác nhận popup scope xuất hiện khi move recurring Job hoặc Job của Today. Case này kiểm tra Job one-time
+  của Today và chọn Move only. Pixel 5 cũng từng báo incomplete Job ở Saturday Jul 25th, 2026; cần resolve/cancel occurrence
+  cũ trước khi chạy fixture.'

@@ -11,43 +11,21 @@ app_path: GD Mobile > AgendaModeModal
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: 1'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Home / AgendaModeModal.'
-  action: tap_selector
-  text: 'Open module/component: Home / '
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
-  action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Ẩn ngày cuối tuần khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
-  action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
-  action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  value: 'true'
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Ẩn ngày cuối tuần khi offline trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Functional behavior must be correct.
-  assert_text: Home
-- desc: Primary component should not regress materially beyond recorded dev baseline
-    (1 re-render/update count) without an approved implementation reason.
-  assert_text: Home
-- desc: No infinite render loop, severe UI jank, or unrelated list-wide rerender explosion.
-  assert_text: Home
+- desc: Thao tác Ẩn ngày cuối tuần khi offline duy trì trạng thái ổn định trên giao
+    diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

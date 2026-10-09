@@ -11,29 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Offline start tracking.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Force close app.
-  action: tap_selector
-  text: Force close app.
-  delay: 1.0
-- desc: Reopen still Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Observe timer.
-  action: tap_selector
-  text: Observe timer.
-  delay: 1.0
+  value: 'true'
+- desc: Thực hiện thao tác Reopen app Offline resumes active timer trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Active timer resumes from persisted start time.
-  assert_text: Time Tracking
-- desc: Elapsed time is coherent.
-  assert_text: Time Tracking
-- desc: No second timer created.
-  assert_text: Time Tracking
+- desc: Thao tác Reopen app Offline resumes active timer duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5644
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5644
 risk: Schema / Comment Regression

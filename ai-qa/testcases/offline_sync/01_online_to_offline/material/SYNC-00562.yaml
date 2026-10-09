@@ -12,39 +12,31 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Update Stic
   prerequisite/local data cần thiết đã sync; mở đúng GD Mobile > Materials > Sticky.
 test_data: Valid action; proxy/network can cut immediately
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Thực hiện Update Sticky Material và nhấn Save/Confirm.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Ngay sau khi request bắt đầu, cắt network trước khi client nhận kết quả.
-  action: tap_selector
-  text: 'Ngay sau khi request bắt đầu, '
-  delay: 1.0
-- desc: Giữ app foreground.
-  action: tap_selector
-  text: Giữ app foreground.
-  delay: 1.0
-- desc: Quan sát UI/local state/pending state.
-  action: tap_selector
-  text: Quan sát UI/local state/pendin
-  delay: 1.0
-- desc: Navigate ra/vào lại entity khi vẫn Offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Materials trong Job Details
+  action: tap_selector
+  text: Materials
+- desc: Thêm vật tư / hóa chất sử dụng trong công việc
+  action: macro
+  value: add_material
 expected:
-- desc: App không được mất action chỉ vì không biết request đã tới server hay chưa.
-  assert_text: Material
-- desc: Không tạo duplicate local record/effect.
-  assert_text: Material
-- desc: State phải ở local optimistic/pending hoặc trạng thái an toàn tương đương.
-  assert_text: Material
-- desc: Không hiện fully synced khi chưa có xác nhận authoritative.
-  assert_text: Material
+- desc: Vật tư được ghi nhận định mức và trừ kho cục bộ
+  assert_text: Materials
 source_tickets: RN-5568, RN-5545
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5568
 

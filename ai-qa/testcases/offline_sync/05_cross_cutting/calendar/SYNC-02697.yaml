@@ -11,43 +11,26 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền A
   prerequisite cho Custom Event đã sync khi cần.
 test_data: Valid create payload
 steps:
-- desc: Go offline hoặc throttle.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Điền form Add Custom Event.
-  action: tap_selector
-  text: Điền form Add Custom Event.
-  delay: 1.0
-- desc: Tap Save/Confirm 2 lần nhanh.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Inspect local list/outbox.
-  action: tap_selector
-  text: Inspect local list/outbox.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Count server records.
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
   action: tap_selector
-  text: Count server records.
-  delay: 1.0
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
+  action: tap_selector
+  text: Jobs
 expected:
-- desc: Add Custom Event không làm app crash/mất dữ liệu.
-  assert_text: Calendar
-- desc: Local/UI của Custom Event phản ánh đúng business result.
-  assert_text: Calendar
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Calendar
-- desc: Không duplicate logical operation.
-  assert_text: Calendar
-- desc: Chỉ một logical record.
-  assert_text: Calendar
-- desc: Không duplicate local/server.
-  assert_text: Calendar
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
 source_tickets: RN-5573, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5573
 

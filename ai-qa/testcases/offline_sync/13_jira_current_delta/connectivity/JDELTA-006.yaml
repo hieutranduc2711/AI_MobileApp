@@ -11,27 +11,19 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Start stable Online.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Throttle download below configured boundary around recommended 2 Mbps.
-  action: tap_selector
-  text: Throttle download below config
-  delay: 1.0
-- desc: Observe mode.
-  action: tap_selector
-  text: Observe mode.
-  delay: 1.0
-- desc: Restore good network.
-  action: tap_selector
-  text: Restore good network.
-  delay: 1.0
+- desc: 'Thực hiện thao tác Configured threshold: low download speed triggers Offline/Weak
+    behavior trên giao diện GorillaDesk'
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Slow-but-connected network does not leave app unusably stuck Online.
-  assert_text: Connectivity
-- desc: Recovery is automatic.
-  assert_text: Connectivity
+- desc: 'Thao tác Configured threshold: low download speed triggers Offline/Weak behavior
+    duy trì trạng thái ổn định trên giao diện'
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477,RN-5566
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5477
 

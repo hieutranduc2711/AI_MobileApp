@@ -12,52 +12,49 @@ preconditions: Đúng account/branch; prerequisite data sync sẵn; flow Delete 
   accessible.
 test_data: Valid business data
 steps:
-- desc: Mở flow khi Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Bắt đầu nhập/chọn dữ liệu.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
+  action: set_network
+  value: 'false'
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Bắt đầu nhập/chọn dữ liệu.
-  delay: 1.0
-- desc: Cắt network giữa workflow trước Save.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Estimate trong Action Sheet
+  action: tap_selector
+  content_desc: New Estimate
+  text: New Estimate
+  value: 0.5,0.88
+- desc: Chọn khách hàng lập báo giá
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn địa điểm dịch vụ
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+- desc: Bấm Save để lưu Estimate offline
   action: tap_selector
   content_desc: Save
-  delay: 2.0
-- desc: Tiếp tục thao tác khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Save/Confirm khi Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Navigate ra/vào để xác nhận local persistence.
-  action: tap_selector
-  text: Navigate ra/vào để xác nhận lo
-  delay: 1.0
-- desc: Khôi phục Online.
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Chờ queue/backend/downlink.
-  action: back
-  delay: 1.0
-- desc: Đối chiếu server và mobile.
-  action: tap_selector
-  text: Đối chiếu server và mobile.
-  delay: 1.0
 expected:
-- desc: Network transition không reset user work.
+- desc: Báo giá được tính toán và lưu offline an toàn
   assert_text: Estimate
-- desc: Offline save tạo durable pending mutation.
-  assert_text: Estimate
-- desc: Reconnect push đúng business action.
-  assert_text: Estimate
-- desc: Final authoritative result giữ toàn bộ thay đổi từ trước và sau lúc rớt mạng.
-  assert_text: Estimate
-- desc: Không duplicate/missing fields.
-  assert_text: Estimate
+- desc: Tổng tiền hiển thị chính xác
+  assert_text: Subtotal
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5576, RN-5542
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5576
 

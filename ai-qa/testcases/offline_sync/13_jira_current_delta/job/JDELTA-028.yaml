@@ -11,26 +11,26 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Prepare service template without always-confirmed.
-  action: tap_selector
-  text: Prepare service template witho
-  delay: 1.0
-- desc: Go Offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Create Job using template.
-  action: tap_selector
-  text: Create Job using template.
-  delay: 1.0
-- desc: Inspect status before and after reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
+- desc: Mở Job đầu tiên từ màn hình Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
+  action: tap_selector
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Confirmed' trong danh sách
+  action: tap_selector
+  text: Confirmed
+  content_desc: Confirmed
 expected:
-- desc: Job status follows template/business rule (e.g. Unconfirmed where applicable),
-    not forced Confirmed.
-  assert_text: Job
+- desc: Trạng thái Job được cập nhật thành 'Confirmed' trong local cache
+  assert_text: Confirmed
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: RN-5608
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5608
 risk: Schema / Comment Regression

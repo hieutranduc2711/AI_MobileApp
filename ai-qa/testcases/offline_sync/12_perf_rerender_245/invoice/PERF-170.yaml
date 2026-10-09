@@ -11,41 +11,21 @@ app_path: GD Mobile > TermsTemplateModal
 preconditions: Logged in with downloaded local data
 test_data: 'Baseline Re-render: None'
 steps:
-- desc: Prepare the same downloaded/local data shape required by this action.
-  action: tap_selector
-  text: Prepare the same downloaded/lo
-  delay: 1.0
-- desc: Put GD Mobile in the Offline state unless the action explicitly says otherwise.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Open module/component: Invoice / TermsTemplateModal.'
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: 'Open module/component: Invoice'
-  delay: 1.0
-- desc: Enable the project render counter/React profiler method used by the dev baseline.
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: Enable the project render coun
-  delay: 1.0
-- desc: 'Perform action exactly once: Chọn terms template khi offline.'
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Record functional result and component re-render count.
-  action: tap_selector
-  text: Record functional result and c
-  delay: 1.0
-- desc: Repeat once when the result is close to the threshold to rule out measurement
-    noise.
-  action: tap_selector
-  text: Repeat once when the result is
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: Functional behavior must be correct.
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
   assert_text: Invoice
-- desc: Baseline re-render target is not established in the dev sheet; measure and
-    record actual count, then flag for perf review if excessive.
-  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: RN-5477 Perf Re-render
 source_urls: ''
 risk: Performance Degradation

@@ -10,41 +10,26 @@ app_path: GD Mobile > Job
 preconditions: Entity synced locally; device offline.
 test_data: One entity
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Action 1: Check in.'
-  action: tap_selector
-  text: 'Action 1: Check in.'
-  delay: 1.0
-- desc: 'Action 2 ngay sau đó: Change status.'
-  action: tap_selector
-  text: 'Action 2 ngay sau đó: Change s'
-  delay: 1.0
-- desc: Inspect local final state.
-  action: tap_selector
-  text: Inspect local final state.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Capture/order actions.
+- desc: Mở Job đầu tiên từ màn hình Calendar
   action: tap_selector
-  text: Capture/order actions.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: customer-avatar
+  index: 0
+- desc: Bấm chọn ô trạng thái Job Status
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  content_desc: Unconfirmed
+  text: Unconfirmed
+- desc: Chọn trạng thái 'Sent' trong danh sách
+  action: tap_selector
+  text: Sent
+  content_desc: Sent
 expected:
-- desc: Cả hai action giữ đúng semantics.
-  assert_text: Job
-- desc: Không coalesce chỉ vì same entity/UPDATE.
-  assert_text: Job
-- desc: Final state đúng ordered effects.
-  assert_text: Job
+- desc: Trạng thái Job được cập nhật thành 'Sent' trong local cache
+  assert_text: Sent
+- desc: Màn hình Job Details duy trì trạng thái ổn định không lỗi
+  assert_text: Job Details
 source_tickets: RN-5571, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5571
 

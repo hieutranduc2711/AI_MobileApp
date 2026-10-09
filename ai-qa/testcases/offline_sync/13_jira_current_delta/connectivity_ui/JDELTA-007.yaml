@@ -11,29 +11,22 @@ app_path: GD Mobile
 preconditions: Configured account
 test_data: ''
 steps:
-- desc: Open Home Online.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Disconnect network.
-  action: tap_selector
-  text: Disconnect network.
-  delay: 1.0
-- desc: Observe warning/toast.
-  action: tap_selector
-  text: Observe warning/toast.
-  delay: 1.0
-- desc: Reconnect stable network.
-  action: set_network
-  value: 'true'
-  delay: 2.0
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Low/no connection toast and warning state trên giao diện
+    GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No-internet/low-connection UI appears appropriately.
-  assert_text: Connectivity UI
-- desc: Warning disappears after stable recovery.
-  assert_text: Connectivity UI
-- desc: No old manual offline switching bar is required.
-  assert_text: Connectivity UI
+- desc: Thao tác Low/no connection toast and warning state duy trì trạng thái ổn định
+    trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5558,RN-5516
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5558
 

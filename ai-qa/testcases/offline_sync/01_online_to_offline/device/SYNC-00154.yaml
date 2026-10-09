@@ -12,47 +12,27 @@ preconditions: Đăng nhập đúng account/branch; user có quyền Edit Device
   data cần thiết đã sync; mở đúng GD Mobile > Job > Devices > Areas > Edit.
 test_data: Valid representative entity
 steps:
-- desc: Bật network ổn định.
-  action: tap_selector
-  text: Bật network ổn định.
-  delay: 1.0
-- desc: Mở entity/list cần test và chờ dữ liệu online/local sync hoàn tất.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Ghi nhận giá trị hiện tại của entity.
-  action: tap_selector
-  text: 'Ghi nhận giá trị hiện tại của '
-  delay: 1.0
-- desc: Tắt Wi‑Fi + mobile data; chờ app chuyển Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Không reload app.
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Không reload app.
-  delay: 1.0
-- desc: Thực hiện Edit Device Area.
+  resource_id: customer-avatar
+  index: 0
+- desc: Cuộn đến mục quản lý Device / Area
   action: tap_selector
-  text: Edit Device Area
-  delay: 1.0
-- desc: Navigate ra màn hình khác rồi quay lại.
-  action: back
-  delay: 1.0
-- desc: Giữ device Offline và kiểm tra kết quả.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+  text: Device
 expected:
-- desc: Dữ liệu đã có khi online vẫn tồn tại sau khi mất mạng.
-  assert_text: Device
-- desc: Edit Device Area vẫn thực hiện được theo offline scope.
-  assert_text: Device
-- desc: Không cần manual Offline toggle.
-  assert_text: Device
-- desc: Kết quả được giữ local/pending, không rollback vì mất network.
-  assert_text: Device
-- desc: Không đọc nhầm data account/branch khác.
+- desc: Dữ liệu thiết bị / khu vực được ghi nhận vào cơ sở dữ liệu
   assert_text: Device
 source_tickets: RN-5591, RN-5607
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5591

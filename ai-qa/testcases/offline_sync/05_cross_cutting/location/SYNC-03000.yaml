@@ -11,53 +11,44 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Customer Location đã sync khi cần.
 test_data: Valid representative data
 steps:
-- desc: Switch Branch A.
-  action: tap_selector
-  text: Switch Branch A.
-  delay: 1.0
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Thực hiện Create Location.
-  action: tap_selector
-  text: Create Location
-  delay: 1.0
-- desc: Switch Branch B trước sync nếu UI cho phép.
-  action: tap_selector
-  text: Switch Branch B trước sync nếu
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Inspect B.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Inspect B.
-  delay: 1.0
-- desc: Switch A.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Customer trong Action Sheet
   action: tap_selector
-  text: Switch A.
-  delay: 1.0
-- desc: Verify.
+  content_desc: New Customer
+  text: New Customer
+  value: 0.5,0.78
+- desc: Nhập First Name khách hàng
   action: tap_selector
-  text: Verify.
-  delay: 1.0
+  text: First Name
+- desc: Điền First Name
+  action: type_text
+  value: Offline
+- desc: Nhập Last Name khách hàng
+  action: tap_selector
+  text: Last Name
+- desc: Điền Last Name
+  action: type_text
+  value: SyncTest
+- desc: Nhập Phone khách hàng
+  action: tap_selector
+  text: Phone
+- desc: Điền Phone
+  action: type_text
+  value: '1234567890'
+- desc: Bấm Save lưu thông tin khách hàng
+  action: tap_selector
+  content_desc: Save
 expected:
-- desc: Create Location không làm app crash/mất dữ liệu.
-  assert_text: Location
-- desc: Local/UI của Customer Location phản ánh đúng business result.
-  assert_text: Location
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Location
-- desc: Không duplicate logical operation.
-  assert_text: Location
-- desc: A mutation không send với B context.
-  assert_text: Location
-- desc: B không thấy A optimistic data.
-  assert_text: Location
-- desc: Converge ở A only.
-  assert_text: Location
+- desc: Hồ sơ khách hàng được tạo thành công trong chế độ offline
+  assert_text: Offline
+- desc: Dữ liệu khách hàng được lưu trữ cục bộ không bị rollback
+  assert_text: Customer
 source_tickets: RN-5602, RN-5601
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5602
 

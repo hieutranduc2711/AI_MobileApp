@@ -11,41 +11,28 @@ preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có q
   đổi cùng data.
 test_data: Job Documents
 steps:
-- desc: Seed local value cũ.
-  action: tap_selector
-  text: Seed local value cũ.
-  delay: 1.0
-- desc: Giữ server value mới.
-  action: tap_selector
-  text: Giữ server value mới.
-  delay: 1.0
-- desc: Mở screen Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Xác nhận local cũ paint trước nếu flow dùng local-first.
-  action: tap_selector
-  text: 'Xác nhận local cũ paint trước '
-  delay: 1.0
-- desc: Chờ API revalidation cập nhật local.
-  action: tap_selector
-  text: 'Chờ API revalidation cập nhật '
-  delay: 1.0
-- desc: Tắt network.
-  action: tap_selector
-  text: Tắt network.
-  delay: 1.0
-- desc: Reopen Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Mở Job chi tiết từ Calendar
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Attach a Photo trong Job Details
+  action: tap_selector
+  text: Attach a Photo
 expected:
-- desc: Local-first không ngăn authoritative update persist xuống local.
-  assert_text: Document
-- desc: Offline sau revalidation thấy value mới.
-  assert_text: Document
-- desc: Không quay lại value cũ.
-  assert_text: Document
+- desc: Mục đính kèm ảnh sẵn sàng để xếp hàng chờ sync
+  assert_text: Attach a Photo
 source_tickets: RN-5539, RN-5634
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5539
 

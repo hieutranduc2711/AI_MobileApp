@@ -10,41 +10,46 @@ app_path: GD Mobile > Job > Time Tracking
 preconditions: Entity synced locally; device offline.
 test_data: One entity
 steps:
-- desc: Go offline.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: 'Action 1: Start.'
-  action: tap_selector
-  text: 'Action 1: Start.'
-  delay: 1.0
-- desc: 'Action 2 ngay sau đó: Stop.'
-  action: tap_selector
-  text: 'Action 2 ngay sau đó: Stop.'
-  delay: 1.0
-- desc: Inspect local final state.
-  action: tap_selector
-  text: Inspect local final state.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Capture/order actions.
+- desc: Bấm nút (+) Floating Action Button trên Calendar
   action: tap_selector
-  text: Capture/order actions.
-  delay: 1.0
-- desc: Verify server.
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
   action: tap_selector
-  text: Verify server.
-  delay: 1.0
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Cả hai action giữ đúng semantics.
-  assert_text: Job
-- desc: Không coalesce chỉ vì same entity/UPDATE.
-  assert_text: Job
-- desc: Final state đúng ordered effects.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5644, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5644
 

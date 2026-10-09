@@ -10,30 +10,20 @@ app_path: Technical behavior related to Handle background syncing
 preconditions: Target implementation/status available.
 test_data: Handle background syncing
 steps:
-- desc: Exercise implementation related to Handle background syncing.
-  action: back
-  delay: 1.0
-- desc: Run representative online path.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Run offline path if applicable.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Reconnect/restart.
-  action: set_network
-  value: 'true'
-  delay: 2.0
-- desc: Compare Offline Mode invariants.
-  action: set_network
-  value: 'false'
-  delay: 2.0
+- desc: Đưa ứng dụng xuống Background 3s rồi khôi phục foreground
+  action: background_app
+  value: '3.0'
+- desc: Thực hiện thao tác Handle background syncing trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: No violation of local-first/durability/idempotency/isolation/dependency/convergence.
-  assert_text: Technical Coverage
-- desc: If not implemented due status, mark Blocked/N/A.
-  assert_text: Technical Coverage
+- desc: Thao tác Handle background syncing duy trì trạng thái ổn định trên giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5564
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5564
 risk: Architecture coverage

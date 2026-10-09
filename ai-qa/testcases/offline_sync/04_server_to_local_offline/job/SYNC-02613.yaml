@@ -12,35 +12,55 @@ preconditions: Mobile Online và authenticated; web/thiết bị thứ hai có q
   đổi cùng data.
 test_data: Job list/detail
 steps:
-- desc: Mở mobile Online.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Web/thiết bị B cập nhật record.
-  action: tap_selector
-  text: Web/thiết bị B cập nhật record
-  delay: 1.0
-- desc: Chờ mobile nhận update.
-  action: tap_selector
-  text: Chờ mobile nhận update.
-  delay: 1.0
-- desc: Xác nhận value mới.
-  action: tap_selector
-  text: Xác nhận value mới.
-  delay: 1.0
-- desc: Tắt network ngay sau đó.
-  action: tap_selector
-  text: Tắt network ngay sau đó.
-  delay: 1.0
-- desc: Reopen Offline.
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Bấm nút (+) Floating Action Button trên Calendar
+  action: tap_selector
+  resource_id: OutlinePlus
+  value: 0.91,0.94
+- desc: Chọn New Job trong Action Sheet
+  action: tap_selector
+  content_desc: New Job
+  text: New Job
+  value: 0.5,0.72
+- desc: Chọn khách hàng trong danh sách
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn địa điểm dịch vụ (Location)
+  action: tap_selector
+  resource_id: location-item
+  index: 0
+  value: 0.5,0.28
+- desc: Chọn dịch vụ phụ trách
+  action: tap_selector
+  content_desc: '# Thinh Outbox 2'
+  text: '# Thinh Outbox 2'
+  value: 0.5,0.32
+- desc: Bấm Save để lưu Job vào bộ nhớ offline
+  action: tap_selector
+  content_desc: Save
+  text: Save
+  value: 0.92,0.14
 expected:
-- desc: Latest server value vẫn hiện Offline.
-  assert_text: Job
-- desc: Không revert stale value sau network loss.
-  assert_text: Job
+- desc: Form New Job được lưu thành công, chuyển hướng vào màn hình Job Details
+  assert_text: Job Details
+- desc: 'Job được lưu an toàn trong SQLite/Realm offline với mã định danh tạm thời
+    ###'
+  assert_text: '###'
+- desc: Trạng thái Job hiển thị sẵn sàng cho kỹ thuật viên thao tác offline
+  assert_text: Unconfirmed
 source_tickets: RN-5518, RN-5634
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5518
 

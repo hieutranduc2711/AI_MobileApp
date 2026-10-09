@@ -11,26 +11,21 @@ app_path: GD Mobile
 preconditions: Logged in GD Mobile
 test_data: ''
 steps:
-- desc: Turn off wifi
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Go to customer detail
+  value: 'true'
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Go to customer detail
-  delay: 1.0
-- desc: Create new invoice
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Invoice trong Job Details
   action: tap_selector
-  text: Create new invoice
-  delay: 1.0
-- desc: Back customer detail view list invoice
-  action: back
-  delay: 1.0
+  text: Invoice
 expected:
-- desc: 'Expect: Invoice just created must display text "n/a"'
-  assert_text: n/a
-- desc: 'Actual: Invoice just created don''t display "n/a"'
-  assert_text: 't display '
+- desc: Hóa đơn được lưu cục bộ và hiển thị thông tin thanh toán
+  assert_text: Invoice
+- desc: Số tiền hóa đơn được bảo lưu chính xác
+  assert_text: Total
 source_tickets: Historical Bug Report
 source_urls: https://docs.google.com/spreadsheets/d/14nFqZsRHqW14kxHZbbjaSPNYMVTr3CnJ6v7NXssIv6o/edit
 risk: Bug Regression

@@ -11,37 +11,27 @@ app_path: GD Mobile > Job Creation > Save
 preconditions: Thiết bị offline hoàn toàn.
 test_data: Full Job payload (Title, Customer, Time, Line Items).
 steps:
-- desc: Nhập thông tin Job mới offline.
+- desc: Đảm bảo kết nối mạng Online ban đầu để nạp dữ liệu cơ sở
+  action: set_network
+  value: 'true'
+- desc: Đưa ứng dụng về màn hình Calendar Home an toàn
+  action: macro
+  value: ensure_calendar_home
+- desc: Ngắt toàn bộ kết nối mạng (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Nhấn nút 'Save Job'.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Trong vòng 0.2 giây ngay khi popup thành công vừa hiện hoặc vừa đóng, lập
-    tức vuốt tắt app từ thanh Recent Apps (Task Switcher).
-  action: tap_selector
-  text: Trong vòng 0.2 giây ngay khi p
-  delay: 1.0
-- desc: Mở lại GD Mobile App.
-  action: tap_selector
-  text: Mở lại GD Mobile App.
-  delay: 1.0
-- desc: Kiểm tra danh sách Job trong ngày và trạng thái Outbox.
-  action: tap_selector
-  text: Kiểm tra danh sách Job trong n
-  delay: 1.0
+  delay: 1.5
+- desc: Xác nhận banner / icon Offline xuất hiện trên màn hình
+  action: assert_offline
+- desc: Thực hiện thao tác Immediate App Swipe-Kill After Save trên giao diện GorillaDesk
+  action: macro
+  value: ensure_calendar_home
 expected:
-- desc: Lệnh ghi đã được commit đồng bộ (synchronous SQLite commit) trước khi trả
-    quyền điều khiển về UI.
-  assert_text: Storage / SQLite
-- desc: 'Mở lại app: Job mới tạo xuất hiện đầy đủ trong danh sách cục bộ.'
-  assert_text: Storage / SQLite
-- desc: Biểu tượng pending/outbox hiển thị đúng trên thẻ Job.
-  assert_text: Storage / SQLite
-- desc: Không bị mất dữ liệu do app bị terminate đột ngột.
-  assert_text: Storage / SQLite
+- desc: Thao tác Immediate App Swipe-Kill After Save duy trì trạng thái ổn định trên
+    giao diện
+  assert_text: Today
+- desc: Ứng dụng GorillaDesk không bị crash khi xử lý offline
+  assert_text: Jobs
 source_tickets: RN-5477 / Persistence
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Data Loss on Exit

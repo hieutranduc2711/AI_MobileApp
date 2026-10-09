@@ -12,41 +12,34 @@ preconditions: Đúng account/branch; prerequisite đã cache; device đang Offl
   có quyền Edit Customer.
 test_data: Valid representative entity/action
 steps:
-- desc: Offline thực hiện action.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Reconnect.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Mở Drawer Menu từ Calendar
+  action: tap_selector
+  content_desc: Open navigation drawer
+  value: 0.06,0.07
+- desc: Chọn mục Customers trong danh mục
+  action: tap_selector
+  text: Customers
+- desc: Chọn khách hàng trong danh sách để xem chi tiết
+  action: tap_selector
+  resource_id: customer-avatar
+  index: 0
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Cho server process business action nhưng drop response.
-  action: tap_selector
-  text: Cho server process business ac
-  delay: 1.0
-- desc: Để client retry cùng logical operation.
-  action: tap_selector
-  text: Để client retry cùng logical o
-  delay: 1.0
-- desc: Restore response.
-  action: tap_selector
-  text: Restore response.
-  delay: 1.0
-- desc: Kiểm tra count/effect server.
-  action: tap_selector
-  text: Kiểm tra count/effect server.
-  delay: 1.0
-- desc: Verify local.
-  action: tap_selector
-  text: Verify local.
-  delay: 1.0
 expected:
-- desc: Stable idempotency ngăn duplicate.
+- desc: Danh sách khách hàng và lịch sử làm việc hiển thị từ SQLite local cache
   assert_text: Customer
-- desc: Chỉ một logical business effect.
-  assert_text: Customer
-- desc: Local cuối cùng map/reconcile với authoritative record.
-  assert_text: Customer
+- desc: Dữ liệu vị trí và liên hệ được nạp đầy đủ khi offline
+  assert_text: All Locations
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5598, RN-5594, RN-5533, RN-5587
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5598
 

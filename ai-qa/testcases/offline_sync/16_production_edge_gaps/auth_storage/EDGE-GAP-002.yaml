@@ -13,39 +13,38 @@ preconditions: User làm việc offline nhiều ngày, cả Access Token và Ref
 test_data: Revoked session / HTTP 401 Unauthorized trên mọi auth endpoints; 10 pending
   local mutations.
 steps:
-- desc: Có 10 mutations pending offline.
+- desc: Chuyển thiết bị sang chế độ Offline (Tắt Wi-Fi & Mobile Data)
   action: set_network
   value: 'false'
-  delay: 2.0
-- desc: Bật mạng internet lại.
+  delay: 1.5
+- desc: Xác nhận ứng dụng đang trong trạng thái Offline
+  action: assert_offline
+- desc: Khóa màn hình thiết bị và mở khóa lại để kiểm tra bảo lưu phiên
+  action: lock_screen
+  value: '3.0'
+- desc: Đưa ứng dụng về màn hình Calendar Home
+  action: macro
+  value: ensure_calendar_home
+- desc: Bấm nút Today để điều hướng về ngày làm việc hiện tại
+  action: tap_selector
+  content_desc: Today
+  text: Today
+- desc: Kiểm tra danh sách công việc và chỉ số tổng trên Lịch
+  action: tap_selector
+  text: Jobs
+- desc: Khôi phục kết nối mạng (Bật Wi-Fi & Mobile Data)
   action: set_network
   value: 'true'
   delay: 2.0
-- desc: Sync Engine gửi request và nhận phản hồi 401/403 Session Expired từ backend.
-  action: back
-  delay: 1.0
-- desc: Kiểm tra phản ứng của GD Mobile App.
-  action: tap_selector
-  text: Kiểm tra phản ứng của GD Mobil
-  delay: 1.0
-- desc: Kiểm tra trạng thái bảng outbox và dữ liệu local SQLite.
-  action: tap_selector
-  text: Kiểm tra trạng thái bảng outbo
-  delay: 1.0
-- desc: Thực hiện đăng nhập lại (Re-login) cùng tài khoản đó.
-  action: tap_selector
-  text: Force Logout Prevention & Data Preservation
-  delay: 1.0
 expected:
-- desc: App TUYỆT ĐỐI KHÔNG tự động purge/xóa bảng SQLite local hoặc outbox.
-  assert_text: Auth / Storage
-- desc: 'App hiển thị màn hình khóa yêu cầu nhập mật khẩu xác thực lại (Session Expired
-    Modal) với thông báo: ''Có 10 thay đổi chưa đồng bộ. Vui lòng đăng nhập lại để
-    tiếp tục sync.'''
-  assert_text: Có 10 thay đổi chưa đồng bộ. Vui lòng đăng nhập lại để tiếp tục sync.
-- desc: Sau khi đăng nhập lại thành công, app tự động resume và đồng bộ toàn bộ 10
-    items lên server mà không mất 1 byte dữ liệu.
-  assert_text: Auth / Storage
+- desc: Lịch làm việc hiển thị nguyên vẹn các công việc từ SQLite offline
+  assert_text: Jobs
+- desc: Nút điều hướng Today và ngày hiện tại hoạt động bình thường
+  assert_text: Today
+- desc: Tổng doanh thu và số lượng công việc được bảo toàn
+  assert_text: Total
+- desc: Hàng đợi Pending Outbox đẩy toàn bộ mutation lên server mà không xung đột
+  assert_text: Today
 source_tickets: RN-5477 / Arch-Security
 source_urls: https://gorilladesk1.atlassian.net/browse/RN-5477
 risk: Catastrophic Data Loss

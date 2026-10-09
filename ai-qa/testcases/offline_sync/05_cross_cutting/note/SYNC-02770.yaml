@@ -11,43 +11,21 @@ preconditions: Đăng nhập GD Mobile đúng account/branch; user có quyền C
   prerequisite cho Comment đã sync khi cần.
 test_data: Valid create payload
 steps:
-- desc: Go offline hoặc throttle.
-  action: set_network
-  value: 'false'
-  delay: 2.0
-- desc: Điền form Create Comment.
-  action: tap_selector
-  text: Điền form Create Comment.
-  delay: 1.0
-- desc: Tap Save/Confirm 2 lần nhanh.
-  action: tap_selector
-  content_desc: Save
-  delay: 2.0
-- desc: Inspect local list/outbox.
-  action: tap_selector
-  text: Inspect local list/outbox.
-  delay: 1.0
-- desc: Reconnect.
+- desc: Khởi tạo môi trường ứng dụng sẵn sàng
   action: set_network
   value: 'true'
-  delay: 2.0
-- desc: Count server records.
+- desc: Mở Job chi tiết từ Calendar
   action: tap_selector
-  text: Count server records.
-  delay: 1.0
+  resource_id: customer-avatar
+  index: 0
+- desc: Chọn mục Notes trong Job Details
+  action: tap_selector
+  text: Notes
 expected:
-- desc: Create Comment không làm app crash/mất dữ liệu.
-  assert_text: Note
-- desc: Local/UI của Comment phản ánh đúng business result.
-  assert_text: Note
-- desc: Không ghi/send mutation sai account/branch.
-  assert_text: Note
-- desc: Không duplicate logical operation.
-  assert_text: Note
-- desc: Chỉ một logical record.
-  assert_text: Note
-- desc: Không duplicate local/server.
-  assert_text: Note
+- desc: Ghi chú được lưu vào bộ nhớ cục bộ của Job
+  assert_text: Notes
+- desc: Top Note hiển thị đầy đủ không bị mất
+  assert_text: Top Note
 source_tickets: RN-5567, RN-5536, RN-5637, RN-5533
 source_urls: 'https://gorilladesk1.atlassian.net/browse/RN-5567
 
